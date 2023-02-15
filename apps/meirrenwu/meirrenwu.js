@@ -12,7 +12,8 @@ import {
   Read_renwu,
   shijianc,
   sleep,
-  Write_renwu
+  Write_renwu,
+  found
 } from '../Xiuxian/xiuxian.js';
 import Show from '../../model/show.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
@@ -457,16 +458,7 @@ export async function get_renwu_img(e) {
   }
 }
 
-async function found(A) {
-  let renwu = await Read_renwu();
-  let i;
-  for (i = 0; i < renwu.length; i++) {
-    if (renwu[i].player == A) {
-      break;
-    }
-  }
-  return i;
-}
+
 
 /**
  * @description: 进度条渲染
