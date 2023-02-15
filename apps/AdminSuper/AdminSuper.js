@@ -4,25 +4,24 @@ import data from '../../model/XiuxianData.js';
 import config from '../../model/Config.js';
 import { get_player_img } from '../ShowImeg/showData.js';
 import {
-  __PATH,
-  Add_HP,
-  Add_najie_thing,
+  existplayer,
   Add_修为,
   Add_血气,
-  exist_najie_thing,
-  existplayer,
-  ForwardMsg,
   isNotNull,
+  Write_player,
+  Write_najie,
   Read_equipment,
   Read_najie,
-  Read_player,
-  Read_updata_log,
-  TEXT_battle,
   Write_equipment,
-  Write_najie,
-  Write_player
+  ForwardMsg,
+  TEXT_battle,
+  Read_updata_log,
+  Add_HP,
+  Add_najie_thing,
+  exist_najie_thing
 } from '../Xiuxian/xiuxian.js';
 import { Read_Exchange, Write_Exchange } from '../Exchange/Exchange.js';
+import { Read_player, __PATH } from '../Xiuxian/xiuxian.js';
 import { Read_Forum, Write_Forum } from '../Help/Forum.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import Show from '../../model/show.js';
@@ -40,81 +39,81 @@ export class AdminSuper extends plugin {
       rule: [
         {
           reg: '^#解封.*$',
-          fnc: 'relieve'
+          fnc: 'relieve',
         },
         {
           reg: '^#解除所有$',
-          fnc: 'Allrelieve'
+          fnc: 'Allrelieve',
         },
         {
           reg: '^#打落凡间.*$',
-          fnc: 'Knockdown'
+          fnc: 'Knockdown',
         },
         {
           reg: '^#清除冲水堂$',
-          fnc: 'Deleteexchange'
+          fnc: 'Deleteexchange',
         },
         {
           reg: '^#清除.*$',
-          fnc: 'Deletepurchase'
+          fnc: 'Deletepurchase',
         },
         {
           reg: '^#放出怪物$',
-          fnc: 'OpenBoss'
+          fnc: 'OpenBoss',
         },
         {
           reg: '^#关上怪物$',
-          fnc: 'DeleteBoss'
+          fnc: 'DeleteBoss',
         },
         {
           reg: '^#清空委托$',
-          fnc: 'DeleteForum'
+          fnc: 'DeleteForum',
         },
         {
           reg: '^#修仙世界$',
-          fnc: 'Worldstatistics'
+          fnc: 'Worldstatistics',
         },
         {
           reg: '^#发修为补偿.*$',
-          fnc: 'xiuweiFuli'
+          fnc: 'xiuweiFuli',
         },
         {
           reg: '^#扣修为(.*)$',
-          fnc: 'xiuweiDeduction'
+          fnc: 'xiuweiDeduction',
         },
         {
           reg: '^#发血气补偿(.*)$',
-          fnc: 'xueqiFuli'
+          fnc: 'xueqiFuli',
         },
         {
           reg: '^#扣血气(.*)$',
-          fnc: 'xueqiDeduction'
+          fnc: 'xueqiDeduction',
         },
         {
           reg: '^#测试$',
-          fnc: 'cesi'
+          fnc: 'cesi',
         },
         {
           reg: '^#查看日志$',
-          fnc: 'show_log'
+          fnc: 'show_log',
         },
         {
           reg: '^#炼丹师更新$',
-          fnc: 'liandanshi'
+          fnc: 'liandanshi',
         },
         {
           reg: '^#自降修为.*$',
-          fnc: 'off_xiuwei'
+          fnc: 'off_xiuwei',
         },
         {
           reg: '^#自降境界至(.*)$',
-          fnc: 'off_level'
+          fnc: 'off_level',
         },
         {
           reg: '#将米娜桑的纳戒里叫.*的的的(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链|食材)(抹除|替换为叫.*之之之(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链|食材))$',
-          fnc: 'replaceThing'
-        }
-      ]
+          fnc: 'replaceThing',
+        },
+      ],
     });
     this.xiuxianConfigData = config.getConfig('xiuxian', 'xiuxian');
   }
@@ -130,7 +129,7 @@ export class AdminSuper extends plugin {
     if (!ifexistplay) {
       return;
     }
-    let number2 = e.msg.replace('#自降修为', '');
+    var number2 = e.msg.replace('#自降修为', '');
     let player = await Read_player(usr_qq);
     number2 = Math.floor(number2);
     if (number2 < 0) {
@@ -158,7 +157,6 @@ export class AdminSuper extends plugin {
     await Add_修为(usr_qq, -number2);
     e.reply('扣除成功');
   }
-
   async off_level(e) {
     //不开放私聊功能
     if (!e.isGroup) {
@@ -170,7 +168,7 @@ export class AdminSuper extends plugin {
     if (!ifexistplay) {
       return;
     }
-    let number2 = e.msg.replace('#自降境界至', '');
+    var number2 = e.msg.replace('#自降境界至', '');
     let player = await Read_player(usr_qq);
     let newjingjie = data.Level_list.find(item => item.level == number2);
     if (!isNotNull(newjingjie)) {
@@ -213,7 +211,6 @@ export class AdminSuper extends plugin {
     await Add_HP(usr_qq, 99999999);
     e.reply('扣除成功');
   }
-
   async liandanshi(e) {
     if (!e.isMaster) {
       e.reply('你凑什么热闹');
@@ -239,7 +236,7 @@ export class AdminSuper extends plugin {
         beiyong3: 0,
         beiyong4: 0,
         beiyong5: 0,
-        qq: this_qq
+        qq: this_qq,
       };
       i++;
     }
@@ -297,7 +294,7 @@ export class AdminSuper extends plugin {
         str[j] == '摸鱼' ||
         str[j] == '闹钟' ||
         str[j] == '晓飞' ||
-        str[j] == '航'
+        str[j] == '航' 
       ) {
         let m = j;
         while (
@@ -308,10 +305,10 @@ export class AdminSuper extends plugin {
           str[m - 1] != '画手' &&
           str[m - 1] != '摸鱼' &&
           str[m - 1] != '闹钟' &&
-          str[m - 1] != '晓飞' &&
-          str[m - 1] != '航' &&
+          str[m - 1] !=  '晓飞' &&
+          str[m - 1] !=  '航' &&
           m > 0
-          ) {
+        ) {
           T = str[m];
           str[m] = str[m - 1];
           str[m - 1] = T;
@@ -321,11 +318,11 @@ export class AdminSuper extends plugin {
     }
     //console.log("jg:\n" + " " + str);
     let log_data = {
-      log: str
+      log: str,
     };
     const data1 = await new Show(e).get_logData(log_data);
     let img = await puppeteer.screenshot('log', {
-      ...data1
+      ...data1,
     });
     e.reply(img);
     return;
@@ -577,70 +574,70 @@ export class AdminSuper extends plugin {
       Worldmoney = Worldmoney.toFixed(2);
       msg = [
         '___[修仙世界]___' +
-        '\n人数：' +
-        acount +
-        '\n修道者：' +
-        senior +
-        '\n修仙者：' +
-        lower +
-        '\n财富：' +
-        Worldmoney +
-        '\n人均：' +
-        (Worldmoney / acount).toFixed(3)
+          '\n人数：' +
+          acount +
+          '\n修道者：' +
+          senior +
+          '\n修仙者：' +
+          lower +
+          '\n财富：' +
+          Worldmoney +
+          '\n人均：' +
+          (Worldmoney / acount).toFixed(3),
       ];
     } else if (Worldmoney > 10000 && Worldmoney < 1000000) {
       Worldmoney = Worldmoney / 10000;
       Worldmoney = Worldmoney.toFixed(2);
       msg = [
         '___[修仙世界]___' +
-        '\n人数：' +
-        acount +
-        '\n修道者：' +
-        senior +
-        '\n修仙者：' +
-        lower +
-        '\n财富：' +
-        Worldmoney +
-        '万' +
-        '\n人均：' +
-        (Worldmoney / acount).toFixed(3) +
-        '万'
+          '\n人数：' +
+          acount +
+          '\n修道者：' +
+          senior +
+          '\n修仙者：' +
+          lower +
+          '\n财富：' +
+          Worldmoney +
+          '万' +
+          '\n人均：' +
+          (Worldmoney / acount).toFixed(3) +
+          '万',
       ];
     } else if (Worldmoney > 1000000 && Worldmoney < 100000000) {
       Worldmoney = Worldmoney / 1000000;
       Worldmoney = Worldmoney.toFixed(2);
       msg = [
         '___[修仙世界]___' +
-        '\n人数：' +
-        acount +
-        '\n修道者：' +
-        senior +
-        '\n修仙者：' +
-        lower +
-        '\n财富：' +
-        Worldmoney +
-        '百万' +
-        '\n人均：' +
-        (Worldmoney / acount).toFixed(3) +
-        '百万'
+          '\n人数：' +
+          acount +
+          '\n修道者：' +
+          senior +
+          '\n修仙者：' +
+          lower +
+          '\n财富：' +
+          Worldmoney +
+          '百万' +
+          '\n人均：' +
+          (Worldmoney / acount).toFixed(3) +
+          '百万',
       ];
     } else if (Worldmoney > 100000000) {
       Worldmoney = Worldmoney / 100000000;
       Worldmoney = Worldmoney.toFixed(2);
       msg = [
         '___[修仙世界]___' +
-        '\n人数：' +
-        acount +
-        '\n修道者：' +
-        senior +
-        '\n修仙者：' +
-        lower +
-        '\n财富：' +
-        Worldmoney +
-        '亿' +
-        '\n人均：' +
-        (Worldmoney / acount).toFixed(3) +
-        '亿'
+          '\n人数：' +
+          acount +
+          '\n修道者：' +
+          senior +
+          '\n修仙者：' +
+          lower +
+          '\n财富：' +
+          Worldmoney +
+          '亿' +
+          '\n人均：' +
+          (Worldmoney / acount).toFixed(3) +
+          '亿',
       ];
     }
     await ForwardMsg(e, msg);
@@ -779,7 +776,7 @@ export class AdminSuper extends plugin {
         blood: blood * User_maxplus * 3,
         probability: '0.7',
         money: money * User_maxplus * 3,
-        linggen: '仙之心·水'
+        linggen: '仙之心·水',
       };
       //redis初始化
       await redis.set('xiuxian:BossMaxplus', JSON.stringify(BossMaxplus));
@@ -798,7 +795,7 @@ export class AdminSuper extends plugin {
         blood: blood * User_max * 2,
         probability: '0.5',
         money: money * User_max * 2,
-        linggen: '仙之心·火'
+        linggen: '仙之心·火',
       };
       //redis初始化
       await redis.set('xiuxian:BossMax', JSON.stringify(BossMax));
@@ -818,7 +815,7 @@ export class AdminSuper extends plugin {
         blood: blood * User_mini,
         probability: '0.3',
         money: money * User_mini,
-        linggen: '仙之心·风'
+        linggen: '仙之心·风',
       };
       //redis初始化
       await redis.set('xiuxian:BossMini', JSON.stringify(BossMini));
@@ -1188,7 +1185,7 @@ export async function synchronization(e) {
     if (isNotNull(player.热能)) {
       player.热能 = undefined;
     }
-    if (!isNotNull(player.热量) || player.热量 == null) {
+    if (!isNotNull(player.热量)||player.热量==null) {
       player.热量 = 0;
     }
     //补
@@ -1228,7 +1225,7 @@ export async function synchronization(e) {
     if (!isNotNull(player.linggen)) {
       player.linggen = [];
     }
-    if (!isNotNull(player.师徒任务阶段)) {
+     if (!isNotNull(player.师徒任务阶段)) {
       player.师徒任务阶段 = 0;
     }
     if (!isNotNull(player.师徒积分)) {
@@ -1309,20 +1306,20 @@ export async function synchronization(e) {
     if (!isNotNull(player.神石)) {
       player.神石 = 0;
     }
-    if (player.血气 == null) {
-      player.血气 = 0;
+    if(player.血气==null){
+      player.血气=0;
     }
-    let arr = await redis.get('xiuxian:player:' + usr_qq + ':fuzhi');//副职
-    arr = await JSON.parse(arr);
-    if (!isNotNull(player.副职)) {
-      player.副职 = arr;
+     let arr = await redis.get("xiuxian:player:" + usr_qq + ":fuzhi");//副职
+        arr = await JSON.parse(arr);
+     if (!isNotNull(player.副职)) {
+      player.副职=arr;
     }
     if (player.Physique_id == 0) {
       player.Physique_id = 1;
     }
-    if (player.镇妖塔层数 >= 3000 && player.神魄段数 >= 1500) {
-      player.镇妖塔层数 = 3000;
-      player.神魄段数 = 1500;
+    if(player.镇妖塔层数>=3000 && player.神魄段数>=1500){
+      player.镇妖塔层数=3000
+      player.神魄段数=1500;
     }
     let i = 0;
     let action2 = await redis.get('xiuxian:player:' + usr_qq + ':pifu');
@@ -1355,7 +1352,7 @@ export async function synchronization(e) {
         beiyong3: 0,
         beiyong4: 0,
         beiyong5: 0,
-        qq: usr_qq
+        qq: usr_qq,
       };
       action.push(arr);
       await redis.set(
@@ -1453,41 +1450,91 @@ export async function synchronization(e) {
     //1.24将纳戒中原石替换为圆石
     for (let i = 0; i < najie.材料.length; i++) {
       const element = najie.材料[i];
-      if (element.name == '原石') {
-        najie.材料[i].name = '圆石';
+      if (element.name=="原石") {
+        najie.材料[i].name="圆石";
         break;
       }
     }
     for (let i = 0; i < najie.道具.length; i++) {
       const element = najie.道具[i];
-      if (element.name == '斧头') {
-        najie.道具[i].name = '木斧';
+      if (element.name=="斧头") {
+        najie.道具[i].name="木斧";
         break;
       }
     }
     for (let i = 0; i < najie.道具.length; i++) {
       const element = najie.道具[i];
-      if (element.name == '天横山') {
-        najie.道具[i].name = '天衡山';
+      if (element.name=="天横山") {
+        najie.道具[i].name="天衡山";
         break;
       }
     }
     for (let i = 0; i < najie.道具.length; i++) {
       const element = najie.道具[i];
-      if (element.name == '剑帝一剑') {
-        najie.道具[i].name = '剑神一剑';
+      if (element.name=="剑帝一剑") {
+        najie.道具[i].name="剑神一剑";
         break;
       }
     }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-火元素") {
+        najie.道具[i].name="附魔书-火";
+        break;
+      }
+    }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-雷元素") {
+        najie.道具[i].name="附魔书-雷";
+        break;
+      }
+    }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-水元素") {
+        najie.道具[i].name="附魔书-水";
+        break;
+      }
+    }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-岩元素") {
+        najie.道具[i].name="附魔书-岩";
+        break;
+      }
+    }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-冰元素") {
+        najie.道具[i].name="附魔书-冰";
+        break;
+      }
+    }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-草元素") {
+        najie.道具[i].name="附魔书-草";
+        break;
+      }
+    }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-风元素") {
+        najie.道具[i].name="附魔书-风";
+        break;
+      }
+    }
+
     for (let i = 0; i < najie.装备.length; i++) {
       const element = najie.装备[i];
       if (!isNotNull(element.fumo)) {
-        najie.装备[i].fumo = '无';
+        najie.装备[i].fumo="无";
       }
     }
     for (i = 0; i < data.shicai_list.length; i++) {
       if (najie.食材.name == data.shicai_list[i].name) {
-        najie.食材[i].加成 = data.shicai_list[i].加成;
+        najie.食材[i].加成=data.shicai_list[i].加成
       }
     }
     //修
@@ -1538,27 +1585,27 @@ export async function synchronization(e) {
         item => item.name == '幸运儿'
       ).加成;
     }
-    if (equipment.项链.属性 == '幸运') {
-      if (player.仙宠.type == '幸运' && player.幸运 != player.仙宠.加成 + equipment.项链.加成 + player.addluckyNo) {
-        player.幸运 = player.仙宠.加成 + player.addluckyNo + equipment.项链.加成;
-      } else if (player.仙宠.type != '幸运' && player.幸运 != equipment.项链.加成 + player.addluckyNo) {
-        player.幸运 = player.addluckyNo + equipment.项链.加成;
+     if(equipment.项链.属性=="幸运"){
+      if (player.仙宠.type == "幸运" && player.幸运 != player.仙宠.加成+equipment.项链.加成+player.addluckyNo) {
+        player.幸运 = player.仙宠.加成 + player.addluckyNo+equipment.项链.加成;
+      }else if(player.仙宠.type != "幸运" && player.幸运 !=equipment.项链.加成+player.addluckyNo){
+            player.幸运 = player.addluckyNo+equipment.项链.加成;
       }
-    } else {
-      if (player.仙宠.type == '幸运' && player.幸运 != player.仙宠.加成 + player.addluckyNo) {
-        player.幸运 = player.仙宠.加成 + player.addluckyNo;
-      } else if (player.仙宠.type != '幸运' && player.幸运 != player.addluckyNo) {
-        player.幸运 = player.addluckyNo;
+      }else{
+        if (player.仙宠.type == "幸运" && player.幸运 !=player.仙宠.加成+player.addluckyNo) {
+          player.幸运 = player.仙宠.加成 + player.addluckyNo;
+        }else if(player.仙宠.type != "幸运" && player.幸运 !=player.addluckyNo){
+            player.幸运=player.addluckyNo;
+        }
       }
-    }
     if (!isNotNull(equipment.武器.fumo)) {
-      equipment.武器.fumo = '无';
+      equipment.武器.fumo="无";
     }
     if (!isNotNull(equipment.护具.fumo)) {
-      equipment.护具.fumo = '无';
+      equipment.护具.fumo="无";
     }
     if (!isNotNull(equipment.法宝.fumo)) {
-      equipment.法宝.fumo = '无';
+      equipment.法宝.fumo="无";
     }
     await Write_najie(usr_qq, najie);
     await Write_player(usr_qq, player);
