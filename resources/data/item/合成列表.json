@@ -421,7 +421,7 @@
         "materials":[
             {"name":"锋芒御种","class":"材料","amount":50},
             {"name":"刃车御种","class":"材料","amount":50},
-            {"name":"后八阵图","class":"材料","amount":5}
+            {"name":"后八阵图","class":"材料","amount":10}
         ]
     },
     {
@@ -464,7 +464,7 @@
         "materials":[
             {"name":"锋芒御种","class":"材料","amount":50},
             {"name":"刃车御种","class":"材料","amount":50},
-            {"name":"后八阵图","class":"材料","amount":5}
+            {"name":"后八阵图","class":"材料","amount":10}
         ]
     },
     {
