@@ -935,6 +935,7 @@ export async function get_player_img(e) {
   let 法宝评级;
   let 护具评级;
   let 武器评级;
+  let 项链评级;
   let usr_qq = e.user_id;
   let ifexistplay = data.existData('player', usr_qq);
   if (!ifexistplay) {
@@ -1026,9 +1027,9 @@ export async function get_player_img(e) {
     法宝评级 = pinji[equipment.法宝.pinji];
   }
   if (!isNotNull(equipment.项链.pinji)) {
-    let 项链评级 = '无';
+    项链评级 = '无';
   } else {
-    let 项链评级 = pinji[equipment.项链.pinji];
+    项链评级 = pinji[equipment.项链.pinji];
   }
   let rank_lianqi = data.Level_list.find(item => item.level_id == player.level_id).level;
   let expmax_lianqi = data.Level_list.find(item => item.level_id == player.level_id).exp;

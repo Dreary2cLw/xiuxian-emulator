@@ -437,7 +437,7 @@ export async function player_efficiency(usr_qq) {
   let action = await redis.get('xiuxian:player:' + 10 + ':biguang');
   action = await JSON.parse(action);
   if (action != null) {
-    for (i = 0; i < action.length; i++) {
+    for (let i = 0; i < action.length; i++) {
 
       if (action[i].qq == usr_qq) {
         bgdan = action[i].biguanxl;
