@@ -254,6 +254,23 @@ export async function Add_灵石(usr_qq, 灵石数量 = 0) {
   let player = await Read_player(usr_qq);
   player.灵石 += Math.trunc(灵石数量);
   await Write_player(usr_qq, player);
+  let renwu = await Read_renwu();
+     let lingshi = player.灵石;
+    let lingshijilu = await redis.get('xiuxian:player:' + usr_qq + ':renwu_lingshi_jilu');
+    let jian = 0;
+    if (lingshijilu != lingshi && (renwu[i].wancheng1 == 1 || renwu[i].wancheng2 == 1)) {
+      if (lingshi < lingshijilu) {
+        jian = lingshijilu - lingshi;
+        renwu[i].jilu1 += jian;
+        await Write_renwu(renwu);
+        await redis.set('xiuxian:player:' + usr_qq + ':renwu_lingshi_jilu', lingshi);
+      } else if (lingshi > lingshijilu) {
+        jian = lingshi - lingshijilu;
+        renwu[i].jilu2 += jian;
+        await Write_renwu(renwu);
+        await redis.set('xiuxian:player:' + usr_qq + ':renwu_lingshi_jilu', lingshi);
+      }
+    }
   return;
 }
 
