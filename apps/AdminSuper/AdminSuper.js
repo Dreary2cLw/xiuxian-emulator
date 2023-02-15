@@ -1521,6 +1521,13 @@ export async function synchronization(e) {
         break;
       }
     }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-火元素") {
+        najie.道具[i].name="附魔书-火";
+        break;
+      }
+    }
     for (let i = 0; i < najie.装备.length; i++) {
       const element = najie.装备[i];
       if (!isNotNull(element.fumo)) {
