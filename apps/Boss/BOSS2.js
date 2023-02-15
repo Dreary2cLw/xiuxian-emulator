@@ -141,7 +141,7 @@ export class BOSS2 extends plugin {
       let msg = [
         '****天理周本贡献排行榜****'
       ];
-      for (var i = 0; i < PlayerList.length; i++) {
+      for (let i = 0; i < PlayerList.length; i++) {
         if (i < 20) {
           let Reward;
           if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.025) {
@@ -595,9 +595,9 @@ export class BOSS2 extends plugin {
         e.reply('天理被击杀！玩家们可以根据贡献获得奖励！');
         await sleep(1000);
 
-        var a;
-        var z = 1;
-        var weizhi = data.sanbin;
+        let a;
+        let z = 1;
+        let weizhi = data.sanbin;
         a = Math.floor(Math.random() * (weizhi.length));
         await Add_najie_thing(e.user_id, weizhi[a].name, weizhi[a].class, z);
 
@@ -624,7 +624,7 @@ export class BOSS2 extends plugin {
         let TotalDamage = 0;
         for (let i = 0; i < (PlayerList.length <= 20 ? PlayerList.length : 20); i++)
           TotalDamage += PlayerRecordJSON.TotalDamage[PlayerList[i]];
-        for (var i = 0; i < PlayerList.length; i++) {
+        for (let i = 0; i < PlayerList.length; i++) {
           let CurrentPlayer = await data.getData('player', PlayerRecordJSON.QQ[PlayerList[i]]);
           if (i < Show_MAX) {
             let Reward;
@@ -837,7 +837,7 @@ async function GetAverageDamage() {
   let temp = [];
   let fairyNums = 0;
   let TotalPlayer = 0;
-  for (var i = 0; i < File.length; i++) {
+  for (let i = 0; i < File.length; i++) {
     let this_qq = File[i].replace('.json', '');
     this_qq = parseInt(this_qq);
     let player = await data.getData('player', this_qq);

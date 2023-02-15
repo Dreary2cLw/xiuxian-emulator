@@ -42,11 +42,11 @@ readdirectory(filepath);
  * import
  */
 let apps = {};
-var bian = '';
+let bian = '';
 //循环写入
-for (var i = 0; i < sum.length; i++) {
+for (let i = 0; i < sum.length; i++) {
   bian = sum[i];
-  var files = fs
+  let files = fs
     .readdirSync('./plugins/xiuxian-emulator-plugin/apps' + bian)
     .filter((file) => file.endsWith('.js'));
   for (let file of files) {

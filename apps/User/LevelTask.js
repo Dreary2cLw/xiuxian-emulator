@@ -70,15 +70,15 @@ export class LevelTask extends plugin {
             let power_n = action.power_n;
             let power_m = action.power_m;
             //获取雷次数
-            var aconut = await redis.get('xiuxian:player:' + player_id + ':power_aconut');
+            let aconut = await redis.get('xiuxian:player:' + player_id + ':power_aconut');
 
             //当前系数计算
             let power_distortion = await dujie(player_id);
-            var xx = 1;
+            let xx = 1;
             let x = power_distortion;
             let usr_qq = player_id;
-            var yaocaolist = ['小吉祥草', '大吉祥草', '凝血草'];
-            var leixinlist = ['草药'];
+            let yaocaolist = ['小吉祥草', '大吉祥草', '凝血草'];
+            let leixinlist = ['草药'];
             let thing_quantity = await exist_najie_thing(usr_qq, yaocaolist[0], leixinlist[0]);
             if (!thing_quantity) {
             } else {
@@ -110,7 +110,7 @@ export class LevelTask extends plugin {
             if (now_time <= end_time) {
               //此人需要渡劫
               //获取渡劫随机数
-              var variable = Math.random() * (power_m - power_n) + power_n;
+              let variable = Math.random() * (power_m - power_n) + power_n;
               //根据雷伤害的次数畸变.最高可达到+1.2
               variable = variable + aconut / 10;
               //对比系数

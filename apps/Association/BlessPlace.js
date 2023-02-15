@@ -141,7 +141,7 @@ export class BlessPlace extends plugin {
     File = File.filter(file => file.endsWith('.json'));//这个数组内容是所有的宗门名称
 
     //遍历所有的宗门
-    for (var i = 0; i < File.length; i++) {
+    for (let i = 0; i < File.length; i++) {
       let this_name = File[i].replace('.json', '');
       let this_ass = await data.getAssociation(this_name);
 
@@ -322,7 +322,7 @@ export class BlessPlace extends plugin {
       e.reply(`你的宗门还没有驻地，不能探索秘境哦`);
       return;
     }
-    var didian = e.msg.replace('#探索宗门秘境', '');
+    let didian = e.msg.replace('#探索宗门秘境', '');
     didian = didian.trim();
     let weizhi = await data.guildSecrets_list.find(item => item.name == didian);
     if (!isNotNull(weizhi)) {
@@ -428,7 +428,7 @@ export class BlessPlace extends plugin {
     await data.setAssociation(ass.宗门名称, ass);
 
     await Add_灵石(usr_qq, -Price);
-    var time = this.xiuxianConfigData.CD.secretplace;//时间（分钟）
+    let time = this.xiuxianConfigData.CD.secretplace;//时间（分钟）
     let action_time = 60000 * time;//持续时间，单位毫秒
     let arr = {
       'action': '历练',//动作
@@ -472,7 +472,7 @@ export class BlessPlace extends plugin {
       e.reply(`你的宗门还没有驻地，不能探索秘境哦`);
       return;
     }
-    var didian = e.msg.replace('#沉迷宗门秘境', '');
+    let didian = e.msg.replace('#沉迷宗门秘境', '');
     let code = didian.split('\*');
     didian = code[0];
     let i = code[1];
@@ -597,7 +597,7 @@ export class BlessPlace extends plugin {
     await data.setAssociation(ass.宗门名称, ass);
 
     await Add_灵石(usr_qq, -Price);
-    var time = i * 10 * 5 + 10;//时间（分钟）
+    let time = i * 10 * 5 + 10;//时间（分钟）
     let action_time = 60000 * time;//持续时间，单位毫秒
     let arr = {
       'action': '历练',//动作
@@ -653,7 +653,7 @@ export class BlessPlace extends plugin {
     if (ass.灵石池 < 0) {
       ass.灵石池 = 0;
     }
-    var denji = Number(ass.宗门建设等级);
+    let denji = Number(ass.宗门建设等级);
 
     //灵石池扣除
     let lsckc = Math.trunc((denji * 10000));
@@ -691,7 +691,7 @@ async function GoBlessPlace(e, weizhi, addres) {
   let msg = [
     '***' + adr + '***'
   ];
-  for (var i = 0; i < weizhi.length; i++) {
+  for (let i = 0; i < weizhi.length; i++) {
     msg.push(weizhi[i].name + '\n' + '等级：' + weizhi[i].level + '\n' + '修炼效率：' + weizhi[i].efficiency * 100 + '%');
   }
   await ForwardMsg(e, msg);
@@ -731,16 +731,16 @@ async function SecretPlaceMax(e, weizhi) {
   let A_win = `${A_player.名号}击败了${B_player.名号}`;
   let B_win = `${B_player.名号}击败了${A_player.名号}`;
   let xiuwei = 0;
-  var thing_name;
-  var thing_class;
-  var x = 1.0;
+  let thing_name;
+  let thing_class;
+  let x = 1.0;
   let random1 = Math.random();
-  var y = 0.5;
+  let y = 0.5;
   let random2 = Math.random();
-  var z = 0.12;
+  let z = 0.12;
   let random3 = Math.random();
   let random4;
-  var m = '';
+  let m = '';
   //查找秘境
   if (random1 < x) {
     if (random2 < y) {
@@ -768,7 +768,7 @@ async function SecretPlaceMax(e, weizhi) {
     m = '遇到了[' + thing_name + ']';
   }
   //默认结算装备数
-  var n = 1;
+  let n = 1;
 
 
   let now_level_id;
@@ -858,7 +858,7 @@ export async function Goweizhi(e, weizhi, addres) {
   let msg = [
     '***' + adr + '***'
   ];
-  for (var i = 0; i < weizhi.length; i++) {
+  for (let i = 0; i < weizhi.length; i++) {
     msg.push(weizhi[i].name + '\n' + '等级：' + weizhi[i].Grade + '\n' + '灵石：' + weizhi[i].Price + '灵石');
   }
   await ForwardMsg(e, msg);

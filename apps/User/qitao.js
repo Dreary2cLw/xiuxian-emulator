@@ -60,7 +60,7 @@ export class qitao extends plugin {
         return;
       }
     }
-    var random = Math.random();
+    let random = Math.random();
     if (random > 0.01) {
       if (player.灵石 > 200000) {
         e.reply('给DD斩首充电，花了200000灵石');
@@ -87,7 +87,7 @@ export class qitao extends plugin {
         await Add_灵石(usr_qq, -player.灵石);
         return;
       } else {
-        var random3 = Math.random();
+        let random3 = Math.random();
         if (random3 > 0.5) {
           e.reply('突然有个叫虎哥的人和你说:“来小亮给他整个活！”，你不受控制得：草！走！忽略！，身上的灵石都被你后空翻甩飞了，正好一群广场舞大妈跳完广场舞路过，哄抢一通，身上一分都没有了');
           await Add_灵石(usr_qq, -player.灵石);
@@ -101,7 +101,7 @@ export class qitao extends plugin {
 
 
     }
-    var random2 = Math.random2;
+    let random2 = Math.random2;
     if (random2 > 0.99) {
       e.reply('水脚脚赶着去考研，飞奔而过，钱包掉落在地，正好被你捡到了');
       let thing_name = '水脚脚的钱包';

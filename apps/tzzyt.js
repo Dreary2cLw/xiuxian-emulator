@@ -102,7 +102,7 @@ export class tzzyt extends plugin {
         await data.setData('player', e.user_id, CurrentPlayerAttributes);
         return;
       }
-      var Time = 2;
+      let Time = 2;
       let now_Time = new Date().getTime(); //获取当前时间戳
       let shuangxiuTimeout = parseInt(60000 * Time);
       let last_time = await redis.get('xiuxian:player:' + usr_qq + 'CD');//获得上次的时间戳,

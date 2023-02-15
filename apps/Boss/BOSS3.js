@@ -139,7 +139,7 @@ export class BOSS3 extends plugin {
       let msg = [
         '****初夏副本贡献排行榜****'
       ];
-      for (var i = 0; i < PlayerList.length; i++) {
+      for (let i = 0; i < PlayerList.length; i++) {
         if (i < 20) {
           let Reward;
           if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.025) {
@@ -618,7 +618,7 @@ export class BOSS3 extends plugin {
         let TotalDamage = 0;
         for (let i = 0; i < (PlayerList.length <= 20 ? PlayerList.length : 20); i++)
           TotalDamage += PlayerRecordJSON.TotalDamage[PlayerList[i]];
-        for (var i = 0; i < PlayerList.length; i++) {
+        for (let i = 0; i < PlayerList.length; i++) {
           let CurrentPlayer = await data.getData('player', PlayerRecordJSON.QQ[PlayerList[i]]);
           if (i < Show_MAX) {
             let Reward;
@@ -847,7 +847,7 @@ async function GetAverageDamage() {
   let temp = [];
   let fairyNums = 0;
   let TotalPlayer = 0;
-  for (var i = 0; i < File.length; i++) {
+  for (let i = 0; i < File.length; i++) {
     let this_qq = File[i].replace('.json', '');
     this_qq = parseInt(this_qq);
     let player = await data.getData('player', this_qq);

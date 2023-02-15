@@ -70,7 +70,7 @@ export class Xijie extends plugin {
       e.reply(`每90分钟洗劫一次，正在CD中，` + `剩余cd: ${lastxijie_m}分${lastxijie_s}秒`);
       return;
     }
-    var didian = e.msg.replace('#洗劫', '');
+    let didian = e.msg.replace('#洗劫', '');
     didian = didian.trim();
     let shop = await Read_shop();
     let i;
@@ -122,7 +122,7 @@ export class Xijie extends plugin {
     if (player.魔道值 > 999) {
       A_player.魔值 = 1;
     }
-    var time = 15; //时间（分钟）
+    let time = 15; //时间（分钟）
     let action_time = 60000 * time; //持续时间，单位毫秒
     let arr = {
       'action': '洗劫', //动作
@@ -183,7 +183,7 @@ export class Xijie extends plugin {
         return;
       }
     }
-    var didian = e.msg.replace('#探查', '');
+    let didian = e.msg.replace('#探查', '');
     didian = didian.trim();
     let shop = await Read_shop();
     let i;
@@ -272,7 +272,7 @@ export async function existshop(didian) {
       break;
     }
   }
-  for (var j = 0; j < shop[i].one.length; j++) {
+  for (let j = 0; j < shop[i].one.length; j++) {
     if (shop[i].one[j].数量 > 0) {
       thing.push(shop[i].one[j]);
     }

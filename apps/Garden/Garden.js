@@ -80,7 +80,7 @@ export class Garden extends plugin {
       `药园药草如下:`];
     let nowTime = new Date().getTime(); //获取当前时间
 
-    for (var i = 0; i < ass.药园.作物.length; i++) {
+    for (let i = 0; i < ass.药园.作物.length; i++) {
       zuowu = ass.药园.作物;
       let vegetable_Oldtime = await redis.get('xiuxian:' + ass.宗门名称 + zuowu[i].name);//获得上次的成熟时间戳,
       let chengshu_t = Math.trunc((vegetable_Oldtime - nowTime) / 86400000);//成熟天数
@@ -133,7 +133,7 @@ export class Garden extends plugin {
     let last_garden_time = await redis.get('xiuxian:player:' + usr_qq + ':last_garden_time');
     //
     last_garden_time = parseInt(last_garden_time);
-    var time = this.xiuxianConfigData.CD.garden;//时间（分钟）
+    let time = this.xiuxianConfigData.CD.garden;//时间（分钟）
     let transferTimeout = parseInt(60000 * time);//
     if (nowTime < last_garden_time + transferTimeout) {
       let waittime_m = Math.trunc((last_garden_time + transferTimeout - nowTime) / 60 / 1000);
@@ -145,7 +145,7 @@ export class Garden extends plugin {
 
     let vegetable = ass.药园.作物;
     let vagetable_name = e.msg.replace('#拔苗助长', '');
-    for (var i = 0; i < vegetable.length; i++) {
+    for (let i = 0; i < vegetable.length; i++) {
       if (vegetable[i].name == vagetable_name) {
         let ts = vegetable[i].ts;
         let nowTime = new Date().getTime(); //获取当前时间
@@ -160,7 +160,7 @@ export class Garden extends plugin {
         } else {
           e.reply(`作物${vagetable_name}已成熟，被${usr_qq}${player.名号}摘取,放入纳戒了`);
           await Add_najie_thing(usr_qq, vagetable_name, '草药', 1);
-          var vegetable_OutTime = nowTime + 1000 * 60 * 60 * 24 * ts; //设置新一轮成熟时间戳
+          let vegetable_OutTime = nowTime + 1000 * 60 * 60 * 24 * ts; //设置新一轮成熟时间戳
           ass.药园.作物[i].start_time = nowTime;//将当前时间写入药园作物中
           await data.setAssociation(ass.宗门名称, ass); //刷新写入作物时间戳
           await redis.set('xiuxian:' + ass.宗门名称 + vagetable_name, vegetable_OutTime);//存入缓存
@@ -205,7 +205,7 @@ export class Garden extends plugin {
       return;
     }
 
-    var GayCD = {};
+    let GayCD = {};
     const cd = 2;  //设置冷却时间，单位为分钟
     let id = e.group_id + e.user_id;
     if (GayCD[id]) {

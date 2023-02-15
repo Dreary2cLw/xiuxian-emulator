@@ -141,8 +141,8 @@ export class AssociationAdmin extends plugin {
       await this.reply('宗门名字最多只能设置6个字符,请重新输入:');
       return;
     }
-    var reg = /[^\u4e00-\u9fa5]/g;//汉字检验正则
-    var res = reg.test(association_name);
+    let reg = /[^\u4e00-\u9fa5]/g;//汉字检验正则
+    let res = reg.test(association_name);
     //res为true表示存在汉字以外的字符
     if (res) {
       this.setContext('Get_association_name');
@@ -219,7 +219,7 @@ export class AssociationAdmin extends plugin {
       return;
     }
     //获取灵石数量
-    var reg = new RegExp(/#维护护宗大阵/);
+    let reg = new RegExp(/#维护护宗大阵/);
     let lingshi = e.msg.replace(reg, '');
     lingshi = lingshi.trim();//去掉空格
     //校验输入灵石数
@@ -229,12 +229,12 @@ export class AssociationAdmin extends plugin {
       e.reply('请输入正确灵石数');
       return;
     }
-    var ass = data.getAssociation(player.宗门.宗门名称);
+    let ass = data.getAssociation(player.宗门.宗门名称);
     if (ass.灵石池 < lingshi) {
       e.reply(`宗门灵石池只有${ass.灵石池}灵石,数量不足`);
       return;
     }
-    var xian = 5;
+    let xian = 5;
     if (ass.power == 1) {
       xian = 2;
     }
@@ -352,7 +352,7 @@ export class AssociationAdmin extends plugin {
     }
     let full_apmt = ass.所有成员.length;
     //检索输入的第一个职位
-    var reg = new RegExp(/副宗主|长老|外门弟子|内门弟子/);
+    let reg = new RegExp(/副宗主|长老|外门弟子|内门弟子/);
     let appointment = reg.exec(e.msg);//获取输入的职位
     if (appointment == now_apmt) {
       e.reply(`此人已经是本宗门的${appointment}`);
@@ -402,7 +402,7 @@ export class AssociationAdmin extends plugin {
     let ass = await data.getAssociation(player.宗门.宗门名称);
     let now = new Date();
     let nowTime = now.getTime(); //获取当前日期的时间戳
-    var time = this.xiuxianConfigData.CD.association;
+    let time = this.xiuxianConfigData.CD.association;
     let nextmt_time = await shijianc(ass.维护时间 + 60000 * time);//获得下次宗门维护日期,7天后
     if (ass.维护时间 > nowTime - 1000 * 60 * 60 * 24 * 7) {
       e.reply(`当前无需维护,下次维护时间:${nextmt_time.Y}年${nextmt_time.M}月${nextmt_time.D}日${nextmt_time.h}时${nextmt_time.m}分${nextmt_time.s}秒`);
@@ -437,7 +437,7 @@ export class AssociationAdmin extends plugin {
       e.reply('只有宗主、副宗主或长老可以操作');
       return;
     }
-    var jiar = e.msg.replace('#设置门槛', '');
+    let jiar = e.msg.replace('#设置门槛', '');
     jiar = jiar.trim();
     if (!data.Level_list.some(item => item.level == jiar)) {
       return;
@@ -658,8 +658,8 @@ export class AssociationAdmin extends plugin {
 async function new_Association(name, holder_qq, e) {
   let usr_qq = e.user_id;
   let player = data.getData('player', usr_qq);
-  var now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
-  var x;
+  let now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
+  let x;
   let xian;
   let dj;
   if (now_level_id > 41) {

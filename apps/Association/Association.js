@@ -205,7 +205,7 @@ export class Association extends plugin {
     let now = new Date();
     let nowTime = now.getTime(); //获取当前时间戳
     let addTime;
-    var time = this.xiuxianConfigData.CD.joinassociation;//分钟
+    let time = this.xiuxianConfigData.CD.joinassociation;//分钟
     if (typeof player.宗门.time == 'undefined') {
       addTime = player.宗门.加入时间[1] + 60000 * time;
     } else { //新版本的数据变成了time
@@ -280,7 +280,7 @@ export class Association extends plugin {
       return;
     }
     //获取灵石数量
-    var reg = new RegExp(/#宗门(上交|上缴|捐赠)灵石/);
+    let reg = new RegExp(/#宗门(上交|上缴|捐赠)灵石/);
     let lingshi = e.msg.replace(reg, '');
     lingshi = lingshi.trim();//去掉空格
     if (!isNaN(parseFloat(lingshi)) && isFinite(lingshi)) {
@@ -373,7 +373,7 @@ export class Association extends plugin {
     if (File.length == 0) {
       temp.push('暂时没有宗门数据');
     }
-    for (var i = 0; i < File.length; i++) {
+    for (let i = 0; i < File.length; i++) {
       let this_name = File[i].replace('.json', '');
       let this_ass = await data.getAssociation(this_name);
       //处理一下宗门效率问题
@@ -385,9 +385,9 @@ export class Association extends plugin {
         this_ass_xiuxian = this_ass.宗门等级 * 0.05 * 100 + dongTan.level * 10;
       }
       this_ass_xiuxian = Math.trunc(this_ass_xiuxian);
-      var shenshou = this_ass.宗门神兽;
-      var zhudi = this_ass.宗门驻地;
-      var power;
+      let shenshou = this_ass.宗门神兽;
+      let zhudi = this_ass.宗门驻地;
+      let power;
       if (this_ass.宗门神兽 == 0) {
         shenshou = '暂无';
       }

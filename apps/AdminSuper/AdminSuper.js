@@ -130,7 +130,7 @@ export class AdminSuper extends plugin {
     if (!ifexistplay) {
       return;
     }
-    var number2 = e.msg.replace('#自降修为', '');
+    let number2 = e.msg.replace('#自降修为', '');
     let player = await Read_player(usr_qq);
     number2 = Math.floor(number2);
     if (number2 < 0) {
@@ -170,7 +170,7 @@ export class AdminSuper extends plugin {
     if (!ifexistplay) {
       return;
     }
-    var number2 = e.msg.replace('#自降境界至', '');
+    let number2 = e.msg.replace('#自降境界至', '');
     let player = await Read_player(usr_qq);
     let newjingjie = data.Level_list.find(item => item.level == number2);
     if (!isNotNull(newjingjie)) {

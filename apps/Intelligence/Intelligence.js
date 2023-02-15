@@ -43,7 +43,7 @@ export class Intelligence extends plugin {
     let thing = e.msg.replace('#', '');
     let thingmax = [];
     thingmax.push('打起来', '我超勇的', '你干嘛，哎哟', '没意思', '你好勇哦');
-    for (var i = 0; i < thingmax.length; i++) {
+    for (let i = 0; i < thingmax.length; i++) {
       if (thingmax[i] == thing) {
         e.reply(thingmax[i]);
         break;

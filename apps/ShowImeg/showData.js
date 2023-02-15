@@ -294,9 +294,9 @@ export async function get_huanying_img(e) {
   let daoju_need = [];
   let daoju_list = data.daoju_list;
   let t;
-  for (var i = 0; i < daoju_list.length - 1; i++) {
-    var count = 0;
-    for (var j = 0; j < daoju_list.length - i - 1; j++) {
+  for (let i = 0; i < daoju_list.length - 1; i++) {
+    let count = 0;
+    for (let j = 0; j < daoju_list.length - i - 1; j++) {
       if (daoju_list[j].出售价 > daoju_list[j + 1].出售价) {
         t = daoju_list[j];
         daoju_list[j] = daoju_list[j + 1];
@@ -307,7 +307,7 @@ export async function get_huanying_img(e) {
     if (count == 0)
       break;
   }
-  for (var i = 0; i < daoju_list.length; i++) {
+  for (let i = 0; i < daoju_list.length; i++) {
     if (najie.道具.find(item => item.name == daoju_list[i].name)) {
       if (daoju_list[i].type == '练气幻影卡面' || daoju_list[i].type == '装备幻影卡面') {
         daoju_have.push(daoju_list[i]);
@@ -1026,9 +1026,9 @@ export async function get_player_img(e) {
     法宝评级 = pinji[equipment.法宝.pinji];
   }
   if (!isNotNull(equipment.项链.pinji)) {
-    var 项链评级 = '无';
+    let 项链评级 = '无';
   } else {
-    var 项链评级 = pinji[equipment.项链.pinji];
+    let 项链评级 = pinji[equipment.项链.pinji];
   }
   let rank_lianqi = data.Level_list.find(item => item.level_id == player.level_id).level;
   let expmax_lianqi = data.Level_list.find(item => item.level_id == player.level_id).exp;
@@ -1317,7 +1317,7 @@ export async function get_equipment_img2(e) {
   if (!ifexistplay) {
     return;
   }
-  var bao = Math.trunc(parseInt(player.暴击率 * 100));
+  let bao = Math.trunc(parseInt(player.暴击率 * 100));
   let equipment = await data.getData('equipment', usr_qq);
   let player_data = {
     user_id: usr_qq,

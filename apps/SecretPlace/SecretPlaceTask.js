@@ -217,16 +217,16 @@ export class SecretPlaceTask extends plugin {
             let msgg = Data_battle.msg;
             let A_win = `${A_player.名号}击败了${B_player.名号}`;
             let B_win = `${B_player.名号}击败了${A_player.名号}`;
-            var thing_name;
-            var thing_class;
-            var x = this.xiuxianConfigData.SecretPlace.one;
+            let thing_name;
+            let thing_class;
+            let x = this.xiuxianConfigData.SecretPlace.one;
             let random1 = Math.random();
-            var y = this.xiuxianConfigData.SecretPlace.two;
+            let y = this.xiuxianConfigData.SecretPlace.two;
             let random2 = Math.random();
-            var z = this.xiuxianConfigData.SecretPlace.three;
+            let z = this.xiuxianConfigData.SecretPlace.three;
             let random3 = Math.random();
             let random4;
-            var m = '';
+            let m = '';
             let fyd_msg = '';
             //查找秘境
             let t1;
@@ -239,7 +239,7 @@ export class SecretPlaceTask extends plugin {
                 break;
               }
             }
-            var n = 1;
+            let n = 1;
             let last_msg = '';
             let pinji = ['劣质', '普通', '优质', '精致', '极品', '绝品'][r];
             if (random1 <= x) {

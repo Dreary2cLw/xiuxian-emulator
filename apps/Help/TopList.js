@@ -70,7 +70,7 @@ export class TopList extends plugin {
       file = file.replace('.json', '');
       playerList.push(file);
     }
-    var i = 0;
+    let i = 0;
     for (let player_id of playerList) {
       //(攻击+防御*0.8+生命*0.5)*暴击率=理论战力
       let player = await Read_player(player_id);
@@ -92,14 +92,14 @@ export class TopList extends plugin {
     //根据力量排序
     temp.sort(sortBy('power'));
     console.log(temp);
-    var length;
+    let length;
     if (temp.length > 10) {
       //只要十个
       length = 10;
     } else {
       length = temp.length;
     }
-    var j;
+    let j;
     for (j = 0; j < length; j++) {
       msg.push(
         '第' + (j + 1) + '名' +
@@ -134,7 +134,7 @@ export class TopList extends plugin {
       file = file.replace('.json', '');
       playerList.push(file);
     }
-    var i = 0;
+    let i = 0;
     for (let player_id of playerList) {
       //(攻击+防御+生命*0.5)*暴击率=理论战力
       let player = await Read_player(player_id);
@@ -156,14 +156,14 @@ export class TopList extends plugin {
     //根据力量排序
     temp.sort(sortBy('power'));
     console.log(temp);
-    var length;
+    let length;
     if (temp.length > 10) {
       //只要十个
       length = 10;
     } else {
       length = temp.length;
     }
-    var j;
+    let j;
     for (j = 0; j < length; j++) {
       msg.push(
         '第' + (j + 1) + '名' +
@@ -190,7 +190,7 @@ export class TopList extends plugin {
     File = File.filter(file => file.endsWith('.json'));
     let File_length = File.length;
     let temp = [];
-    for (var i = 0; i < File_length; i++) {
+    for (let i = 0; i < File_length; i++) {
       let this_qq = File[i].replace('.json', '');
       this_qq = parseInt(this_qq);
       let player = await Read_player(this_qq);
@@ -215,7 +215,7 @@ export class TopList extends plugin {
     if (File_length > 10) {
       File_length = 10;
     }//最多显示前十
-    for (var i = 0; i < File_length; i++) {
+    for (let i = 0; i < File_length; i++) {
       temp[i].名次 = i + 1;
       Data[i] = temp[i];
     }
@@ -242,7 +242,7 @@ export class TopList extends plugin {
     File = File.filter(file => file.endsWith('.json'));
     let File_length = File.length;
     let temp = [];
-    for (var i = 0; i < File_length; i++) {
+    for (let i = 0; i < File_length; i++) {
       let this_qq = File[i].replace('.json', '');
       this_qq = parseInt(this_qq);
       let player = await Read_player(this_qq);
@@ -263,7 +263,7 @@ export class TopList extends plugin {
     if (File_length > 10) {
       File_length = 10;
     }//最多显示前十
-    for (var i = 0; i < File_length; i++) {
+    for (let i = 0; i < File_length; i++) {
       temp[i].名次 = i + 1;
       Data[i] = temp[i];
     }

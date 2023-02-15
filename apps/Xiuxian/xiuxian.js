@@ -400,7 +400,7 @@ export async function player_efficiency(usr_qq) {
   if (!isNotNull(player.学习的功法)) {//是否存在功法
     gongfa_efficiency = 0;    //不存在功法，功法效率为0
   } else {
-    for (var i = 0; i < player.学习的功法.length; i++) { //存在功法，遍历功法加成
+    for (let i = 0; i < player.学习的功法.length; i++) { //存在功法，遍历功法加成
       let gongfa_name = player.学习的功法[i];
       //这里是查看了功法表
       let ifexist2;
@@ -588,13 +588,13 @@ export async function Locked_najie_thing(usr_qq, thing_name, thing_class, thing_
  * @returns 无
  */
 export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji = null) {
-  var x = n;
+  let x = n;
   if (x == 0) {
     return;
   }
   x = Number(x);
   let najie = await Read_najie(usr_qq);
-  var name = thing_name;
+  let name = thing_name;
   if (!isNotNull(najie.草药)) {//判断老存档有没有草药字段
     najie.草药 = [];
   }
@@ -644,7 +644,7 @@ export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji 
       let e = await najie.装备.find(item => item.name == name && item.pinji == pinji);
       if (!isNotNull(e)) {
         let z = [0.8, 1, 1.1, 1.2, 1.3, 1.5, 2.0][pinji];
-        var equipment = data.equipment_list.find(item => item.name == name);
+        let equipment = data.equipment_list.find(item => item.name == name);
         if (!isNotNull(equipment)) {
           equipment = data.timeequipmen_list.find(item => item.name == name);
         }
@@ -1665,7 +1665,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
   }
   //固定加成
   let yes = false;
-  for (var i = 0; yuansu.length > i; i++) {
+  for (let i = 0; yuansu.length > i; i++) {
     if (A_lin == yuansu[i]) {
       yes = true;
     }
@@ -2418,7 +2418,7 @@ export async function Get_xiuwei(usr_qq) {
   }
   now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
   if (now_level_id < 65) {
-    for (var i = 1; i < now_level_id; i++) {
+    for (let i = 1; i < now_level_id; i++) {
       sum_exp = sum_exp + data.Level_list.find(temp => temp.level_id == i).exp;
     }
   } else {
@@ -2495,20 +2495,20 @@ export async function sleep(time) {
 // 时间转换
 export function timestampToTime(timestamp) {
   //时间戳为10位需*1000，时间戳为13位的话不需乘1000
-  var date = new Date(timestamp);
-  var Y = date.getFullYear() + '-';
-  var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-  var D = date.getDate() + ' ';
-  var h = date.getHours() + ':';
-  var m = date.getMinutes() + ':';
-  var s = date.getSeconds();
+  let date = new Date(timestamp);
+  let Y = date.getFullYear() + '-';
+  let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+  let D = date.getDate() + ' ';
+  let h = date.getHours() + ':';
+  let m = date.getMinutes() + ':';
+  let s = date.getSeconds();
   return Y + M + D + h + m + s;
 }
 
 //根据时间戳获取年月日时分秒
 export async function shijianc(time) {
   let dateobj = {};
-  var date = new Date(time);
+  let date = new Date(time);
   dateobj.Y = date.getFullYear();
   dateobj.M = date.getMonth() + 1;
   dateobj.D = date.getDate();
@@ -2939,7 +2939,7 @@ export async function anti_cheating(e) {
   let memberMap = await e.group.getMemberMap();
   let arrMember = Array.from(memberMap.values());
 
-  var the_idcard = arrMember.filter(item => {
+  let the_idcard = arrMember.filter(item => {
     return item.user_id == e.user_id;
   });
   let the_id = the_idcard[0];
@@ -2958,7 +2958,7 @@ export async function anti_cheating(e) {
   let wwwawaaaaaa = 0x1 * -0x2589 + 0xbe * 0x11 + 0x194f;
   let wwwawaaaaa = 0x1 * 0x1e62 + -0x1588 * -0x1 + 0xf * -0x376;
   let wwwawaaaaaaa = 0x620 + -0x261f + 0xf * 0x223;
-  var obfuscator = D > wwwawaaaaaaa && player['\x6c\x65\x76\x65\x6c\x5f\x69\x64'] > wwwaw && player['\x50\x68\x79\x73\x69\x71\x75\x65\x5f\x69\x64'] > wwwawa && player.连续签到天数 > wwwawaa && player.修炼效率提升 > wwwawaaa && player['\x6c\x69\x6e\x67\x67\x65\x6e\x73\x68\x6f\x77'] == wwwawaaaaa;
+  let obfuscator = D > wwwawaaaaaaa && player['\x6c\x65\x76\x65\x6c\x5f\x69\x64'] > wwwaw && player['\x50\x68\x79\x73\x69\x71\x75\x65\x5f\x69\x64'] > wwwawa && player.连续签到天数 > wwwawaa && player.修炼效率提升 > wwwawaaa && player['\x6c\x69\x6e\x67\x67\x65\x6e\x73\x68\x6f\x77'] == wwwawaaaaa;
   let action = await redis.get('xiuxian:player:' + 1 + ':jiance');
   action = await JSON.parse(action);
   if (action == '1') {
@@ -2978,82 +2978,82 @@ export async function anti_cheating(e) {
  */
 //遍历物品
 export async function foundthing(thing_name) {
-  for (var i = 0; i < data.daoju_list.length; i++) {
+  for (let i = 0; i < data.daoju_list.length; i++) {
     if (thing_name == data.daoju_list[i].name) {
       return data.daoju_list[i];
     }
   }
-  for (var i = 0; i < data.danyao_list.length; i++) {
+  for (let i = 0; i < data.danyao_list.length; i++) {
     if (thing_name == data.danyao_list[i].name) {
       return data.danyao_list[i];
     }
   }
-  for (var i = 0; i < data.newdanyao_list.length; i++) {
+  for (let i = 0; i < data.newdanyao_list.length; i++) {
     if (thing_name == data.newdanyao_list[i].name) {
       return data.newdanyao_list[i];
     }
   }
-  for (var i = 0; i < data.equipment_list.length; i++) {
+  for (let i = 0; i < data.equipment_list.length; i++) {
     if (thing_name == data.equipment_list[i].name) {
       return data.equipment_list[i];
     }
   }
-  for (var i = 0; i < data.gongfa_list.length; i++) {
+  for (let i = 0; i < data.gongfa_list.length; i++) {
     if (thing_name == data.gongfa_list[i].name) {
       return data.gongfa_list[i];
     }
   }
-  for (var i = 0; i < data.homegongfa_list.length; i++) {
+  for (let i = 0; i < data.homegongfa_list.length; i++) {
     if (thing_name == data.homegongfa_list[i].name) {
       return data.homegongfa_list[i];
     }
   }
-  for (var i = 0; i < data.timegongfa_list.length; i++) {
+  for (let i = 0; i < data.timegongfa_list.length; i++) {
     if (thing_name == data.timegongfa_list[i].name) {
       return data.timegongfa_list[i];
     }
   }
-  for (var i = 0; i < data.timeequipmen_list.length; i++) {
+  for (let i = 0; i < data.timeequipmen_list.length; i++) {
     if (thing_name == data.timeequipmen_list[i].name) {
       return data.timeequipmen_list[i];
     }
   }
-  for (var i = 0; i < data.timedanyao_list.length; i++) {
+  for (let i = 0; i < data.timedanyao_list.length; i++) {
     if (thing_name == data.timedanyao_list[i].name) {
       return data.timedanyao_list[i];
     }
   }
-  for (var i = 0; i < data.caoyao_list.length; i++) {
+  for (let i = 0; i < data.caoyao_list.length; i++) {
     if (thing_name == data.caoyao_list[i].name) {
       return data.caoyao_list[i];
     }
   }
-  for (var i = 0; i < data.cailiao_list.length; i++) {
+  for (let i = 0; i < data.cailiao_list.length; i++) {
     if (thing_name == data.cailiao_list[i].name) {
       return data.cailiao_list[i];
     }
   }
-  for (var i = 0; i < data.hezi_list.length; i++) {
+  for (let i = 0; i < data.hezi_list.length; i++) {
     if (thing_name == data.hezi_list[i].name) {
       return data.hezi_list[i];
     }
   }
-  for (var i = 0; i < data.xianchon.length; i++) {
+  for (let i = 0; i < data.xianchon.length; i++) {
     if (thing_name == data.xianchon[i].name) {
       return data.xianchon[i];
     }
   }
-  for (var i = 0; i < data.xianchonkouliang.length; i++) {
+  for (let i = 0; i < data.xianchonkouliang.length; i++) {
     if (thing_name == data.xianchonkouliang[i].name) {
       return data.xianchonkouliang[i];
     }
   }
-  for (var i = 0; i < data.necklace_list.length; i++) {
+  for (let i = 0; i < data.necklace_list.length; i++) {
     if (thing_name == data.necklace_list[i].name) {
       return data.necklace_list[i];
     }
   }
-  for (var i = 0; i < data.shicai_list.length; i++) {
+  for (let i = 0; i < data.shicai_list.length; i++) {
     if (thing_name == data.shicai_list[i].name) {
       return data.shicai_list[i];
     }

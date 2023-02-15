@@ -126,7 +126,7 @@ export class BOSS extends plugin {
       let msg = [
         '****散兵周本贡献排行榜****'
       ];
-      for (var i = 0; i < PlayerList.length; i++) {
+      for (let i = 0; i < PlayerList.length; i++) {
         if (i < 20) {
           let Reward = Math.trunc((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) * WorldBossStatus.Reward);
           Reward = Reward < 10000 ? 10000 : Reward;
@@ -154,7 +154,7 @@ export class BOSS extends plugin {
       return true;
     }
     let usr_qq = e.user_id;
-    var Time = 2;
+    let Time = 2;
     let now_Time = new Date().getTime(); //获取当前时间戳
     let shuangxiuTimeout = parseInt(60000 * Time);
     let last_time = await redis.get('xiuxian:player:' + usr_qq + 'BOSSCD');//获得上次的时间戳,
@@ -449,9 +449,9 @@ export class BOSS extends plugin {
         e.reply('散兵被击杀！玩家们可以根据贡献获得奖励！');
         await sleep(1000);
 
-        var a;
-        var z = 1;
-        var weizhi = data.sanbin;
+        let a;
+        let z = 1;
+        let weizhi = data.sanbin;
         a = Math.floor(Math.random() * (weizhi.length));
         await Add_najie_thing(e.user_id, weizhi[a].name, weizhi[a].class, z);
 
@@ -478,7 +478,7 @@ export class BOSS extends plugin {
         let TotalDamage = 0;
         for (let i = 0; i < (PlayerList.length <= 20 ? PlayerList.length : 20); i++)
           TotalDamage += PlayerRecordJSON.TotalDamage[PlayerList[i]];
-        for (var i = 0; i < PlayerList.length; i++) {
+        for (let i = 0; i < PlayerList.length; i++) {
           let CurrentPlayer = await data.getData('player', PlayerRecordJSON.QQ[PlayerList[i]]);
           if (i < Show_MAX) {
             let Reward = Math.trunc((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) * WorldBossStatus.Reward);
@@ -646,7 +646,7 @@ async function GetAverageDamage() {
   let temp = [];
   let fairyNums = 0;
   let TotalPlayer = 0;
-  for (var i = 0; i < File.length; i++) {
+  for (let i = 0; i < File.length; i++) {
     let this_qq = File[i].replace('.json', '');
     this_qq = parseInt(this_qq);
     let player = await data.getData('player', this_qq);

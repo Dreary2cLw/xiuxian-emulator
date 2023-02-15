@@ -128,8 +128,8 @@ export class TreasureCabinet extends plugin {
 
     //判断物品是否存在
     let pinji2 = ['劣', '普', '优', '精', '极', '绝', '顶'];
-    var x = 88888888888;
-    for (var i = 0; i < ass.藏宝阁.length; i++) {
+    let x = 88888888888;
+    for (let i = 0; i < ass.藏宝阁.length; i++) {
       //对比编号
 
       if (isNotNull(thing_pinji)) {
@@ -163,7 +163,7 @@ export class TreasureCabinet extends plugin {
       // let pinji=['劣','普','优','精','极','绝','顶']
       let t = ass.藏宝阁[x].pinji;
       // let pinji2=0
-      // for(var z=0;pinji.length>z;z++){
+      // for(let z=0;pinji.length>z;z++){
       //     if(t==pinji[z]){
       //         pinji2=z
       //     }
@@ -297,8 +297,8 @@ export class TreasureCabinet extends plugin {
 
     //堆叠
 
-    var x = 88888888888;
-    for (var i = 0; i < ass.藏宝阁.length; i++) {
+    let x = 88888888888;
+    for (let i = 0; i < ass.藏宝阁.length; i++) {
       //对比编号
       if (ass.藏宝阁[i].name == thing_name) {
         if (thing_exist.class == '装备') {
@@ -320,7 +320,7 @@ export class TreasureCabinet extends plugin {
         let pinji2 = najie.装备.find(item => item.name == thing_name && item.pinji == thing_pinji_number).pinji;
 
 
-        var wupin = {
+        let wupin = {
           'name': thing_name,
           'class': thing_exist.class,
           'price': thing_value,
@@ -332,7 +332,7 @@ export class TreasureCabinet extends plugin {
           'pinji': pinji2
         };
       } else {
-        var wupin = {
+        let wupin = {
           'name': thing_name,
           'class': thing_exist.class,
           'price': thing_value,
@@ -379,7 +379,7 @@ export class TreasureCabinet extends plugin {
     }
     //用户宗门的物品
 
-    var yes = 0;
+    let yes = 0;
     let msg = await cangbaoge(ass.藏宝阁);
     await ForwardMsg(e, msg);
 
@@ -428,8 +428,8 @@ export class TreasureCabinet extends plugin {
     //根据物品的名称来购买
 
     let pinji2 = ['劣', '普', '优', '精', '极', '绝', '顶'];
-    var x = 88888888888;
-    for (var i = 0; i < ass.藏宝阁.length; i++) {
+    let x = 88888888888;
+    for (let i = 0; i < ass.藏宝阁.length; i++) {
       //对比编号
 
       if (isNotNull(thing_pinji)) {
@@ -465,7 +465,7 @@ export class TreasureCabinet extends plugin {
     let thing_whole = ass.藏宝阁[x].price * thing_acunot;
     console.log(x);
     //贡献值
-    var gonxianzhi = Math.trunc(player.宗门.lingshi_donate / 10000);
+    let gonxianzhi = Math.trunc(player.宗门.lingshi_donate / 10000);
     //查贡献
     if (gonxianzhi > thing_whole) {
       //加物品
@@ -530,7 +530,7 @@ export class TreasureCabinet extends plugin {
       player.宗门.lingshi_donate = 0;
     }
     //贡献值为捐献灵石除10000
-    var gonxianzhi = Math.trunc(player.宗门.lingshi_donate / 10000);
+    let gonxianzhi = Math.trunc(player.宗门.lingshi_donate / 10000);
     e.reply('你为宗门的贡献值为[' + gonxianzhi + '],可以在#宗门藏宝阁 使用贡献值兑换宗门物品,感谢您对宗门做出的贡献');
   }
 
@@ -846,7 +846,7 @@ export class TreasureCabinet extends plugin {
       return;
     }
 
-    var Time = 120;//2个小时
+    let Time = 120;//2个小时
     let feedTimeout = parseInt(60000 * Time);
 
     //自己的cd
@@ -892,7 +892,7 @@ export async function cangbaoge(liebiao) {
   ];
   let v = 0;
   let pinji = ['劣', '普', '优', '精', '极', '绝', '顶'];
-  for (var i = 0; i < liebiao.length; i++) {
+  for (let i = 0; i < liebiao.length; i++) {
     if (liebiao[i].class == '装备') {
       v += 1;
       msg.push(liebiao[i].name + '【' + pinji[liebiao[i].pinji] + '】' + '\n' + '类型：' + liebiao[i].class + '\n' + '攻击力：' + liebiao[i].atk + '\n' + '防御：' + liebiao[i].def + '\n' + '血量：' + liebiao[i].HP + '\n' + '暴击加成：' + liebiao[i].bao * 100 + '%' + '\n' + '所需贡献值：' + liebiao[i].price + '\n余量:' + liebiao[i].aconut);

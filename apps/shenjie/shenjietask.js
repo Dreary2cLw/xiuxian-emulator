@@ -69,17 +69,17 @@ export class shenjietask extends plugin {
           end_time = end_time - action.time;
           //时间过了
           if (now_time > end_time) {
-            var thing_name;
-            var thing_class;
-            var x = 0.98;
+            let thing_name;
+            let thing_class;
+            let x = 0.98;
             let random1 = Math.random();
-            var y = 0.4;
+            let y = 0.4;
             let random2 = Math.random();
-            var z = 0.15;
+            let z = 0.15;
             let random3 = Math.random();
             let random4;
-            var m = '';
-            var n = 1;
+            let m = '';
+            let n = 1;
             let t1;
             let t2;
             let last_msg = '';

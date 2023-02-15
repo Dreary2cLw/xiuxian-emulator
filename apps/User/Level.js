@@ -97,7 +97,7 @@ export class Level extends plugin {
       e.reply(`你已突破至最高境界`);
       return;
     }
-    var Time = this.xiuxianConfigData.CD.level_up;
+    let Time = this.xiuxianConfigData.CD.level_up;
     let now_Time = new Date().getTime(); //获取当前时间戳
     let shuangxiuTimeout = parseInt(60000 * Time);
     let last_time = await redis.get('xiuxian:player:' + usr_qq + ':last_LevelMaxup_time');//获得上次的时间戳,
@@ -249,7 +249,7 @@ export class Level extends plugin {
       e.reply(`修为不足,再积累${need_exp - now_exp}修为后方可突破`);
       return;
     }
-    var Time = this.xiuxianConfigData.CD.level_up;
+    let Time = this.xiuxianConfigData.CD.level_up;
     let now_Time = new Date().getTime(); //获取当前时间戳
     let shuangxiuTimeout = parseInt(60000 * Time);
     let last_time = await redis.get('xiuxian:player:' + usr_qq + ':last_Levelup_time');//获得上次的时间戳,
@@ -474,7 +474,7 @@ export class Level extends plugin {
     //当前系数计算
     let x = await dujie(usr_qq);
     //默认为3
-    var y = 3;
+    let y = 3;
     if (player.灵根.type == '伪灵根') {
       y = 3;
     } else if (player.灵根.type == '真灵根') {
@@ -491,9 +491,9 @@ export class Level extends plugin {
       y = 12;
     }
     //渡劫系数区间
-    var n = 1380;//最低
-    var p = 280;//变动
-    var m = n + p;
+    let n = 1380;//最低
+    let p = 280;//变动
+    let m = n + p;
     if (x <= n) {
       //没有达到最低要求
       player.当前血量 = 0;
@@ -503,13 +503,13 @@ export class Level extends plugin {
       return;
     }
     //渡劫成功率
-    var l = (x - n) / (p + y * 0.1);
+    let l = (x - n) / (p + y * 0.1);
     l = l * 100;
     l = l.toFixed(2);
     e.reply('天道：就你，也敢逆天改命？');
     e.reply('[' + player.名号 + ']' + '\n雷抗：' + x + '\n成功率：' + l + '%\n灵根：' + player.灵根.type + '\n需渡' + y + '道雷劫\n将在一分钟后落下\n[温馨提示]\n请把其他渡劫期打死后再渡劫！');
     //在redis中添加状态
-    var time = 60;//时间(分)九个雷，//60分钟。防延迟。
+    let time = 60;//时间(分)九个雷，//60分钟。防延迟。
     let action_time = 60000 * time;//持续时间，单位毫秒
     let arr = {
       'action': '渡劫',//动作
@@ -668,9 +668,9 @@ export async function dujie(user_qq) {
   let player = await Read_player(usr_qq);
   //根据当前血量才算
   //计算系数
-  var new_blood = player.当前血量;
-  var new_defense = player.防御;
-  var new_attack = player.攻击;
+  let new_blood = player.当前血量;
+  let new_defense = player.防御;
+  let new_attack = player.攻击;
   //渡劫期基础血量为1600000。防御800000，攻击800000
   new_blood = new_blood / 100000;
   new_defense = new_defense / 100000;
@@ -680,9 +680,9 @@ export async function dujie(user_qq) {
   new_defense = (new_defense * 6) / 10;
   new_attack = (new_attack * 2) / 10;
   //基础厚度
-  var N = new_blood + new_defense;
+  let N = new_blood + new_defense;
   //你的系数
-  var x = N * new_attack;
+  let x = N * new_attack;
   //系数只取到后两位
   //灵根加成
   if (player.灵根.type == '真灵根') {

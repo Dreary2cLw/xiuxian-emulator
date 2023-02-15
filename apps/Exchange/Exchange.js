@@ -77,7 +77,7 @@ export class Exchange extends plugin {
     //    return;
     //	}
     //防并发cd
-    var time0 = 2; //分钟cd
+    let time0 = 2; //分钟cd
     //获取当前时间
     let now_time = new Date().getTime();
     let ExchangeCD = await redis.get(
@@ -131,7 +131,7 @@ export class Exchange extends plugin {
     //	e.reply(`不能下架别人上架的物品`);
     //	return;
     //}
-    //for (var i = 0; i < Exchange.length; i++) {
+    //for (let i = 0; i < Exchange.length; i++) {
     //    //对比编号
     //   if (Exchange[i].qq == thingqq) {
     //        x = i;
@@ -247,7 +247,7 @@ export class Exchange extends plugin {
     } else {
       if (thing_exist.class == '装备') {
         let equ = najie.装备.find(item => item.name == thing_name);
-        for (var i = 0; i < najie.装备.length; i++) {//遍历列表有没有比那把强的
+        for (let i = 0; i < najie.装备.length; i++) {//遍历列表有没有比那把强的
           if (najie.装备[i].name == thing_name && najie.装备[i].pinji < equ.pinji) {
             equ = najie.装备[i];
           }
@@ -299,7 +299,7 @@ export class Exchange extends plugin {
     whole = Math.trunc(whole);
     let time = 2; //分钟
     if (thing_exist.class == '装备') {
-      var wupin = {
+      let wupin = {
         qq: usr_qq,
         name: thing_exist,
         price: thing_value,
@@ -312,7 +312,7 @@ export class Exchange extends plugin {
       };
       await Add_najie_thing(usr_qq, thing_name, thing_exist.class, -thing_amount, pj);
     } else {
-      var wupin = {
+      let wupin = {
         qq: usr_qq,
         name: thing_exist,
         price: thing_value,
@@ -364,7 +364,7 @@ export class Exchange extends plugin {
     }
     allaction = false;
     //防并发cd
-    var time0 = 1; //分钟cd
+    let time0 = 1; //分钟cd
     //获取当前时间
     let now_time = new Date().getTime();
     let ExchangeCD = await redis.get(
@@ -421,7 +421,7 @@ export class Exchange extends plugin {
     }
     //let x = 888888888;
     //根据物品的qq主人来购买
-    //for (var i = 0; i < Exchange.length; i++) {
+    //for (let i = 0; i < Exchange.length; i++) {
     //对比编号
     //    if (Exchange[i].qq == thingqq) {
     //        x = i;

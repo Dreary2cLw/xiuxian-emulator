@@ -79,7 +79,7 @@ export class SudokuGame extends plugin {
     if (!e.isGroup) {
       return;
     }
-    var reg = new RegExp(/简单|中等|困难/);
+    let reg = new RegExp(/简单|中等|困难/);
     let new_msg = this.e.msg;
     let difficulty = reg.exec(new_msg);
     if (difficulty == undefined || difficulty == null) {
@@ -147,7 +147,7 @@ export class SudokuGame extends plugin {
       e.reply(`棋局尚未开启`);
       return;
     }
-    var reg = new RegExp(/\d/g);
+    let reg = new RegExp(/\d/g);
     let new_msg = e.msg;
 
     //创建一个数组用于保存获取的数字
@@ -565,12 +565,12 @@ async function reward(e) {
 
 // 时间转换
 export function timestampToTime(timestamp) {
-  var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-  var Y = date.getFullYear() + '-';
-  var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-  var D = date.getDate() + ' ';
-  var h = date.getHours() + ':';
-  var m = date.getMinutes() + ':';
-  var s = date.getSeconds();
+  let date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+  let Y = date.getFullYear() + '-';
+  let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+  let D = date.getDate() + ' ';
+  let h = date.getHours() + ':';
+  let m = date.getMinutes() + ':';
+  let s = date.getSeconds();
   return Y + M + D + h + m + s;
 }

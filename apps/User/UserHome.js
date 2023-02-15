@@ -98,7 +98,7 @@ export class UserHome extends plugin {
     if (!ifexistplay) {
       return;
     }
-    var name = e.msg.replace('#活动兑换', '');
+    let name = e.msg.replace('#活动兑换', '');
     name = name.trim();
     let i;//获取对应npc列表的位置
     for (i = 0; i < data.duihuan.length; i++) {
@@ -115,7 +115,7 @@ export class UserHome extends plugin {
     if (action == null) {
       action = [];
     }
-    for (var k = 0; k < action.length; k++) {
+    for (let k = 0; k < action.length; k++) {
       if (action[k] == name) {
         e.reply('你已经兑换过该兑换码了');
         return;
@@ -124,7 +124,7 @@ export class UserHome extends plugin {
     action.push(name);
     await redis.set('xiuxian:player:' + usr_qq + ':duihuan', JSON.stringify(action));
     let msg = [];
-    for (var k = 0; k < data.duihuan[i].thing.length; k++) {
+    for (let k = 0; k < data.duihuan[i].thing.length; k++) {
       await Add_najie_thing(usr_qq, data.duihuan[i].thing[k].name, data.duihuan[i].thing[k].class, data.duihuan[i].thing[k].数量);
       msg.push('\n' + data.duihuan[i].thing[k].name + 'x' + data.duihuan[i].thing[k].数量);
     }
@@ -143,7 +143,7 @@ export class UserHome extends plugin {
     let cundang = ['存档'];
     let najie = ['纳戒'];
     let equipment = ['装备'];
-    for (var k = 0; k < File_length; k++) {
+    for (let k = 0; k < File_length; k++) {
       let usr_qq = File[k].replace('.json', '');
       try {
         await Read_player(usr_qq);
@@ -324,7 +324,7 @@ export class UserHome extends plugin {
     let najie = await Read_najie(usr_qq);
     let pinji_number = 114514;
     let pinji = ['劣', '普', '优', '精', '极', '绝', '顶'];
-    for (var i = 0; pinji.length > i; i++) {
+    for (let i = 0; pinji.length > i; i++) {
       if (thing_pinji == pinji[i]) {
         pinji_number = i;
         console.log('找到了');
@@ -370,7 +370,7 @@ export class UserHome extends plugin {
       return;
     }
     let usr_qq = e.user_id;
-    var reg = new RegExp(/哪里有/);
+    let reg = new RegExp(/哪里有/);
     let msg = e.msg.replace(reg, '');
     msg = msg.replace('#', '');
     let thing_name = msg.replace('哪里有', '');
@@ -386,22 +386,22 @@ export class UserHome extends plugin {
       return;
     }
     weizhi.push('秘境：');
-    for1: for (var i = 0; i < data.didian_list.length; i++) {
-      for (var j = 0; j < data.didian_list[i].one.length; j++) {
+    for1: for (let i = 0; i < data.didian_list.length; i++) {
+      for (let j = 0; j < data.didian_list[i].one.length; j++) {
         if (thing_name == data.didian_list[i].one[j].name) {
           weizhi.push(data.didian_list[i].name);
           weizhi.push(' ');
           continue for1;
         }
       }
-      for (var j = 0; j < data.didian_list[i].two.length; j++) {
+      for (let j = 0; j < data.didian_list[i].two.length; j++) {
         if (thing_name == data.didian_list[i].two[j].name) {
           weizhi.push(data.didian_list[i].name);
           weizhi.push(' ');
           continue for1;
         }
       }
-      for (var j = 0; j < data.didian_list[i].three.length; j++) {
+      for (let j = 0; j < data.didian_list[i].three.length; j++) {
         if (thing_name == data.didian_list[i].three[j].name) {
           weizhi.push(data.didian_list[i].name);
           weizhi.push(' ');
@@ -411,22 +411,22 @@ export class UserHome extends plugin {
     }
     weizhi.push('\n');
     weizhi.push('禁地：');
-    for4: for (var i = 0; i < data.forbiddenarea_list.length; i++) {
-      for (var j = 0; j < data.forbiddenarea_list[i].one.length; j++) {
+    for4: for (let i = 0; i < data.forbiddenarea_list.length; i++) {
+      for (let j = 0; j < data.forbiddenarea_list[i].one.length; j++) {
         if (thing_name == data.forbiddenarea_list[i].one[j].name) {
           weizhi.push(data.forbiddenarea_list[i].name);
           weizhi.push(' ');
           continue for4;
         }
       }
-      for (var j = 0; j < data.forbiddenarea_list[i].two.length; j++) {
+      for (let j = 0; j < data.forbiddenarea_list[i].two.length; j++) {
         if (thing_name == data.forbiddenarea_list[i].two[j].name) {
           weizhi.push(data.forbiddenarea_list[i].name);
           weizhi.push(' ');
           continue for4;
         }
       }
-      for (var j = 0; j < data.forbiddenarea_list[i].three.length; j++) {
+      for (let j = 0; j < data.forbiddenarea_list[i].three.length; j++) {
         if (thing_name == data.forbiddenarea_list[i].three[j].name) {
           weizhi.push(data.forbiddenarea_list[i].name);
           weizhi.push(' ');
@@ -436,22 +436,22 @@ export class UserHome extends plugin {
     }
     weizhi.push('\n');
     weizhi.push('宗门秘境：');
-    for5: for (var i = 0; i < data.guildSecrets_list.length; i++) {
-      for (var j = 0; j < data.guildSecrets_list[i].one.length; j++) {
+    for5: for (let i = 0; i < data.guildSecrets_list.length; i++) {
+      for (let j = 0; j < data.guildSecrets_list[i].one.length; j++) {
         if (thing_name == data.guildSecrets_list[i].one[j].name) {
           weizhi.push(data.guildSecrets_list[i].name);
           weizhi.push(' ');
           continue for5;
         }
       }
-      for (var j = 0; j < data.guildSecrets_list[i].two.length; j++) {
+      for (let j = 0; j < data.guildSecrets_list[i].two.length; j++) {
         if (thing_name == data.guildSecrets_list[i].two[j].name) {
           weizhi.push(data.guildSecrets_list[i].name);
           weizhi.push(' ');
           continue for5;
         }
       }
-      for (var j = 0; j < data.guildSecrets_list[i].three.length; j++) {
+      for (let j = 0; j < data.guildSecrets_list[i].three.length; j++) {
         if (thing_name == data.guildSecrets_list[i].three[j].name) {
           weizhi.push(data.guildSecrets_list[i].name);
           weizhi.push(' ');
@@ -461,22 +461,22 @@ export class UserHome extends plugin {
     }
     weizhi.push('\n');
     weizhi.push('仙境：');
-    for2: for (var i = 0; i < data.Fairyrealm_list.length; i++) {
-      for (var j = 0; j < data.Fairyrealm_list[i].one.length; j++) {
+    for2: for (let i = 0; i < data.Fairyrealm_list.length; i++) {
+      for (let j = 0; j < data.Fairyrealm_list[i].one.length; j++) {
         if (thing_name == data.Fairyrealm_list[i].one[j].name) {
           weizhi.push(data.Fairyrealm_list[i].name);
           weizhi.push(' ');
           continue for2;
         }
       }
-      for (var j = 0; j < data.Fairyrealm_list[i].two.length; j++) {
+      for (let j = 0; j < data.Fairyrealm_list[i].two.length; j++) {
         if (thing_name == data.Fairyrealm_list[i].two[j].name) {
           weizhi.push(data.Fairyrealm_list[i].name);
           weizhi.push(' ');
           continue for2;
         }
       }
-      for (var j = 0; j < data.Fairyrealm_list[i].three.length; j++) {
+      for (let j = 0; j < data.Fairyrealm_list[i].three.length; j++) {
         if (thing_name == data.Fairyrealm_list[i].three[j].name) {
           weizhi.push(data.Fairyrealm_list[i].name);
           weizhi.push(' ');
@@ -486,22 +486,22 @@ export class UserHome extends plugin {
     }
     weizhi.push('\n');
     weizhi.push('仙府：');
-    for3: for (var i = 0; i < data.timeplace_list.length; i++) {
-      for (var j = 0; j < data.timeplace_list[i].one.length; j++) {
+    for3: for (let i = 0; i < data.timeplace_list.length; i++) {
+      for (let j = 0; j < data.timeplace_list[i].one.length; j++) {
         if (thing_name == data.timeplace_list[i].one[j].name) {
           weizhi.push(data.timeplace_list[i].name);
           weizhi.push(' ');
           continue for3;
         }
       }
-      for (var j = 0; j < data.timeplace_list[i].two.length; j++) {
+      for (let j = 0; j < data.timeplace_list[i].two.length; j++) {
         if (thing_name == data.timeplace_list[i].two[j].name) {
           weizhi.push(data.timeplace_list[i].name);
           weizhi.push(' ');
           continue for3;
         }
       }
-      for (var j = 0; j < data.timeplace_list[i].three.length; j++) {
+      for (let j = 0; j < data.timeplace_list[i].three.length; j++) {
         if (thing_name == data.timeplace_list[i].three[j].name) {
           weizhi.push(data.timeplace_list[i].name);
           weizhi.push(' ');
@@ -511,9 +511,9 @@ export class UserHome extends plugin {
     }
     weizhi.push('\n');
     weizhi.push('盒子：');
-    for6: for (var i = 0; i < data.hezi_list.length; i++) {
-      for (var j = 0; j < data.hezi_list[i].contents.length; j++) {
-        for (var k = 0; k < data.hezi_list[i].contents[j].items.length; k++) {
+    for6: for (let i = 0; i < data.hezi_list.length; i++) {
+      for (let j = 0; j < data.hezi_list[i].contents.length; j++) {
+        for (let k = 0; k < data.hezi_list[i].contents[j].items.length; k++) {
           if (thing_name == data.hezi_list[i].contents[j].items[k].name) {
             weizhi.push(data.hezi_list[i].name);
             weizhi.push(' ');
@@ -524,133 +524,133 @@ export class UserHome extends plugin {
     }
     weizhi.push('\n');
     weizhi.push('其他：');
-    for (var i = 0; i < data.commodities_list.length; i++) {
+    for (let i = 0; i < data.commodities_list.length; i++) {
       if (thing_name == data.commodities_list[i].name) {
         weizhi.push('柠檬堂');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.cangbaoge_list.length; i++) {
+    for (let i = 0; i < data.cangbaoge_list.length; i++) {
       if (thing_name == data.cangbaoge_list[i].name) {
         weizhi.push('藏宝阁');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.danyao_list.length; i++) {
+    for (let i = 0; i < data.danyao_list.length; i++) {
       if (thing_name == data.danyao_list[i].name) {
         weizhi.push('神兽赐福(麒麟)');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.gongfa_list.length; i++) {
+    for (let i = 0; i < data.gongfa_list.length; i++) {
       if (thing_name == data.gongfa_list[i].name) {
         weizhi.push('神兽赐福(青龙)');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.huju_list.length; i++) {
+    for (let i = 0; i < data.huju_list.length; i++) {
       if (thing_name == data.huju_list[i].name) {
         weizhi.push('神兽赐福(玄武)');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.fabao_list.length; i++) {
+    for (let i = 0; i < data.fabao_list.length; i++) {
       if (thing_name == data.fabao_list[i].name) {
         weizhi.push('神兽赐福(朱雀)');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.wuqi_list.length; i++) {
+    for (let i = 0; i < data.wuqi_list.length; i++) {
       if (thing_name == data.wuqi_list[i].name) {
         weizhi.push('神兽赐福(白虎)');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.qinlong.length; i++) {
+    for (let i = 0; i < data.qinlong.length; i++) {
       if (thing_name == data.qinlong[i].name) {
         weizhi.push('神兽赐福(青龙)');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.qilin.length; i++) {
+    for (let i = 0; i < data.qilin.length; i++) {
       if (thing_name == data.qilin[i].name) {
         weizhi.push('神兽赐福(麒麟)');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.xuanwu.length; i++) {
+    for (let i = 0; i < data.xuanwu.length; i++) {
       if (thing_name == data.xuanwu[i].name) {
         weizhi.push('神兽赐福(玄武、朱雀、白虎)');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.sanbin.length; i++) {
+    for (let i = 0; i < data.sanbin.length; i++) {
       if (thing_name == data.sanbin[i].name) {
         weizhi.push('boss掉落');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.wuqizaohua.length; i++) {
+    for (let i = 0; i < data.wuqizaohua.length; i++) {
       if (thing_name == data.wuqizaohua[i].name) {
         weizhi.push('武器造化机缘');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.hujuzaohua.length; i++) {
+    for (let i = 0; i < data.hujuzaohua.length; i++) {
       if (thing_name == data.hujuzaohua[i].name) {
         weizhi.push('护具造化机缘');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.fabaozaohua.length; i++) {
+    for (let i = 0; i < data.fabaozaohua.length; i++) {
       if (thing_name == data.fabaozaohua[i].name) {
         weizhi.push('法宝造化机缘');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.bapin.length; i++) {
+    for (let i = 0; i < data.bapin.length; i++) {
       if (thing_name == data.bapin[i].name) {
         weizhi.push('残卷兑换');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.tuzhi_list.length; i++) {
+    for (let i = 0; i < data.tuzhi_list.length; i++) {
       if (thing_name == data.tuzhi_list[i].name) {
         weizhi.push('图纸锻造');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.danfang_list.length; i++) {
+    for (let i = 0; i < data.danfang_list.length; i++) {
       if (thing_name == data.danfang_list[i].name) {
         weizhi.push('丹药配方');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.tianditang.length; i++) {
+    for (let i = 0; i < data.tianditang.length; i++) {
       if (thing_name == data.tianditang[i].name) {
         weizhi.push('天地堂');
         weizhi.push(' ');
         break;
       }
     }
-    for (var i = 0; i < data.xingge.length; i++) {
+    for (let i = 0; i < data.xingge.length; i++) {
       if (thing_name == data.xingge[i].name) {
         weizhi.push('星阁');
         weizhi.push(' ');
@@ -718,7 +718,7 @@ export class UserHome extends plugin {
     }
     allaction = false;
     //检索方法
-    var reg = new RegExp(/取|存/);
+    let reg = new RegExp(/取|存/);
     let func = reg.exec(e.msg);
     let msg = e.msg.replace(reg, '');
     msg = msg.replace('#', '');
@@ -791,7 +791,7 @@ export class UserHome extends plugin {
     let player = await Read_player(usr_qq);
     let najie = await Read_najie(usr_qq);
     //检索方法
-    var reg = new RegExp(/装备|服用|消耗|学习|打开|解除封印|寻宝|合成|加工|附魔/);
+    let reg = new RegExp(/装备|服用|消耗|学习|打开|解除封印|寻宝|合成|加工|附魔/);
     let func = reg.exec(e.msg);
     let msg = e.msg.replace(reg, '');
     msg = msg.replace('#', '');
@@ -830,7 +830,7 @@ export class UserHome extends plugin {
       let equ;
       if (code[1] == undefined) {
         equ = najie.装备.find(item => item.name == thing_name);
-        for (var i = 0; i < najie.装备.length; i++) {//遍历列表有没有比那把强的
+        for (let i = 0; i < najie.装备.length; i++) {//遍历列表有没有比那把强的
           if (najie.装备[i].name == thing_name && najie.装备[i].pinji > equ.pinji) {
             equ = najie.装备[i];
           }
@@ -838,7 +838,7 @@ export class UserHome extends plugin {
       } else {
         equ = najie.装备.find(item => item.name == thing_name && item.pinji == pj);
       }
-      var equipment = await Read_equipment(usr_qq);
+      let equipment = await Read_equipment(usr_qq);
       if (equ.type == '项链') {
         if (equ.属性 == '幸运') {
           player.幸运 -= equipment.项链.加成;
@@ -1810,7 +1810,7 @@ export class UserHome extends plugin {
         }
         let equipment = await Read_equipment(usr_qq);
         let equ = [];
-        for (var i = 0; i < data.equipment_list.length; i++) {
+        for (let i = 0; i < data.equipment_list.length; i++) {
           if (data.equipment_list[i].name == equipment.武器.name) {
             equ[0] = (data.equipment_list[i]);
           } else if (data.equipment_list[i].name == equipment.法宝.name) {
@@ -1819,7 +1819,7 @@ export class UserHome extends plugin {
             equ[2] = (data.equipment_list[i]);
           }
         }
-        for (var i = 0; i < data.timeequipmen_list.length; i++) {
+        for (let i = 0; i < data.timeequipmen_list.length; i++) {
           if (data.timeequipmen_list[i].name == equipment.武器.name) {
             equ[0] = (data.timeequipmen_list[i]);
           } else if (data.timeequipmen_list[i].name == equipment.法宝.name) {
@@ -1830,17 +1830,17 @@ export class UserHome extends plugin {
         }
         let random = Math.random();
         if (random < 0.2) {
-          var randomd1 = Math.floor(Math.random() * 6);
+          let randomd1 = Math.floor(Math.random() * 6);
           if (isNotNull(equipment.武器.pinji)) {
             equipment.武器.pinji = randomd1;
           }
         } else if (random < 0.6) {
-          var randomd2 = Math.floor(Math.random() * 6);
+          let randomd2 = Math.floor(Math.random() * 6);
           if (isNotNull(equipment.护具.pinji)) {
             equipment.护具.pinji = randomd2;
           }
         } else {
-          var randomd3 = Math.floor(Math.random() * 6);
+          let randomd3 = Math.floor(Math.random() * 6);
           if (isNotNull(equipment.法宝.pinji)) {
             equipment.法宝.pinji = randomd3;
           }
@@ -1875,7 +1875,7 @@ export class UserHome extends plugin {
         }
         let equipment = await Read_equipment(usr_qq);
         let equ = [];
-        for (var i = 0; i < data.equipment_list.length; i++) {
+        for (let i = 0; i < data.equipment_list.length; i++) {
           if (data.equipment_list[i].name == equipment.武器.name) {
             equ[0] = (data.equipment_list[i]);
           } else if (data.equipment_list[i].name == equipment.法宝.name) {
@@ -1884,7 +1884,7 @@ export class UserHome extends plugin {
             equ[2] = (data.equipment_list[i]);
           }
         }
-        for (var i = 0; i < data.timeequipmen_list.length; i++) {
+        for (let i = 0; i < data.timeequipmen_list.length; i++) {
           if (data.timeequipmen_list[i].name == equipment.武器.name) {
             equ[0] = (data.timeequipmen_list[i]);
           } else if (data.timeequipmen_list[i].name == equipment.法宝.name) {
@@ -1895,17 +1895,17 @@ export class UserHome extends plugin {
         }
         let random = Math.random();
         if (random < 0.2) {
-          var randomd1 = Math.floor(Math.random() * 6);
+          let randomd1 = Math.floor(Math.random() * 6);
           if (isNotNull(equipment.武器.pinji)) {
             equipment.武器.pinji = randomd1;
           }
         } else if (random < 0.6) {
-          var randomd2 = Math.floor(Math.random() * 6);
+          let randomd2 = Math.floor(Math.random() * 6);
           if (isNotNull(equipment.护具.pinji)) {
             equipment.护具.pinji = randomd2;
           }
         } else {
-          var randomd3 = Math.floor(Math.random() * 6);
+          let randomd3 = Math.floor(Math.random() * 6);
           if (isNotNull(equipment.法宝.pinji)) {
             equipment.法宝.pinji = randomd3;
           }
@@ -1936,7 +1936,7 @@ export class UserHome extends plugin {
       if (thing_name == '重铸石') {
         let equipment = await Read_equipment(usr_qq);
         let equ = [];
-        for (var i = 0; i < data.equipment_list.length; i++) {
+        for (let i = 0; i < data.equipment_list.length; i++) {
           if (data.equipment_list[i].name == equipment.武器.name) {
             equ[0] = (data.equipment_list[i]);
           } else if (data.equipment_list[i].name == equipment.法宝.name) {
@@ -1945,7 +1945,7 @@ export class UserHome extends plugin {
             equ[2] = (data.equipment_list[i]);
           }
         }
-        for (var i = 0; i < data.timeequipmen_list.length; i++) {
+        for (let i = 0; i < data.timeequipmen_list.length; i++) {
           if (data.timeequipmen_list[i].name == equipment.武器.name) {
             equ[0] = (data.timeequipmen_list[i]);
           } else if (data.timeequipmen_list[i].name == equipment.法宝.name) {
@@ -2245,7 +2245,7 @@ export class UserHome extends plugin {
         return;
       }
       let o = 999;
-      for (var i = 0; fyin_list.length > i; i++) {
+      for (let i = 0; fyin_list.length > i; i++) {
         if (fyin_list[i] == thing_name) {
           o = i;
           console.log('找到了');
@@ -2298,7 +2298,7 @@ export class UserHome extends plugin {
         return;
       }
       allaction = false;
-      var Time = 7;
+      let Time = 7;
       let now_Time = new Date().getTime(); //获取当前时间戳
       let shuangxiuTimeout = parseInt(60000 * Time);
       let last_time = await redis.get('xiuxian:player:' + usr_qq + 'xunbaocd');//获得上次的时间戳,
@@ -3450,7 +3450,7 @@ export class UserHome extends plugin {
     } else {
       if (thing_exist.class == '装备') {
         let equ = najie.装备.find(item => item.name == thing_name);
-        for (var i = 0; i < najie.装备.length; i++) {//遍历列表有没有比那把强的
+        for (let i = 0; i < najie.装备.length; i++) {//遍历列表有没有比那把强的
           if (najie.装备[i].name == thing_name && najie.装备[i].pinji < equ.pinji) {
             equ = najie.装备[i];
           }

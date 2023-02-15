@@ -417,7 +417,7 @@ export class UserStart extends plugin {
       return;
     }
     //检索方法
-    var reg = new RegExp(/改名|设置道宣/);
+    let reg = new RegExp(/改名|设置道宣/);
     let func = reg.exec(e.msg);
     //
     if (func == '改名') {

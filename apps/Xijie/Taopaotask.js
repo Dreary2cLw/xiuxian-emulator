@@ -143,14 +143,14 @@ export class Taopaotask extends plugin {
               arr.cishu--;
               arr.A_player = A_player;
             } else {
-              var num = weizhi.Grade + 1;
+              let num = weizhi.Grade + 1;
               last_msg += '\n在躲避追杀中,没能躲过此劫,被抓进了天牢\n在天牢中你找到了秘境之匙x' + num;
               await Add_najie_thing(player_id, '秘境之匙', '道具', num);
               delete arr.group_id;
               shop[i].state = 0;
               await Write_shop(shop);
-              var time = 60;//时间（分钟）
-              var action_time = 60000 * time;//持续时间，单位毫秒
+              let time = 60;//时间（分钟）
+              let action_time = 60000 * time;//持续时间，单位毫秒
               arr.action = '天牢';
               arr.xijie = 1;//关闭洗劫
               arr.end_time = new Date().getTime() + action_time;
@@ -161,7 +161,7 @@ export class Taopaotask extends plugin {
               arr.xijie = 1;//关闭洗劫
               arr.end_time = new Date().getTime();
               delete arr.group_id;
-              for (var j = 0; j < arr.thing.length; j++) {
+              for (let j = 0; j < arr.thing.length; j++) {
                 await Add_najie_thing(player_id, arr.thing[j].name, arr.thing[j].class, arr.thing[j].数量);
                 last_msg += '';
               }

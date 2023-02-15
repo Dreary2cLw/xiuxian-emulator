@@ -79,10 +79,10 @@ export class PlayerControl extends plugin {
     time = time.replace('钟', '');
     if (parseInt(time) == parseInt(time)) {
       time = parseInt(time);
-      var y = 30;//时间
-      var x = 240;//循环次数
+      let y = 30;//时间
+      let x = 240;//循环次数
       //如果是 >=16*33 ----   >=30
-      for (var i = x; i > 0; i--) {
+      for (let i = x; i > 0; i--) {
         if (time >= y * i) {
           time = y * i;
           break;
@@ -117,13 +117,10 @@ export class PlayerControl extends plugin {
       'action': '闭关',//动作
       'end_time': new Date().getTime() + action_time,//结束时间
       'time': action_time,//持续时间
-      'plant': '1',//采药-关闭
       'shutup': '0',//闭关状态-开启
       'working': '1',//降妖状态-关闭
       'Place_action': '1',//秘境状态---关闭
       'Place_actionplus': '1',//沉迷---关闭
-      'power_up': '1',//渡劫状态--关闭
-      'power_up': '1',//渡劫状态--关闭
       'mojie': '1',//魔界状态---关闭
       'power_up': '1',//渡劫状态--关闭
       'xijie': '1', //洗劫状态开启
@@ -167,10 +164,10 @@ export class PlayerControl extends plugin {
     time = time.replace('钟', '');
     if (parseInt(time) == parseInt(time)) {
       time = parseInt(time);//你选择的时间
-      var y = 15;//固定时间
-      var x = 48;//循环次数
+      let y = 15;//固定时间
+      let x = 48;//循环次数
       //如果是 >=16*33 ----   >=30
-      for (var i = x; i > 0; i--) {
+      for (let i = x; i > 0; i--) {
         if (time >= y * i) {
           time = y * i;
           break;
@@ -210,13 +207,10 @@ export class PlayerControl extends plugin {
       'action': '降妖',//动作
       'end_time': new Date().getTime() + action_time,//结束时间
       'time': action_time,//持续时间
-      'plant': '1',//采药-关闭
       'shutup': '1',//闭关状态-关闭
       'working': '0',//降妖状态-开启
       'Place_action': '1',//秘境状态---关闭
       'Place_actionplus': '1',//沉迷---关闭
-      'power_up': '1',//渡劫状态--关闭
-      'power_up': '1',//渡劫状态--关闭
       'mojie': '1',//魔界状态---关闭
       'power_up': '1',//渡劫状态--关闭
       'xijie': '1', //洗劫状态开启
@@ -258,8 +252,8 @@ export class PlayerControl extends plugin {
     let time;
 
 
-    var y = this.xiuxianConfigData.biguan.time;//固定时间
-    var x = this.xiuxianConfigData.biguan.cycle;//循环次数
+    let y = this.xiuxianConfigData.biguan.time;//固定时间
+    let x = this.xiuxianConfigData.biguan.cycle;//循环次数
 
 
     if (end_time > now_time) {
@@ -267,7 +261,7 @@ export class PlayerControl extends plugin {
       time = parseInt((new Date().getTime() - start_time) / 1000 / 60);
       //超过就按最低的算，即为满足30分钟才结算一次
       //如果是 >=16*33 ----   >=30
-      for (var i = x; i > 0; i--) {
+      for (let i = x; i > 0; i--) {
         if (time >= y * i) {
           time = y * i;
           break;
@@ -280,7 +274,7 @@ export class PlayerControl extends plugin {
       time = parseInt((action.time) / 1000 / 60);
       //超过就按最低的算，即为满足30分钟才结算一次
       //如果是 >=16*33 ----   >=30
-      for (var i = x; i > 0; i--) {
+      for (let i = x; i > 0; i--) {
         if (time >= y * i) {
           time = y * i;
           break;
@@ -332,14 +326,14 @@ export class PlayerControl extends plugin {
     let start_time = action.end_time - action.time;
     let now_time = new Date().getTime();
     let time;
-    var y = this.xiuxianConfigData.work.time;//固定时间
-    var x = this.xiuxianConfigData.work.cycle;//循环次数
+    let y = this.xiuxianConfigData.work.time;//固定时间
+    let x = this.xiuxianConfigData.work.cycle;//循环次数
 
     if (end_time > now_time) {//属于提前结束
       time = parseInt((new Date().getTime() - start_time) / 1000 / 60);
       //超过就按最低的算，即为满足30分钟才结算一次
       //如果是 >=16*33 ----   >=30
-      for (var i = x; i > 0; i--) {
+      for (let i = x; i > 0; i--) {
         if (time >= y * i) {
           time = y * i;
           break;
@@ -353,7 +347,7 @@ export class PlayerControl extends plugin {
       time = parseInt((action.time) / 1000 / 60);
       //超过就按最低的算，即为满足30分钟才结算一次
       //如果是 >=16*33 ----   >=30
-      for (var i = x; i > 0; i--) {
+      for (let i = x; i > 0; i--) {
         if (time >= y * i) {
           time = y * i;
           break;
@@ -402,7 +396,7 @@ export class PlayerControl extends plugin {
     }
     now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
     //闭关收益倍率计算 倍率*境界id*天赋*时间
-    var size = this.xiuxianConfigData.biguan.size;
+    let size = this.xiuxianConfigData.biguan.size;
     //增加的修为
     let xiuwei = parseInt((size * now_level_id) * (player.修炼效率提升 + 1));
     //恢复的血量
@@ -416,7 +410,7 @@ export class PlayerControl extends plugin {
     let xueqi = 0;
     let action3 = await redis.get('xiuxian:player:' + 10 + ':biguang');//数据放在redis里
     action3 = await JSON.parse(action3);
-    for (var i = 0; i < action3.length; i++) {
+    for (let i = 0; i < action3.length; i++) {
 
       if (action3[i].qq == usr_qq) {
         if (action3[i].biguan > 0) {
@@ -525,7 +519,7 @@ export class PlayerControl extends plugin {
       return;
     }
     now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
-    var size = this.xiuxianConfigData.work.size;
+    let size = this.xiuxianConfigData.work.size;
     let lingshi = size * now_level_id;
     let other_lingshi = 0;//额外的灵石
     let Time = time * 2;

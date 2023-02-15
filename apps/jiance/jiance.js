@@ -34,17 +34,17 @@ export class jiance extends plugin {
   async jiance() {
     let mingdang = await Read_mingdang();
     let mingdang_log = await Read_mingdang_log();
-    var myDate = new Date();
-    var year = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
-    var month = myDate.getMonth() + 1;  //获取当前月份(1-12)
-    var day = myDate.getDate();  //获取当前日(1-31)
-    var newDay = year + '-' + month + '-' + day;//获取完整年月日
+    let myDate = new Date();
+    let year = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+    let month = myDate.getMonth() + 1;  //获取当前月份(1-12)
+    let day = myDate.getDate();  //获取当前日(1-31)
+    let newDay = year + '-' + month + '-' + day;//获取完整年月日
     let qq = '';
     qq += newDay;
     qq += '\n';
-    for (var i = 0; i < mingdang.length; i++) {
-      var time = 0;
-      for (var j = 0; j < mingdang[i].time.length - 2; j++) {
+    for (let i = 0; i < mingdang.length; i++) {
+      let time = 0;
+      for (let j = 0; j < mingdang[i].time.length - 2; j++) {
         if (Math.abs((mingdang[i].time[j + 1] - mingdang[i].time[j]) - (mingdang[i].time[j + 2] - mingdang[i].time[j + 1])) < 500) {
           time++;
         }
@@ -70,7 +70,7 @@ export class jiance extends plugin {
     }
     let mingdang_log = await Read_mingdang_log();
     let qq = '';
-    for (var i = mingdang_log.length - 1; i > mingdang_log.length - 4; i--) {
+    for (let i = mingdang_log.length - 1; i > mingdang_log.length - 4; i--) {
       if (mingdang_log[i] != undefined) {
         qq += mingdang_log[i];
       }
@@ -165,7 +165,7 @@ export async function add_time(usr_qq) {
       break;
     }
   }
-  var nowtime = new Date().getTime();
+  let nowtime = new Date().getTime();
   mingdang[i].time.push(nowtime);
   await Write_mingdang(mingdang);
   return;

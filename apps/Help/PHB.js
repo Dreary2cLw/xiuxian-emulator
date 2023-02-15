@@ -50,7 +50,7 @@ export class PHB extends plugin {
       file = file.replace('.json', '');
       playerList.push(file);
     }
-    var i = 0;
+    let i = 0;
     for (let player_id of playerList) {
       //(攻击+防御*0.8+生命*0.5)*暴击率=理论战力
       let player = await Read_player(player_id);
@@ -68,14 +68,14 @@ export class PHB extends plugin {
     //根据力量排序
     temp.sort(sortBy('power'));
     console.log(temp);
-    var length;
+    let length;
     if (temp.length > 20) {
       //只要十个
       length = 20;
     } else {
       length = temp.length;
     }
-    var j;
+    let j;
     for (j = 0; j < length; j++) {
       msg.push(
         '第' + (j + 1) + '名' +
@@ -110,7 +110,7 @@ export class PHB extends plugin {
       file = file.replace('.json', '');
       playerList.push(file);
     }
-    var i = 0;
+    let i = 0;
     for (let player_id of playerList) {
       //(攻击+防御+生命*0.5)*暴击率=理论战力
       let player = await Read_player(player_id);
@@ -128,14 +128,14 @@ export class PHB extends plugin {
     //根据力量排序
     temp.sort(sortBy('power'));
     console.log(temp);
-    var length;
+    let length;
     if (temp.length > 20) {
       //只要十个
       length = 20;
     } else {
       length = temp.length;
     }
-    var j;
+    let j;
     for (j = 0; j < length; j++) {
       msg.push(
         '第' + (j + 1) + '名' +

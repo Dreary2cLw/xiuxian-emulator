@@ -154,7 +154,7 @@ export class UserSellAll extends plugin {
       }
       let pinji = ['劣', '普', '优', '精', '极', '绝', '顶'];
       let pinji_yes = true;
-      for (var i = 0; i < pinji.length; i++) {
+      for (let i = 0; i < pinji.length; i++) {
         if (pinji[i] == thing_pinji) {
           pinji_yes = false;
           thing_pinji = i;
@@ -257,7 +257,7 @@ export class UserSellAll extends plugin {
     let wupin1 = [];
     if (e.msg != '#一键出售') {
       let thing = e.msg.replace('#一键出售', '');
-      for (var i of wupin) {
+      for (let i of wupin) {
         if (thing.includes(i)) {
           wupin1.push(i);
           thing = thing.replace(i, '');
@@ -270,7 +270,7 @@ export class UserSellAll extends plugin {
       }
     }
     console.log(wupin);
-    for (var i of wupin) {
+    for (let i of wupin) {
       console.log(najie[i]);
       for (let l of najie[i]) {
         if (l && l.islockd == 0 && !(l.id >= 400991 && l.id <= 400999)) {
@@ -308,7 +308,7 @@ export class UserSellAll extends plugin {
     //检索方法
     let najie = await data.getData('najie', usr_qq);
     let xiuwei = 0;
-    for (var l of najie.丹药) {
+    for (let l of najie.丹药) {
       if (l.type == '修为') {
         //纳戒中的数量
         let quantity = await exist_najie_thing(usr_qq, l.name, l.class);
@@ -337,7 +337,7 @@ export class UserSellAll extends plugin {
     //检索方法
     let najie = await data.getData('najie', usr_qq);
     let xueqi = 0;
-    for (var l of najie.丹药) {
+    for (let l of najie.丹药) {
       if (l.type == '血气') {
         //纳戒中的数量
         let quantity = await exist_najie_thing(usr_qq, l.name, l.class);
@@ -368,7 +368,7 @@ export class UserSellAll extends plugin {
     let fabao = equipment.法宝;
     let huju = equipment.护具;
 //选择最高攻击武器,最高暴击法宝,最高防御护具
-    for (var i = 0; i < najie.装备.length; i++) {
+    for (let i = 0; i < najie.装备.length; i++) {
       if (najie.装备[i].type == '武器') {
         if (wuqi.atk < najie.装备[i].atk) {
           wuqi = najie.装备[i];
@@ -428,7 +428,7 @@ export class UserSellAll extends plugin {
     let gongfa = [];
     let player = await Read_player(usr_qq);
     let name = '';
-    for (var l of najie.功法) {
+    for (let l of najie.功法) {
       let islearned = player.学习的功法.find(item => item == l.name);
       if (!islearned) {
         await Add_najie_thing(usr_qq, l.name, '功法', -1);

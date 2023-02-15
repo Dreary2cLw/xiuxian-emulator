@@ -274,7 +274,7 @@ export class motou extends plugin {
       this.finish('RE_lingeng');
       return;
     } else if (choice == '转世魔根') {
-      var x = await exist_najie_thing(usr_qq, '魔石', '道具');
+      let x = await exist_najie_thing(usr_qq, '魔石', '道具');
       if (!x) {
         e.reply('你没有魔石');
         return;
@@ -341,7 +341,7 @@ export class motou extends plugin {
     player.魔道值 -= 100;
     player.修为 -= 4000000;
     await Write_player(usr_qq, player);
-    var time = 60;//时间（分钟）
+    let time = 60;//时间（分钟）
     let action_time = 60000 * time;//持续时间，单位毫秒
     let arr = {
       'action': '魔界',//动作

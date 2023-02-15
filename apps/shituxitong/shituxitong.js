@@ -114,7 +114,7 @@ export class shituxitong extends plugin {
       item => item.level_id == player.level_id
     ).level_id;
     let tudi = await find_tudi(A);
-    var Time = 3;
+    let Time = 3;
     let now_Time = new Date().getTime(); //获取当前时间戳
     let shuangxiuTimeout = parseInt(1200000 * Time);
     let last_time = await redis.get(
@@ -235,7 +235,7 @@ export class shituxitong extends plugin {
     let i = await found(user_B);
     let x = await found(user_A);
     let tudi = await find_tudi(A);
-    var Time = 3;
+    let Time = 3;
     let now_Time = new Date().getTime(); //获取当前时间戳
     let shuangxiuTimeout = parseInt(1200000 * Time);
     let last_time = await redis.get(
@@ -309,7 +309,7 @@ export class shituxitong extends plugin {
     let x = await found1(user_A);
     let shifu = await find_shitu(A);
     let tudi = await find_tudi(A);
-    var Time = 3;
+    let Time = 3;
     let now_Time = new Date().getTime(); //获取当前时间戳
     let shuangxiuTimeout = parseInt(1200000 * Time);
     let last_time = await redis.get(
@@ -515,7 +515,7 @@ export class shituxitong extends plugin {
     if (!ifexistplay) {
       return;
     }
-    var reg = new RegExp(/师徒兑换/);
+    let reg = new RegExp(/师徒兑换/);
     let msg = e.msg.replace(reg, '');
     msg = msg.replace('#', '');
     let thing_name = msg.replace('师徒兑换', '');

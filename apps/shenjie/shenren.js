@@ -174,7 +174,7 @@ export class shenren extends plugin {
     let lastdagong_time = await getLastdagong(usr_qq);//获得上次签到日期
     if (Today.Y != lastdagong_time.Y && Today.M != lastdagong_time.M || Today.D != lastdagong_time.D) {
       await redis.set('xiuxian:player:' + usr_qq + ':lastdagong_time', nowTime);//redis设置签到时间
-      var n = 1;
+      let n = 1;
       if (player.灵根.name == '二转轮回体') {
         n = 2;
       } else if (player.灵根.name == '三转轮回体' || player.灵根.name == '四转轮回体') {
@@ -206,7 +206,7 @@ export class shenren extends plugin {
       player.神界次数--;
     }
     await Write_player(usr_qq, player);
-    var time = 30;//时间（分钟）
+    let time = 30;//时间（分钟）
     let action_time = 60000 * time;//持续时间，单位毫秒
     let arr = {
       'action': '神界',//动作

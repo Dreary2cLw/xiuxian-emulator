@@ -310,7 +310,7 @@ export class Daolv extends plugin {
       e.reply('修仙者不可对凡人出手!');
       return;
     }
-    var thing = e.msg.replace('赠予', '');
+    let thing = e.msg.replace('赠予', '');
     thing = thing.trim();
     let ishavejz = await exist_najie_thing(A, '百合花篮', '道具');
     if (!ishavejz) {

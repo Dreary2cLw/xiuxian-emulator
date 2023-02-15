@@ -76,7 +76,7 @@ export class GuessLanternRiddles extends plugin {
     }
     if (thing_name == '甘蔗') {
       let ganzhe = await exist_najie_thing(usr_qq, '甘蔗', '食材');
-      var Time = 60;
+      let Time = 60;
       let ganzhe1;
       let now_Time = new Date().getTime(); //获取当前时间戳
       let shuangxiuTimeout = parseInt(60000 * Time);
@@ -121,7 +121,7 @@ export class GuessLanternRiddles extends plugin {
     }
     if (thing_name == '树苗') {
       let shumiao = await exist_najie_thing(usr_qq, '树苗', '食材');
-      var Time = 60;
+      let Time = 60;
       let shumiao1;
       let now_Time = new Date().getTime(); //获取当前时间戳
       let shuangxiuTimeout = parseInt(60000 * Time);
@@ -229,7 +229,7 @@ export class GuessLanternRiddles extends plugin {
       return;
     }
     let usr_qq = e.user_id;
-    var didian = e.msg.replace('#自选存档皮肤', '');
+    let didian = e.msg.replace('#自选存档皮肤', '');
     //命令判断
     let code = didian.split('\*');
     //数量判断
@@ -248,7 +248,7 @@ export class GuessLanternRiddles extends plugin {
     let File = fs.readdirSync(__PATH.player_pifu_path);
     File = File.filter(file => file.endsWith('.jpg'));
     let File_length1 = File.length;
-    for (var k = 0; k < File_length1; k++) {
+    for (let k = 0; k < File_length1; k++) {
       if (didian == File[k].replace('.jpg', '')) {
         photo = didian;
         break;
@@ -258,7 +258,7 @@ export class GuessLanternRiddles extends plugin {
     File = fs.readdirSync(__PATH.equipment_pifu_path);
     File = File.filter(file => file.endsWith('.jpg'));
     let File_length2 = File.length;
-    for (var k = 0; k < File_length2; k++) {
+    for (let k = 0; k < File_length2; k++) {
       if (didian == File[k].replace('.jpg', '')) {
         photo = didian;
         break;
@@ -325,7 +325,7 @@ export class GuessLanternRiddles extends plugin {
       let msg = [];
       let all = [];
       await sleep(5000);
-      for (var i = 0; 10 > i; i++) {
+      for (let i = 0; 10 > i; i++) {
         let tianluoRandom = Math.floor(Math.random() * (data.changzhu.length));
 
         msg.push('一道金光掉落在地上，走近一看是【' + data.changzhu[tianluoRandom].name + '】');
@@ -350,7 +350,7 @@ export class GuessLanternRiddles extends plugin {
       let msg = [];
       let all = [];
       await sleep(5000);
-      for (var i = 0; 10 > i; i++) {
+      for (let i = 0; 10 > i; i++) {
         let tianluoRandom = Math.floor(Math.random() * (data.xianding.length));
 
         msg.push('一道金光掉落在地上，走近一看是【' + data.xianding[tianluoRandom].name + '】');
@@ -382,7 +382,7 @@ export class GuessLanternRiddles extends plugin {
         let msg = [];
         let all = [];
         await sleep(5000);
-        for (var i = 0; 10 > i; i++) {
+        for (let i = 0; 10 > i; i++) {
           let tianluoRandom = Math.floor(Math.random() * (data.changzhufumoshu_list.length));
 
           msg.push('一道金光掉落在地上，走近一看是【' + data.changzhufumoshu_list[tianluoRandom].name + '】');
@@ -407,7 +407,7 @@ export class GuessLanternRiddles extends plugin {
         let msg = [];
         let all = [];
         await sleep(5000);
-        for (var i = 0; 10 > i; i++) {
+        for (let i = 0; 10 > i; i++) {
           let tianluoRandom = Math.floor(Math.random() * (data.changzhufumoshu_list.length));
 
           msg.push('一道金光掉落在地上，走近一看是【' + data.changzhufumoshu_list[tianluoRandom].name + '】');

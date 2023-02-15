@@ -493,7 +493,7 @@ export async function Bossbattle(e) {
 export async function BossCD(e) {
   let usr_qq = e.user_id;
   //设置
-  var time = xiuxianConfigData.CD.boss;
+  let time = xiuxianConfigData.CD.boss;
   //获取当前时间
   let now_time = new Date().getTime();
   //获得时间戳

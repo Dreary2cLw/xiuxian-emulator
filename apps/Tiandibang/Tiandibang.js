@@ -84,7 +84,7 @@ export class Tiandibang extends plugin {
     if (!ifexistplay) {
       return;
     }
-    var reg = new RegExp(/积分兑换/);
+    let reg = new RegExp(/积分兑换/);
     let msg = e.msg.replace(reg, '');
     msg = msg.replace('#', '');
     let thing_name = msg.replace('积分兑换', '');
@@ -164,7 +164,7 @@ export class Tiandibang extends plugin {
     let tiandibang;
     tiandibang = await Read_tiandibang();
     let x = tiandibang.length;
-    for (var i = 0; i < tiandibang.length; i++) {
+    for (let i = 0; i < tiandibang.length; i++) {
       if (tiandibang[i].qq == usr_qq) {
         x = i;
         break;
@@ -216,7 +216,7 @@ export class Tiandibang extends plugin {
     let msg = [
       '***天地榜(每日免费三次)***\n       周一0点清空积分'
     ];
-    for (var i = 0; i < tiandibang.length; i++) {
+    for (let i = 0; i < tiandibang.length; i++) {
       if (tiandibang[i].qq == usr_qq) {
         x = i;
         break;
@@ -230,21 +230,21 @@ export class Tiandibang extends plugin {
       l = tiandibang.length;
     }
     if (x < l) {
-      for (var m = 0; m < l; m++) {
+      for (let m = 0; m < l; m++) {
         msg.push(
           '名次：' + (m + 1) +
           '\n名号：' + tiandibang[m].名号 +
           '\n积分：' + tiandibang[m].积分);
       }
     } else if (x >= l && (tiandibang.length - x) < l) {
-      for (var m = tiandibang.length - l; m < tiandibang.length; m++) {
+      for (let m = tiandibang.length - l; m < tiandibang.length; m++) {
         msg.push(
           '名次：' + (m + 1) +
           '\n名号：' + tiandibang[m].名号 +
           '\n积分：' + tiandibang[m].积分);
       }
     } else {
-      for (var m = x - 5; m < x + 5; m++) {
+      for (let m = x - 5; m < x + 5; m++) {
         msg.push(
           '名次：' + (m + 1) +
           '\n名号：' + tiandibang[m].名号 +
@@ -292,7 +292,7 @@ export class Tiandibang extends plugin {
     let tiandibang;
     tiandibang = await Read_tiandibang();
     let x = tiandibang.length;
-    for (var m = 0; m < tiandibang.length; m++) {
+    for (let m = 0; m < tiandibang.length; m++) {
       if (tiandibang[m].qq == usr_qq) {
         x = m;
         break;
@@ -480,9 +480,9 @@ export class Tiandibang extends plugin {
     }
     tiandibang = await Read_tiandibang();
     let t;
-    for (var i = 0; i < tiandibang.length - 1; i++) {
-      var count = 0;
-      for (var j = 0; j < tiandibang.length - i - 1; j++) {
+    for (let i = 0; i < tiandibang.length - 1; i++) {
+      let count = 0;
+      for (let j = 0; j < tiandibang.length - i - 1; j++) {
         if (tiandibang[j].积分 < tiandibang[j + 1].积分) {
           t = tiandibang[j];
           tiandibang[j] = tiandibang[j + 1];
@@ -558,9 +558,9 @@ export class Tiandibang extends plugin {
     /*
     let tiandibang;
     let m;
-    var wuqi_name="水脚脚的钱包";
-    var thing_name;
-    var thing_class;
+    let wuqi_name="水脚脚的钱包";
+    let thing_name;
+    let thing_class;
     thing_name = data.equipment_list.find(item => item.name == wuqi_name).name;
     thing_class = data.equipment_list.find(item => item.name == wuqi_name).class;
     try{
@@ -592,7 +592,7 @@ export class Tiandibang extends plugin {
     let tiandibang;
     let temp = [];
     let t;
-    for (var k = 0; k < File_length; k++) {
+    for (let k = 0; k < File_length; k++) {
       let this_qq = File[k].replace('.json', '');
       this_qq = parseInt(this_qq);
       let player = await Read_player(this_qq);
@@ -614,9 +614,9 @@ export class Tiandibang extends plugin {
         积分: 0
       };
     }
-    for (var i = 0; i < File_length - 1; i++) {
-      var count = 0;
-      for (var j = 0; j < File_length - i - 1; j++) {
+    for (let i = 0; i < File_length - 1; i++) {
+      let count = 0;
+      for (let j = 0; j < File_length - i - 1; j++) {
         if (temp[j].积分 < temp[j + 1].积分) {
           t = temp[j];
           temp[j] = temp[j + 1];
@@ -627,7 +627,7 @@ export class Tiandibang extends plugin {
       if (count == 0)
         break;
     }
-    for (var m = 0; m < File_length; m++) {
+    for (let m = 0; m < File_length; m++) {
       try {
         tiandibang = await Read_tiandibang();
       } catch {
@@ -703,7 +703,7 @@ async function re_bangdang(e) {
   let tiandibang;
   let temp = [];
   let t;
-  for (var k = 0; k < File_length; k++) {
+  for (let k = 0; k < File_length; k++) {
     let this_qq = File[k].replace('.json', '');
     this_qq = parseInt(this_qq);
     let player = await Read_player(this_qq);
@@ -725,9 +725,9 @@ async function re_bangdang(e) {
       积分: 0
     };
   }
-  for (var i = 0; i < File_length - 1; i++) {
-    var count = 0;
-    for (var j = 0; j < File_length - i - 1; j++) {
+  for (let i = 0; i < File_length - 1; i++) {
+    let count = 0;
+    for (let j = 0; j < File_length - i - 1; j++) {
       if (temp[j].积分 < temp[j + 1].积分) {
         t = temp[j];
         temp[j] = temp[j + 1];
@@ -738,7 +738,7 @@ async function re_bangdang(e) {
     if (count == 0)
       break;
   }
-  for (var m = 0; m < File_length; m++) {
+  for (let m = 0; m < File_length; m++) {
     try {
       tiandibang = await Read_tiandibang();
     } catch {

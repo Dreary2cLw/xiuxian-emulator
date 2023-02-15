@@ -72,7 +72,7 @@ export class PlayerControlTask extends plugin {
               return;
             }
             now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
-            var size = this.xiuxianConfigData.biguan.size;
+            let size = this.xiuxianConfigData.biguan.size;
             let xiuwei = parseInt((size * now_level_id) * (player.修炼效率提升 + 1));//增加的修为
             let blood = parseInt(player.血量上限 * 0.02);
             let time = parseInt(action.time) / 1000 / 60;//分钟
@@ -83,7 +83,7 @@ export class PlayerControlTask extends plugin {
             let transformation = '修为';
             let action3 = await redis.get('xiuxian:player:' + 10 + ':biguang');
             action3 = await JSON.parse(action3);
-            for (var i = 0; i < action3.length; i++) {
+            for (let i = 0; i < action3.length; i++) {
               if (action3[i].qq == player_id) {
                 if (action3[i].biguan > 0) {
                   action3[i].biguan--;
@@ -186,7 +186,7 @@ export class PlayerControlTask extends plugin {
               return;
             }
             now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
-            var size = this.xiuxianConfigData.work.size;
+            let size = this.xiuxianConfigData.work.size;
             let lingshi = size * now_level_id;
             let time = (parseInt(action.time) / 1000 / 60) * 2;//分钟
             let other_lingshi = 0;

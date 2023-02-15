@@ -23,7 +23,7 @@ export class Shoptask extends plugin {
 
   async Shoptask() {
     let shop = await Read_shop();
-    for (var i = 0; i < shop.length; i++) {
+    for (let i = 0; i < shop.length; i++) {
       shop[i].one = data.shop_list[i].one;
     }
     await Write_shop(shop);

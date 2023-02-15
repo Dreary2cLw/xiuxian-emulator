@@ -136,7 +136,7 @@ export class Xijietask extends plugin {
               arr.xijie = -1;//进入二阶段
               last_msg += ',经过一番战斗,击败对手,剩余' + A_player.当前血量 + '血量,开始搜刮物品';
             } else if (msgg.find(item => item == B_win)) {
-              var num = weizhi.Grade;
+              let num = weizhi.Grade;
               last_msg += ',经过一番战斗,败下阵来,被抓进了地牢\n在地牢中你找到了秘境之匙x' + num;
               await Add_najie_thing(player_id, '秘境之匙', '道具', num);
               //结算完去除
@@ -192,12 +192,12 @@ export class Xijietask extends plugin {
             } else {
               let x = shop[i].Grade * 2;
               while (x > 0 && (thing != false)) {
-                var t;//临时存储物品名
-                var thing_index = Math.trunc(Math.random() * thing.length);
+                let t;//临时存储物品名
+                let thing_index = Math.trunc(Math.random() * thing.length);
                 t = thing[thing_index];
                 thing_name.push(t);
                 shop = await Read_shop();
-                for (var j = 0; j < shop[i].one.length; j++) {
+                for (let j = 0; j < shop[i].one.length; j++) {
                   if (shop[i].one[j].name == t.name && shop[i].one[j].数量 > 0) {
                     shop[i].one[j].数量 = 0;
                     await Write_shop(shop);
@@ -208,7 +208,7 @@ export class Xijietask extends plugin {
                 x--;
               }
               last_msg += '经过一番搜寻' + arr.A_player.名号 + '找到了';
-              for (var j = 0; j < thing_name.length; j++) {
+              for (let j = 0; j < thing_name.length; j++) {
                 last_msg += '\n' + thing_name[j].name + ' x ' + thing_name[j].数量;
               }
               last_msg += '\n刚出门就被万仙盟的人盯上了,他们仗着人多，你一人无法匹敌，于是撒腿就跑';

@@ -185,7 +185,7 @@ export class WDT extends plugin {
 
     let B_player = await Read_player(B);
     let A_player = await Read_player(A);
-    var Time = this.xiuxianConfigData.CD.couple; //6个小时
+    let Time = this.xiuxianConfigData.CD.couple; //6个小时
     let shuangxiuTimeout = parseInt(60000 * Time);
     let now_Time = new Date().getTime(); //获取当前时间戳
     let last_timeA = await redis.get('xiuxian:player:' + A + ':last_biwu_time'); //获得上次的时间戳,

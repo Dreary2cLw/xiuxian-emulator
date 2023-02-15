@@ -63,7 +63,7 @@ export class Pokemon extends plugin {
     let najie = await Read_najie(usr_qq);
     // let n=player.仙宠;
     // let yes=123456;
-    // for(var i=0;najie.仙宠.length>i;i++){
+    // for(let i=0;najie.仙宠.length>i;i++){
     //     if(najie.仙宠[i].name==name && najie.仙宠[i].等级==n.等级){
     //         najie.仙宠[i].数量+=1
     //         yes=0
@@ -77,7 +77,7 @@ export class Pokemon extends plugin {
     // }
     // await Write_najie(usr_qq,najie)
     let last = 114514;
-    for (var i = 0; najie.仙宠.length > i; i++) {
+    for (let i = 0; najie.仙宠.length > i; i++) {
       if (najie.仙宠[i].name == name) {
         last = najie.仙宠[i];
         break;
@@ -125,7 +125,7 @@ export class Pokemon extends plugin {
     let list = ['仙胎', '仙仔', '仙兽', '仙道', '仙灵'];
     let list_level = [20, 40, 60, 80, 100];
     let x = 114514;
-    for (var i = 0; list.length > i; i++) {
+    for (let i = 0; list.length > i; i++) {
       if (list[i] == player.仙宠.品级) {
         x = i;
         break;
@@ -256,7 +256,7 @@ export class Pokemon extends plugin {
  * @returns 无
  */
 export async function Add_仙宠(usr_qq, thing_name, n, thing_level = null) {
-  var x = Number(n);
+  let x = Number(n);
   if (x == 0) {
     return;
   }
@@ -264,7 +264,7 @@ export async function Add_仙宠(usr_qq, thing_name, n, thing_level = null) {
   let trr = najie.仙宠.find(
     item => item.name == thing_name && item.等级 == thing_level
   );
-  var name = thing_name;
+  let name = thing_name;
   if (x > 0 && !isNotNull(trr)) {
     //无中生有
     let newthing = data.xianchon.find(item => item.name == name);

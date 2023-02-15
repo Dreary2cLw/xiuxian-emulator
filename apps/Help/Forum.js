@@ -260,7 +260,7 @@ export class Forum extends plugin {
     }
     allaction = false;
     //防并发cd
-    var time0 = 1;//分钟cd
+    let time0 = 1;//分钟cd
     let player = await Read_player(usr_qq);
     //获取当前时间
     let now_time = new Date().getTime();
@@ -417,7 +417,7 @@ export class Forum extends plugin {
       }
       let pinji = ['劣', '普', '优', '精', '极', '绝', '顶'];
       let pinji_yes = true;
-      for (var i = 0; i < pinji.length; i++) {
+      for (let i = 0; i < pinji.length; i++) {
         if (pinji[i] == thing_pinji) {
           pinji_yes = false;
           break;
@@ -448,15 +448,15 @@ export class Forum extends plugin {
     Mathrandom = Mathrandom * 100000;
     Mathrandom = Math.trunc(Mathrandom);
     //时间
-    var myDate = new Date();
-    var year = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
-    var month = myDate.getMonth() + 1;  //获取当前月份(1-12)
-    var day = myDate.getDate();  //获取当前日(1-31)
-    var newDay = year + '-' + month + '-' + day;//获取完整年月日
+    let myDate = new Date();
+    let year = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+    let month = myDate.getMonth() + 1;  //获取当前月份(1-12)
+    let day = myDate.getDate();  //获取当前日(1-31)
+    let newDay = year + '-' + month + '-' + day;//获取完整年月日
     let now_time = new Date().getTime();
     let time = 1;//分钟
     if (thing_exist.class == '装备') {
-      var wupin = {
+      let wupin = {
         'title': thing_name,//发布名
         'qq': usr_qq,//发布名
         'time': newDay,//发布时间
@@ -471,7 +471,7 @@ export class Forum extends plugin {
         'end_time': now_time + 60000 * time
       };
     } else {
-      var wupin = {
+      let wupin = {
         'title': thing_name,//发布名
         'qq': usr_qq,//发布名
         'time': newDay,//发布时间
@@ -504,7 +504,7 @@ export async function Write_Forum(wupin) {
 
 //更新下标
 export async function genxinliebiao(Forum) {
-  for (var i = 0; Forum.length > i; i++) {
+  for (let i = 0; Forum.length > i; i++) {
     if (Forum[i].weizhi == 0) {
     } else {
       Forum[i].weizhi -= 1;
@@ -552,7 +552,7 @@ export async function Pushforum_ASS(e) {
   }
   let now_time = new Date().getTime();
   let time = 30;//分钟
-  for (var i = 0; i < Forum.length; i++) {
+  for (let i = 0; i < Forum.length; i++) {
     if (!isNotNull(Forum[i].now_time)) {
       Forum[i].now_time = now_time;
     }
