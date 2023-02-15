@@ -7,7 +7,7 @@ import md5 from 'md5';
 
 let helpData = {
   md5: '',
-  img: ''
+  img: '',
 };
 
 /**
@@ -27,32 +27,31 @@ export class BotHelp extends plugin {
       rule: [
         {
           reg: '^#修仙帮助$',
-          fnc: 'Xiuxianhelp'
+          fnc: 'Xiuxianhelp',
         },
         {
           reg: '^#修仙管理$',
-          fnc: 'adminsuper'
+          fnc: 'adminsuper',
         },
         {
           reg: '^#宗门管理$',
-          fnc: 'AssociationAdmin'
+          fnc: 'AssociationAdmin',
         },
         {
           reg: '^#修仙扩展$',
-          fnc: 'Xiuxianhelpcopy'
+          fnc: 'Xiuxianhelpcopy',
         },
         {
           reg: '^#寻宝帮助$',
-          fnc: 'xunbaohelp'
+          fnc: 'xunbaohelp',
         },
         {
           reg: '^#师徒帮助$',
-          fnc: 'shituhelp'
-        }
-      ]
+          fnc: 'shituhelp',
+        },
+      ],
     });
   }
-
   async xunbaohelp(e) {
     if (!e.isGroup) {
       return;

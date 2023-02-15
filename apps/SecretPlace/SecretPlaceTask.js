@@ -5,13 +5,16 @@ import data from '../../model/XiuxianData.js';
 import fs from 'node:fs';
 import { segment } from 'oicq';
 import {
-  Add_HP,
+  Read_player,
+  isNotNull,
+  get_random_talent,
+  Getmsg_battle,
+} from '../Xiuxian/xiuxian.js';
+import {
   Add_najie_thing,
   Add_修为,
   Add_血气,
-  get_random_talent,
-  isNotNull,
-  Read_player
+  Add_HP,
 } from '../Xiuxian/xiuxian.js';
 import { mjzd_battle } from '../Battle/Battle.js';
 
@@ -25,14 +28,14 @@ export class SecretPlaceTask extends plugin {
       dsc: '定时任务',
       event: 'message',
       priority: 300,
-      rule: []
+      rule: [],
     });
     this.xiuxianConfigData = config.getConfig('xiuxian', 'xiuxian');
     this.set = config.getdefSet('task', 'task');
     this.task = {
       cron: this.set.action_task,
       name: 'SecretPlaceTask',
-      fnc: () => this.Secretplacetask()
+      fnc: () => this.Secretplacetask(),
     };
   }
 
@@ -99,7 +102,7 @@ export class SecretPlaceTask extends plugin {
               当前血量: player.当前血量,
               暴击率: player.暴击率,
               法球倍率: player.灵根.法球倍率,
-              职业: player.occupation
+              职业: player.occupation,
             };
             let monster_length = data.monster_list.length;
             let monster_index = Math.trunc(Math.random() * monster_length);
@@ -211,7 +214,7 @@ export class SecretPlaceTask extends plugin {
               防御: parseInt(monster.防御),
               当前血量: parseInt(monster.当前血量),
               暴击率: monster.暴击率,
-              法球倍率: 0
+              法球倍率: 0,
             };
             let Data_battle = await mjzd_battle(A_player, B_player);
             let msgg = Data_battle.msg;
@@ -402,36 +405,36 @@ export class SecretPlaceTask extends plugin {
               let random2 = Math.random();
               let caoyao = '';
               if (A_player.职业 == '采药师') {
-                if (random2 > 0.95 && random2 <= 1) {
+                if (random2 > 0.95&&random2<=1) {
                   caoyao += '"仙蕴花"';
                   await Add_najie_thing(player_id, '仙蕴花', '草药', 1);
-                } else if (random2 > 0.9 && random2 <= 0.95) {
+                }else if(random2 > 0.9&&random2<=0.95) {
                   caoyao += '"魔蕴花"';
                   await Add_najie_thing(player_id, '魔蕴花', '草药', 1);
-                } else if (random2 > 0.88 && random2 < 0.885) {
+                }else if (random2 > 0.88&&random2<0.885) {
                   caoyao += '"太玄仙草"';
                   await Add_najie_thing(player_id, '太玄仙草', '草药', 1);
-                } else if (random2 > 0.83 && random2 <= 0.88) {
+                }else if (random2 > 0.83&&random2<=0.88) {
                   caoyao += '"古神藤"';
                   await Add_najie_thing(player_id, '古神藤', '草药', 1);
-                } else if (random2 > 0 && random2 <= 0.005) {
+                }else if (random2>0&&random2<=0.005) {
                   caoyao += '"神之眼"';
                   await Add_najie_thing(player_id, '神之眼', '草药', 1);
-                } else if (random2 > 0.80 && random2 <= 0.83) {
+                }else if (random2 > 0.80&&random2<=0.83) {
                   caoyao += '"炼骨花"';
                   await Add_najie_thing(player_id, '炼骨花', '草药', 1);
-                } else if (random2 > 0.005 && random2 <= 0.01) {
-                  caoyao += '"仙缘草"';
+                }else if(random2>0.005&&random2<=0.01){
+                    caoyao +=  '"仙缘草"';
                   await Add_najie_thing(player_id, '仙缘草', '草药', 1);
                 }
                 if (
-                  random2 > 0.95 && random2 <= 1 ||
-                  random2 > 0.9 && random2 <= 0.95 ||
-                  random2 > 0.88 && random2 < 0.885 ||
-                  random2 > 0.83 && random2 <= 0.88 ||
-                  random2 > 0 && random2 <= 0.005 ||
-                  random2 > 0.80 && random2 <= 0.83 ||
-                  random2 > 0.005 && random2 <= 0.01
+                  random2 > 0.95&&random2<=1 ||
+                 random2 > 0.9&&random2<=0.95 ||
+                 random2 > 0.88&&random2<0.885 ||
+                  random2 > 0.83&&random2<=0.88 ||
+                 random2>0&&random2<=0.005||
+                  random2 > 0.80&&random2<=0.83||
+                  random2>0.005&&random2<=0.01
                 ) {
                   last_msg +=
                     '\n\n' +

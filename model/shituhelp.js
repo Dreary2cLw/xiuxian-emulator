@@ -24,7 +24,7 @@ export default class Help2 extends base {
       saveId: 'help',
       version: version,
       version_name: version_name,
-      helpData
+      helpData,
     };
   }
 }

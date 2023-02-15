@@ -1,8 +1,13 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import common from '../../../../lib/common/common.js';
 import config from '../../model/Config.js';
-import { Add_najie_thing, Add_灵石, isNotNull, Read_player } from '../Xiuxian/xiuxian.js';
-
+import fs, { read } from 'node:fs';
+import {
+  Add_najie_thing,
+  Add_灵石,
+  isNotNull,
+  Read_player,
+} from '../Xiuxian/xiuxian.js';
 /**
  * 定时任务
  */
@@ -14,13 +19,13 @@ export class AuctionTask extends plugin {
       dsc: '定时任务',
       event: 'message',
       priority: 300,
-      rule: []
+      rule: [],
     });
     this.set = config.getdefSet('task', 'task');
     this.task = {
       cron: this.set.action_task,
       name: 'AuctionTask',
-      fnc: () => this.Auctiontask()
+      fnc: () => this.Auctiontask(),
     };
   }
 

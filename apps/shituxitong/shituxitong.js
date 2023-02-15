@@ -1,24 +1,21 @@
 import plugin from '../../../../lib/plugins/plugin.js';
+import { __PATH } from '../Xiuxian/xiuxian.js';
 import {
-  Add_najie_thing,
-  add_shitu,
-  Add_修为,
-  Add_灵石,
-  Add_血气,
+  Read_player,
   existplayer,
+  sleep,
+  add_shitu,
+  Write_shitu,
+  Read_shitu,
+  fstadd_shitu,
   find_shitu,
   find_tudi,
-  fstadd_shitu,
-  Read_player,
-  Read_shitu,
-  sleep,
-  Write_player,
-  Write_shitu
 } from '../Xiuxian/xiuxian.js';
+import { Add_灵石, Add_修为, Add_血气 } from '../Xiuxian/xiuxian.js';
 import Show from '../../model/show.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import data from '../../model/XiuxianData.js';
-
+import { Write_player, Add_najie_thing } from '../Xiuxian/xiuxian.js';
 let allaction = false; //全局状态判断
 
 /**
@@ -42,54 +39,54 @@ export class shituxitong extends plugin {
       rule: [
         {
           reg: '^#开启收徒$',
-          fnc: 'okshoutu'
+          fnc: 'okshoutu',
         },
         {
           reg: '^#关闭收徒$',
-          fnc: 'noshoutu'
+          fnc: 'noshoutu',
         },
         {
           reg: '^#拜师$',
-          fnc: 'rendie'
+          fnc: 'rendie',
         },
         {
           reg: '^#解除师徒关系$',
-          fnc: 'buzairendie'
+          fnc: 'buzairendie',
         },
         {
           reg: '^#我的弟子$',
-          fnc: 'show_shitu'
+          fnc: 'show_shitu',
         },
         {
           reg: '^#我的师门$',
-          fnc: 'show_shifu'
+          fnc: 'show_shifu',
         },
         {
           reg: '^#提交任务$',
-          fnc: 'tijiao'
+          fnc: 'tijiao',
         },
         {
           reg: '^#查看师傅列表$',
-          fnc: 'looklook'
+          fnc: 'looklook',
         },
         {
           reg: '^#师徒商店$',
-          fnc: 'looklookshop'
+          fnc: 'looklookshop',
         },
         {
           reg: '^#师徒兑换(.*)$',
-          fnc: 'duihuan'
+          fnc: 'duihuan',
         },
         {
           reg: '^#开始师徒试炼$',
-          fnc: 'jijian'
+          fnc: 'jijian',
         },
         {
           reg: '^#师徒同步$',
           fnc: 'tongbu'
         }
 
-      ]
+      ],
     });
   }
 
@@ -409,7 +406,6 @@ export class shituxitong extends plugin {
     e.reply(img);
     return;
   }
-
   //提交任务
   async tijiao(e) {
     let usr_qq = e.user_id;
@@ -436,50 +432,49 @@ export class shituxitong extends plugin {
     await sleep(3000);
     await get_tijiao_img(e);
   }
-
   //查看师傅列表
   async looklook(e) {
-    let shitu = await Read_shitu();
-    let i;
-    let t = 0;
-    let v = 0;
-    let A = 0;
+    let shitu = await Read_shitu()
+    let i
+    let t = 0
+    let v = 0
+    let A = 0
     let kaiqi = await found3();
-    let shoutu = ``;
+    let shoutu = ``
     let suiji = 0;
-    if (kaiqi == 1) {
-      shoutu = `师傅列表：\n(仅显示随机的五个可拜师师傅)\n`;
-    } else if (kaiqi == 0) {
-      shoutu = `暂时还没有开启收徒的师傅`;
+    if(kaiqi == 1){
+      shoutu = `师傅列表：\n(仅显示随机的五个可拜师师傅)\n`
+    }else if(kaiqi == 0){
+      shoutu = `暂时还没有开启收徒的师傅`
     }
-    for (i = 0; i < shitu.length; i++) {
-      if (shitu[i].收徒 == 1) v++;
+for(i = 0 ;i<shitu.length;i++){
+      if(shitu[i].收徒 == 1) v++
     }
     suiji = Math.floor(Math.random() * shitu.length);
-    if (v < 6) suiji = 0;
+    if(v<6)suiji = 0
     for (i = suiji; i < shitu.length; i++) {
       if (shitu[i].收徒 == 1) {
         let player = await Read_player(shitu[i].师傅);
-        let daohao = player.名号;
+        let daohao = player.名号
         shoutu += `道号:${daohao}\nQQ:${shitu[i].师傅}\n`;
-        t++;
+        t++
         if (t == 5) {
-          break;
+          break
         }
       }
     }
-    if (t != 5 && v > 5) {
+    if(t!=5 && v> 5){
       for (i = 0; i < shitu.length; i++) {
         if (shitu[i].收徒 == 1) {
-          if (i == suiji) {
-            break;
+          if(i == suiji){
+            break
           }
           let player = await Read_player(shitu[i].师傅);
-          let daohao = player.名号;
+          let daohao = player.名号
           shoutu += `道号:${daohao}\nQQ:${shitu[i].师傅}\n`;
-          A++;
-          if (A == 5 - t) {
-            break;
+          A++
+          if (A == 5-t) {
+            break
           }
         }
       }
@@ -487,7 +482,6 @@ export class shituxitong extends plugin {
     e.reply(shoutu);
     return;
   }
-
   //查看积分商城
   async looklookshop(e) {
     let usr_qq = e.user_id;
@@ -503,7 +497,6 @@ export class shituxitong extends plugin {
     e.reply(img);
     return;
   }
-
   //兑换物品
   async duihuan(e) {
     if (!e.isGroup) {
@@ -544,13 +537,12 @@ export class shituxitong extends plugin {
     await Write_player(usr_qq, player);
     e.reply([
       `兑换成功!  获得[${thing_name}],剩余[${player.师徒积分}]积分  `,
-      '\n可以在【我的纳戒】中查看'
+      '\n可以在【我的纳戒】中查看',
     ]);
     return;
   }
-
   /*师徒boss */
-  async jijian(e) {
+async jijian(e) {
     let usr_qq = e.user_id;
     let player = await Read_player(usr_qq);
     let user_A;
@@ -559,13 +551,13 @@ export class shituxitong extends plugin {
     let shitu = await Read_shitu();
     let i = await found(user_A);
     let x = await found1(user_A);
-    let z;
+    let z
     let shifu = await find_shitu(A);
     let tudi = await find_tudi(A);
-    let shifushanghai;
-    let tudishanghai;
-    let xue = player.攻击;
-    let gaoji;
+    let shifushanghai
+    let tudishanghai
+    let xue = player.攻击
+    let gaoji
     //不开放私聊功能
     if (!e.isGroup) {
       return;
@@ -577,14 +569,14 @@ export class shituxitong extends plugin {
     }
     //判断当前血量
     if (player.当前血量 < 10000) {
-      e.reply('你都伤成这样了,先回回血再打吧');
+      e.reply("你都伤成这样了,先回回血再打吧");
       return;
     }
     //判断是师傅还是徒弟
     if (tudi == 0 && shitu[i].师傅 == A) {
-      z = i;
+      z = i
     } else if (tudi != 0) {
-      z = x;
+      z = x
     } else {
       e.reply('只能由徒弟提交任务');
       return;
@@ -595,18 +587,18 @@ export class shituxitong extends plugin {
       if (shifu != 0 && tudi == 0) {
         if (shitu[i].师徒BOOS剩余血量 == 0) {
           e.reply(`你已经通过了师徒试炼`);
-          return;
+          return
         }
         e.reply(`你即将进入上古战场`);
         await sleep(10000);
         e.reply(`你受到此方天地的限制`);
         await sleep(10000);
         if (shitu[i].师徒BOOS剩余血量 > 0) {
-          shifushanghai = Math.round(Math.random() * 50000000);
+          shifushanghai = Math.round(Math.random() * 50000000)
           if (xue - shifushanghai < 0) {
-            gaoji = 0;
+            gaoji = 0
           } else {
-            gaoji = xue - shifushanghai;
+            gaoji = xue - shifushanghai
           }
           shitu[i].师徒BOOS剩余血量 -= gaoji;
           await Write_shitu(shitu);
@@ -614,11 +606,11 @@ export class shituxitong extends plugin {
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
-          shifushanghai = Math.round(Math.random() * 50000000);
+          shifushanghai = Math.round(Math.random() * 50000000)
           if (xue - shifushanghai < 0) {
-            gaoji = 0;
+            gaoji = 0
           } else {
-            gaoji = xue - shifushanghai;
+            gaoji = xue - shifushanghai
           }
           shitu[i].师徒BOOS剩余血量 -= gaoji;
           await Write_shitu(shitu);
@@ -626,11 +618,11 @@ export class shituxitong extends plugin {
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
-          shifushanghai = Math.round(Math.random() * 50000000);
+          shifushanghai = Math.round(Math.random() * 50000000)
           if (xue - shifushanghai < 0) {
-            gaoji = 0;
+            gaoji = 0
           } else {
-            gaoji = xue - shifushanghai;
+            gaoji = xue - shifushanghai
           }
           shitu[i].师徒BOOS剩余血量 -= gaoji;
           await Write_shitu(shitu);
@@ -638,11 +630,11 @@ export class shituxitong extends plugin {
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
-          shifushanghai = Math.round(Math.random() * 50000000);
+          shifushanghai = Math.round(Math.random() * 50000000)
           if (xue - shifushanghai < 0) {
-            gaoji = 0;
+            gaoji = 0
           } else {
-            gaoji = xue - shifushanghai;
+            gaoji = xue - shifushanghai
           }
           shitu[i].师徒BOOS剩余血量 -= gaoji;
           await Write_shitu(shitu);
@@ -650,11 +642,11 @@ export class shituxitong extends plugin {
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
-          shifushanghai = Math.round(Math.random() * 50000000);
+          shifushanghai = Math.round(Math.random() * 50000000)
           if (xue - shifushanghai < 0) {
-            gaoji = 0;
+            gaoji = 0
           } else {
-            gaoji = xue - shifushanghai;
+            gaoji = xue - shifushanghai
           }
           shitu[i].师徒BOOS剩余血量 -= gaoji;
           await Write_shitu(shitu);
@@ -662,11 +654,11 @@ export class shituxitong extends plugin {
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
-          shifushanghai = Math.round(Math.random() * 50000000);
+          shifushanghai = Math.round(Math.random() * 50000000)
           if (xue - shifushanghai < 0) {
-            gaoji = 0;
+            gaoji = 0
           } else {
-            gaoji = xue - shifushanghai;
+            gaoji = xue - shifushanghai
           }
           shitu[i].师徒BOOS剩余血量 -= gaoji;
           await Write_shitu(shitu);
@@ -677,19 +669,19 @@ export class shituxitong extends plugin {
           shitu[i].师徒BOOS剩余血量 = 0;
           await Write_shitu(shitu);
           e.reply(`恭喜你通过了师徒试炼！`);
-          return;
+          return
         } else {
           player.当前血量 = 0;
           await Write_player(usr_qq, player);
           e.reply(`这次并没有一口气通过试炼呢，再接再厉！\n道祖虚影剩余血量:${shitu[i].师徒BOOS剩余血量}`);
-          return;
+          return
         }
       }
       //判断是不是徒弟
       if (tudi != 0) {
         if (shitu[x].师徒BOOS剩余血量 == 0) {
           e.reply(`你已经通过了师徒试炼`);
-          return;
+          return
         }
         e.reply(`你即将进入上古战场`);
         await sleep(10000);
@@ -698,42 +690,42 @@ export class shituxitong extends plugin {
         e.reply(`你得到了古战场试炼之地的眷顾，伤害提升了。`);
         await sleep(10000);
         if (shitu[x].师徒BOOS剩余血量 > 0) {
-          tudishanghai = Math.round(Math.random() * 5);
+          tudishanghai = Math.round(Math.random() * 5)
           shitu[x].师徒BOOS剩余血量 -= xue * tudishanghai;
           await Write_shitu(shitu);
           e.reply(`第一回合你对道祖虚影造成${xue * tudishanghai}点伤害`);
           await sleep(10000);
         }
         if (shitu[x].师徒BOOS剩余血量 > 0) {
-          tudishanghai = Math.round(Math.random() * 5);
+          tudishanghai = Math.round(Math.random() * 5)
           shitu[x].师徒BOOS剩余血量 -= xue * tudishanghai;
           await Write_shitu(shitu);
           e.reply(`第二回合你对道祖虚影造成${xue * tudishanghai}点伤害`);
           await sleep(10000);
         }
         if (shitu[x].师徒BOOS剩余血量 > 0) {
-          tudishanghai = Math.round(Math.random() * 5);
+          tudishanghai = Math.round(Math.random() * 5)
           shitu[x].师徒BOOS剩余血量 -= xue * tudishanghai;
           await Write_shitu(shitu);
           e.reply(`第三回合你对道祖虚影造成${xue * tudishanghai}点伤害`);
           await sleep(10000);
         }
         if (shitu[x].师徒BOOS剩余血量 > 0) {
-          tudishanghai = Math.round(Math.random() * 5);
+          tudishanghai = Math.round(Math.random() * 5)
           shitu[x].师徒BOOS剩余血量 -= xue * tudishanghai;
           await Write_shitu(shitu);
           e.reply(`第四回合你对道祖虚影造成${xue * tudishanghai}点伤害`);
           await sleep(10000);
         }
         if (shitu[x].师徒BOOS剩余血量 > 0) {
-          tudishanghai = Math.round(Math.random() * 5);
+          tudishanghai = Math.round(Math.random() * 5)
           shitu[x].师徒BOOS剩余血量 -= xue * tudishanghai;
           await Write_shitu(shitu);
           e.reply(`第五回合你对道祖虚影造成${xue * tudishanghai}点伤害`);
           await sleep(10000);
         }
         if (shitu[x].师徒BOOS剩余血量 > 0) {
-          tudishanghai = Math.round(Math.random() * 5);
+          tudishanghai = Math.round(Math.random() * 5)
           shitu[x].师徒BOOS剩余血量 -= xue * tudishanghai;
           await Write_shitu(shitu);
           e.reply(`第六回合你对道祖虚影造成${xue * tudishanghai}点伤害`);
@@ -743,22 +735,21 @@ export class shituxitong extends plugin {
           shitu[x].师徒BOOS剩余血量 = 0;
           await Write_shitu(shitu);
           e.reply(`恭喜你通过了师徒试炼！`);
-          return;
+          return
         } else {
           player.当前血量 = 0;
           await Write_player(usr_qq, player);
           e.reply(`这次并没有一口气通过试炼呢，再接再厉！\n道祖虚影剩余血量:${shitu[x].师徒BOOS剩余血量}`);
-          return;
+          return
         }
       }
     } else {
       e.reply(`你的任务还没到此阶段`);
-      return;
+      return
     }
   }
-
   /*师徒同步 */
-  async tongbu(e) {
+    async tongbu(e) {
     let shitu = await Read_shitu();
     let user_A;
     let A = e.user_id;
@@ -789,16 +780,14 @@ export class shituxitong extends plugin {
     }
     e.reply(`同步完成`);
     await Write_shitu(shitu);
-    return;
+    return
   }
 }
-
 export function isNotNull(obj) {
   if (obj == undefined || obj == null)
-    return false;
+      return false;
   return true;
 }
-
 export async function get_shitujifen_img(e) {
   let usr_qq = e.user_id;
   let player = await Read_player(usr_qq);
@@ -807,14 +796,13 @@ export async function get_shitujifen_img(e) {
   let tianditang_data = {
     name: player.名号,
     jifen: jifen,
-    commodities_list: commodities_list
+    commodities_list: commodities_list,
   };
   const data1 = await new Show(e).get_shitujifenData(tianditang_data);
   return await puppeteer.screenshot('shitujifen', {
-    ...data1
+    ...data1,
   });
 }
-
 //提交任务
 export async function get_tijiao_img(e) {
   let usr_qq = e.user_id;
@@ -956,7 +944,6 @@ export async function get_tijiao_img(e) {
     return;
   }
 }
-
 //检索任务状态
 export async function get_renwu_img(e) {
   let usr_qq = e.user_id;
@@ -1065,7 +1052,6 @@ export async function get_renwu_img(e) {
   }
   return;
 }
-
 /**
  * 我的弟子
  * @return image
@@ -1177,16 +1163,15 @@ export async function get_shitu_img(e) {
         wancheng2: wc2,
         wancheng3: wc3,
         chengyuan: chengyuan,
-        newchengyuan: newchengyuan
+        newchengyuan: newchengyuan,
       };
       const data1 = await new Show(e).get_shituData(shitu_data);
       return await puppeteer.screenshot('shitu', {
-        ...data1
+        ...data1,
       });
     }
   }
 }
-
 /**
  * 我的师傅
  * @return image
@@ -1300,11 +1285,11 @@ export async function get_shifu_img(e) {
         wancheng1: wc1,
         wancheng2: wc2,
         wancheng3: wc3,
-        chengyuan: chengyuan
+        chengyuan: chengyuan,
       };
       const data1 = await new Show(e).get_shifuData(shifu_data);
       return await puppeteer.screenshot('shifu', {
-        ...data1
+        ...data1,
       });
     }
   }
@@ -1333,7 +1318,6 @@ async function found(A) {
   }
   return i;
 }
-
 async function found1(A) {
   let shitu = await Read_shitu();
   let i;
@@ -1344,14 +1328,13 @@ async function found1(A) {
   }
   return i;
 }
-
 async function found3(A) {
   let shitu = await Read_shitu();
   let i;
-  let m = 0;
+  let m = 0
   for (i = 0; i < shitu.length; i++) {
     if (shitu[i].收徒 == 1) {
-      m = 1;
+      m = 1
       break;
     }
   }

@@ -2,8 +2,8 @@ export default class base {
   constructor(e = {}) {
     this.e = e;
     this.userId = e?.user_id;
-    this.model = 'xiuxian-emulator-plugin';
-    this._path = process.cwd().replace(/\\/g, '/');
+    this.model = "xiuxian-emulator-plugin";
+    this._path = process.cwd().replace(/\\/g, "/");
   }
 
   get prefix() {
@@ -21,7 +21,7 @@ export default class base {
       saveId: this.userId,
       tplFile: `./plugins/xiuxian-emulator-plugin/resources/html/${this.model}/${this.model}.html`,
       /** 绝对路径 */
-      pluResPath: `${this._path}/plugins/xiuxian-emulator-plugin/resources/`
+      pluResPath: `${this._path}/plugins/xiuxian-emulator-plugin/resources/`,
     };
   }
 }
