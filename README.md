@@ -4,7 +4,6 @@
 ## 访问量：        
 <br><img src="https://count.getloli.com/get/@:longlife?theme=rule34" /> <br>
 ## 安装
-
 > Yunzai-Bot/目录下执行
 
 ```
@@ -48,14 +47,15 @@ Yunzai-Bot\plugins\xiuxian-emulator-plugin\resources\data
 - 交流群、bug反馈群、攻略群：560090307 
 - 新功能测试群:619744105  
 ## 鸣谢
-> DD斩首(3196383818):插件主人,合并,修复,优化和写新功能     
+> DD斩首(3196383818):仓库主人,合并,修复,优化和写新功能     
 > 再氪两单嘛(3479823546):数值策划      
 > 墨羽(1095365435):提供了宗门     
 > 啵唧(1702701528):提供许多武器，秘境，特殊道具     
 > xh(917951214):职业功能   
-> 零(3106256704):修复bug,维护功能   
-> 画手(1589978621):维护和处理bug  
-> 闹钟(1564856979):仓库主人 
+> 零(3106256704):修复bug,维护功能  
+> RetuEase(1099177812):开发，维护功能  
+> 香菜(3145625195):开发，维护  
+> 画手(1589978621):维护和处理bug
 ## 配置与存档   
 >xiuxian-emulator-plugin/ config / xiuxian / xiuxian.yaml       
 >xiuxian-emulator-plugin/ resources / data          
