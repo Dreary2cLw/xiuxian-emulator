@@ -1,16 +1,9 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import common from '../../../../lib/common/common.js';
 import config from '../../model/Config.js';
-import fs, { read } from 'node:fs';
-import {
-  Add_najie_thing,
-  Add_灵石,
-  isNotNull,
-  Read_player,
-  sleep,
-} from '../Xiuxian/xiuxian.js';
+import { Add_najie_thing, Add_灵石, Read_player } from '../Xiuxian/xiuxian.js';
 import { openAU } from '../Auction/Auction.js';
-import data from '../../model/XiuxianData.js';
+
 /**
  * 定时任务
  */
@@ -22,13 +15,13 @@ export class AuctionofficialTask extends plugin {
       dsc: '定时任务',
       event: 'message',
       priority: 300,
-      rule: [],
+      rule: []
     });
     this.set = config.getConfig('xiuxian', 'xiuxian');
     this.task = {
       cron: config.getdefSet('task', 'task').action_task,
       name: 'AuctionofficialTask',
-      fnc: () => this.AuctionofficialTask(),
+      fnc: () => this.AuctionofficialTask()
     };
   }
 
@@ -132,7 +125,7 @@ export class AuctionofficialTask extends plugin {
       );
       const s = parseInt(
         (last_offer_price + interMinu * 60 * 1000 - nowTime - m * 60 * 1000) /
-          1000
+        1000
       );
       msg = `星阁限定物品【${wupin.thing.name}】拍卖中\n距离拍卖结束还有${m}分${s}秒\n目前最高价${wupin.last_price}`;
 

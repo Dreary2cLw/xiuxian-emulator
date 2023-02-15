@@ -3,24 +3,27 @@ body {
     width: 100%;
     background: url('../../img/help/shituhelp.jpg') top left no-repeat;
     background-size: 100% 100%;
-  }
+}
 
-  .container {
+.container {
     width: 100%;
     padding: 40px !important;
-  }
-  
-  .label {
+}
+
+.label {
     font-family: Number, "微软雅黑", sans-serif;
-  }
-  .head-box {
+}
+
+.head-box {
     margin: 60px 0 0 0;
     padding-bottom: 0;
-  }
-  .head-box .title {
+}
+
+.head-box .title {
     font-size: 50px;
-  }
-  .cont-box {
+}
+
+.cont-box {
     border-radius: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -29,14 +32,16 @@ body {
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.15);
     position: relative;
     background: rgb(19 21 22 / 51%);
-  }
-  .help-group {
+}
+
+.help-group {
     color: #b8eef5;
     font-size: 18px;
     font-weight: bold;
     padding: 8px 0 5px 10px;
-  }
-  .help-table {
+}
+
+.help-table {
     text-align: center;
     border-collapse: collapse;
     margin: 5px -10px -10px -15px;
@@ -45,42 +50,42 @@ body {
     overflow: hidden;
     width: calc(100% + 30px);
     color: #fff;
-  }
-  
-  .help-table .tr {
+}
+
+.help-table .tr {
     display: flex;
     flex-wrap: wrap
-  }
-  
-  .help-table .td,
-  .help-table .th {
+}
+
+.help-table .td,
+.help-table .th {
     font-size: 14px;
     display: table-cell;
     box-shadow: 0 0 1px 0 #888 inset;
     padding: 12px 0 12px 50px;
     line-height: 24px;
     position: relative;
-    width: calc(100%/3);
+    width: calc(100% / 3);
     text-align: left;
-  }
-  
-  .help-table .tr:nth-child(odd) {
+}
+
+.help-table .tr:nth-child(odd) {
     background: rgb(0 0 0 / 41%);
-  }
-  
-  .help-table .tr:nth-child(even) {
+}
+
+.help-table .tr:nth-child(even) {
     background: rgba(19, 21, 22, 0.448);
-  }
-  
-  .help-table .tr:last-child .td {
+}
+
+.help-table .tr:last-child .td {
     padding-bottom: 12px;
-  }
-  
-  .help-table .th {
+}
+
+.help-table .th {
     background: rgba(34, 41, 51, 0.5);
-  }
-  
-  .help-icon {
+}
+
+.help-icon {
     width: 40px;
     height: 40px;
     display: block;
@@ -91,27 +96,48 @@ body {
     left: 6px;
     top: 12px;
     transform: scale(0.85);
-  }
+}
 
-  .help-icon_1{background-position:-0px -0px}
-  .help-icon_2{background-position:-50px -0px}
-  .help-icon_3{background-position:-100px -0px}
-  .help-icon_4{background-position:-150px -0px}
-  .help-icon_5{background-position:-200px -0px}
-  .help-icon_6{background-position:-250px -0px}
-  .help-icon_7{background-position:-300px -0px}
+.help-icon_1 {
+    background-position: -0px -0px
+}
 
-  .help-title {
+.help-icon_2 {
+    background-position: -50px -0px
+}
+
+.help-icon_3 {
+    background-position: -100px -0px
+}
+
+.help-icon_4 {
+    background-position: -150px -0px
+}
+
+.help-icon_5 {
+    background-position: -200px -0px
+}
+
+.help-icon_6 {
+    background-position: -250px -0px
+}
+
+.help-icon_7 {
+    background-position: -300px -0px
+}
+
+.help-title {
     display: block;
     color: #daf9ff;
     font-size: 16px;
     line-height: 24px;
-  }
-  .help-desc {
+}
+
+.help-desc {
     display: block;
     font-size: 13px;
     line-height: 18px;
     color: #eee;
-  }
+}
   
   
