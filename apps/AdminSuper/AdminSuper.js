@@ -1479,6 +1479,48 @@ export async function synchronization(e) {
         break;
       }
     }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-雷元素") {
+        najie.道具[i].name="附魔书-雷";
+        break;
+      }
+    }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-水元素") {
+        najie.道具[i].name="附魔书-水";
+        break;
+      }
+    }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-岩元素") {
+        najie.道具[i].name="附魔书-岩";
+        break;
+      }
+    }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-冰元素") {
+        najie.道具[i].name="附魔书-冰";
+        break;
+      }
+    }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-草元素") {
+        najie.道具[i].name="附魔书-草";
+        break;
+      }
+    }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="附魔书-风元素") {
+        najie.道具[i].name="附魔书-风";
+        break;
+      }
+    }
     for (let i = 0; i < najie.装备.length; i++) {
       const element = najie.装备[i];
       if (!isNotNull(element.fumo)) {
