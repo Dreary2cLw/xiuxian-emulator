@@ -1,831 +1,1627 @@
 [
-    {
-        "name":"生铁",
-        "class":"材料",
-        "amount":1,
-        "materials":[
-            {"name":"铁锭","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":1}
-        ]
-    },
-     {
-        "name":"骨粉",
-        "class":"材料",
-        "amount":3,
-        "materials":[
-            {"name":"骨头","class":"材料","amount":1}
-        ]
-    },
-    {
-        "name":"生铁剑",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"生铁","class":"材料","amount":8},
-            {"name":"木棍","class":"材料","amount":1}
-        ]
-    },
-    {
-        "name":"下界合金剑",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"下界合金锭","class":"材料","amount":45},
-            {"name":"木棍","class":"材料","amount":1}
-        ]
-    },
-    {
-        "name":"生铁甲",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"生铁","class":"材料","amount":8}
-        ]
-    },
-    {
-        "name":"下界合金甲",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"下界合金锭","class":"材料","amount":45}
-        ]
-    },
-    {
-        "name":"生铁头盔",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"生铁","class":"材料","amount":8}
-        ]
-    },
-     {
-        "name":"下界合金头盔",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"下界合金锭","class":"材料","amount":45}
-        ]
-    },
-    {
-        "name":"熔炉",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"圆石","class":"材料","amount":8}
-        ]
-    },
-    {
-        "name":"木板",
-        "class":"材料",
-        "amount":4,
-        "materials":[
-            {"name":"原木","class":"材料","amount":1}
-        ]
-    },
-    {
-        "name":"木棍",
-        "class":"材料",
-        "amount":4,
-        "materials":[
-            {"name":"木板","class":"材料","amount":2}
-        ]
-    },
-    {
-        "name":"木斧",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"木板","class":"材料","amount":3},
-            {"name":"木棍","class":"材料","amount":2}
-        ]
-    },
-    {
-        "name":"石斧",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"圆石","class":"材料","amount":3},
-            {"name":"木棍","class":"材料","amount":2}
-        ]
-    },
-    {
-        "name":"木锄",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"木板","class":"材料","amount":2},
-            {"name":"木棍","class":"材料","amount":2}
-        ]
-    },
-    {
-        "name":"石锄",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"圆石","class":"材料","amount":2},
-            {"name":"木棍","class":"材料","amount":2}
-        ]
-    },
-    {
-        "name":"铁锄",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"铁锭","class":"材料","amount":2},
-            {"name":"木棍","class":"材料","amount":2}
-        ]
-    },
-    {
-        "name":"金锄",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"金锭","class":"材料","amount":2},
-            {"name":"木棍","class":"材料","amount":2}
-        ]
-    },
-    {
-        "name":"钻石锄",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"钻石","class":"材料","amount":2},
-            {"name":"木棍","class":"材料","amount":2}
-        ]
-    },
-    {
-        "name":"木镐",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":2},
-            {"name":"木板","class":"材料","amount":3}
-        ]
-    },
-    {
-        "name":"石镐",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":2},
-            {"name":"圆石","class":"材料","amount":3}
-        ]
-    },
-    {
-        "name":"铁镐",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":2},
-            {"name":"铁锭","class":"材料","amount":3}
-        ]
-    },
-    {
-        "name":"金镐",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":2},
-            {"name":"金锭","class":"材料","amount":3}
-        ]
-    },
-    {
-        "name":"钻石镐",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":2},
-            {"name":"钻石","class":"材料","amount":3}
-        ]
-    },
-    {
-        "name":"木铲",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":2},
-            {"name":"木板","class":"材料","amount":1}
-        ]
-    },
-    {
-        "name":"石铲",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":2},
-            {"name":"圆石","class":"材料","amount":1}
-        ]
-    },
-    {
-        "name":"铁铲",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":2},
-            {"name":"铁锭","class":"材料","amount":1}
-        ]
-    },
-    {
-        "name":"金铲",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":2},
-            {"name":"金锭","class":"材料","amount":1}
-        ]
-    },
-    {
-        "name":"钻石铲",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":2},
-            {"name":"钻石","class":"材料","amount":1}
-        ]
-    },
-    {
-        "name":"面包",
-        "class":"食材",
-        "amount":1,
-        "materials":[
-            {"name":"小麦","class":"食材","amount":3}
-        ]
-    },
-    {
-        "name":"未点燃的火把",
-        "class":"道具",
-        "amount":5,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":1},
-            {"name":"煤炭","class":"材料","amount":1}
-        ]
-    },
-    {
-        "name":"木剑",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":1},
-            {"name":"木板","class":"材料","amount":3}
-        ]
-    },
-    {
-        "name":"石剑",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":1},
-            {"name":"圆石","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"铁剑",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":1},
-            {"name":"铁锭","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"金剑",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":1},
-            {"name":"金锭","class":"材料","amount":20}
-        ]
-    },
-    {
-        "name":"钻石剑",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":1},
-            {"name":"钻石","class":"材料","amount":20}
-        ]
-    },
-    {
-        "name":"铁头盔",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"铁锭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"铁甲",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"铁锭","class":"材料","amount":8}
-        ]
-    },
-    {
-        "name":"金头盔",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"金锭","class":"材料","amount":20}
-        ]
-    },
-    {
-        "name":"金甲",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"金锭","class":"材料","amount":20}
-        ]
-    },
-    {
-        "name":"钻石头盔",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"钻石","class":"材料","amount":20}
-        ]
-    },
-    {
-        "name":"钻石甲",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"钻石","class":"材料","amount":20}
-        ]
-    },
-    {
-        "name":"铁剑",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":1},
-            {"name":"铁锭","class":"材料","amount":3}
-        ]
-    },
-    {
-        "name":"皮革甲",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"皮革","class":"食材","amount":8}
-        ]
-    },
-    {
-        "name":"皮革头盔",
-        "class":"装备",
-        "amount":1,
-        "materials":[
-            {"name":"皮革","class":"食材","amount":8}
-        ]
-    },
-    {
-        "name":"线",
-        "class":"材料",
-        "amount":1,
-        "materials":[
-            {"name":"羊毛","class":"食材","amount":1}
-        ]
-    },
-    {
-        "name":"钓鱼竿",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"木棍","class":"材料","amount":2},
-            {"name":"线","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"深渊传送门",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"黑曜石","class":"材料","amount":12}
-        ]
-    },
-     {
-        "name":"附魔书-夏侯兄弟",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"角石","class":"材料","amount":200},
-            {"name":"番琉璃","class":"材料","amount":200},
-            {"name":"麒麟牙","class":"材料","amount":5},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-乱世枭雄",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"锋芒御种","class":"材料","amount":50},
-            {"name":"刃车御种","class":"材料","amount":50},
-            {"name":"后八阵图","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-江东霸王",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"角石","class":"材料","amount":200},
-            {"name":"番琉璃","class":"材料","amount":200},
-            {"name":"麒麟牙","class":"材料","amount":5},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-天变之龙",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"角石","class":"材料","amount":500},
-            {"name":"番琉璃","class":"材料","amount":500},
-            {"name":"麒麟牙","class":"材料","amount":10},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-长板之龙",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"角石","class":"材料","amount":500},
-            {"name":"番琉璃","class":"材料","amount":500},
-            {"name":"麒麟牙","class":"材料","amount":10},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-赤壁奇谋",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"锋芒御种","class":"材料","amount":50},
-            {"name":"刃车御种","class":"材料","amount":50},
-            {"name":"后八阵图","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-生命吸收1",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"角石","class":"材料","amount":200},
-            {"name":"番琉璃","class":"材料","amount":200},
-            {"name":"麒麟牙","class":"材料","amount":5},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-生命吸收2",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-生命吸收1","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-斩首",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"角石","class":"材料","amount":100},
-            {"name":"番琉璃","class":"材料","amount":100},
-            {"name":"麒麟牙","class":"材料","amount":5},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-击退1",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"角石","class":"材料","amount":200},
-            {"name":"番琉璃","class":"材料","amount":200},
-            {"name":"麒麟牙","class":"材料","amount":5},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-击退2",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-击退1","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-保护2",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-保护1","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-保护3",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-保护2","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-保护4",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-保护3","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-保护5",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-保护4","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-荆棘2",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-荆棘1","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-荆棘3",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-荆棘2","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-荆棘4",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-荆棘3","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-荆棘5",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-荆棘4","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-锋利2",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-锋利1","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-锋利3",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-锋利2","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-锋利4",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-锋利3","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-锋利5",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-锋利4","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-横扫之刃2",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-横扫之刃1","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-横扫之刃3",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-横扫之刃2","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-横扫之刃4",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-横扫之刃3","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-横扫之刃5",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-横扫之刃4","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-力量2",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-力量1","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-力量3",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-力量2","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-力量4",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-力量3","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"附魔书-力量5",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"附魔书-力量4","class":"道具","amount":5},
-            {"name":"深渊石","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":5}
-        ]
-    },
-    {
-        "name":"子午谷谋",
-        "class":"功法",
-        "amount":1,
-        "materials":[
-            {"name":"二十四篇-治军","class":"功法","amount":10},
-            {"name":"二十四篇-治乱","class":"功法","amount":10}
-        ]
-    },
-    {
-        "name":"孟德新书",
-        "class":"功法",
-        "amount":1,
-        "materials":[
-         {"name":"六稻-军略","class":"功法","amount":20},
-         {"name":"六稻-文伐","class":"功法","amount":20},
-          {"name":"六稻-金鼓","class":"功法","amount":20}
-        ]
-    },
-    {
-        "name":"附魔书-火元素",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"烈火杏娇疏","class":"草药","amount":500},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-水元素",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"绮罗郁金香","class":"草药","amount":500},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-雷元素",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"雷鸣阎狱藤","class":"草药","amount":500},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-冰元素",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"八角玄冰草","class":"草药","amount":500},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-岩元素",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"地瓜岩龙","class":"草药","amount":500},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-风元素",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"万妖王","class":"草药","amount":500},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"附魔书-草元素",
-        "class":"道具",
-        "amount":1,
-        "materials":[
-            {"name":"蓝银皇","class":"草药","amount":500},
-            {"name":"书本","class":"材料","amount":10}
-        ]
-    },
-    {
-        "name":"纸",
-        "class":"材料",
-        "amount":3,
-        "materials":[
-            {"name":"甘蔗","class":"食材","amount":3}
-        ]
-    },
-    {
-        "name":"书本",
-        "class":"材料",
-        "amount":1,
-        "materials":[
-            {"name":"纸","class":"材料","amount":3},
-            {"name":"皮革","class":"食材","amount":10}
-        ]
-    },
-    {
-        "name":"书架",
-        "class":"材料",
-        "amount":1,
-        "materials":[
-            {"name":"书本","class":"材料","amount":3},
-            {"name":"木板","class":"材料","amount":6}
-        ]
-    }
+  {
+    "name": "生铁",
+    "class": "材料",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "铁锭",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "骨粉",
+    "class": "材料",
+    "amount": 3,
+    "materials": [
+      {
+        "name": "骨头",
+        "class": "材料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "生铁剑",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "生铁",
+        "class": "材料",
+        "amount": 8
+      },
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "下界合金剑",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "下界合金锭",
+        "class": "材料",
+        "amount": 45
+      },
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "生铁甲",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "生铁",
+        "class": "材料",
+        "amount": 8
+      }
+    ]
+  },
+  {
+    "name": "下界合金甲",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "下界合金锭",
+        "class": "材料",
+        "amount": 45
+      }
+    ]
+  },
+  {
+    "name": "生铁头盔",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "生铁",
+        "class": "材料",
+        "amount": 8
+      }
+    ]
+  },
+  {
+    "name": "下界合金头盔",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "下界合金锭",
+        "class": "材料",
+        "amount": 45
+      }
+    ]
+  },
+  {
+    "name": "熔炉",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "圆石",
+        "class": "材料",
+        "amount": 8
+      }
+    ]
+  },
+  {
+    "name": "木板",
+    "class": "材料",
+    "amount": 4,
+    "materials": [
+      {
+        "name": "原木",
+        "class": "材料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "木棍",
+    "class": "材料",
+    "amount": 4,
+    "materials": [
+      {
+        "name": "木板",
+        "class": "材料",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "name": "木斧",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木板",
+        "class": "材料",
+        "amount": 3
+      },
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "name": "石斧",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "圆石",
+        "class": "材料",
+        "amount": 3
+      },
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "name": "木锄",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木板",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "name": "石锄",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "圆石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "name": "铁锄",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "铁锭",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "name": "金锄",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "金锭",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "name": "钻石锄",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "钻石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "name": "木镐",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "木板",
+        "class": "材料",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "name": "石镐",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "圆石",
+        "class": "材料",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "name": "铁镐",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "铁锭",
+        "class": "材料",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "name": "金镐",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "金锭",
+        "class": "材料",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "name": "钻石镐",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "钻石",
+        "class": "材料",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "name": "木铲",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "木板",
+        "class": "材料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "石铲",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "圆石",
+        "class": "材料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "铁铲",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "铁锭",
+        "class": "材料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "金铲",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "金锭",
+        "class": "材料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "钻石铲",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "钻石",
+        "class": "材料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "面包",
+    "class": "食材",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "小麦",
+        "class": "食材",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "name": "未点燃的火把",
+    "class": "道具",
+    "amount": 5,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 1
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "木剑",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 1
+      },
+      {
+        "name": "木板",
+        "class": "材料",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "name": "石剑",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 1
+      },
+      {
+        "name": "圆石",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "铁剑",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 1
+      },
+      {
+        "name": "铁锭",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "金剑",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 1
+      },
+      {
+        "name": "金锭",
+        "class": "材料",
+        "amount": 20
+      }
+    ]
+  },
+  {
+    "name": "钻石剑",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 1
+      },
+      {
+        "name": "钻石",
+        "class": "材料",
+        "amount": 20
+      }
+    ]
+  },
+  {
+    "name": "铁头盔",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "铁锭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "铁甲",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "铁锭",
+        "class": "材料",
+        "amount": 8
+      }
+    ]
+  },
+  {
+    "name": "金头盔",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "金锭",
+        "class": "材料",
+        "amount": 20
+      }
+    ]
+  },
+  {
+    "name": "金甲",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "金锭",
+        "class": "材料",
+        "amount": 20
+      }
+    ]
+  },
+  {
+    "name": "钻石头盔",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "钻石",
+        "class": "材料",
+        "amount": 20
+      }
+    ]
+  },
+  {
+    "name": "钻石甲",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "钻石",
+        "class": "材料",
+        "amount": 20
+      }
+    ]
+  },
+  {
+    "name": "铁剑",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 1
+      },
+      {
+        "name": "铁锭",
+        "class": "材料",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "name": "皮革甲",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "皮革",
+        "class": "食材",
+        "amount": 8
+      }
+    ]
+  },
+  {
+    "name": "皮革头盔",
+    "class": "装备",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "皮革",
+        "class": "食材",
+        "amount": 8
+      }
+    ]
+  },
+  {
+    "name": "线",
+    "class": "材料",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "羊毛",
+        "class": "食材",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "钓鱼竿",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "木棍",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "线",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "深渊传送门",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "黑曜石",
+        "class": "材料",
+        "amount": 12
+      }
+    ]
+  },
+  {
+    "name": "附魔书-夏侯兄弟",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "角石",
+        "class": "材料",
+        "amount": 200
+      },
+      {
+        "name": "番琉璃",
+        "class": "材料",
+        "amount": 200
+      },
+      {
+        "name": "麒麟牙",
+        "class": "材料",
+        "amount": 5
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-乱世枭雄",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "锋芒御种",
+        "class": "材料",
+        "amount": 50
+      },
+      {
+        "name": "刃车御种",
+        "class": "材料",
+        "amount": 50
+      },
+      {
+        "name": "后八阵图",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-江东霸王",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "角石",
+        "class": "材料",
+        "amount": 200
+      },
+      {
+        "name": "番琉璃",
+        "class": "材料",
+        "amount": 200
+      },
+      {
+        "name": "麒麟牙",
+        "class": "材料",
+        "amount": 5
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-天变之龙",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "角石",
+        "class": "材料",
+        "amount": 500
+      },
+      {
+        "name": "番琉璃",
+        "class": "材料",
+        "amount": 500
+      },
+      {
+        "name": "麒麟牙",
+        "class": "材料",
+        "amount": 10
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-长板之龙",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "角石",
+        "class": "材料",
+        "amount": 500
+      },
+      {
+        "name": "番琉璃",
+        "class": "材料",
+        "amount": 500
+      },
+      {
+        "name": "麒麟牙",
+        "class": "材料",
+        "amount": 10
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-赤壁奇谋",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "锋芒御种",
+        "class": "材料",
+        "amount": 50
+      },
+      {
+        "name": "刃车御种",
+        "class": "材料",
+        "amount": 50
+      },
+      {
+        "name": "后八阵图",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-生命吸收1",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "角石",
+        "class": "材料",
+        "amount": 200
+      },
+      {
+        "name": "番琉璃",
+        "class": "材料",
+        "amount": 200
+      },
+      {
+        "name": "麒麟牙",
+        "class": "材料",
+        "amount": 5
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-生命吸收2",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-生命吸收1",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-斩首",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "角石",
+        "class": "材料",
+        "amount": 100
+      },
+      {
+        "name": "番琉璃",
+        "class": "材料",
+        "amount": 100
+      },
+      {
+        "name": "麒麟牙",
+        "class": "材料",
+        "amount": 5
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-击退1",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "角石",
+        "class": "材料",
+        "amount": 200
+      },
+      {
+        "name": "番琉璃",
+        "class": "材料",
+        "amount": 200
+      },
+      {
+        "name": "麒麟牙",
+        "class": "材料",
+        "amount": 5
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-击退2",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-击退1",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-保护2",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-保护1",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-保护3",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-保护2",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-保护4",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-保护3",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-保护5",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-保护4",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-荆棘2",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-荆棘1",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-荆棘3",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-荆棘2",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-荆棘4",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-荆棘3",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-荆棘5",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-荆棘4",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-锋利2",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-锋利1",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-锋利3",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-锋利2",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-锋利4",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-锋利3",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-锋利5",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-锋利4",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-横扫之刃2",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-横扫之刃1",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-横扫之刃3",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-横扫之刃2",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-横扫之刃4",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-横扫之刃3",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-横扫之刃5",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-横扫之刃4",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-力量2",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-力量1",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-力量3",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-力量2",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-力量4",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-力量3",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-力量5",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-力量4",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "子午谷谋",
+    "class": "功法",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "二十四篇-治军",
+        "class": "功法",
+        "amount": 10
+      },
+      {
+        "name": "二十四篇-治乱",
+        "class": "功法",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "孟德新书",
+    "class": "功法",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "六稻-军略",
+        "class": "功法",
+        "amount": 20
+      },
+      {
+        "name": "六稻-文伐",
+        "class": "功法",
+        "amount": 20
+      },
+      {
+        "name": "六稻-金鼓",
+        "class": "功法",
+        "amount": 20
+      }
+    ]
+  },
+  {
+    "name": "附魔书-火元素",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "烈火杏娇疏",
+        "class": "草药",
+        "amount": 500
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-水元素",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "绮罗郁金香",
+        "class": "草药",
+        "amount": 500
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-雷元素",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "雷鸣阎狱藤",
+        "class": "草药",
+        "amount": 500
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-冰元素",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "八角玄冰草",
+        "class": "草药",
+        "amount": 500
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-岩元素",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "地瓜岩龙",
+        "class": "草药",
+        "amount": 500
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-风元素",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "万妖王",
+        "class": "草药",
+        "amount": 500
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "附魔书-草元素",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "蓝银皇",
+        "class": "草药",
+        "amount": 500
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "纸",
+    "class": "材料",
+    "amount": 3,
+    "materials": [
+      {
+        "name": "甘蔗",
+        "class": "食材",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "name": "书本",
+    "class": "材料",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "纸",
+        "class": "材料",
+        "amount": 3
+      },
+      {
+        "name": "皮革",
+        "class": "食材",
+        "amount": 10
+      }
+    ]
+  },
+  {
+    "name": "书架",
+    "class": "材料",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 3
+      },
+      {
+        "name": "木板",
+        "class": "材料",
+        "amount": 6
+      }
+    ]
+  }
 ]

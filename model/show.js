@@ -11,51 +11,56 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'player',
-      ...myData,
+      ...myData
     };
   }
-    //师徒商城
-    async get_shitujifenData(myData) {
-      this.model = 'shitujifen';
-      return {
-        ...this.screenData,
-        saveId: 'shitujifen',
-        ...myData,
-      };
-    }
-     //我的弟子
+
+  //师徒商城
+  async get_shitujifenData(myData) {
+    this.model = 'shitujifen';
+    return {
+      ...this.screenData,
+      saveId: 'shitujifen',
+      ...myData
+    };
+  }
+
+  //我的弟子
   async get_shituData(myData) {
     this.model = 'shitu';
     return {
       ...this.screenData,
       saveId: 'shitu',
-      ...myData,
+      ...myData
     };
   }
+
   //我的任务
-    async get_renwuData(myData) {
-      this.model = 'renwu';
-      return {
-        ...this.screenData,
-        saveId: 'renwu',
-        ...myData,
-      };
-    }
+  async get_renwuData(myData) {
+    this.model = 'renwu';
+    return {
+      ...this.screenData,
+      saveId: 'renwu',
+      ...myData
+    };
+  }
+
   //我的师门
   async get_shifuData(myData) {
     this.model = 'shifu';
     return {
       ...this.screenData,
       saveId: 'shifu',
-      ...myData,
+      ...myData
     };
   }
+
   async get_gongfaData(myData) {
     this.model = 'gongfa';
     return {
       ...this.screenData,
       saveId: 'gongfa',
-      ...myData,
+      ...myData
     };
   }
 
@@ -64,16 +69,16 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'danyao',
-      ...myData,
+      ...myData
     };
   }
 
-  async get_xianchong(myData) { 
+  async get_xianchong(myData) {
     this.model = 'xianchong';
     return {
       ...this.screenData,
       saveId: 'xianchong',
-      ...myData,
+      ...myData
     };
   }
 
@@ -82,23 +87,25 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'daoju',
-      ...myData,
+      ...myData
     };
   }
+
   async get_huanying(myData) {
     this.model = 'huanying';
     return {
       ...this.screenData,
       saveId: 'huanying',
-      ...myData,
+      ...myData
     };
   }
+
   async get_hujuData(myData) {
     this.model = 'huju';
     return {
       ...this.screenData,
       saveId: 'huju',
-      ...myData,
+      ...myData
     };
   }
 
@@ -107,7 +114,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'fabao',
-      ...myData,
+      ...myData
     };
   }
 
@@ -116,7 +123,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'wuqi',
-      ...myData,
+      ...myData
     };
   }
 
@@ -125,7 +132,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'playercopy',
-      ...myData,
+      ...myData
     };
   }
 
@@ -134,23 +141,25 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'equipment',
-      ...myData,
+      ...myData
     };
   }
+
   async get_equipmnetData2(myData) {
     this.model = 'equipment2';
     return {
       ...this.screenData,
       saveId: 'equipment2',
-      ...myData,
+      ...myData
     };
   }
+
   async get_najieData(myData) {
     this.model = 'najie';
     return {
       ...this.screenData,
       saveId: 'najie',
-      ...myData,
+      ...myData
     };
   }
 
@@ -159,7 +168,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'state',
-      ...myData,
+      ...myData
     };
   }
 
@@ -168,61 +177,66 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'statezhiye',
-      ...myData,
+      ...myData
     };
   }
+
   async get_statemaxData(myData) {
     this.model = 'statemax';
     return {
       ...this.screenData,
       saveId: 'statemax',
-      ...myData,
+      ...myData
     };
   }
+
   //searchforum
   async get_searchforumData(myData) {
     this.model = 'searchforum';
     return {
       ...this.screenData,
       saveId: 'searchforum',
-      ...myData,
+      ...myData
     };
   }
+
   //天地堂
   async get_tianditangData(myData) {
     this.model = 'tianditang';
     return {
       ...this.screenData,
       saveId: 'tianditang',
-      ...myData,
+      ...myData
     };
   }
+
   //悬赏名单
   async get_msg(myData) {
     this.model = 'msg';
     return {
       ...this.screenData,
       saveId: 'msg',
-      ...myData,
+      ...myData
     };
   }
+
   //我的宗门
   async get_associationData(myData) {
     this.model = 'association';
     return {
       ...this.screenData,
       saveId: 'association',
-      ...myData,
+      ...myData
     };
   }
 
-    //shop
+  //shop
   async get_didianData(myData) {
     this.model = 'shop';
     return {
       ...this.screenData,
       saveId: 'shop',
-      ...myData,
+      ...myData
     };
   }
 
@@ -232,16 +246,17 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'log',
-      ...myData,
+      ...myData
     };
   }
+
   //柠檬堂
   async get_ningmenghomeData(myData) {
     this.model = 'ningmenghome';
     return {
       ...this.screenData,
       saveId: 'ningmenghome',
-      ...myData,
+      ...myData
     };
   }
 
@@ -251,7 +266,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'valuables',
-      ...myData,
+      ...myData
     };
   }
 
@@ -261,7 +276,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'valuables_fabao',
-      ...myData,
+      ...myData
     };
   }
 
@@ -271,7 +286,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'valuables_wuqi',
-      ...myData,
+      ...myData
     };
   }
 
@@ -281,7 +296,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'valuables_huju',
-      ...myData,
+      ...myData
     };
   }
 
@@ -291,7 +306,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'valuables_drug',
-      ...myData,
+      ...myData
     };
   }
 
@@ -301,7 +316,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'valuables_skill',
-      ...myData,
+      ...myData
     };
   }
 
@@ -311,7 +326,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'valuables_prop',
-      ...myData,
+      ...myData
     };
   }
 
@@ -321,7 +336,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'sudoku',
-      ...myData,
+      ...myData
     };
   }
 
@@ -331,7 +346,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'ranking_power',
-      ...myData,
+      ...myData
     };
   }
 
@@ -341,7 +356,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'ranking_money',
-      ...myData,
+      ...myData
     };
   }
 
@@ -351,7 +366,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'updata',
-      ...myData,
+      ...myData
     };
   }
 
@@ -361,7 +376,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'adminset',
-      ...myData,
+      ...myData
     };
   }
 
@@ -370,7 +385,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'secret_place',
-      ...myData,
+      ...myData
     };
   }
 
@@ -379,7 +394,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'forbidden_area',
-      ...myData,
+      ...myData
     };
   }
 
@@ -388,7 +403,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'time_place',
-      ...myData,
+      ...myData
     };
   }
 
@@ -397,7 +412,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'fairyrealm',
-      ...myData,
+      ...myData
     };
   }
 
@@ -406,25 +421,27 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'supermarket',
-      ...myData,
+      ...myData
     };
   }
+
   //斩首堂
   async get_yuansu(myData) {
     this.model = 'tujian';
     return {
       ...this.screenData,
       saveId: 'tujian',
-      ...myData,
+      ...myData
     };
   }
+
   // 金银坊记录
   async get_jinyin(myData) {
     this.model = 'moneyCheck';
     return {
       ...this.screenData,
       saveId: 'moneyCheck',
-      ...myData,
+      ...myData
     };
   }
 
@@ -433,7 +450,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'talent',
-      ...myData,
+      ...myData
     };
   }
 
@@ -442,7 +459,7 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'danfang',
-      ...myData,
+      ...myData
     };
   }
 
@@ -451,15 +468,16 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'tuzhi',
-      ...myData,
+      ...myData
     };
   }
+
   async get_NIANGJIU(myData) {
     this.model = 'niangjiu';
     return {
       ...this.screenData,
       saveId: 'niangjiu',
-      ...myData,
+      ...myData
     };
   }
 }

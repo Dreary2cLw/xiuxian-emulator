@@ -4,21 +4,17 @@ import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
 import { segment } from 'oicq';
 import {
-  existplayer,
-  exist_najie_thing,
-  ForwardMsg,
-  isNotNull,
-  Getmsg_battle,
-  Gaodenyuansulun,
-} from '../Xiuxian/xiuxian.js';
-import { Read_player } from '../Xiuxian/xiuxian.js';
-import {
-  Add_najie_thing,
-  Add_灵石,
   Add_HP,
+  Add_灵石,
   Add_血气,
+  exist_najie_thing,
+  existplayer,
+  ForwardMsg,
+  Gaodenyuansulun,
+  get_random_talent,
+  isNotNull,
+  Read_player
 } from '../Xiuxian/xiuxian.js';
-import { get_random_talent } from '../Xiuxian/xiuxian.js';
 
 /**
  * 战斗类
@@ -34,9 +30,9 @@ export class WDT extends plugin {
       rule: [
         {
           reg: '^比武$',
-          fnc: 'biwu',
-        },
-      ],
+          fnc: 'biwu'
+        }
+      ]
     });
     this.xiuxianConfigData = config.getConfig('xiuxian', 'xiuxian');
   }
@@ -298,6 +294,7 @@ export class WDT extends plugin {
     return;
   }
 }
+
 export async function zd_battle(A_player, B_player) {
   let now_A_HP = A_player.当前血量; //保留初始血量方便计算最后扣多少血,避免反复读写文件
   let now_B_HP = B_player.当前血量;
@@ -733,10 +730,11 @@ ${A_player.名号}冻结中`);
   let Data_nattle = {
     msg: msg,
     A_xue: A_xue,
-    B_xue: B_xue,
+    B_xue: B_xue
   };
   return Data_nattle;
 }
+
 export function baojishanghai(baojilv) {
   if (baojilv > 1) {
     baojilv = 1;

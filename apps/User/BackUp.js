@@ -16,23 +16,23 @@ export class BackUp extends plugin {
       rule: [
         {
           reg: '^#备份存档$',
-          fnc: 'saveBackUp',
+          fnc: 'saveBackUp'
         },
         {
           reg: '^#存档列表$',
-          fnc: 'checkBackUp',
+          fnc: 'checkBackUp'
         },
         {
           reg: '^#读取存档(.*)',
-          fnc: 'loadBackUp',
-        },
-      ],
+          fnc: 'loadBackUp'
+        }
+      ]
     });
     this.saving = false;
     this.task = {
       cron: config.getdefSet('task', 'task').AutoBackUpTask,
       name: 'AutoBackUp',
-      fnc: this.saveBackUp,
+      fnc: this.saveBackUp
     };
   }
 
@@ -51,7 +51,7 @@ export class BackUp extends plugin {
         'tiandibang',
         'equipment_path',
         'najie_path',
-        'player_path',
+        'player_path'
       ];
 
       // [[fn, fn...], ...]
@@ -148,7 +148,7 @@ export class BackUp extends plugin {
           return {
             message: `${index + 1}：${str}`,
             nickname: Bot.nickname,
-            user_id: Bot.uin,
+            user_id: Bot.uin
           };
         });
 
@@ -189,7 +189,7 @@ export class BackUp extends plugin {
         'tiandibang',
         'equipment_path',
         'najie_path',
-        'player_path',
+        'player_path'
       ];
 
       // [[fn, fn...], ...]
@@ -282,7 +282,7 @@ function getTimeStr(timeStamp) {
     hour: '2-digit',
     day: '2-digit',
     month: '2-digit',
-    year: 'numeric',
+    year: 'numeric'
   };
   return new Intl.DateTimeFormat('zh-CN', options).format(timeStamp);
 }
