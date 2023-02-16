@@ -300,6 +300,7 @@ export class GuessLanternRiddles extends plugin {
     }
     //固定写法
     let usr_qq = e.user_id;
+    let player = await Read_player(usr_qq);
     //判断是否为匿名创建存档
     if (usr_qq == 80000000) {
       return;
