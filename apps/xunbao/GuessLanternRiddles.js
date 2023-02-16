@@ -43,7 +43,7 @@ export class GuessLanternRiddles extends plugin {
     }
 
 
-   async zhongzhi(e) {
+    async zhongzhi(e) {
         if (!e.isGroup) {
             return;
         }
@@ -78,17 +78,21 @@ export class GuessLanternRiddles extends plugin {
                 e.reply("上一个甘蔗还没成熟" + `剩余时间:  ${Couple_m}分 ${Couple_s}秒`);
                 return;
             }
-            if (!ganzhe) {
-                e.reply("你没有甘蔗");
-                return;
-            }
-            let gufen = await exist_najie_thing(usr_qq, "骨粉", "材料")
-            if (!gufen && gufen < 60) {
-                e.reply("你没有足够的骨粉");
-                return;
-            }
+
             ganzhe1 = await redis.get("xiuxian:player:" + usr_qq + "ganzhe1")
             if (ganzhe1 == 0 || ganzhe1 == null) {
+                if (!ganzhe) {
+                    e.reply("你没有甘蔗");
+                    return;
+                }
+                let gufen = await exist_najie_thing(usr_qq, "骨粉", "材料")
+                if (!gufen) {
+                    e.reply("你没有骨粉");
+                    return;
+                } else if (gufen < 60) {
+                    e.reply('你的骨粉不够，需要60个');
+                    return;
+                }
                 e.reply('你消耗了60骨粉,土地变得肥沃了，可以种植作物了')
                 await Add_najie_thing(usr_qq, "骨粉", "材料", -60)
                 sleep(5000);
@@ -119,18 +123,20 @@ export class GuessLanternRiddles extends plugin {
                 e.reply("上一个树苗还没成熟" + `剩余时间:  ${Couple_m}分 ${Couple_s}秒`);
                 return;
             }
-
-            if (!shumiao) {
-                e.reply("你没有树苗");
-                return;
-            }
-            let gufen = await exist_najie_thing(usr_qq, "骨粉", "材料")
-            if (!gufen && gufen < 60) {
-                e.reply("你没有足够的骨粉");
-                return;
-            }
             shumiao1 = await redis.get("xiuxian:player:" + usr_qq + "shumiao1")
             if (shumiao1 == 0 || shumiao1 == null) {
+                if (!shumiao) {
+                    e.reply("你没有树苗");
+                    return;
+                }
+                let gufen = await exist_najie_thing(usr_qq, "骨粉", "材料")
+                if (!gufen) {
+                    e.reply("你没有骨粉");
+                    return;
+                } else if (gufen < 60) {
+                    e.reply('你的骨粉不够，需要60个');
+                    return;
+                }
                 e.reply('你消耗了60骨粉,土地变得肥沃了，可以种植作物了')
                 await Add_najie_thing(usr_qq, "骨粉", "材料", -60)
                 sleep(5000);
@@ -140,7 +146,7 @@ export class GuessLanternRiddles extends plugin {
                 e.reply("成功种下一个树苗,60分钟后成熟")
                 await redis.set("xiuxian:player:" + usr_qq + "shumiao", now_Time)
             }
-           shumiao1 = 2;
+            shumiao1 = 2;
             e.reply('先收获你的上一个树苗再种下一个吧')
             await redis.set("xiuxian:player:" + usr_qq + "ganzhe1", shumiao1)
             return;
