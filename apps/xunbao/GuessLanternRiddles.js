@@ -389,6 +389,7 @@ export class GuessLanternRiddles extends plugin {
           msg.push('一道金光掉落在地上，走近一看是【' + data.changzhufumoshu_list[tianluoRandom].name + '】');
           await Add_najie_thing(usr_qq, data.changzhufumoshu_list[tianluoRandom].name, data.changzhufumoshu_list[tianluoRandom].class, 1);
           all.push('【' + data.changzhufumoshu_list[tianluoRandom].name + '】');
+          tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
         }
         await ForwardMsg(e, msg);
         e.reply('恭喜获得\n' + all);
