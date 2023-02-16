@@ -257,25 +257,6 @@ export async function Add_灵石(usr_qq, 灵石数量 = 0) {
     let player = await Read_player(usr_qq);
     player.灵石 += Math.trunc(灵石数量);
     await Write_player(usr_qq, player);
-    let user_A = usr_qq;
-    let renwu = await Read_renwu();
-    let i = await found(user_A);
-     let lingshi = player.灵石;
-    let lingshijilu = await redis.get('xiuxian:player:' + usr_qq + ':renwu_lingshi_jilu');
-    let jian = 0;
-    if (lingshijilu != lingshi && (renwu[i].wancheng1 == 1 || renwu[i].wancheng2 == 1)) {
-      if (lingshi < lingshijilu) {
-        jian = lingshijilu - lingshi;
-        renwu[i].jilu1 += jian;
-        await Write_renwu(renwu);
-        await redis.set('xiuxian:player:' + usr_qq + ':renwu_lingshi_jilu', lingshi);
-      } else if (lingshi > lingshijilu) {
-        jian = lingshi - lingshijilu;
-        renwu[i].jilu2 += jian;
-        await Write_renwu(renwu);
-        await redis.set('xiuxian:player:' + usr_qq + ':renwu_lingshi_jilu', lingshi);
-      }
-    }
     return;
 }
 
@@ -386,16 +367,6 @@ export async function Reduse_player_学习功法(usr_qq, gongfa_name) {
     data.setData("player", usr_qq, player);
     await player_efficiency(usr_qq);
     return;
-}
-export async function found(A) {
-  let renwu = await Read_renwu();
-  let i;
-  for (i = 0; i < renwu.length; i++) {
-    if (renwu[i].player == A) {
-      break;
-    }
-  }
-  return i;
 }
 
 //---------------------------------------------分界线------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
