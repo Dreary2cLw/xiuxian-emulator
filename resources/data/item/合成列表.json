@@ -1598,7 +1598,7 @@
       {
         "name": "纸",
         "class": "材料",
-        "amount": 3
+        "amount": 10
       },
       {
         "name": "皮革",
@@ -1615,7 +1615,7 @@
       {
         "name": "书本",
         "class": "材料",
-        "amount": 3
+        "amount": 10
       },
       {
         "name": "木板",
