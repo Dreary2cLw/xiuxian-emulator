@@ -204,10 +204,10 @@ export async function Write_equipment(usr_qq, equipment) {
         player.攻击 = Math.trunc(1.05 * player.攻击);
         player.血量上限 = Math.trunc(1.2 * player.血量上限);
     }
-    if (equipment.武器.name == "下界合金剑" && equipment.法宝.name == "下界合金甲" && equipment.护具.name == "下界合金头盔") {
-        player.攻击 = Math.trunc(1.1 * player.攻击);
-        player.血量上限 = Math.trunc(1.2 * player.血量上限);
-        player.防御 = Math.trunc(1.1 * player.防御);
+    if (equipment.武器.name == "下界合金剑" && equipment.护具.name == "下界合金甲" && equipment.法宝.name == "下界合金头盔") {
+        player.攻击 = Math.trunc(1.2 * player.攻击);
+        player.血量上限 = Math.trunc(1.5 * player.血量上限);
+        player.防御 = Math.trunc(1.2 * player.防御);
     }
     if (equipment.武器.name == "光明剑" && equipment.法宝.name == "光明符" && equipment.护具.name == "光明衣" && player.魔道值 < 1 && (player.灵根.type == "转生" || player.level_id > 41)) {
         player.攻击 = Math.trunc(1.15 * player.攻击);
@@ -1668,6 +1668,12 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
             msg.push("你的元素与你佩戴的项链产生共鸣,下一击伤害增加" + equipment.项链.加成 * 100 + "%")
         }
     }
+    if (B.武器.name == "下界合金剑" && B.护具.name == "下界合金甲" && B.法宝.name == "下界合金头盔") {
+        if(math>0.8){
+       msg.push(`${B_player.名号}触发下界套主动技能:[神兵天降,免疫伤害]，${A_player.名号}下次伤害将无效`)
+                att=last_att*0;
+    }
+    }
     if (equipment.武器.name == "赤角石溃杵") {
         if (A_lin == yuansu[3] && random > 0.5) {
             if (equipment.武器.fumo == "岩") {
@@ -1923,7 +1929,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
                 A_player.当前血量 -= A_player.当前血量 * 0.2
                 B_player.当前血量 -= B_player.当前血量 * 0.2
             } else {
-                msg.push(A_player.名号 + "使用了土卦-固若金汤,下次防御提升了50%")
+                msg.push(A_player.名号 + "使用了地卦-运生万物,下次防御提升了50%")
                 A_player.防御 *= 1.5
             }
         }
