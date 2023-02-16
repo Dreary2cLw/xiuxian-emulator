@@ -294,7 +294,7 @@ async function new_Garden(association_name, user_qq) {
           'name': '凝血草',
           'start_time': nowTime,
           'who_plant': user_qq,
-          'ts': 1,
+          'ts': 3,
           'desc': '汲取了地脉灵气形成的草'
         },
         {
@@ -315,42 +315,42 @@ async function new_Garden(association_name, user_qq) {
           'name': '大吉祥草',
           'start_time': nowTime,
           'who_plant': user_qq,
-          'ts': 7,
+          'ts': 3,
           'desc': '大吉祥草的护佑'
         },
         {
           'name': '仙草',
           'start_time': nowTime,
           'who_plant': user_qq,
-          'ts': 7,
+          'ts': 3,
           'desc': '仙草'
         },
         {
           'name': '龙火',
           'start_time': nowTime,
           'who_plant': user_qq,
-          'ts': 7,
+          'ts': 3,
           'desc': '龙火，不详'
         },
         {
           'name': '天灵花',
           'start_time': nowTime,
           'who_plant': user_qq,
-          'ts': 7,
+          'ts': 3,
           'desc': '一种聚天地灵气的花，非常珍贵【可以卖高价】'
         },
         {
           'name': '皇草',
           'start_time': nowTime,
           'who_plant': user_qq,
-          'ts': 7,
+          'ts': 3,
           'desc': '一种聚天地紫气的草，非常珍贵【可以卖高价】'
         },
         {
           'name': '创世花',
           'start_time': nowTime,
           'who_plant': user_qq,
-          'ts': 7,
+          'ts': 3,
           'desc': '一种有未知力量的花，非常珍贵【可以卖高价】'
         }
       ]
@@ -414,13 +414,6 @@ async function new_Garden(association_name, user_qq) {
           'who_plant': user_qq,
           'ts': 3,
           'desc': '一种聚天地紫气的草，非常珍贵【可以卖高价】'
-        },
-        {
-            "name": "创世花",
-            "start_time": nowTime,
-            "who_plant": user_qq,
-            "ts": 3,
-            "desc": "一种有未知力量的花，非常珍贵【可以卖高价】"
         }
       ]
     };
@@ -439,7 +432,7 @@ async function new_Garden(association_name, user_qq) {
           'name': '掣电树',
           'start_time': nowTime,
           'who_plant': user_qq,
-          'ts': 2,
+          'ts': 1,
           'desc': '汲取了地脉灵气的巨大藤蔓形成的草树。\n从树冠中源源不断释放出电力，隐隐有着雷光闪烁。\n5米内禁止玩火，雷火反应发生爆炸'
         },
         {
