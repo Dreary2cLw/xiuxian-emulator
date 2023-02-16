@@ -881,6 +881,7 @@ export async function instead_equipment(usr_qq, equipment_data) {
     let thing_type;
     let equipment;
     let najie;
+    let thing_name
    try {
         //根据名字找类型
         //thing_type = data.equipment_list.find(item => item.name == thing_name).type;
@@ -889,10 +890,6 @@ export async function instead_equipment(usr_qq, equipment_data) {
         equipment = await Read_equipment(usr_qq);
         najie = await Read_najie(usr_qq);
         if (thing_type == "武器") {
-            if (equipment.武器.fumo != "无"&&equipment.武器.fumo != null) {
-                await Add_najie_thing(usr_qq,"附魔书-"+equipment.武器.fumo, "道具", 1);
-                e.reply(`你小心翼翼的把${thing_type}上的附魔属性${equipment.武器.fumo}保留了下来并复制到了附魔书上`)
-            }
             //把读取装备，把武器放回戒指
             await Add_najie_thing(usr_qq, equipment.武器.name, "装备", 1, equipment.武器.pinji);
             //根据名字找武器
@@ -904,10 +901,6 @@ export async function instead_equipment(usr_qq, equipment_data) {
             return;
         }
         if (thing_type == "护具") {
-            if (equipment.护具.fumo != "无") {
-                await Add_najie_thing(usr_qq,"附魔书-"+equipment.护具.fumo, "道具", 1);
-                e.reply(`你小心翼翼的把${thing_type}上的附魔属性${equipment.护具.fumo}保留了下来并复制到了附魔书上`)
-            }
             await Add_najie_thing(usr_qq, equipment.护具.name, "装备", 1, equipment.护具.pinji);
             //equipment.护具 = data.equipment_list.find(item => item.name == thing_name);
             equipment.护具 = equipment_data;
@@ -915,10 +908,6 @@ export async function instead_equipment(usr_qq, equipment_data) {
             return;
         }
         if (thing_type == "法宝") {
-            if (equipment.法宝.fumo != "无") {
-                await Add_najie_thing(usr_qq, "附魔书-"+equipment.法宝.fumo, "道具", 1);
-                e.reply(`你小心翼翼的把${thing_type}上的附魔属性${equipment.法宝.fumo}保留了下来并复制到了附魔书上`)
-            }
             await Add_najie_thing(usr_qq, equipment.法宝.name, "装备", 1, equipment.法宝.pinji);
             //equipment.法宝 = data.equipment_list.find(item => item.name == thing_name);
             equipment.法宝 = equipment_data;
@@ -936,10 +925,6 @@ export async function instead_equipment(usr_qq, equipment_data) {
         thing_type = data.timeequipmen_list.find(item => item.name == thing_name).type;
         equipment = await Read_equipment(usr_qq);
         if (thing_type == "武器") {
-            if (equipment.武器.fumo != "无"&&equipment.武器.fumo != null) {
-                await Add_najie_thing(usr_qq, "附魔书-"+equipment.武器.fumo, "道具", 1);
-                e.reply(`你小心翼翼的把${thing_type}上的附魔属性${equipment.武器.fumo}保留了下来并复制到了附魔书上`)
-            }
             //把读取装备，把武器放回戒指
             await Add_najie_thing(usr_qq, equipment.武器.name, "装备", 1, equipment.武器.pinji);
             //根据名字找武器，
@@ -949,20 +934,12 @@ export async function instead_equipment(usr_qq, equipment_data) {
             return;
         }
         if (thing_type == "护具") {
-            if (equipment.护具.fumo != "无") {
-                await Add_najie_thing(usr_qq,"附魔书-"+equipment.护具.fumo, "道具", 1);
-                e.reply(`你小心翼翼的把${thing_type}上的附魔属性${equipment.护具.fumo}保留了下来并复制到了附魔书上`)
-            }
             await Add_najie_thing(usr_qq, equipment.护具.name, "装备", 1, equipment.护具.pinji);
             equipment.护具 = data.timeequipmen_list.find(item => item.name == thing_name);
             await Write_equipment(usr_qq, equipment);
             return;
         }
         if (thing_type == "法宝") {
-            if (equipment.法宝.fumo != "无") {
-                await Add_najie_thing(usr_qq,"附魔书-"+equipment.法宝.fumo, "道具", 1);
-                e.reply(`你小心翼翼的把${thing_type}上的附魔属性${equipment.法宝.fumo}保留了下来并复制到了附魔书上`)
-            }
             await Add_najie_thing(usr_qq, equipment.法宝.name, "装备", 1, equipment.法宝.pinji);
             //equipment.法宝 = data.equipment_list.find(item => item.name == thing_name);
             equipment.法宝 = data.timeequipmen_list.find(item => item.name == thing_name);
