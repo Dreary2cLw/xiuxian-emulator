@@ -414,6 +414,13 @@ async function new_Garden(association_name, user_qq) {
           'who_plant': user_qq,
           'ts': 7,
           'desc': '一种聚天地紫气的草，非常珍贵【可以卖高价】'
+        },
+        {
+            "name": "创世花",
+            "start_time": nowTime,
+            "who_plant": user_qq,
+            "ts": 7,
+            "desc": "一种有未知力量的花，非常珍贵【可以卖高价】"
         }
       ]
     };
@@ -462,13 +469,6 @@ async function new_Garden(association_name, user_qq) {
           'who_plant': user_qq,
           'ts': 7,
           'desc': '龙火，不详'
-        },
-        {
-          'name': '天灵花',
-          'start_time': nowTime,
-          'who_plant': user_qq,
-          'ts': 7,
-          'desc': '一种聚天地灵气的花，非常珍贵【可以卖高价】'
         }
       ]
     };
@@ -503,20 +503,6 @@ async function new_Garden(association_name, user_qq) {
           'who_plant': user_qq,
           'ts': 7,
           'desc': '大吉祥草的护佑'
-        },
-        {
-          'name': '仙草',
-          'start_time': nowTime,
-          'who_plant': user_qq,
-          'ts': 7,
-          'desc': '仙草'
-        },
-        {
-          'name': '龙火',
-          'start_time': nowTime,
-          'who_plant': user_qq,
-          'ts': 7,
-          'desc': '龙火，不详'
         }
       ]
     };
@@ -551,13 +537,6 @@ async function new_Garden(association_name, user_qq) {
           'who_plant': user_qq,
           'ts': 7,
           'desc': '大吉祥草的护佑'
-        },
-        {
-          'name': '仙草',
-          'start_time': nowTime,
-          'who_plant': user_qq,
-          'ts': 7,
-          'desc': '仙草'
         }
       ]
     };
