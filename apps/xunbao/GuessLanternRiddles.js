@@ -43,7 +43,7 @@ export class GuessLanternRiddles extends plugin {
     }
 
 
-    async zhongzhi(e) {
+   async zhongzhi(e) {
         if (!e.isGroup) {
             return;
         }
@@ -78,10 +78,6 @@ export class GuessLanternRiddles extends plugin {
                 e.reply("上一个甘蔗还没成熟" + `剩余时间:  ${Couple_m}分 ${Couple_s}秒`);
                 return;
             }
-            if (now_Time > last_time + shuangxiuTimeout && ganzhe1 == 1) {
-                ganzhe1 = 2;
-                await redis.set("xiuxian:player:" + usr_qq + "ganzhe1", ganzhe1)
-            }
             if (!ganzhe) {
                 e.reply("你没有甘蔗");
                 return;
@@ -101,13 +97,13 @@ export class GuessLanternRiddles extends plugin {
                 await Add_najie_thing(usr_qq, "甘蔗", "食材", -1)
                 e.reply("成功种下一个甘蔗,60分钟后成熟")
                 await redis.set("xiuxian:player:" + usr_qq + "ganzhe", now_Time)
-            } else if (ganzhe1 == 1) {
-                e.reply("你上次种的甘蔗还没成熟呢")
-                return;
-            } else if (ganzhe1 == 2) {
-                e.reply("你上次种的甘蔗还没收获呢")
                 return;
             }
+
+            ganzhe1 = 2;
+            e.reply('先收获你的上一个甘蔗再种下一个吧')
+            await redis.set("xiuxian:player:" + usr_qq + "ganzhe1", ganzhe1)
+            return;
         }
         if (thing_name == "树苗") {
             let shumiao = await exist_najie_thing(usr_qq, "树苗", "食材")
@@ -123,10 +119,7 @@ export class GuessLanternRiddles extends plugin {
                 e.reply("上一个树苗还没成熟" + `剩余时间:  ${Couple_m}分 ${Couple_s}秒`);
                 return;
             }
-            if (now_Time > last_time + shuangxiuTimeout && shumiao1 == 1) {
-                shumiao1 = 2;
-                await redis.set("xiuxian:player:" + usr_qq + "shumiao1", shumiao1)
-            }
+
             if (!shumiao) {
                 e.reply("你没有树苗");
                 return;
@@ -146,16 +139,15 @@ export class GuessLanternRiddles extends plugin {
                 await Add_najie_thing(usr_qq, "树苗", "食材", -1)
                 e.reply("成功种下一个树苗,60分钟后成熟")
                 await redis.set("xiuxian:player:" + usr_qq + "shumiao", now_Time)
-            } else if (shumiao1 == 1) {
-                e.reply("你上次种的树苗还没成熟呢")
-                return;
-            } else if (shumiao1 == 2) {
-                e.reply("你上次种的树苗还没收获呢")
-                return;
             }
+           shumiao1 = 2;
+            e.reply('先收获你的上一个树苗再种下一个吧')
+            await redis.set("xiuxian:player:" + usr_qq + "ganzhe1", shumiao1)
+            return;
         }
 
     }
+
 
     async shouhuo(e) {
         if (!e.isGroup) {
