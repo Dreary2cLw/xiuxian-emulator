@@ -5,8 +5,8 @@ import fs from 'fs';
 import { segment } from 'oicq';
 import { ForwardMsg, get_random_fromARR, player_efficiency, shijianc, timestampToTime } from '../Xiuxian/xiuxian.js';
 //要DIY的话，确保这两个数组长度相等
-const 宗门人数上限 = [6, 9, 12, 15, 18, 21, 24, 27];
-const 宗门灵石池上限 = [2000000, 5000000, 8000000, 11000000, 15000000, 20000000, 25000000, 30000000];
+const 宗门人数上限 = [6, 9, 12, 15, 18, 21, 24, 27, 30];
+const 宗门灵石池上限 = [2000000, 5000000, 8000000, 11000000, 15000000, 20000000, 25000000, 30000000,50000000];
 
 /**
  * 宗门
