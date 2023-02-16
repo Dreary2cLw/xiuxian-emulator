@@ -854,7 +854,7 @@ export class UserHome extends plugin {
             if (equipment.武器.name == "灭仙剑" && equipment.法宝.name == "灭仙符" && equipment.护具.name == "灭仙衣" && player.魔道值 > 999) {
                 e.reply("你已激活灭仙三件套效果");
             }
-            if (equipment.武器.name == "下界合金剑" && equipment.法宝.name == "下界合金甲" && equipment.护具.name == "下界合金头盔") {
+            if (equipment.武器.name == "下界合金剑" && equipment.护具.name == "下界合金甲" && equipment.法宝.name == "下界合金头盔") {
                 e.reply("神兵天降,你成功激活下界套效果，快去装逼吧");
             }
             if (equipment.武器.name == "诛仙枪" && equipment.法宝.name == "诛仙花" && equipment.护具.name == "诛仙甲" && player.魔道值 > 999) {
