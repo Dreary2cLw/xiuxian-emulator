@@ -1729,14 +1729,14 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
             msg.push("起！" + A_player.名号 + "拿起护摩之杖使用[碟来引生]向" + B_player.名号 + "冲了过来")
             if (A_lin == yuansu[0]) {
                 msg.push("触发护摩之杖被动技能:[无羁的朱赤之蝶],伤害大幅度提升\n手中的火元素异常贴切[护摩之杖]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害大幅提升")
-                att *= 2.5
+                att *= 1.5
             } else if (A_lin == yuansu[0] && equipment.武器.fumo == "水") {
                 msg.push("触发护摩之杖被动技能:[无羁的朱赤之蝶],伤害大幅度提升\n手中的火元素异常贴切[护摩之杖]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害大幅提升,触发了蒸发反应")
-                att *= 3
+                att *= 2
                 chufa = true
             } else {
                 msg.push("触发护摩之杖被动技能:[无羁的朱赤之蝶],伤害大幅度提升")
-                att *= 2
+                att *= 1.2
             }
         }
     }
@@ -1745,20 +1745,20 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         if (random > 0.8) {
             msg.push("迅影如剑！" + A_player.名号 + "向" + B_player.名号 + "使用[星斗归位]闪现了过来")
             if (A_lin == yuansu[2]) {
-                msg.push("触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升180%")
-                att *= 1.7
+                msg.push("触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升150%")
+                att *= 1.5
             } else if (A_lin == yuansu[2] && equipment.武器.fumo == "水") {
-                msg.push("触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升250%,触发了感电反应")
-                att *= 2.5
+                msg.push("触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升200%,触发了感电反应")
+                att *= 2
                 gandian = true
                 chufa = true
             } else if (A_lin == yuansu[2] && equipment.武器.fumo == "草") {
-                msg.push("触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升270%,触发了激化反应")
-                att *= 2.7
+                msg.push("触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升200%,触发了激化反应")
+                att *= 2
                 chufa = true
             } else if (A_lin == yuansu[2] && equipment.武器.fumo == "冰") {
-                msg.push("触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升230%,触发了超导反应")
-                att *= 2.3
+                msg.push("触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升200%,触发了超导反应")
+                att *= 2
                 chufa = true
             } else if (A_lin == yuansu[2] && equipment.武器.fumo == "火") {
                 msg.push("触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升200%,触发了超载反应")
@@ -1775,18 +1775,13 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         if (random > 0.7) {
             msg.push("安如磐石" + A_player.名号 + "使用了元素战技[地心]")
             if (A_lin == yuansu[3]) {
-                msg.push("触发贯虹之槊被动技能:[金璋皇极],防御强效增强150%\n手中的岩元素异常贴切[贯虹之槊]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升150%")
+                msg.push("触发贯虹之槊被动技能:[金璋皇极],防御强效增强120%\n手中的岩元素异常贴切[贯虹之槊]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升150%")
                 fyjiachen += A_player.防御 * 0.5
-                att *= 1.5
+                att *= 1.2
             } else if (A_lin == yuansu[3] && equipment.武器.fumo == "岩") {
                 msg.push("触发贯虹之槊被动技能:[金璋皇极],防御强效增强200%\n手中的岩元素异常贴切[贯虹之槊]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益,岩属性附魔与武器产生了共鸣,元素伤害提升150%")
                 fyjiachen += A_player.防御 * 1
                 att *= 1.5
-                if (random > 0.8) {
-                    msg.push("你开启了元素爆发鬼王游行通通闪开,防御转化成了攻击,元素伤害增加了300%")
-                    att *= 3;
-                    A_player.防御 = -fyjiachen;
-                }
             } else {
                 msg.push("触发贯虹之槊被动技能:[金璋皇极],防御强效增强120%")
                 fyjiachen += A_player.防御 * 0.5
@@ -1949,15 +1944,16 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         }
     }
     if (equipment.法宝.fumo == "天变之龙") {
-        msg.push(A_player.名号 + "使用了虎守,下次防御增加20%,血量增加20%")
-        A_player.防御 *= 1.2;
-        A_player.当前血量 += A_player.血量上限 * 0.2
         if (random>0.7) {
             msg.push(A_player.名号 + "使用了八卦奇袭")
             att *= 2;
-        } else {
+         } else if(random>0.4&&random<0.7){
             msg.push(A_player.名号 + "使用了十面之围")
             att *= 1.5;
+        }else{
+            msg.push(A_player.名号 + "使用了虎守,下次防御增加20%,血量增加20%")
+            A_player.防御 *= 1.2;
+            A_player.当前血量 += A_player.血量上限 * 0.2
         }     
     }
     if (equipment.护具.fumo == "长板之龙") {
