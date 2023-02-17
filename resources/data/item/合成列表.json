@@ -807,6 +807,33 @@
     ]
   },
   {
+    "name": "附魔书-无双鬼神",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "角石",
+        "class": "材料",
+        "amount": 500
+      },
+      {
+        "name": "番琉璃",
+        "class": "材料",
+        "amount": 500
+      },
+      {
+        "name": "麒麟牙",
+        "class": "材料",
+        "amount": 10
+      },
+      {
+        "name": "书本",
+        "class": "材料",
+        "amount": 10
+      }
+    ]
+  },
+  {
     "name": "附魔书-长板之龙",
     "class": "道具",
     "amount": 1,
