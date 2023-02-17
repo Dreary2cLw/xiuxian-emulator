@@ -177,7 +177,7 @@ export class meirrenwu extends plugin {
     //需要获得：(任务等级*5+player炼气+player练体)*5000个灵石
     let xuyao2 = (dengji * 5 + player.level_id + player.Physique_id) * 20000
     //需要进入等级+4次秘境
-    let xuyao3 = dengji + 9
+    let xuyao3 = dengji*5
     //这里是奖励
     //看你怎么弄了，反正给的东西是不多的，巨少！(估计狗都嫌弃)
     //这个是获得的灵石，修为，血气
@@ -226,7 +226,7 @@ export class meirrenwu extends plugin {
     await sleep(1000);
     //这里是经验升级的地方，你如果要是需要改记得给底下还有俩也改了，一般来说不用改，要的挺多的，等级巨难升
     //计算公式：(任务等级*1000加2333)*5
-    let shengji = (dengji * 2200 + 1000) * 5+2333
+    let shengji = (dengji * 2200 + 1000) * 10+2333
     if (renwu[i].经验 > shengji - 1) {
       renwu[i].等级++
       renwu[i].经验 -= shengji
@@ -365,9 +365,9 @@ export async function get_renwu_img(e) {
     if (newaction[i].player == A) {
       //这里是显示
       let dengji = renwu11[x].等级
-      let xuyao1 = (dengji * 5 + player.level_id + player.Physique_id) * 5000
-      let xuyao2 = (dengji * 5 + player.level_id + player.Physique_id) * 5000
-      let xuyao3 = dengji + 4
+      let xuyao1 = (dengji * 5 + player.level_id + player.Physique_id) * 20000
+      let xuyao2 = (dengji * 5 + player.level_id + player.Physique_id) * 20000
+      let xuyao3 = dengji + 5
       let ass;
       ass = newaction[i].经验;
       let renwu1 = '当前没有任务';
