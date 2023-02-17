@@ -1460,7 +1460,7 @@
     ]
   },
   {
-    "name": "附魔书-火元素",
+    "name": "附魔书-火",
     "class": "道具",
     "amount": 1,
     "materials": [
@@ -1477,7 +1477,7 @@
     ]
   },
   {
-    "name": "附魔书-水元素",
+    "name": "附魔书-水",
     "class": "道具",
     "amount": 1,
     "materials": [
@@ -1494,7 +1494,7 @@
     ]
   },
   {
-    "name": "附魔书-雷元素",
+    "name": "附魔书-雷",
     "class": "道具",
     "amount": 1,
     "materials": [
@@ -1511,7 +1511,7 @@
     ]
   },
   {
-    "name": "附魔书-冰元素",
+    "name": "附魔书-冰",
     "class": "道具",
     "amount": 1,
     "materials": [
@@ -1528,7 +1528,7 @@
     ]
   },
   {
-    "name": "附魔书-岩元素",
+    "name": "附魔书-岩",
     "class": "道具",
     "amount": 1,
     "materials": [
@@ -1545,7 +1545,7 @@
     ]
   },
   {
-    "name": "附魔书-风元素",
+    "name": "附魔书-风",
     "class": "道具",
     "amount": 1,
     "materials": [
@@ -1562,7 +1562,7 @@
     ]
   },
   {
-    "name": "附魔书-草元素",
+    "name": "附魔书-草",
     "class": "道具",
     "amount": 1,
     "materials": [
