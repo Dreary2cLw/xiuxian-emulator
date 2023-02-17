@@ -1949,17 +1949,16 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         }
     }
     if (equipment.法宝.fumo == "天变之龙") {
-        if (random > 0.8) {
+        msg.push(A_player.名号 + "使用了虎守,下次防御增加20%,血量增加20%")
+        A_player.防御 *= 1.2;
+        A_player.当前血量 += A_player.血量上限 * 0.2
+        if (random>0.7) {
             msg.push(A_player.名号 + "使用了八卦奇袭")
             att *= 2;
-        } else if (random > 0.6 && random <= 0.8) {
+        } else {
             msg.push(A_player.名号 + "使用了十面之围")
             att *= 1.5;
-        } else {
-            msg.push(A_player.名号 + "使用了虎守,下次防御增加20%,血量增加20%")
-            A_player.防御 *= 1.2;
-            A_player.当前血量 += A_player.血量上限 * 0.2
-        }
+        }     
     }
     if (equipment.护具.fumo == "长板之龙") {
         if (random > 0.8) {
