@@ -2460,7 +2460,7 @@ export class UserHome extends plugin {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                if (now_level_id < 41) {
+                if (now_level_id < 42) {
                     e.reply("你是仙人吗就去星落湖");
                     return;
                 }
@@ -2824,7 +2824,7 @@ export class UserHome extends plugin {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                if (now_level_id < 41) {
+                if (now_level_id < 42) {
                     e.reply("你是仙人吗就去星荧洞窟");
                     return;
                 }
@@ -2907,7 +2907,7 @@ export class UserHome extends plugin {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                if (now_level_id < 41) {
+                if (now_level_id < 42) {
                     e.reply("你是仙人吗就去层岩巨渊");
                     return;
                 }
@@ -3023,7 +3023,7 @@ export class UserHome extends plugin {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                if (now_level_id < 41) {
+                if (now_level_id < 42) {
                     e.reply("你是仙人吗就去深渊");
                     return;
                 }
