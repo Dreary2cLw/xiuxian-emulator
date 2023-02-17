@@ -491,13 +491,13 @@ export async function zd_battle(AA_player, BB_player) {
         伤害 = 伤害 * jineng2[i].beilv + jineng2[i].other;
       }
     }
-    if (A_player.魔道值 > 999) {
+      if (A_player.魔道值 > 999 && A_player.灵根.type == "魔头" ) {
       buff += Math.trunc(A_player.魔道值 / 1000) / 100;
       if (buff > 1.3) buff = 1.3;
       if (A_player.灵根.name == '九重魔功') buff += 0.2;
       msg.push('魔道值为' + A_player.名号 + '提供了' + Math.trunc((buff - 1) * 100) + '%的增伤');
     }
-    if (B_player.魔道值 < 1 && (B_player.灵根.type == '转生' || B_player.level_id > 41)) {
+    if (B_player.魔道值 < 1 && B_player.灵根.type == "转生" ) {
       let buff2 = B_player.神石 * 0.0015;
       if (buff2 > 0.3) buff2 = 0.3;
       if (B_player.灵根.name == '九转轮回体') buff2 += 0.2;
@@ -524,6 +524,7 @@ ${A_player.名号}攻击了${B_player.名号}，${ifbaoji(baoji)}造成伤害${�
     if (cnt != yuansu.cnt) {
       msg.push(`第${cnt2 + 1}回合：
 ${B_player.名号}冻结中`);
+      boolean = true;
       cnt += 2;
       continue;
     }
@@ -533,6 +534,7 @@ ${B_player.名号}冻结中`);
     t = A_player;
     A_player = B_player;
     B_player = t;
+    boolean = false;
   }
   if(boolean==true){
          t = AA_player;
