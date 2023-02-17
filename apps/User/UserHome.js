@@ -2866,10 +2866,10 @@ export class UserHome extends plugin {
                                     煤炭${18 * mugao * n + 9 * shigao * n}个,铁矿${9 * mugao * n + 3 * shigao * n}个,黄金矿${9 * mugao * n}个和层岩巨渊地图${1 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                     } else if (math > 0.1 && math <= 0.3) {
                         await Add_HP(usr_qq, -kouxue)
-                        await Add_najie_thing(usr_qq, "腐肉", "食材", 64 * n);
+                        await Add_najie_thing(usr_qq, "泥土", "材料", 40 * n);
                         e.reply(`${last_msg}${fyd_msg}你在星荧洞窟捡到了挖到圆石${18 * mugao * n + 9 * shigao * n}个,
                                     煤炭${18 * mugao * n + 9 * shigao * n}个,铁矿${9 * mugao * n + 3 * shigao * n}个,黄金矿${9 * mugao * n}个,
-                                '在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到腐肉${64 * n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                '在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到泥土${40 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                     } else if (math > 0.3 && math <= 0.5) {
                         await Add_HP(usr_qq, -kouxue)
                         await Add_najie_thing(usr_qq, "骨头", "材料", 10 * n);
