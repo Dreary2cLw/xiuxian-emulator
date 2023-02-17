@@ -173,11 +173,11 @@ export class meirrenwu extends plugin {
     let dengji = renwu[i].等级
     //这里是任务提交需要的东西
     //需要消耗：(任务等级*5+player炼气+player练体)*5000个灵石
-    let xuyao1 = (dengji * 5 + player.level_id + player.Physique_id) * 5000
+    let xuyao1 = (dengji * 5 + player.level_id + player.Physique_id) * 20000
     //需要获得：(任务等级*5+player炼气+player练体)*5000个灵石
-    let xuyao2 = (dengji * 5 + player.level_id + player.Physique_id) * 5000
+    let xuyao2 = (dengji * 5 + player.level_id + player.Physique_id) * 20000
     //需要进入等级+4次秘境
-    let xuyao3 = dengji + 4
+    let xuyao3 = dengji + 9
     //这里是奖励
     //看你怎么弄了，反正给的东西是不多的，巨少！(估计狗都嫌弃)
     //这个是获得的灵石，修为，血气
