@@ -20,7 +20,7 @@ import {
 /**
  * 战斗类
  */
-
+let boolean=false;
 export class Battle extends plugin {
   constructor() {
     super({
@@ -533,6 +533,11 @@ ${B_player.名号}冻结中`);
     t = A_player;
     A_player = B_player;
     B_player = t;
+  }
+  if(boolean==true){
+         t = AA_player;
+        AA_player = BB_player;
+        BB_player = t;
   }
   if (A_player.当前血量 <= 0) {
     AA_player.当前血量 = 0;
