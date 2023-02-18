@@ -392,7 +392,7 @@ export async function get_renwu_img(e) {
       let wcrw2 = xuyao2;
       let wcrw3 = xuyao3;
       let new1 = newaction[x].等级;
-      let shengji = (dengji * 2200 + 1100) * 5+2333
+      let shengji =  (dengji * 2200 + 1000) * 10+2333
       let need = shengji;
       let need1 = Strand(ass, need);
       let renwu = `还有任务没完成哦~`;
