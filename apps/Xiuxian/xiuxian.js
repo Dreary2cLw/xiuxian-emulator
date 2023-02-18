@@ -1670,8 +1670,8 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     }
     if (B.武器.name == "下界合金剑" && B.护具.name == "下界合金甲" && B.法宝.name == "下界合金头盔") {
         if(random>0.8){
-       msg.push(`${B_player.名号}触发下界套主动技能:[神兵天降,免疫伤害]，${A_player.名号}下次伤害将无效`)
-                 att*=0;
+        msg.push(`${B_player.名号}触发下界套主动技能:[神兵天降,免疫伤害]，${A_player.名号}下次伤害将无效`)
+        att*=0;
     }
     }
     if (equipment.武器.name == "赤角石溃杵") {
