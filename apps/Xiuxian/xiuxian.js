@@ -1668,12 +1668,6 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
             msg.push("你的元素与你佩戴的项链产生共鸣,下一击伤害增加" + equipment.项链.加成 * 100 + "%")
         }
     }
-    if (B.武器.name == "下界合金剑" && B.护具.name == "下界合金甲" && B.法宝.name == "下界合金头盔") {
-        if(random>0.8){
-        msg.push(`${B_player.名号}触发下界套主动技能:[神兵天降,免疫伤害]，${A_player.名号}下次伤害将无效`)
-        att*=0;
-    }
-    }
     if (equipment.武器.name == "赤角石溃杵") {
         if (A_lin == yuansu[3] && random > 0.5) {
             if (equipment.武器.fumo == "岩") {
@@ -2251,6 +2245,12 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
             A_player.防御*=1.3;
       }
      }
+     if (B.武器.name == "下界合金剑" && B.护具.name == "下界合金甲" && B.法宝.name == "下界合金头盔") {
+        if (random > 0.8) {
+            msg.push(`${B_player.名号}触发下界套主动技能:[神兵天降,免疫伤害]，${A_player.名号}下次伤害将无效`)
+            att*=0;
+    }
+    }
 
 
 
