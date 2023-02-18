@@ -2238,6 +2238,19 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
             ranshao = true;
         }
     }
+    if (equipment.护具.fumo == "无双鬼神") {
+      if(random>0.7){
+           msg.push(`${A_player.名号}使用了无双鬼神主动技能战意破守,${A_player.名号}士气更高了,${B_player.名号}士气变低了`)
+           att*=1.5
+           B_player.防御*=0.5;
+      }else if(A_player.魔道值>1000){
+           msg.push(`${A_player.名号}魔气重重,使用了无双鬼神主动技能离恨天,${A_player.名号}下次伤害提升50%`)
+            att*=1.5
+      }else{
+           msg.push(`${A_player.名号}使用了无双鬼神被动技能战意固守,${A_player.名号}下次防御提升30%`)
+            A_player.防御*=1.3;
+      }
+     }
 
 
 
