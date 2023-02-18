@@ -2550,6 +2550,7 @@ export class UserHome extends plugin {
                     e.reply(`你因为没带斧头,所以只捡到了原木${1 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                     player.饱食度 -= 500;
                     await Write_player(usr_qq, player);
+                    await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                     return;
                 }
             }
