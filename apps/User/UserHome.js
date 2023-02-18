@@ -3091,19 +3091,19 @@ export class UserHome extends plugin {
                     下界合金矿${9 * zuanshichan * n}个,额外捡到深渊石${100 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
                     } else if (math > 0.6 && math <= 0.7) {
-                        await Add_najie_thing(usr_qq, "甘蔗", "食材", 99 * n);
+                        await Add_najie_thing(usr_qq, "泥土", "材料", 100 * n);
                         e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${9 * muchan * n + 9 * shichan * n + 18 * zuanshichan * n}个,
-                    下界合金矿${9 * zuanshichan * n}个,额外捡到甘蔗${99 * n}个,获得了修为${xiuwei}血气${xueqi}`)
+                    下界合金矿${9 * zuanshichan * n}个,额外捡到泥土${100 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
                     } else if (math > 0.7 && math <= 0.8) {
                         await Add_najie_thing(usr_qq, "树苗", "食材", 50 * n);
                         e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${9 * muchan * n + 9 * shichan * n + 18 * zuanshichan * n}个,
                     下界合金矿${9 * zuanshichan * n}个,额外捡到树苗${50 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
-                    } else if (math > 0.1 && math <= 0.2) {
-                        await Add_najie_thing(usr_qq, "岩浆", "材料", 15 * n);
+                    } else if (math > 0.15 && math <= 0.2) {
+                        await Add_najie_thing(usr_qq, "下界合金矿", "材料", 60 * n);
                         e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${9 * muchan * n + 9 * shichan * n + 18 * zuanshichan * n}个,
-                    下界合金矿${9 * zuanshichan * n}个,岩浆${15 * n}个,获得了修为${xiuwei}血气${xueqi}`)
+                    下界合金矿${9 * zuanshichan * n}个,下界合金矿${60 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
                     } else if (math > 0.2 && math <= 0.3) {
                         await Add_najie_thing(usr_qq, "血气瓶", "丹药", 30 * n);
