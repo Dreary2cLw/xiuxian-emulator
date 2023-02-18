@@ -1944,13 +1944,13 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         }
     }
     if (equipment.法宝.fumo == "天变之龙") {
-        if (random>0.7) {
+        if (random > 0.7) {
             msg.push(A_player.名号 + "使用了八卦奇袭")
             att *= 2;
-         } else if(random>0.4&&random<0.7){
+         } else if (random > 0.4 && random < 0.7){
             msg.push(A_player.名号 + "使用了十面之围")
             att *= 1.5;
-        }else{
+        } else {
             msg.push(A_player.名号 + "使用了虎守,下次防御增加20%,血量增加20%")
             A_player.防御 *= 1.2;
             A_player.当前血量 += A_player.血量上限 * 0.2
@@ -1959,11 +1959,11 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     if (equipment.护具.fumo == "长板之龙") {
         if (random > 0.8) {
             msg.push(A_player.名号 + "使用了长板之龙主动技能百鸟朝凤,下次伤害提升了100%")
-            att = last_att * 2;
+            att *= 2;
         } else {
             if (B_player.魔道值 > 1000) {
                 msg.push("因为" + B_player.名号 + "是大魔王,触发了长板之龙被动技能惩奸除恶,下次伤害提升了50%")
-                att = last_att * 1.5;
+                att *= 1.5;
             } else {
                 msg.push(A_player.名号 + "使用了虎守,下次防御增加20%,血量增加20%")
                 A_player.防御 *= 1.2;
@@ -1974,61 +1974,61 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     if (equipment.武器.fumo == "锋利1") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是锋利1,${A_player.名号}下次伤害提升10%`)
-            att = last_att * 1.1;
+            att *= 1.1;
         }
     }
     if (equipment.武器.fumo == "锋利2") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是锋利2,${A_player.名号}下次伤害提升20%`)
-            att = last_att * 1.2;
+            att *= 1.2;
         }
     }
     if (equipment.武器.fumo == "锋利3") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是锋利3,${A_player.名号}下次伤害提升30%`)
-            att = last_att * 1.3;
+            att *= 1.3;
         }
     }
     if (equipment.武器.fumo == "锋利4") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是锋利4,${A_player.名号}下次伤害提升40%`)
-            att = last_att * 1.4;
+            att *= 1.4;
         }
     }
     if (equipment.武器.fumo == "锋利5") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是锋利5,${A_player.名号}下次伤害提升50%`)
-            att = last_att * 1.5;
+            att *= 1.5;
         }
     }
     if (equipment.武器.fumo == "横扫之刃1") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是横扫之刃1,${A_player.名号}下次伤害提升10%`)
-            att = last_att * 1.1;
+            att *= 1.1;
         }
     }
     if (equipment.武器.fumo == "横扫之刃2") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是横扫之刃2,${A_player.名号}下次伤害提升20%`)
-            att = last_att * 1.2;
+            att *= 1.2;
         }
     }
     if (equipment.武器.fumo == "横扫之刃3") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升30%`)
-            att = last_att * 1.3;
+            att *= 1.3;
         }
     }
     if (equipment.武器.fumo == "横扫之刃4") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是横扫之刃4,${A_player.名号}下次伤害提升40%`)
-            att = last_att * 1.3;
+            att *= 1.4;
         }
     }
     if (equipment.武器.fumo == "横扫之刃5") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升50%`)
-            att = last_att * 1.3;
+            att *= 1.5;
         }
     }
     if (equipment.法宝.fumo == "生命吸收1") {
@@ -2047,36 +2047,36 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     }
     if (equipment.武器.fumo == "斩首") {
         msg.push(`${A_player.名号}使用了斩首,冲向了${B_player.名号},下次伤害提升50%`)
-        att = last_att * 1.5;
+        att *= 1.5;
     }
     if (equipment.武器.fumo == "力量1") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是力量1,${A_player.名号}下次伤害提升10%`)
-            att = last_att * 1.1;
+            att *= 1.1;
         }
     }
     if (equipment.武器.fumo == "力量2") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是力量2,${A_player.名号}下次伤害提升20%`)
-            att = last_att * 1.2;
+            att *= 1.2;
         }
     }
     if (equipment.武器.fumo == "力量3") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是力量3,${A_player.名号}下次伤害提升30%`)
-            att = last_att * 1.3;
+            att *= 1.3;
         }
     }
     if (equipment.武器.fumo == "力量4") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是力量4,${A_player.名号}下次伤害提升40%`)
-            att = last_att * 1.4;
+            att *= 1.4;
         }
     }
     if (equipment.武器.fumo == "力量5") {
         if (random > 0.8) {
             msg.push(`由于武器的附魔书属性是力量5,${A_player.名号}下次伤害提升50%`)
-            att = last_att * 1.5;
+            att *= 1.5;
         }
     }
     if (equipment.护具.fumo == "保护1") {
@@ -2182,42 +2182,47 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     if (B.武器.fumo == "击退1") {
         if (random > 0.8) {
             msg.push(`${B_player.名号}使用了击退,${A_player.名号}下次攻击将无效`)
-            att = last_att * 0;
+            att *= 0
         }
     }
     if (B.武器.fumo == "击退2") {
         if (random > 0.8) {
             msg.push(`${B_player.名号}使用了击退,${A_player.名号}下次攻击被打断,受到了反噬,血量减少10%`)
-            att = last_att * 0;
+            att *= 0
             A_player.当前血量 -= A_player.当前血量 * 0.1
         }
     }
     if (B.护具.fumo == "荆棘1") {
         if (random > 0.7) {
             msg.push(`${B_player.名号}触发护具附魔属性荆棘1,${A_player.名号}下次伤害被反弹了10%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.1}`)
+            A_player.当前血量 = A_player.当前血量 - att * 0.1
         }
     }
     if (B.护具.fumo == "荆棘2") {
         if (random > 0.7) {
             msg.push(`${B_player.名号}触发护具附魔属性荆棘2,${A_player.名号}下次伤害被反弹了20%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.2}`)
+            A_player.当前血量 = A_player.当前血量 - att * 0.2
 
         }
     }
     if (B.护具.fumo == "荆棘3") {
         if (random > 0.7) {
             msg.push(`${B_player.名号}触发护具附魔属性荆棘3,${A_player.名号}下次伤害被反弹了30%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.3}`)
+            A_player.当前血量 = A_player.当前血量 - att * 0.3
 
         }
     }
     if (B.护具.fumo == "荆棘4") {
         if (random > 0.7) {
             msg.push(`${B_player.名号}触发护具附魔属性荆棘4,${A_player.名号}下次伤害被反弹了40%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.4}`)
+            A_player.当前血量 = A_player.当前血量 - att * 0.4
 
         }
     }
     if (B.护具.fumo == "荆棘5") {
         if (random > 0.7) {
             msg.push(`${B_player.名号}触发护具附魔属性荆棘5,${A_player.名号}下次伤害被反弹了50%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.5}`)
+            A_player.当前血量 = A_player.当前血量 - att * 0.5
 
         }
     }
@@ -2227,7 +2232,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
                 msg.push(A_player.名号 + "使用了赤壁奇谋被动技能疾风烈火,战斗中对敌人造成燃烧伤害")
             }
             msg.push(A_player.名号 + "使用了赤壁奇谋主动技能炎龙冲阵,下次伤害无视击退效果,伤害提升了100%")
-            att = last_att * 2;
+            att *=2
             gandianhuihe += 3
             gandianhuihe -= 3
             ranshao = true;
