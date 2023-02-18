@@ -1684,6 +1684,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
             msg.push("触发赤角石溃杵被动技能:[御嘉大王],防御增强50%,攻击增强120%")
             fyjiachen += A_player.防御 * 0.5
             att *= 1.2
+        }
     }
 
     //玄冰之枪
