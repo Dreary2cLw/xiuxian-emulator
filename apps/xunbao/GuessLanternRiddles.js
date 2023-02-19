@@ -161,10 +161,11 @@ export class GuessLanternRiddles extends plugin {
 				await Add_najie_thing(usr_qq, '树苗', '食材', -1);
 				e.reply('成功种下一个树苗,60分钟后成熟');
 				await redis.set('xiuxian:player:' + usr_qq + 'shumiao', now_Time);
+                return;
 			}
 			shumiao1 = 2;
 			e.reply('先收获你的上一个树苗再种下一个吧');
-			await redis.set('xiuxian:player:' + usr_qq + 'ganzhe1', shumiao1);
+			await redis.set("xiuxian:player:" + usr_qq + "shumiao1", shumiao1)
 			return;
 		}
 	}
