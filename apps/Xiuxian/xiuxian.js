@@ -2220,18 +2220,6 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
 
         }
     }
-    if (equipment.法宝.fumo == "赤壁奇谋") {
-        if (A_lin == yuansu[0] || A_lin == yuansu[1] || A_lin == yuansu[2] || A_lin == yuansu[3] || A_lin == yuansu[4] || A_lin == yuansu[5] || A_lin == yuansu[6]) {
-            if (cnt == 1) {
-                msg.push(A_player.名号 + "使用了赤壁奇谋被动技能疾风烈火,战斗中对敌人造成燃烧伤害")
-            }
-            msg.push(A_player.名号 + "使用了赤壁奇谋主动技能炎龙冲阵,下次伤害无视击退效果,伤害提升了100%")
-            att *=2
-            gandianhuihe += 3
-            gandianhuihe -= 3
-            ranshao = true;
-        }
-    }
     if (equipment.护具.fumo == "无双鬼神") {
       if(random>0.7){
            msg.push(`${A_player.名号}使用了无双鬼神主动技能战意破守,${A_player.名号}士气更高了,${B_player.名号}士气变低了`)
@@ -2245,11 +2233,17 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
             A_player.防御*=1.3;
       }
      }
-     if (B.武器.name == "下界合金剑" && B.护具.name == "下界合金甲" && B.法宝.name == "下界合金头盔") {
-        if (random > 0.8) {
-            msg.push(`${B_player.名号}触发下界套主动技能:[神兵天降,免疫伤害]，${A_player.名号}下次伤害将无效`)
-            att*=0;
-    }
+     if (equipment.法宝.fumo == "赤壁奇谋") {
+        if (A_lin == yuansu[0] || A_lin == yuansu[1] || A_lin == yuansu[2] || A_lin == yuansu[3] || A_lin == yuansu[4] || A_lin == yuansu[5] || A_lin == yuansu[6]) {
+            if (cnt == 1) {
+                msg.push(A_player.名号 + "使用了赤壁奇谋被动技能疾风烈火,战斗中对敌人造成燃烧伤害")
+            }
+            msg.push(A_player.名号 + "使用了赤壁奇谋主动技能炎龙冲阵,下次伤害无视击退效果,伤害提升了100%")
+            att *=2
+            gandianhuihe += 3
+            gandianhuihe -= 3
+            ranshao = true;
+        }
     }
 
 
