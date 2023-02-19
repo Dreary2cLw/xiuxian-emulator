@@ -311,8 +311,9 @@ export class Exchange extends plugin {
 		let whole = thing_value * thing_amount;
 		whole = Math.trunc(whole);
 		let time = 2; //分钟
+		let wupin;
 		if (thing_exist.class == '装备') {
-			let wupin = {
+			wupin = {
 				qq: usr_qq,
 				name: thing_exist,
 				price: thing_value,
@@ -325,7 +326,7 @@ export class Exchange extends plugin {
 			};
 			await Add_najie_thing(usr_qq, thing_name, thing_exist.class, -thing_amount, pj);
 		} else {
-			let wupin = {
+			wupin = {
 				qq: usr_qq,
 				name: thing_exist,
 				price: thing_value,
