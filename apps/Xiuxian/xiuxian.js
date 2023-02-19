@@ -2236,7 +2236,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
       if(random>0.7){
            msg.push(`${A_player.名号}使用了无双鬼神主动技能战意破守,${A_player.名号}士气更高了,${B_player.名号}士气变低了`)
            att*=1.5
-           B_player.防御*=0.5;
+           B_player.防御*=0.8;
       }else if(A_player.魔道值>1000){
            msg.push(`${A_player.名号}魔气重重,使用了无双鬼神主动技能离恨天,${A_player.名号}下次伤害提升50%`)
             att*=1.5
