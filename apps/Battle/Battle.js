@@ -493,6 +493,20 @@ export async function zd_battle(AA_player, BB_player) {
 				}
 				伤害 = 伤害 * jineng1[i].beilv + jineng1[i].other;
 			}
+			if (
+				A_player.学习的功法 &&
+				jineng1[i].class == '魔根' &&
+				A_player.灵根.type == '魔头' &&
+				A_player.学习的功法.indexOf(jineng1[i].name) > -1 &&
+				Random < jineng1[i].pr
+			) {
+				if (jineng1[i].msg2 == '') {
+					msg.push(A_player.名号 + jineng1[i].msg1);
+				} else {
+					msg.push(A_player.名号 + jineng1[i].msg1 + B_player.名号 + jineng1[i].msg2);
+				}
+				伤害 = 伤害 * jineng1[i].beilv + jineng1[i].other;
+			}
 		}
 		for (let i = 0; i < jineng2.length; i++) {
 			if (
@@ -508,6 +522,20 @@ export async function zd_battle(AA_player, BB_player) {
 					B_player.灵根.name == jineng2[i].name &&
 					(cnt2 == jineng2[i].cnt || jineng2[i].cnt == -1) &&
 					random < jineng2[i].pr)
+			) {
+				if (jineng2[i].msg2 == '') {
+					msg.push(B_player.名号 + jineng2[i].msg1);
+				} else {
+					msg.push(B_player.名号 + jineng2[i].msg1 + A_player.名号 + jineng2[i].msg2);
+				}
+				伤害 = 伤害 * jineng2[i].beilv + jineng2[i].other;
+			}
+			if (
+				B_player.学习的功法 &&
+				jineng2[i].class == '转生' &&
+				B_player.灵根.type == '转生' &&
+				B_player.学习的功法.indexOf(jineng2[i].name) > -1 &&
+				Random < jineng2[i].pr
 			) {
 				if (jineng2[i].msg2 == '') {
 					msg.push(B_player.名号 + jineng2[i].msg1);
