@@ -124,7 +124,7 @@ export class GuessLanternRiddles extends plugin {
 		if (thing_name == '树苗') {
 			let shumiao = await exist_najie_thing(usr_qq, '树苗', '食材');
 			var Time = 60;
-			let shumiao1;
+			let sapling;
 			let now_Time = new Date().getTime(); //获取当前时间戳
 			let shuangxiuTimeout = parseInt(60000 * Time);
 			let last_time = await redis.get('xiuxian:player:' + usr_qq + 'shumiao'); //获得上次的时间戳,
@@ -139,8 +139,8 @@ export class GuessLanternRiddles extends plugin {
 				e.reply('上一个树苗还没成熟' + `剩余时间:  ${Couple_m}分 ${Couple_s}秒`);
 				return;
 			}
-			shumiao1 = await redis.get('xiuxian:player:' + usr_qq + 'shumiao1');
-			if (shumiao1 == 0 || shumiao1 == null) {
+			sapling = await redis.get("xiuxian:player:" + usr_qq + "sapling")
+            if (sapling == 0 || sapling == null) {
 				if (!shumiao) {
 					e.reply('你没有树苗');
 					return;
@@ -156,16 +156,16 @@ export class GuessLanternRiddles extends plugin {
 				e.reply('你消耗了60骨粉,土地变得肥沃了，可以种植作物了');
 				await Add_najie_thing(usr_qq, '骨粉', '材料', -60);
 				sleep(5000);
-				shumiao1 = 1;
-				await redis.set('xiuxian:player:' + usr_qq + 'shumiao1 ', shumiao1);
+				sapling = 1
+                await redis.set("xiuxian:player:" + usr_qq + "sapling", sapling)
 				await Add_najie_thing(usr_qq, '树苗', '食材', -1);
 				e.reply('成功种下一个树苗,60分钟后成熟');
 				await redis.set('xiuxian:player:' + usr_qq + 'shumiao', now_Time);
                 return;
 			}
-			shumiao1 = 2;
+			sapling = 2;
 			e.reply('先收获你的上一个树苗再种下一个吧');
-			await redis.set("xiuxian:player:" + usr_qq + "shumiao1", shumiao1)
+			await redis.set("xiuxian:player:" + usr_qq + "sapling", sapling)
 			return;
 		}
 	}
@@ -208,17 +208,17 @@ export class GuessLanternRiddles extends plugin {
 			}
 		}
 		if (thing_name == '树苗') {
-			let shumiao1 = await redis.get('xiuxian:player:' + usr_qq + 'shumiao1');
-			if (shumiao1 == 0) {
+			let sapling = await redis.get("xiuxian:player:" + usr_qq + "sapling")
+            if (sapling == 0) {
 				e.reply('你没有种树苗');
 				return;
-			} else if (shumiao1 == 1) {
+			} else if (sapling == 1) {
 				e.reply('你的树苗还没成熟');
 				return;
-			} else if (shumiao1 == 2) {
+			} else if (sapling == 2) {
 				e.reply('收获成功,你获得了3个树苗');
-				shumiao1 = 0;
-				await redis.set('xiuxian:player:' + usr_qq + 'shumiao1', shumiao1);
+				sapling = 0;
+                await redis.set("xiuxian:player:" + usr_qq + "sapling", sapling)
 				await Add_najie_thing(usr_qq, '树苗', '食材', 3);
 				return;
 			}
