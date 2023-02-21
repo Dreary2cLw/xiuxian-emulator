@@ -1642,7 +1642,7 @@ export class UserHome extends plugin {
                     e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有1个起死回生丹"])
                     return
                 }
-                if (daomu > 0.9 && daomu <= 1) {
+                if (daomu > 0.9 && daomu < 0.95) {
                     await Add_najie_thing(usr_qq, "重铸石", "道具", 1);
                     await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
                     e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有一个重铸石"])
@@ -2283,11 +2283,11 @@ export class UserHome extends plugin {
         if (func == "寻宝") {
             let player_id = await Read_player(usr_qq);
             let player = await Read_player(usr_qq);
-            if(player.occupation!="猎户"){
+            if (player.occupation != "猎户") {
                 e.reply('你是猎户吗,就去寻宝')
                 return;
             }
-            if(player.level_id<25){
+            if (player.level_id < 25) {
                 e.reply("没到达化神巅峰级前还是不要去了")
                 return
             }
@@ -2480,6 +2480,10 @@ export class UserHome extends plugin {
                     if (math > 0.9 && math <= 1) {
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", n * 2);
                         e.reply(`${last_msg}${fyd_msg}你运气太好了,钓上来了钓鱼掉上来的奇怪盒子${2 * n}个,还有一些鱼肉`)
+                        return;
+                    } else if (math > 0 && math <= 0.1) {
+                        await Add_najie_thing(usr_qq, "烤鱼", "食材", 100 * n);
+                        e.reply("你遇到了可莉,与他一起炸鱼去了,你们今天玩的很开心,可莉很感谢你,送了你100个烤鱼")
                         return;
                     } else {
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", n);
@@ -3212,7 +3216,7 @@ export class UserHome extends plugin {
                         e.reply(`你的武器的附魔属性已经是${desc}了,不需要再附魔这个属性了`)
                     }
                     if (equipment.武器.fumo != "无" && equipment.武器.fumo != null) {
-                        await Add_najie_thing(usr_qq, "附魔书-"+equipment.武器.fumo,  "道具", 1)
+                        await Add_najie_thing(usr_qq, "附魔书-" + equipment.武器.fumo, "道具", 1)
                     }
                     equipment.武器.fumo = desc;
                     e.reply(`附魔成功,你的武器现在的附魔属性是${desc}`)
@@ -3224,7 +3228,7 @@ export class UserHome extends plugin {
                         e.reply(`你的护具的附魔属性已经是${desc}了,不需要再附魔这个属性了`)
                     }
                     if (equipment.护具.fumo != "无" && equipment.武器.fumo != null) {
-                        await Add_najie_thing(usr_qq, "附魔书-"+equipment.护具.fumo,  "道具", 1)
+                        await Add_najie_thing(usr_qq, "附魔书-" + equipment.护具.fumo, "道具", 1)
                     }
                     equipment.护具.fumo = desc;
                     e.reply(`附魔成功,你的护具现在的附魔属性是${desc}`)
@@ -3236,7 +3240,7 @@ export class UserHome extends plugin {
                         e.reply(`你的法宝的附魔属性已经是${desc}了,不需要再附魔这个属性了`)
                     }
                     if (equipment.法宝.fumo != "无" && equipment.法宝.fumo != null) {
-                        await Add_najie_thing(usr_qq,"附魔书-"+equipment.法宝.fumo,  "道具", 1)
+                        await Add_najie_thing(usr_qq, "附魔书-" + equipment.法宝.fumo, "道具", 1)
                     }
                     equipment.法宝.fumo = desc;
                     e.reply(`附魔成功,你的法宝现在的附魔属性是${desc}`)

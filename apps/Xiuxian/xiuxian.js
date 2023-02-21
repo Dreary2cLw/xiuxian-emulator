@@ -2415,11 +2415,16 @@ export async function Gaodenyuansulun(
 	}
 	if (equipment.武器.fumo == '夏侯兄弟') {
 		if (random > 0.8) {
-			msg.push(A_player.名号 + '使用了箭震山河');
+			msg.push(
+				`${A_player.名号}使用了箭震山河,对敌方造成200%伤害并给对方附加胆懈效果,${B_player.名号害怕了}`
+			);
+			att *= 2;
+		} else if (random > 0.6) {
+			msg.push(A_player.名号 + '使用了侵略如火,对敌方造成了150%伤害');
 			att *= 1.5;
 		} else {
-			msg.push(A_player.名号 + '使用了侵略如火');
-			att *= 1.2;
+			msg.push(A_player.名号 + '使用了不动如山,下次防御增加30%');
+			A_player.防御 *= 1.3;
 		}
 	}
 	if (equipment.护具.fumo == '乱世枭雄') {
@@ -2452,327 +2457,401 @@ export async function Gaodenyuansulun(
 		}
 	}
 
-    if (equipment.武器.fumo == "江东霸王") {
-        if (random > 0.6 && random <= 0.8) {
-            msg.push(A_player.名号 + "使用了决机")
-            att *= 1.5;
-
-        } else if (random > 0.8) {
-            msg.push(A_player.名号 + "使用了火船摄阵,下次伤害提升了50%")
-            att *= 1.5;
-        } else {
-            msg.push(A_player.名号 + "使用了余音绕梁")
-            att *= 1.2;
-        }
-    }
-    if (equipment.法宝.fumo == "天变之龙") {
-        if (random > 0.7) {
-            msg.push(A_player.名号 + "使用了八卦奇袭")
-            att *= 2;
-         } else if (random > 0.4 && random < 0.7){
-            msg.push(A_player.名号 + "使用了十面之围")
-            att *= 1.5;
-        } else {
-            msg.push(A_player.名号 + "使用了虎守,下次防御增加20%,血量增加20%")
-            A_player.防御 *= 1.2;
-            A_player.当前血量 += A_player.血量上限 * 0.2
-        }     
-    }
-    if (equipment.护具.fumo == "长板之龙") {
-        if (random > 0.8) {
-            msg.push(A_player.名号 + "使用了长板之龙主动技能百鸟朝凤,下次伤害提升了100%")
-            att *= 2;
-        } else {
-            if (B_player.魔道值 > 1000) {
-                msg.push("因为" + B_player.名号 + "是大魔王,触发了长板之龙被动技能惩奸除恶,下次伤害提升了50%")
-                att *= 1.5;
-            } else {
-                msg.push(A_player.名号 + "使用了虎守,下次防御增加20%,血量增加20%")
-                A_player.防御 *= 1.2;
-                A_player.当前血量 += A_player.血量上限 * 0.2
-            }
-        }
-    }
-    if (equipment.武器.fumo == "锋利1") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是锋利1,${A_player.名号}下次伤害提升10%`)
-            att *= 1.1;
-        }
-    }
-    if (equipment.武器.fumo == "锋利2") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是锋利2,${A_player.名号}下次伤害提升20%`)
-            att *= 1.2;
-        }
-    }
-    if (equipment.武器.fumo == "锋利3") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是锋利3,${A_player.名号}下次伤害提升30%`)
-            att *= 1.3;
-        }
-    }
-    if (equipment.武器.fumo == "锋利4") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是锋利4,${A_player.名号}下次伤害提升40%`)
-            att *= 1.4;
-        }
-    }
-    if (equipment.武器.fumo == "锋利5") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是锋利5,${A_player.名号}下次伤害提升50%`)
-            att *= 1.5;
-        }
-    }
-    if (equipment.武器.fumo == "横扫之刃1") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是横扫之刃1,${A_player.名号}下次伤害提升10%`)
-            att *= 1.1;
-        }
-    }
-    if (equipment.武器.fumo == "横扫之刃2") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是横扫之刃2,${A_player.名号}下次伤害提升20%`)
-            att *= 1.2;
-        }
-    }
-    if (equipment.武器.fumo == "横扫之刃3") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升30%`)
-            att *= 1.3;
-        }
-    }
-    if (equipment.武器.fumo == "横扫之刃4") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是横扫之刃4,${A_player.名号}下次伤害提升40%`)
-            att *= 1.4;
-        }
-    }
-    if (equipment.武器.fumo == "横扫之刃5") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升50%`)
-            att *= 1.5;
-        }
-    }
-    if (equipment.法宝.fumo == "生命吸收1") {
-        if (random > 0.8) {
-            msg.push(`${A_player.名号}使用了生命吸收,${B_player.名号}10%血量被${A_player.名号}吸取了`)
-            B_player.当前血量 -= B_player.当前血量 * 0.1
-            A_player.当前血量 += B_player.当前血量 * 0.1
-        }
-    }
-    if (equipment.法宝.fumo == "生命吸收2") {
-        if (random > 0.8) {
-            msg.push(`${A_player.名号}使用了生命吸收,${B_player.名号}20%血量被${A_player.名号}吸取了`)
-            B_player.当前血量 -= B_player.当前血量 * 0.2
-            A_player.当前血量 += B_player.当前血量 * 0.2
-        }
-    }
-    if (equipment.武器.fumo == "斩首") {
-        msg.push(`${A_player.名号}使用了斩首,冲向了${B_player.名号},下次伤害提升50%`)
-        att *= 1.5;
-    }
-    if (equipment.武器.fumo == "力量1") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是力量1,${A_player.名号}下次伤害提升10%`)
-            att *= 1.1;
-        }
-    }
-    if (equipment.武器.fumo == "力量2") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是力量2,${A_player.名号}下次伤害提升20%`)
-            att *= 1.2;
-        }
-    }
-    if (equipment.武器.fumo == "力量3") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是力量3,${A_player.名号}下次伤害提升30%`)
-            att *= 1.3;
-        }
-    }
-    if (equipment.武器.fumo == "力量4") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是力量4,${A_player.名号}下次伤害提升40%`)
-            att *= 1.4;
-        }
-    }
-    if (equipment.武器.fumo == "力量5") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是力量5,${A_player.名号}下次伤害提升50%`)
-            att *= 1.5;
-        }
-    }
-    if (equipment.护具.fumo == "保护1") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是保护1,${A_player.名号}下次防御提升10%`)
-            A_player.防御 += A_player.防御 * 0.1
-        }
-    }
-    if (equipment.护具.fumo == "保护2") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是保护2,${A_player.名号}下次防御提升20%`)
-            A_player.防御 += A_player.防御 * 0.2
-        }
-    }
-    if (equipment.护具.fumo == "保护3") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是保护1,${A_player.名号}下次防御提升30%`)
-            A_player.防御 += A_player.防御 * 0.3
-        }
-    }
-    if (equipment.护具.fumo == "保护4") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是保护1,${A_player.名号}下次防御提升40%`)
-            A_player.防御 += A_player.防御 * 0.4
-        }
-    }
-    if (equipment.护具.fumo == "保护5") {
-        if (random > 0.8) {
-            msg.push(`由于武器的附魔书属性是保护5,${A_player.名号}下次防御提升50%`)
-            A_player.防御 += A_player.防御 * 0.5
-        }
-    }
-    if (A_lin == yuansu[0] || A_lin == yuansu[1] || A_lin == yuansu[2] || A_lin == yuansu[3] || A_lin == yuansu[4] || A_lin == yuansu[5] || A_lin == yuansu[6]) {
-        if (equipment.法宝.fumo == "制衡天下1") {
-            if (B.法宝.fumo == "制衡天下2" || B.法宝.fumo == "制衡天下3" || B.法宝.fumo == "制衡天下4" || B.法宝.fumo == "制衡天下5") {
-                msg.push(`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`)
-            } else if (B.法宝.fumo == "制衡天下1") {
-                msg.push("由于双方制衡天下等级相同，双方血量都增加10%")
-                A_player.当前血量 += A_player.血量上限 * 0.1
-                B_player.当前血量 += B_player.血量上限 * 0.1
-            } else {
-                msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量减少了1%`)
-                A_player.当前血量 = A_player.血量上限
-                B_player.当前血量 -= B_player.血量上限 * 0.01
-            }
-
-        }
-        if (equipment.法宝.fumo == "制衡天下2") {
-            if (B.法宝.fumo == "制衡天下3" || B.法宝.fumo == "制衡天下4" || B.法宝.fumo == "制衡天下5") {
-                msg.push(`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`)
-            } else if (B.法宝.fumo == "制衡天下2") {
-                msg.push("由于双方制衡天下等级相同，双方血量都增加20%")
-                A_player.当前血量 += A_player.血量上限 * 0.2
-                B_player.当前血量 += B_player.血量上限 * 0.2
-            } else {
-                msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量减少了2%`)
-                A_player.当前血量 = A_player.血量上限
-                B_player.当前血量 -= B_player.血量上限 * 0.02
-            }
-
-        }
-        if (equipment.法宝.fumo == "制衡天下3") {
-            if (B.法宝.fumo == "制衡天下4" || B.法宝.fumo == "制衡天下5") {
-                msg.push(`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`)
-            } else if (B.法宝.fumo == "制衡天下3") {
-                msg.push("由于双方制衡天下等级相同，双方血量都增加30%")
-                A_player.当前血量 += A_player.血量上限 * 0.3
-                B_player.当前血量 += B_player.血量上限 * 0.3
-            } else {
-                msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量减少了3%`)
-                A_player.当前血量 = A_player.血量上限
-                B_player.当前血量 -= B_player.血量上限 * 0.03
-            }
-
-        }
-        if (equipment.法宝.fumo == "制衡天下4") {
-            if (B.法宝.fumo == "制衡天下5") {
-                msg.push(`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`)
-            } else if (B.法宝.fumo == "制衡天下4") {
-                msg.push("由于双方制衡天下等级相同，双方血量都增加40%")
-                A_player.当前血量 += A_player.血量上限 * 0.4
-                B_player.当前血量 += B_player.血量上限 * 0.4
-            } else {
-                msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量减少了4%`)
-                A_player.当前血量 = A_player.血量上限
-                B_player.当前血量 -= B_player.血量上限 * 0.04
-            }
-
-        }
-        if (equipment.法宝.fumo == "制衡天下5") {
-            if (B.法宝.fumo == "制衡天下5") {
-                msg.push("由于双方制衡天下等级相同，双方血量都增加50%")
-                A_player.当前血量 += A_player.血量上限 * 0.5
-                B_player.当前血量 += B_player.血量上限 * 0.5
-            } else {
-                msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量减少了5%`)
-                A_player.当前血量 = A_player.血量上限
-                B_player.当前血量 -= B_player.血量上限 * 0.05
-            }
-
-        }
-    }
-    if (B.武器.fumo == "击退1") {
-        if (random > 0.8) {
-            msg.push(`${B_player.名号}使用了击退,${A_player.名号}下次攻击将无效`)
-            att *= 0
-        }
-    }
-    if (B.武器.fumo == "击退2") {
-        if (random > 0.8) {
-            msg.push(`${B_player.名号}使用了击退,${A_player.名号}下次攻击被打断,受到了反噬,血量减少10%`)
-            att *= 0
-            A_player.当前血量 -= A_player.当前血量 * 0.1
-        }
-    }
-    if (B.护具.fumo == "荆棘1") {
-        if (random > 0.7) {
-            msg.push(`${B_player.名号}触发护具附魔属性荆棘1,${A_player.名号}下次伤害被反弹了10%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.1}`)
-            A_player.当前血量 = A_player.当前血量 - att * 0.1
-        }
-    }
-    if (B.护具.fumo == "荆棘2") {
-        if (random > 0.7) {
-            msg.push(`${B_player.名号}触发护具附魔属性荆棘2,${A_player.名号}下次伤害被反弹了20%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.2}`)
-            A_player.当前血量 = A_player.当前血量 - att * 0.2
-
-        }
-    }
-    if (B.护具.fumo == "荆棘3") {
-        if (random > 0.7) {
-            msg.push(`${B_player.名号}触发护具附魔属性荆棘3,${A_player.名号}下次伤害被反弹了30%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.3}`)
-            A_player.当前血量 = A_player.当前血量 - att * 0.3
-
-        }
-    }
-    if (B.护具.fumo == "荆棘4") {
-        if (random > 0.7) {
-            msg.push(`${B_player.名号}触发护具附魔属性荆棘4,${A_player.名号}下次伤害被反弹了40%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.4}`)
-            A_player.当前血量 = A_player.当前血量 - att * 0.4
-
-        }
-    }
-    if (B.护具.fumo == "荆棘5") {
-        if (random > 0.7) {
-            msg.push(`${B_player.名号}触发护具附魔属性荆棘5,${A_player.名号}下次伤害被反弹了50%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.5}`)
-            A_player.当前血量 = A_player.当前血量 - att * 0.5
-
-        }
-    }
-    if (equipment.护具.fumo == "无双鬼神") {
-      if(random>0.7){
-           msg.push(`${A_player.名号}使用了无双鬼神主动技能战意破守,${A_player.名号}士气更高了,${B_player.名号}士气变低了`)
-           att*=1.5
-           B_player.防御*=0.5;
-      }else if(A_player.魔道值>1000){
-           msg.push(`${A_player.名号}魔气重重,使用了无双鬼神主动技能离恨天,${A_player.名号}下次伤害提升50%`)
-            att*=1.5
-      }else{
-           msg.push(`${A_player.名号}使用了无双鬼神被动技能战意固守,${A_player.名号}下次防御提升30%`)
-            A_player.防御*=1.3;
-      }
-     }
-     if (equipment.法宝.fumo == "赤壁奇谋") {
-        if (A_lin == yuansu[0] || A_lin == yuansu[1] || A_lin == yuansu[2] || A_lin == yuansu[3] || A_lin == yuansu[4] || A_lin == yuansu[5] || A_lin == yuansu[6]) {
-            if (cnt == 1) {
-                msg.push(A_player.名号 + "使用了赤壁奇谋被动技能疾风烈火,战斗中对敌人造成燃烧伤害")
-            }
-            msg.push(A_player.名号 + "使用了赤壁奇谋主动技能炎龙冲阵,下次伤害无视击退效果,伤害提升了100%")
-            att *=2
-            gandianhuihe += 3
-            gandianhuihe -= 3
-            ranshao = true;
-        }
-    }
+	if (equipment.武器.fumo == '江东霸王') {
+		if (random > 0.6 && random <= 0.8) {
+			msg.push(A_player.名号 + '使用了决机,下次伤害提升了100%');
+			att *= 2;
+		} else if (random > 0.8) {
+			msg.push(A_player.名号 + '使用了火船摄阵');
+			att *= 1.5;
+		} else {
+			msg.push(A_player.名号 + '使用了余音绕梁');
+			att *= 1.2;
+		}
+	}
+	if (equipment.法宝.fumo == '天变之龙') {
+		if (random > 0.8) {
+			msg.push(A_player.名号 + '使用了八卦奇袭');
+			att *= 2;
+		} else if (random > 0.4 && random < 0.7) {
+			msg.push(A_player.名号 + '使用了十面之围');
+			att *= 1.5;
+		} else {
+			msg.push(A_player.名号 + '使用了虎守,下次防御增加20%,血量增加20%');
+			A_player.防御 *= 1.2;
+			A_player.当前血量 += A_player.血量上限 * 0.2;
+		}
+	}
+	if (equipment.护具.fumo == '长板之龙') {
+		if (random > 0.8) {
+			msg.push(A_player.名号 + '使用了长板之龙主动技能百鸟朝凤,下次伤害提升了100%');
+			att *= 2;
+		} else {
+			if (B_player.魔道值 > 1000) {
+				msg.push(
+					'因为' +
+						B_player.名号 +
+						'是大魔王,触发了长板之龙被动技能惩奸除恶,下次伤害提升了50%'
+				);
+				att *= 1.5;
+			} else {
+				msg.push(A_player.名号 + '使用了虎守,下次防御增加20%,血量增加20%');
+				A_player.防御 *= 1.2;
+				A_player.当前血量 += A_player.血量上限 * 0.2;
+			}
+		}
+	}
+	if (equipment.武器.fumo == '锋利1') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是锋利1,${A_player.名号}下次伤害提升10%`);
+			att *= 1.1;
+		}
+	}
+	if (equipment.武器.fumo == '锋利2') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是锋利2,${A_player.名号}下次伤害提升20%`);
+			att *= 1.2;
+		}
+	}
+	if (equipment.武器.fumo == '锋利3') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是锋利3,${A_player.名号}下次伤害提升30%`);
+			att *= 1.3;
+		}
+	}
+	if (equipment.武器.fumo == '锋利4') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是锋利4,${A_player.名号}下次伤害提升40%`);
+			att *= 1.4;
+		}
+	}
+	if (equipment.武器.fumo == '锋利5') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是锋利5,${A_player.名号}下次伤害提升50%`);
+			att *= 1.5;
+		}
+	}
+	if (equipment.武器.fumo == '横扫之刃1') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是横扫之刃1,${A_player.名号}下次伤害提升10%`);
+			att *= 1.1;
+		}
+	}
+	if (equipment.武器.fumo == '横扫之刃2') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是横扫之刃2,${A_player.名号}下次伤害提升20%`);
+			att *= 1.2;
+		}
+	}
+	if (equipment.武器.fumo == '横扫之刃3') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升30%`);
+			att *= 1.3;
+		}
+	}
+	if (equipment.武器.fumo == '横扫之刃4') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是横扫之刃4,${A_player.名号}下次伤害提升40%`);
+			att *= 1.4;
+		}
+	}
+	if (equipment.武器.fumo == '横扫之刃5') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升50%`);
+			att *= 1.5;
+		}
+	}
+	if (equipment.法宝.fumo == '生命吸收1') {
+		if (random > 0.8) {
+			msg.push(
+				`${A_player.名号}使用了生命吸收,${B_player.名号}10%血量被${A_player.名号}吸取了`
+			);
+			B_player.当前血量 -= B_player.当前血量 * 0.1;
+			A_player.当前血量 += B_player.当前血量 * 0.1;
+		}
+	}
+	if (equipment.法宝.fumo == '生命吸收2') {
+		if (random > 0.8) {
+			msg.push(
+				`${A_player.名号}使用了生命吸收,${B_player.名号}20%血量被${A_player.名号}吸取了`
+			);
+			B_player.当前血量 -= B_player.当前血量 * 0.2;
+			A_player.当前血量 += B_player.当前血量 * 0.2;
+		}
+	}
+	if (equipment.武器.fumo == '斩首') {
+		msg.push(`${A_player.名号}使用了斩首,冲向了${B_player.名号},下次伤害提升50%`);
+		att *= 1.5;
+	}
+	if (equipment.武器.fumo == '力量1') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是力量1,${A_player.名号}下次伤害提升10%`);
+			att *= 1.1;
+		}
+	}
+	if (equipment.武器.fumo == '力量2') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是力量2,${A_player.名号}下次伤害提升20%`);
+			att *= 1.2;
+		}
+	}
+	if (equipment.武器.fumo == '力量3') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是力量3,${A_player.名号}下次伤害提升30%`);
+			att *= 1.3;
+		}
+	}
+	if (equipment.武器.fumo == '力量4') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是力量4,${A_player.名号}下次伤害提升40%`);
+			att *= 1.4;
+		}
+	}
+	if (equipment.武器.fumo == '力量5') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是力量5,${A_player.名号}下次伤害提升50%`);
+			att *= 1.5;
+		}
+	}
+	if (equipment.护具.fumo == '保护1') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是保护1,${A_player.名号}下次防御提升10%`);
+			A_player.防御 += A_player.防御 * 0.1;
+		}
+	}
+	if (equipment.护具.fumo == '保护2') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是保护2,${A_player.名号}下次防御提升20%`);
+			A_player.防御 += A_player.防御 * 0.2;
+		}
+	}
+	if (equipment.护具.fumo == '保护3') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是保护1,${A_player.名号}下次防御提升30%`);
+			A_player.防御 += A_player.防御 * 0.3;
+		}
+	}
+	if (equipment.护具.fumo == '保护4') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是保护1,${A_player.名号}下次防御提升40%`);
+			A_player.防御 += A_player.防御 * 0.4;
+		}
+	}
+	if (equipment.护具.fumo == '保护5') {
+		if (random > 0.8) {
+			msg.push(`由于武器的附魔书属性是保护5,${A_player.名号}下次防御提升50%`);
+			A_player.防御 += A_player.防御 * 0.5;
+		}
+	}
+	if (
+		A_lin == yuansu[0] ||
+		A_lin == yuansu[1] ||
+		A_lin == yuansu[2] ||
+		A_lin == yuansu[3] ||
+		A_lin == yuansu[4] ||
+		A_lin == yuansu[5] ||
+		A_lin == yuansu[6]
+	) {
+		if (equipment.法宝.fumo == '制衡天下1') {
+			if (
+				B.法宝.fumo == '制衡天下2' ||
+				B.法宝.fumo == '制衡天下3' ||
+				B.法宝.fumo == '制衡天下4' ||
+				B.法宝.fumo == '制衡天下5'
+			) {
+				msg.push(
+					`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`
+				);
+			} else if (B.法宝.fumo == '制衡天下1') {
+				msg.push('由于双方制衡天下等级相同，双方血量都增加10%');
+				A_player.当前血量 += A_player.血量上限 * 0.1;
+				B_player.当前血量 += B_player.血量上限 * 0.1;
+			} else {
+				msg.push(
+					`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量减少了1%`
+				);
+				A_player.当前血量 = A_player.血量上限;
+				B_player.当前血量 -= B_player.血量上限 * 0.01;
+			}
+		}
+		if (equipment.法宝.fumo == '制衡天下2') {
+			if (
+				B.法宝.fumo == '制衡天下3' ||
+				B.法宝.fumo == '制衡天下4' ||
+				B.法宝.fumo == '制衡天下5'
+			) {
+				msg.push(
+					`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`
+				);
+			} else if (B.法宝.fumo == '制衡天下2') {
+				msg.push('由于双方制衡天下等级相同，双方血量都增加20%');
+				A_player.当前血量 += A_player.血量上限 * 0.2;
+				B_player.当前血量 += B_player.血量上限 * 0.2;
+			} else {
+				msg.push(
+					`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量减少了2%`
+				);
+				A_player.当前血量 = A_player.血量上限;
+				B_player.当前血量 -= B_player.血量上限 * 0.02;
+			}
+		}
+		if (equipment.法宝.fumo == '制衡天下3') {
+			if (B.法宝.fumo == '制衡天下4' || B.法宝.fumo == '制衡天下5') {
+				msg.push(
+					`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`
+				);
+			} else if (B.法宝.fumo == '制衡天下3') {
+				msg.push('由于双方制衡天下等级相同，双方血量都增加30%');
+				A_player.当前血量 += A_player.血量上限 * 0.3;
+				B_player.当前血量 += B_player.血量上限 * 0.3;
+			} else {
+				msg.push(
+					`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量减少了3%`
+				);
+				A_player.当前血量 = A_player.血量上限;
+				B_player.当前血量 -= B_player.血量上限 * 0.03;
+			}
+		}
+		if (equipment.法宝.fumo == '制衡天下4') {
+			if (B.法宝.fumo == '制衡天下5') {
+				msg.push(
+					`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`
+				);
+			} else if (B.法宝.fumo == '制衡天下4') {
+				msg.push('由于双方制衡天下等级相同，双方血量都增加40%');
+				A_player.当前血量 += A_player.血量上限 * 0.4;
+				B_player.当前血量 += B_player.血量上限 * 0.4;
+			} else {
+				msg.push(
+					`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量减少了4%`
+				);
+				A_player.当前血量 = A_player.血量上限;
+				B_player.当前血量 -= B_player.血量上限 * 0.04;
+			}
+		}
+		if (equipment.法宝.fumo == '制衡天下5') {
+			if (B.法宝.fumo == '制衡天下5') {
+				msg.push('由于双方制衡天下等级相同，双方血量都增加50%');
+				A_player.当前血量 += A_player.血量上限 * 0.5;
+				B_player.当前血量 += B_player.血量上限 * 0.5;
+			} else {
+				msg.push(
+					`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量减少了5%`
+				);
+				A_player.当前血量 = A_player.血量上限;
+				B_player.当前血量 -= B_player.血量上限 * 0.05;
+			}
+		}
+	}
+	if (B.武器.fumo == '击退1') {
+		if (random > 0.8) {
+			msg.push(`${B_player.名号}使用了击退,${A_player.名号}下次攻击将无效`);
+			att *= 0;
+		}
+	}
+	if (B.武器.fumo == '击退2') {
+		if (random > 0.8) {
+			msg.push(
+				`${B_player.名号}使用了击退,${A_player.名号}下次攻击被打断,受到了反噬,血量减少10%`
+			);
+			att *= 0;
+			A_player.当前血量 -= A_player.当前血量 * 0.1;
+		}
+	}
+	if (B.护具.fumo == '荆棘1') {
+		if (random > 0.7) {
+			msg.push(
+				`${B_player.名号}触发护具附魔属性荆棘1,${A_player.名号}下次伤害被反弹了10%,${
+					A_player.名号
+				}剩余血量${A_player.当前血量 - att * 0.1}`
+			);
+			A_player.当前血量 = A_player.当前血量 - att * 0.1;
+		}
+	}
+	if (B.护具.fumo == '荆棘2') {
+		if (random > 0.7) {
+			msg.push(
+				`${B_player.名号}触发护具附魔属性荆棘2,${A_player.名号}下次伤害被反弹了20%,${
+					A_player.名号
+				}剩余血量${A_player.当前血量 - att * 0.2}`
+			);
+			A_player.当前血量 = A_player.当前血量 - att * 0.2;
+		}
+	}
+	if (B.护具.fumo == '荆棘3') {
+		if (random > 0.7) {
+			msg.push(
+				`${B_player.名号}触发护具附魔属性荆棘3,${A_player.名号}下次伤害被反弹了30%,${
+					A_player.名号
+				}剩余血量${A_player.当前血量 - att * 0.3}`
+			);
+			A_player.当前血量 = A_player.当前血量 - att * 0.3;
+		}
+	}
+	if (B.护具.fumo == '荆棘4') {
+		if (random > 0.7) {
+			msg.push(
+				`${B_player.名号}触发护具附魔属性荆棘4,${A_player.名号}下次伤害被反弹了40%,${
+					A_player.名号
+				}剩余血量${A_player.当前血量 - att * 0.4}`
+			);
+			A_player.当前血量 = A_player.当前血量 - att * 0.4;
+		}
+	}
+	if (B.护具.fumo == '荆棘5') {
+		if (random > 0.7) {
+			msg.push(
+				`${B_player.名号}触发护具附魔属性荆棘5,${A_player.名号}下次伤害被反弹了50%,${
+					A_player.名号
+				}剩余血量${A_player.当前血量 - att * 0.5}`
+			);
+			A_player.当前血量 = A_player.当前血量 - att * 0.5;
+		}
+	}
+	if (equipment.护具.fumo == '无双鬼神') {
+		if (random > 0.7) {
+			msg.push(
+				`${A_player.名号}使用了无双鬼神主动技能战意破守,${A_player.名号}士气更高了,${B_player.名号}士气变低了`
+			);
+			att *= 1.5;
+			B_player.防御 *= 0.5;
+		} else if (A_player.魔道值 > 1000) {
+			msg.push(
+				`${A_player.名号}魔气重重,使用了无双鬼神主动技能离恨天,${A_player.名号}下次伤害提升50%`
+			);
+			att *= 1.5;
+		} else {
+			msg.push(
+				`${A_player.名号}使用了无双鬼神被动技能战意固守,${A_player.名号}下次防御提升30%`
+			);
+			A_player.防御 *= 1.3;
+		}
+	}
+	if (equipment.法宝.fumo == '赤壁奇谋') {
+		if (
+			A_lin == yuansu[0] ||
+			A_lin == yuansu[1] ||
+			A_lin == yuansu[2] ||
+			A_lin == yuansu[3] ||
+			A_lin == yuansu[4] ||
+			A_lin == yuansu[5] ||
+			A_lin == yuansu[6]
+		) {
+			if (cnt == 1) {
+				msg.push(
+					A_player.名号 + '使用了赤壁奇谋被动技能疾风烈火,战斗中对敌人造成燃烧伤害'
+				);
+			}
+			msg.push(
+				A_player.名号 +
+					'使用了赤壁奇谋主动技能炎龙冲阵,下次伤害无视击退效果,伤害提升了100%'
+			);
+			att *= 2;
+			gandianhuihe += 3;
+			gandianhuihe -= 3;
+			ranshao = true;
+		}
+	}
 
 	//===============================================================================这里是仙宠======================================================================================================
 	if (A_player.仙宠.type == '战斗') {
