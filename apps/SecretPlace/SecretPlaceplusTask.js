@@ -283,7 +283,7 @@ export class SecretPlaceplusTask extends plugin {
 								//判断是不是旧神界
 								let random = Math.random();
 								if (random < player.幸运) {
-									if (random < player.addluckyNo) {
+									if (random <= player.addluckyNo) {
 										last_msg += '福源丹生效，所以在';
 									} else if (player.仙宠.type == '幸运') {
 										last_msg += '仙宠使你在探索中欧气满满，所以在';

@@ -287,7 +287,7 @@ export class SecretPlaceTask extends plugin {
 							if (weizhi.one[0].name != '洗根水') {
 								//判断是不是旧神界
 								let random = Math.random();
-								if (random < player.幸运) {
+								if (random <= player.幸运) {
 									if (random < player.addluckyNo) {
 										last_msg += '福源丹生效，所以在';
 									} else if (player.仙宠.type == '幸运') {
