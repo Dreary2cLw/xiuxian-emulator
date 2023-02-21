@@ -509,8 +509,9 @@ export class Forum extends plugin {
 		let newDay = year + '-' + month + '-' + day; //获取完整年月日
 		let now_time = new Date().getTime();
 		let time = 1; //分钟
+		let wupin;
 		if (thing_exist.class == '装备') {
-			let wupin = {
+			wupin = {
 				title: thing_name, //发布名
 				qq: usr_qq, //发布名
 				time: newDay, //发布时间
@@ -525,7 +526,7 @@ export class Forum extends plugin {
 				end_time: now_time + 60000 * time,
 			};
 		} else {
-			let wupin = {
+			wupin = {
 				title: thing_name, //发布名
 				qq: usr_qq, //发布名
 				time: newDay, //发布时间
