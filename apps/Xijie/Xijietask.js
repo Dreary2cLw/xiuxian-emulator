@@ -104,8 +104,8 @@ export class Xijietask extends plugin {
 							防御: parseInt(monster.def * player.防御),
 							当前血量: parseInt(monster.blood * player.血量上限),
 							暴击率: monster.baoji,
-							灵根: player.灵根,
-							法球倍率: player.法球倍率,
+							灵根: monster.灵根,
+							法球倍率: monster.灵根.法球倍率,
 						};
 						let Data_battle;
 						let last_msg = '';

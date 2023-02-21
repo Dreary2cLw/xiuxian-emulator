@@ -1,15 +1,15 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import fs from 'fs';
-import {
-	__PATH,
-	Add_灵石,
-	existplayer,
-	Read_player,
-	Write_player,
-} from '../Xiuxian/xiuxian.js';
+import { __PATH } from '../Xiuxian/xiuxian.js';
 import path from 'path';
 import Show from '../../model/show.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
+import {
+	existplayer,
+	Read_player,
+	Add_灵石,
+	Write_player,
+} from '../Xiuxian/xiuxian.js';
 
 export class Xijie extends plugin {
 	constructor() {
@@ -80,7 +80,7 @@ export class Xijie extends plugin {
 			);
 			return;
 		}
-		let didian = e.msg.replace('#洗劫', '');
+		var didian = e.msg.replace('#洗劫', '');
 		didian = didian.trim();
 		let shop = await Read_shop();
 		let i;
@@ -132,7 +132,7 @@ export class Xijie extends plugin {
 		if (player.魔道值 > 999) {
 			A_player.魔值 = 1;
 		}
-		let time = 15; //时间（分钟）
+		var time = 15; //时间（分钟）
 		let action_time = 60000 * time; //持续时间，单位毫秒
 		let arr = {
 			action: '洗劫', //动作
@@ -191,7 +191,7 @@ export class Xijie extends plugin {
 				return;
 			}
 		}
-		let didian = e.msg.replace('#探查', '');
+		var didian = e.msg.replace('#探查', '');
 		didian = didian.trim();
 		let shop = await Read_shop();
 		let i;
@@ -280,7 +280,7 @@ export async function existshop(didian) {
 			break;
 		}
 	}
-	for (let j = 0; j < shop[i].one.length; j++) {
+	for (var j = 0; j < shop[i].one.length; j++) {
 		if (shop[i].one[j].数量 > 0) {
 			thing.push(shop[i].one[j]);
 		}
