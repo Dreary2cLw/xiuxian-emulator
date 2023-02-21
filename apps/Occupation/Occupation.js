@@ -1194,7 +1194,6 @@ export class Occupation extends plugin {
 		if (qq != 1) {
 			let player_B = await Read_player(qq);
 			player_B.当前血量 = player_B.血量上限;
-
 			player_B.法球倍率 = player_B.灵根.法球倍率;
 			let buff = 1 + player.occupation_level * 0.055;
 			let player_A = {
