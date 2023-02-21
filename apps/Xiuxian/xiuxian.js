@@ -1815,16 +1815,16 @@ export async function Gaodenyuansulun(
 		}
 		//雷草
 		if (B_lin == yuansu[6]) {
-			msg.push(A_player.名号 + '使用了雷元素战技,触发了激化反应,伤害提升100%');
-			att *= 2;
+			msg.push(A_player.名号 + '使用了雷元素战技,触发了激化反应,伤害提升50%');
+			att *= 1.5;
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '草') {
 			msg.push(
 				A_player.名号 +
-					'使用了雷元素战技,草属性附魔武器与其产生共鸣,触发了激化反应,伤害提升100%'
+					'使用了雷元素战技,草属性附魔武器与其产生共鸣,触发了激化反应,伤害提升50%'
 			);
-			att *= 2;
+			att *= 1.5;
 			chufa = true;
 		}
 	}
