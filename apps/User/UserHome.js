@@ -3214,6 +3214,7 @@ export class UserHome extends plugin {
                     await Add_najie_thing(usr_qq, wupin.name, wupin.class, -1)
                     if (equipment.武器.fumo == desc) {
                         e.reply(`你的武器的附魔属性已经是${desc}了,不需要再附魔这个属性了`)
+                        return;
                     }
                     if (equipment.武器.fumo != "无" && equipment.武器.fumo != null) {
                         await Add_najie_thing(usr_qq, "附魔书-" + equipment.武器.fumo, "道具", 1)
@@ -3226,6 +3227,7 @@ export class UserHome extends plugin {
                     await Add_najie_thing(usr_qq, wupin.name, wupin.class, -1)
                     if (equipment.护具.fumo == desc) {
                         e.reply(`你的护具的附魔属性已经是${desc}了,不需要再附魔这个属性了`)
+                        return;
                     }
                     if (equipment.护具.fumo != "无" && equipment.武器.fumo != null) {
                         await Add_najie_thing(usr_qq, "附魔书-" + equipment.护具.fumo, "道具", 1)
@@ -3238,6 +3240,7 @@ export class UserHome extends plugin {
                     await Add_najie_thing(usr_qq, wupin.name, wupin.class, -1)
                     if (equipment.法宝.fumo == desc) {
                         e.reply(`你的法宝的附魔属性已经是${desc}了,不需要再附魔这个属性了`)
+                        return;
                     }
                     if (equipment.法宝.fumo != "无" && equipment.法宝.fumo != null) {
                         await Add_najie_thing(usr_qq, "附魔书-" + equipment.法宝.fumo, "道具", 1)
