@@ -1559,15 +1559,15 @@ export async function Gaodenyuansulun(
 	if (A_lin == yuansu[0]) {
 		//火水
 		if (B_lin == yuansu[1]) {
-			att = last_att * 2;
+			att = last_att * 1.5;
 			msg.push(A_player.名号 + '使用了火元素战技,触发了蒸发反应,额外造成了50%伤害');
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '水') {
-			att = last_att * 2;
+			att = last_att * 1.5;
 			msg.push(
 				A_player.名号 +
-					'使用了火元素战技,水属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了100%伤害'
+					'使用了火元素战技,水属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了50%伤害'
 			);
 		}
 		//火雷
@@ -1585,15 +1585,15 @@ export async function Gaodenyuansulun(
 		}
 		//火冰
 		if (B_lin == yuansu[4]) {
-			att = last_att * 2;
-			msg.push(A_player.名号 + '使用了火元素战技,触发了融化反应,额外造成了200%伤害');
+			att = last_att * 1.5;
+			msg.push(A_player.名号 + '使用了火元素战技,触发了融化反应,额外造成了50%伤害');
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '冰') {
-			att = last_att * 2;
+			att = last_att * 1.5;
 			msg.push(
 				A_player.名号 +
-					'使用了火元素战技,冰属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了100%伤害'
+					'使用了火元素战技,冰属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了50%伤害'
 			);
 		}
 		//火草
@@ -1633,15 +1633,15 @@ export async function Gaodenyuansulun(
 	if (A_lin == yuansu[1]) {
 		//火水
 		if (B_lin == yuansu[0]) {
-			att = last_att * 2;
-			msg.push(A_player.名号 + '使用了水元素战技,触发了蒸发反应,额外造成了100%伤害');
+			att = last_att * 1.5;
+			msg.push(A_player.名号 + '使用了水元素战技,触发了蒸发反应,额外造成了50%伤害');
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '火') {
-			att = last_att * 2;
+			att = last_att * 1.5;
 			msg.push(
 				A_player.名号 +
-					'使用了火元素战技,火属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了100%伤害'
+					'使用了火元素战技,火属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了50%伤害'
 			);
 		}
 		//水雷
@@ -1832,15 +1832,15 @@ export async function Gaodenyuansulun(
 	if (A_lin == yuansu[4]) {
 		//火冰
 		if (B_lin == yuansu[0]) {
-			att = last_att * 2;
-			msg.push(A_player.名号 + '使用了冰元素战技,触发了融化反应,额外造成了200%伤害');
+			att = last_att * 1.5;
+			msg.push(A_player.名号 + '使用了冰元素战技,触发了融化反应,额外造成了50%伤害');
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '火') {
-			att = last_att * 2;
+			att = last_att * 1.5;
 			msg.push(
 				A_player.名号 +
-					'使用了冰元素战技,火属性附魔武器与其产生共鸣,触发了融化反应,额外造成了200%伤害'
+					'使用了冰元素战技,火属性附魔武器与其产生共鸣,触发了融化反应,额外造成了50%伤害'
 			);
 			chufa = true;
 		}
@@ -1867,7 +1867,7 @@ export async function Gaodenyuansulun(
 		//雷冰(50%)
 		let random4 = Math.random();
 		if (B_lin == yuansu[2] && random4 > 0.5) {
-			att = last_att * 2;
+			att = last_att * 1.5;
 			chaodaohuihe2 += 3;
 			msg.push(
 				A_player.名号 +
@@ -1882,6 +1882,7 @@ export async function Gaodenyuansulun(
 			chaodao = true;
 		}
 		if (equipment.武器.fumo == '冰' && random4 > 0.5) {
+			att = last_att * 1.5
 			chaodaohuihe2 += 3;
 			msg.push(
 				A_player.名号 +
@@ -1969,16 +1970,16 @@ export async function Gaodenyuansulun(
 		}
 		//雷草
 		if (B_lin == yuansu[2]) {
-			msg.push(A_player.名号 + '使用了木元素战技,触发了激化反应,伤害提升30%');
-			att *= 2;
+			msg.push(A_player.名号 + '使用了木元素战技,触发了激化反应,伤害提升50%');
+			att *= 1.5;
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '雷') {
 			msg.push(
 				A_player.名号 +
-					'使用了木元素战技,雷属性附魔武器与其产生共鸣,触发了激化反应,伤害提升30%'
+					'使用了木元素战技,雷属性附魔武器与其产生共鸣,触发了激化反应,伤害提升50%'
 			);
-			att *= 2;
+			att *= 1.5;
 			chufa = true;
 		}
 	}
