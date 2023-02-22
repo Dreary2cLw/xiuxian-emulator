@@ -74,8 +74,6 @@ Yunzai-Bot\plugins\xiuxian-emulator-plugin\resources\data
 > 香菜(3145625195):开发，维护  
 > 画手(1589978621):维护和处理bug
 
-
-
 ## 配置与存档
 
 > xiuxian-emulator-plugin/ config / xiuxian / xiuxian.yaml       
