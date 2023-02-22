@@ -2403,8 +2403,8 @@ export class UserHome extends plugin {
                         e.reply(`${last_msg}${fyd_msg}你在天衡山捡到了15w灵石和圆石${3 * mugao * n + 9 * shigao * n}以及煤炭${5 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
                     } else if (math > 0.7 && math < 0.8) {
-                        await Add_najie_thing(usr_qq, "泥土", "材料", 20 * n);
-                        e.reply(`${last_msg}${fyd_msg}你在天衡山捡到了15w灵石和圆石${3 * mugao * n + 9 * shigao * n}以及泥土${20 * n}个,获得了修为${xiuwei}血气${xueqi}`)
+                        await Add_najie_thing(usr_qq, "泥土", "材料", 10 * n);
+                        e.reply(`${last_msg}${fyd_msg}你在天衡山捡到了15w灵石和圆石${3 * mugao * n + 9 * shigao * n}以及泥土${10 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
                     } else {
                         e.reply(`${last_msg}${fyd_msg}你在天衡山捡到了15w灵石和圆石${3 * mugao * n + 9 * shigao * n},获得了修为${xiuwei}血气${xueqi}`)
