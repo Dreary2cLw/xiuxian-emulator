@@ -1544,6 +1544,11 @@ export class UserHome extends plugin {
             }
             if (thing_name == "清灵藏的新春木盒") {
                 let math = Math.random();
+                let ranliao = await exist_najie_thing(usr_qq, "清灵藏的新春木盒", "道具");
+                    if (ranliao < quantity) {
+                        e.reply('你似乎没有那么多' + thing_name)
+                        return;
+                    }
                 if (math > 0.85 && math <= 1) {
                     await Add_najie_thing(usr_qq, "万妖王", "草药", quantity);
                     await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", -quantity);
