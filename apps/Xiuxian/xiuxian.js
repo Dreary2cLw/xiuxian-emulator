@@ -1643,6 +1643,7 @@ export async function Gaodenyuansulun(
 				A_player.名号 +
 					'使用了火元素战技,火属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了50%伤害'
 			);
+             chufa = true   
 		}
 		//水雷
 		if (B_lin == yuansu[2]) {
