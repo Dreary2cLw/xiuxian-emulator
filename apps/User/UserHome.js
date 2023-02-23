@@ -2486,7 +2486,7 @@ export class UserHome extends plugin {
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", n * 2);
                         e.reply(`${last_msg}${fyd_msg}你运气太好了,钓上来了钓鱼掉上来的奇怪盒子${2 * n}个,还有一些鱼肉`)
                         return;
-                    } else if (math > 0 && math <= 0.1) {
+                    } else if (math > 0 && math <= 0.01) {
                         await Add_najie_thing(usr_qq, "烤鱼", "食材", 100 * n);
                         e.reply("你遇到了可莉,与他一起炸鱼去了,你们今天玩的很开心,可莉很感谢你,送了你100个烤鱼")
                         return;
