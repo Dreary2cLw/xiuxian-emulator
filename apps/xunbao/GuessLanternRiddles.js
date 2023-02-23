@@ -139,8 +139,8 @@ export class GuessLanternRiddles extends plugin {
 				e.reply('上一个树苗还没成熟' + `剩余时间:  ${Couple_m}分 ${Couple_s}秒`);
 				return;
 			}
-			sapling = await redis.get("xiuxian:player:" + usr_qq + "sapling")
-            if (sapling == 0 || sapling == null) {
+			sapling = await redis.get('xiuxian:player:' + usr_qq + 'sapling');
+			if (sapling == 0 || sapling == null) {
 				if (!shumiao) {
 					e.reply('你没有树苗');
 					return;
@@ -156,16 +156,16 @@ export class GuessLanternRiddles extends plugin {
 				e.reply('你消耗了60骨粉,土地变得肥沃了，可以种植作物了');
 				await Add_najie_thing(usr_qq, '骨粉', '材料', -60);
 				sleep(5000);
-				sapling = 1
-                await redis.set("xiuxian:player:" + usr_qq + "sapling", sapling)
+				sapling = 1;
+				await redis.set('xiuxian:player:' + usr_qq + 'sapling', sapling);
 				await Add_najie_thing(usr_qq, '树苗', '食材', -1);
 				e.reply('成功种下一个树苗,60分钟后成熟');
 				await redis.set('xiuxian:player:' + usr_qq + 'shumiao', now_Time);
-                return;
+				return;
 			}
 			sapling = 2;
 			e.reply('先收获你的上一个树苗再种下一个吧');
-			await redis.set("xiuxian:player:" + usr_qq + "sapling", sapling)
+			await redis.set('xiuxian:player:' + usr_qq + 'sapling', sapling);
 			return;
 		}
 	}
@@ -208,8 +208,8 @@ export class GuessLanternRiddles extends plugin {
 			}
 		}
 		if (thing_name == '树苗') {
-			let sapling = await redis.get("xiuxian:player:" + usr_qq + "sapling")
-            if (sapling == 0) {
+			let sapling = await redis.get('xiuxian:player:' + usr_qq + 'sapling');
+			if (sapling == 0) {
 				e.reply('你没有种树苗');
 				return;
 			} else if (sapling == 1) {
@@ -218,7 +218,7 @@ export class GuessLanternRiddles extends plugin {
 			} else if (sapling == 2) {
 				e.reply('收获成功,你获得了3个树苗');
 				sapling = 0;
-                await redis.set("xiuxian:player:" + usr_qq + "sapling", sapling)
+				await redis.set('xiuxian:player:' + usr_qq + 'sapling', sapling);
 				await Add_najie_thing(usr_qq, '树苗', '食材', 3);
 				return;
 			}
@@ -518,65 +518,63 @@ export class GuessLanternRiddles extends plugin {
 			);
 		}
 		if (thing == '附魔台') {
-			if (thing_name == '附魔台') {
-				if (player.附魔台 != 1) {
-					e.reply('你没有附魔台');
+			if (player.附魔台 != 1) {
+				e.reply('你没有附魔台');
+				return;
+			}
+			if (player.书架 < 50) {
+				let x = await exist_najie_thing(usr_qq, '青金石', '材料');
+				if (!x) {
+					e.reply('你没有【青金石】');
 					return;
 				}
-				if (player.书架 < 50) {
-					let x = await exist_najie_thing(usr_qq, '青金石', '材料');
-					if (!x) {
-						e.reply('你没有【青金石】');
-						return;
-					}
-					await Add_najie_thing(usr_qq, '青金石', '材料', -1);
-					let y = await exist_najie_thing(usr_qq, '书本', '材料');
-					if (!y) {
-						e.reply('你没有【书本】');
-						return;
-					}
-					await Add_najie_thing(usr_qq, '书本', '材料', -1);
-					let tianluoRandom = Math.floor(
-						Math.random() * data.changzhufumoshu_list.length
-					);
-					tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
-					console.log(tianluoRandom);
-					e.reply('附魔书亮起来了');
-					await sleep(5000);
-					e.reply(
-						`金光掉落在地上，走近一看是 ${data.changzhufumoshu_list[tianluoRandom].name}`
-					);
-					await sleep(1000);
-					await Add_najie_thing(usr_qq, data.changzhufumoshu_list[tianluoRandom].name, 1);
-					e.reply('恭喜获得' + data.changzhufumoshu_list[tianluoRandom].name);
-					return;
-				} else {
-					let x = await exist_najie_thing(usr_qq, '青金石', '材料');
-					if (!x && x < 3) {
-						e.reply('你没有足够的【青金石】');
-						return;
-					}
-					await Add_najie_thing(usr_qq, '青金石', '材料', -1);
-					let y = await exist_najie_thing(usr_qq, '书本', '材料');
-					if (!y) {
-						e.reply('你没有【书本】');
-						return;
-					}
-					await Add_najie_thing(usr_qq, '书本', '材料', -1);
-					let tianluoRandom = Math.floor(
-						Math.random() * data.changzhufumoshu_list.length
-					);
-					console.log(tianluoRandom);
-					e.reply('附魔书亮起来了');
-					await sleep(5000);
-					e.reply(
-						`金光掉落在地上，走近一看是 ${data.changzhufumoshu_list[tianluoRandom].name}`
-					);
-					await sleep(1000);
-					await Add_najie_thing(usr_qq, data.changzhufumoshu_list[tianluoRandom].name, 1);
-					e.reply('恭喜获得' + data.changzhufumoshu_list[tianluoRandom].name);
+				await Add_najie_thing(usr_qq, '青金石', '材料', -1);
+				let y = await exist_najie_thing(usr_qq, '书本', '材料');
+				if (!y) {
+					e.reply('你没有【书本】');
 					return;
 				}
+				await Add_najie_thing(usr_qq, '书本', '材料', -1);
+				let tianluoRandom = Math.floor(
+					Math.random() * data.changzhufumoshu_list.length
+				);
+				tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
+				console.log(tianluoRandom);
+				e.reply('附魔书亮起来了');
+				await sleep(5000);
+				e.reply(
+					`金光掉落在地上，走近一看是 ${data.changzhufumoshu_list[tianluoRandom].name}`
+				);
+				await sleep(1000);
+				await Add_najie_thing(usr_qq, data.changzhufumoshu_list[tianluoRandom].name, 1);
+				e.reply('恭喜获得' + data.changzhufumoshu_list[tianluoRandom].name);
+				return;
+			} else {
+				let x = await exist_najie_thing(usr_qq, '青金石', '材料');
+				if (!x && x < 3) {
+					e.reply('你没有足够的【青金石】');
+					return;
+				}
+				await Add_najie_thing(usr_qq, '青金石', '材料', -1);
+				let y = await exist_najie_thing(usr_qq, '书本', '材料');
+				if (!y) {
+					e.reply('你没有【书本】');
+					return;
+				}
+				await Add_najie_thing(usr_qq, '书本', '材料', -1);
+				let tianluoRandom = Math.floor(
+					Math.random() * data.changzhufumoshu_list.length
+				);
+				console.log(tianluoRandom);
+				e.reply('附魔书亮起来了');
+				await sleep(5000);
+				e.reply(
+					`金光掉落在地上，走近一看是 ${data.changzhufumoshu_list[tianluoRandom].name}`
+				);
+				await sleep(1000);
+				await Add_najie_thing(usr_qq, data.changzhufumoshu_list[tianluoRandom].name, 1);
+				e.reply('恭喜获得' + data.changzhufumoshu_list[tianluoRandom].name);
+				return;
 			}
 		}
 	}
