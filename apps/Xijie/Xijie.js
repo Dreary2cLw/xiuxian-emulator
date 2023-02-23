@@ -99,6 +99,10 @@ export class Xijie extends plugin {
 		let msg = '';
 		let player = await Read_player(usr_qq);
 		let Price = shop[i].price * shop[i].Grade;
+		if (player.leve_id < 42) {
+			e.reply('在成仙前还是不要去了');
+			return;
+		}
 		if (player.灵石 < Price) {
 			e.reply('灵石不足,无法进行强化');
 			return;
