@@ -2762,56 +2762,26 @@ export async function Gaodenyuansulun(
 			A_player.当前血量 -= A_player.当前血量 * 0.1;
 		}
 	}
-	if (B.护具.fumo == '荆棘1') {
-		if (random > 0.7) {
-			msg.push(
-				`${B_player.名号}触发护具附魔属性荆棘1,${A_player.名号}下次伤害被反弹了10%,${
-					A_player.名号
-				}剩余血量${A_player.当前血量 - att * 0.1}`
-			);
-			A_player.当前血量 = A_player.当前血量 - att * 0.1;
-		}
-	}
-	if (B.护具.fumo == '荆棘2') {
-		if (random > 0.7) {
-			msg.push(
-				`${B_player.名号}触发护具附魔属性荆棘2,${A_player.名号}下次伤害被反弹了20%,${
-					A_player.名号
-				}剩余血量${A_player.当前血量 - att * 0.2}`
-			);
-			A_player.当前血量 = A_player.当前血量 - att * 0.2;
-		}
-	}
-	if (B.护具.fumo == '荆棘3') {
-		if (random > 0.7) {
-			msg.push(
-				`${B_player.名号}触发护具附魔属性荆棘3,${A_player.名号}下次伤害被反弹了30%,${
-					A_player.名号
-				}剩余血量${A_player.当前血量 - att * 0.3}`
-			);
-			A_player.当前血量 = A_player.当前血量 - att * 0.3;
-		}
-	}
-	if (B.护具.fumo == '荆棘4') {
-		if (random > 0.7) {
-			msg.push(
-				`${B_player.名号}触发护具附魔属性荆棘4,${A_player.名号}下次伤害被反弹了40%,${
-					A_player.名号
-				}剩余血量${A_player.当前血量 - att * 0.4}`
-			);
-			A_player.当前血量 = A_player.当前血量 - att * 0.4;
-		}
-	}
-	if (B.护具.fumo == '荆棘5') {
-		if (random > 0.7) {
-			msg.push(
-				`${B_player.名号}触发护具附魔属性荆棘5,${A_player.名号}下次伤害被反弹了50%,${
-					A_player.名号
-				}剩余血量${A_player.当前血量 - att * 0.5}`
-			);
-			A_player.当前血量 = A_player.当前血量 - att * 0.5;
-		}
-	}
+	 if (B.护具.fumo == "荆棘1") {
+            msg.push(`${B_player.名号}触发护具附魔属性荆棘1,${A_player.名号}下次伤害被反弹了5%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.1}`)
+            A_player.当前血量 = A_player.当前血量 - att * 0.05
+    }
+    if (B.护具.fumo == "荆棘2") {
+            msg.push(`${B_player.名号}触发护具附魔属性荆棘2,${A_player.名号}下次伤害被反弹了10%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.2}`)
+            A_player.当前血量 = A_player.当前血量 - att * 0.1
+    }
+    if (B.护具.fumo == "荆棘3") {
+            msg.push(`${B_player.名号}触发护具附魔属性荆棘3,${A_player.名号}下次伤害被反弹了15%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.3}`)
+            A_player.当前血量 = A_player.当前血量 - att * 0.15
+    }
+    if (B.护具.fumo == "荆棘4") {
+            msg.push(`${B_player.名号}触发护具附魔属性荆棘4,${A_player.名号}下次伤害被反弹了20%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.4}`)
+            A_player.当前血量 = A_player.当前血量 - att * 0.2
+    }
+    if (B.护具.fumo == "荆棘5") {
+            msg.push(`${B_player.名号}触发护具附魔属性荆棘5,${A_player.名号}下次伤害被反弹了25%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.5}`)
+            A_player.当前血量 = A_player.当前血量 - att * 0.25
+    }
 	if (equipment.护具.fumo == '无双鬼神') {
 		if (random > 0.7) {
 			msg.push(
