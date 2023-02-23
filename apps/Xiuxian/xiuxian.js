@@ -2499,9 +2499,9 @@ export async function Gaodenyuansulun(
 				);
 				att *= 1.5;
 			} else {
-				msg.push(A_player.名号 + '使用了虎守,下次防御增加20%,血量增加10%');
+				msg.push(A_player.名号 + '使用了虎守,下次防御增加20%,血量增加20%');
 				A_player.防御 *= 1.2;
-				A_player.当前血量 += A_player.血量上限 * 0.1;
+				A_player.当前血量 += A_player.血量上限 * 0.2;
 			}
 		}
 	}
