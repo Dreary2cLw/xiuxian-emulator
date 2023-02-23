@@ -1643,7 +1643,7 @@ export async function Gaodenyuansulun(
 				A_player.名号 +
 					'使用了火元素战技,火属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了50%伤害'
 			);
-             chufa = true   
+			chufa = true;
 		}
 		//水雷
 		if (B_lin == yuansu[2]) {
@@ -1883,7 +1883,7 @@ export async function Gaodenyuansulun(
 			chaodao = true;
 		}
 		if (equipment.武器.fumo == '冰' && random4 > 0.5) {
-			att = last_att * 1.5
+			att = last_att * 1.5;
 			chaodaohuihe2 += 3;
 			msg.push(
 				A_player.名号 +
@@ -1992,10 +1992,12 @@ export async function Gaodenyuansulun(
 		);
 		chufa = true;
 		if (equipment.武器.fumo == '岩') {
-			fyjiachen = A_player.防御 * 0.5;
+			fyjiachen = A_player.防御 * 1;
+			att *= 1.5;
+			B_player.防御 *= 0.8;
 			msg.push(
 				A_player.名号 +
-					'使用了岩元素战技,岩属性附魔武器与其产生共鸣,触发了结晶反应,自身抗性得到了大幅提高'
+					'使用了岩元素战技,岩属性附魔武器与其产生共鸣,自身抗性得到了大幅提高,造成的伤害提高了,对方岩元素抗性减少20%'
 			);
 			chufa = true;
 		}
@@ -2475,10 +2477,10 @@ export async function Gaodenyuansulun(
 		if (random > 0.8) {
 			msg.push(A_player.名号 + '使用了八卦奇袭');
 			att *= 2;
-		} else if (random > 0.4 && random < 0.7) {
+		} else if (random > 0.6 && random < 0.8) {
 			msg.push(A_player.名号 + '使用了十面之围');
 			att *= 1.5;
-		} else {
+		} else if (random > 0.5 && random < 0.6) {
 			msg.push(A_player.名号 + '使用了虎守,下次防御增加20%,血量增加20%');
 			A_player.防御 *= 1.2;
 			A_player.当前血量 += A_player.血量上限 * 0.2;
@@ -2489,7 +2491,7 @@ export async function Gaodenyuansulun(
 			msg.push(A_player.名号 + '使用了长板之龙主动技能百鸟朝凤,下次伤害提升了100%');
 			att *= 2;
 		} else {
-			if (B_player.魔道值 > 1000) {
+			if (B_player.魔道值 > 1000 && random > 0.6 && random <= 0.8) {
 				msg.push(
 					'因为' +
 						B_player.名号 +
@@ -2497,9 +2499,9 @@ export async function Gaodenyuansulun(
 				);
 				att *= 1.5;
 			} else {
-				msg.push(A_player.名号 + '使用了虎守,下次防御增加20%,血量增加20%');
+				msg.push(A_player.名号 + '使用了虎守,下次防御增加20%,血量增加10%');
 				A_player.防御 *= 1.2;
-				A_player.当前血量 += A_player.血量上限 * 0.2;
+				A_player.当前血量 += A_player.血量上限 * 0.1;
 			}
 		}
 	}
@@ -2817,7 +2819,7 @@ export async function Gaodenyuansulun(
 			);
 			att *= 1.5;
 			B_player.防御 *= 0.5;
-		} else if (A_player.魔道值 > 1000) {
+		} else if (A_player.魔道值 > 1000 && random > 0.6 && random <= 0.8) {
 			msg.push(
 				`${A_player.名号}魔气重重,使用了无双鬼神主动技能离恨天,${A_player.名号}下次伤害提升50%`
 			);
