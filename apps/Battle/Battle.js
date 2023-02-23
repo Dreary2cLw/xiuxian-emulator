@@ -15,8 +15,8 @@ import {
 	isNotNull,
 	Read_player,
 	Write_player,
+	Gaodenyuansulun,
 } from '../Xiuxian/xiuxian.js';
-
 /**
  * 战斗类
  */
@@ -282,6 +282,7 @@ export class Battle extends plugin {
 		await Add_HP(B, Data_battle.B_xue);
 		let A_win = `${A_player.名号}击败了${B_player.名号}`;
 		let B_win = `${B_player.名号}击败了${A_player.名号}`;
+		let pinju = `因为双方都没血了,这场战斗平局`;
 		if (msg.find((item) => item == A_win)) {
 			let mdzJL = A_player.魔道值;
 			let lingshi = Math.trunc(B_player.灵石 / 5);
@@ -330,6 +331,10 @@ export class Battle extends plugin {
 					`经过一番大战,${A_player.名号}被${B_player.名号}击败了,${B_player.名号}获得${qixue}血气,${A_player.名号} 真是偷鸡不成蚀把米,被劫走${lingshi}灵石`
 				);
 			}
+		} else if (msg.find((item) => item == pinju)) {
+			final_msg.push(
+				` 经过一番大战两人战成平局，什么东西都没有抢到,反正两人惺惺相惜，成为了战友`
+			);
 		} else {
 			e.reply(`战斗过程出错`);
 			return;
@@ -398,8 +403,10 @@ export class Battle extends plugin {
 		//下面的战斗超过100回合会报错
 		let A_win = `${A_player.名号}击败了${B_player.名号}`;
 		let B_win = `${B_player.名号}击败了${A_player.名号}`;
+		let pinju = `因为双方都没血了,这场战斗平局`;
 		if (msg.find((item) => item == A_win)) {
 		} else if (msg.find((item) => item == B_win)) {
+		} else if (msg.find((item) => item == pinju)) {
 		} else {
 			e.reply(`战斗过程出错`);
 			return;
@@ -413,10 +420,13 @@ export class Battle extends plugin {
 		return;
 	}
 }
-
 export async function zd_battle(AA_player, BB_player) {
 	let A_player = BB_player;
 	let B_player = AA_player;
+	let afangyu = A_player.防御; //记录A原防御
+	let bfangyu = B_player.防御; //记录B原防御
+	let aATK = A_player.攻击; //记录A原攻击
+	let bATK = B_player.攻击; //记
 	let cnt = 0; //回合数
 	let cnt2;
 	let A_xue = 0; //最后要扣多少血
@@ -596,14 +606,20 @@ ${B_player.名号}冻结中`);
 		t = A_player;
 		A_player = B_player;
 		B_player = t;
-		boolean = false;
 	}
 	if (boolean == true) {
 		t = AA_player;
 		AA_player = BB_player;
 		BB_player = t;
+		boolean = false;
 	}
-	if (A_player.当前血量 <= 0) {
+	if (A_player.当前血量 <= 0 && B_player.当前血量 <= 0) {
+		AA_player.当前血量 = 0;
+		BB_player.当前血量 = 0;
+		msg.push(`因为双方都没血了,这场战斗平局`);
+		A_xue = -AA_player.当前血量;
+		B_xue = -BB_player.当前血量;
+	} else if (A_player.当前血量 <= 0) {
 		AA_player.当前血量 = 0;
 		msg.push(`${BB_player.名号}击败了${AA_player.名号}`);
 		B_xue = B_player.当前血量 - BB_player.当前血量;
@@ -614,6 +630,10 @@ ${B_player.名号}冻结中`);
 		B_xue = -BB_player.当前血量;
 		A_xue = A_player.当前血量 - AA_player.当前血量;
 	}
+	A_player.防御 = afangyu;
+	B_player.防御 = bfangyu;
+	A_player.攻击 = aATK;
+	B_player.攻击 = bATK;
 	let Data_nattle = { msg: msg, A_xue: A_xue, B_xue: B_xue };
 	return Data_nattle;
 }
