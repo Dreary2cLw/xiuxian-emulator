@@ -2498,7 +2498,7 @@ export async function Gaodenyuansulun(
 						'是大魔王,触发了长板之龙被动技能惩奸除恶,下次伤害提升了50%'
 				);
 				att *= 1.5;
-			} else {
+			} else if ( random > 0.5 && random <= 0.6 ){
 				msg.push(A_player.名号 + '使用了虎守,下次防御增加20%,血量增加20%');
 				A_player.防御 *= 1.2;
 				A_player.当前血量 += A_player.血量上限 * 0.2;
