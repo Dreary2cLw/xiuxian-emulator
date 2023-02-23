@@ -518,6 +518,7 @@ export class GuessLanternRiddles extends plugin {
 			);
 		}
 		if (thing == '附魔台') {
+			let player = await Read_player(usr_qq);
 			if (player.附魔台 != 1) {
 				e.reply('你没有附魔台');
 				return;
