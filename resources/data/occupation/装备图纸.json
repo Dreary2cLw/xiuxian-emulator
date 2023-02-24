@@ -70,18 +70,18 @@
     "materials": [
       {
         "name": "庚金",
-        "amount": 1700000
+        "amount": 3500000
       },
       {
-        "name": "红宝石",
-        "amount": 7500
+        "name": "蓝宝石",
+        "amount": 15000
       },
       {
         "name": "北陆双手剑原胚",
         "amount": 1
       }
     ],
-    "rate": 0.40,
+    "rate": 0.1,
     "exp": [
       11459,
       11459
