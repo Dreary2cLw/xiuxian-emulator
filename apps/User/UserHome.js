@@ -1617,7 +1617,7 @@ export class UserHome extends plugin {
                     e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有10个血气瓶"])
                     return
                 }
-                if (daomu > 0.3 && daomu <= 0.4) {
+                if (daomu > 0.35 && daomu <= 0.4) {
                     await Add_najie_thing(usr_qq, "血气瓶", "丹药", 5);
                     await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
                     e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有5个血气瓶"])
