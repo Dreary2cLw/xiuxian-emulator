@@ -12,6 +12,7 @@ import {
 	exist_najie_thing,
 	get_random_talent,
 	isNotNull,
+	Read_equipment,
 	Read_player,
 	Write_player,
 } from '../Xiuxian/xiuxian.js';
@@ -282,9 +283,12 @@ export class SecretPlaceplusTask extends plugin {
 							if (weizhi.one[0].name != '洗根水') {
 								//判断是不是旧神界
 								let random = Math.random();
-								if (random < player.幸运) {
+								let equipment = await Read_equipment(player_id);
+								if (random <= player.幸运) {
 									if (random <= player.addluckyNo) {
 										last_msg += '福源丹生效，所以在';
+									} else if (equipment.项链.属性 == "幸运" && random <= player.addluckyNo + equipment.项链.加成) {
+										last_msg += '幸运项链灵光流溢，你发现在';
 									} else if (player.仙宠.type == '幸运') {
 										last_msg += '仙宠使你在探索中欧气满满，所以在';
 									}
