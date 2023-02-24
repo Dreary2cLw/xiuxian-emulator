@@ -612,20 +612,26 @@ ${B_player.名号}冻结中`);
 		BB_player = t;
 		boolean = false;
 	}
-	if (A_player.当前血量 <= 0 && B_player.当前血量 <= 0) {
+	if (A_player.当前血量 <= 0) {
 		AA_player.当前血量 = 0;
-		BB_player.当前血量 = 0;
-		msg.push(`因为双方都没血了,这场战斗平局`);
-		A_xue = -AA_player.当前血量;
-		B_xue = -BB_player.当前血量;
-	} else if (A_player.当前血量 <= 0) {
-		AA_player.当前血量 = 0;
-		msg.push(`${BB_player.名号}击败了${AA_player.名号}`);
+		if (B_player.当前血量 <= 0) {
+			BB_player.当前血量 = 0;
+			msg.push(`${BB_player.名号}击败了${AA_player.名号}`);
+			msg.push(`但同时${BB_player.名号}也被${AA_player.名号}反甲干死了,这一场平局`);
+		} else {
+			msg.push(`${BB_player.名号}击败了${AA_player.名号}`);
+		}
 		B_xue = B_player.当前血量 - BB_player.当前血量;
 		A_xue = -AA_player.当前血量;
 	} else if (B_player.当前血量 <= 0) {
 		BB_player.当前血量 = 0;
-		msg.push(`${AA_player.名号}击败了${BB_player.名号}`);
+		if (A_player.当前血量 <= 0) {
+			AA_player.当前血量 = 0;
+			msg.push(`${AA_player.名号}击败了${BB_player.名号}`);
+			msg.push(`但同时${AA_player.名号}也被${BB_player.名号}反甲干死了,这一场平局`);
+		} else {
+			msg.push(`${BB_player.名号}击败了${AA_player.名号}`);
+		}
 		B_xue = -BB_player.当前血量;
 		A_xue = A_player.当前血量 - AA_player.当前血量;
 	}
