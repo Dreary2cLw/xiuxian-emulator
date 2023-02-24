@@ -2133,21 +2133,40 @@ export async function Gaodenyuansulun(
 					B_player.名号 +
 					'冲了过来'
 			);
-			if (A_lin == yuansu[0]) {
+			if (A_lin == yuansu[0] && equipment.武器.fumo == '水') {
+				msg.push(
+					'触发护摩之杖被动技能:[无羁的朱赤之蝶],伤害大幅度提升\n手中的火元素异常贴切[护摩之杖],水元素附魔与其产生共鸣' +
+						A_player.名号 +
+						'感到筋脉中的元素之力得到了异常增益，元素伤害大幅提升,触发了蒸发反应'
+				);
+				att *= 2;
+				chufa = true;
+			} else if (A_lin == yuansu[0] && equipment.武器.fumo == '雷') {
+				msg.push(
+					'触发护摩之杖被动技能:[无羁的朱赤之蝶],伤害大幅度提升\n手中的火元素异常贴切[护摩之杖],雷元素附魔与其产生共鸣' +
+						A_player.名号 +
+						'感到筋脉中的元素之力得到了异常增益，元素伤害大幅提升,触发了超载反应'
+				);
+				att = last_att * 2;
+				chufa = true;
+			} else if (A_lin == yuansu[0] && equipment.武器.fumo == '草') {
+				msg.push(
+					'触发护摩之杖被动技能:[无羁的朱赤之蝶],伤害大幅度提升\n手中的火元素异常贴切[护摩之杖],草元素附魔与其产生共鸣' +
+						A_player.名号 +
+						'感到筋脉中的元素之力得到了异常增益，元素伤害大幅提升,触发了燃烧反应'
+				);
+				att = last_att * 2;
+				gandianhuihe += 3;
+				gandianhuihe -= 3;
+				chufa = true;
+				ranshao = true;
+			} else if (A_lin == yuansu[0]) {
 				msg.push(
 					'触发护摩之杖被动技能:[无羁的朱赤之蝶],伤害大幅度提升\n手中的火元素异常贴切[护摩之杖],' +
 						A_player.名号 +
 						'感到筋脉中的元素之力得到了异常增益，元素伤害大幅提升'
 				);
 				att *= 1.5;
-			} else if (A_lin == yuansu[0] && equipment.武器.fumo == '水') {
-				msg.push(
-					'触发护摩之杖被动技能:[无羁的朱赤之蝶],伤害大幅度提升\n手中的火元素异常贴切[护摩之杖],' +
-						A_player.名号 +
-						'感到筋脉中的元素之力得到了异常增益，元素伤害大幅提升,触发了蒸发反应'
-				);
-				att *= 2;
-				chufa = true;
 			} else {
 				msg.push('触发护摩之杖被动技能:[无羁的朱赤之蝶],伤害大幅度提升');
 				att *= 1.2;
@@ -2160,14 +2179,7 @@ export async function Gaodenyuansulun(
 			msg.push(
 				'迅影如剑！' + A_player.名号 + '向' + B_player.名号 + '使用[星斗归位]闪现了过来'
 			);
-			if (A_lin == yuansu[2]) {
-				msg.push(
-					'触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光],' +
-						A_player.名号 +
-						'感到筋脉中的元素之力得到了异常增益，元素伤害提升150%'
-				);
-				att *= 1.5;
-			} else if (A_lin == yuansu[2] && equipment.武器.fumo == '水') {
+			if (A_lin == yuansu[2] && equipment.武器.fumo == '水') {
 				msg.push(
 					'触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光],' +
 						A_player.名号 +
@@ -2200,6 +2212,13 @@ export async function Gaodenyuansulun(
 				);
 				att *= 2;
 				chufa = true;
+			} else if (A_lin == yuansu[2]) {
+				msg.push(
+					'触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光],' +
+						A_player.名号 +
+						'感到筋脉中的元素之力得到了异常增益，元素伤害提升150%'
+				);
+				att *= 1.5;
 			} else {
 				msg.push('触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%');
 				att *= 1.2;
@@ -2208,17 +2227,9 @@ export async function Gaodenyuansulun(
 	}
 	//贯虹之槊
 	if (equipment.武器.name == '贯虹之槊') {
-		if (random > 0.7) {
+		if (random > 0.8) {
 			msg.push('安如磐石' + A_player.名号 + '使用了元素战技[地心]');
-			if (A_lin == yuansu[3]) {
-				msg.push(
-					'触发贯虹之槊被动技能:[金璋皇极],防御强效增强120%\n手中的岩元素异常贴切[贯虹之槊],' +
-						A_player.名号 +
-						'感到筋脉中的元素之力得到了异常增益，元素伤害提升150%'
-				);
-				fyjiachen += A_player.防御 * 0.5;
-				att *= 1.2;
-			} else if (A_lin == yuansu[3] && equipment.武器.fumo == '岩') {
+			if (A_lin == yuansu[3] && equipment.武器.fumo == '岩') {
 				msg.push(
 					'触发贯虹之槊被动技能:[金璋皇极],防御强效增强200%\n手中的岩元素异常贴切[贯虹之槊],' +
 						A_player.名号 +
@@ -2226,6 +2237,14 @@ export async function Gaodenyuansulun(
 				);
 				fyjiachen += A_player.防御 * 1;
 				att *= 1.5;
+			} else if (A_lin == yuansu[3]) {
+				msg.push(
+					'触发贯虹之槊被动技能:[金璋皇极],防御强效增强120%\n手中的岩元素异常贴切[贯虹之槊],' +
+						A_player.名号 +
+						'感到筋脉中的元素之力得到了异常增益，元素伤害提升150%'
+				);
+				fyjiachen += A_player.防御 * 0.5;
+				att *= 1.2;
 			} else {
 				msg.push('触发贯虹之槊被动技能:[金璋皇极],防御强效增强120%');
 				fyjiachen += A_player.防御 * 0.5;
@@ -2241,36 +2260,93 @@ export async function Gaodenyuansulun(
 					B_player.名号 +
 					'挥舞了过来'
 			);
-			if (A_lin == yuansu[1]) {
+			if (A_lin == yuansu[1] && equipment.武器.fumo == '草') {
 				msg.push(
-					'触发磐岩结绿被动技能:[护国的无垢之心],血量恢复30%\n手中的水元素异常贴切[磐岩结绿],' +
+					'触发磐岩结绿被动技能:[护国的无垢之心],血量恢复20%\n手中的水元素异常贴切[磐岩结绿],草元素附魔与其产生共鸣,触发了绽放反应,' +
 						A_player.名号 +
-						'感到筋脉中的元素之力得到了异常增益，元素伤害提升130%'
+						'感到筋脉中的元素之力得到了异常增益，元素伤害提升100%,草原核爆炸了,' +
+						B_player.名号 +
+						'被炸了' +
+						att * 0.3 +
+						'伤害' +
+						A_player.名号 +
+						'也被炸了' +
+						att * 0.1 +
+						'的伤害'
 				);
-				if (A_player.当前血量 + A_player.血量上限 * 0.3 >= A_player.血量上限 * 1.3) {
+				if (A_player.当前血量 + A_player.血量上限 * 0.2 >= A_player.血量上限 * 1.2) {
 					A_player.当前血量 = A_player.血量上限;
 				} else {
-					A_player.当前血量 += A_player.血量上限 * 0.3;
+					A_player.当前血量 += A_player.血量上限 * 0.2;
 				}
-				att *= 1.3;
-			} else if (A_lin == yuansu[1] && equipment.武器.fumo == '水') {
+				att *= 2;
+				B_player.当前血量 -= att * 0.3;
+				A_player.当前血量 -= att * 0.1;
+				chufa = true;
+			} else if (A_lin == yuansu[1] && equipment.武器.fumo == '火') {
 				msg.push(
-					'触发磐岩结绿被动技能:[护国的无垢之心],血量恢复30%\n手中的水元素异常贴切[磐岩结绿],' +
+					'触发磐岩结绿被动技能:[护国的无垢之心],血量恢复20%\n手中的水元素异常贴切[磐岩结绿],火元素附魔与其产生共鸣,触发了蒸发反应' +
 						A_player.名号 +
-						'感到筋脉中的元素之力得到了异常增益，元素伤害提升150%'
+						'感到筋脉中的元素之力得到了异常增益，元素伤害提升100%'
 				);
-				if (A_player.当前血量 + A_player.血量上限 * 0.3 >= A_player.血量上限 * 1.3) {
+				if (A_player.当前血量 + A_player.血量上限 * 0.2 >= A_player.血量上限 * 1.2) {
 					A_player.当前血量 = A_player.血量上限;
 				} else {
-					A_player.当前血量 += A_player.血量上限 * 0.3;
+					A_player.当前血量 += A_player.血量上限 * 0.2;
 				}
-				att *= 1.5;
+				att *= 2;
+				chufa = true;
+			} else if (A_lin == yuansu[1] && equipment.武器.fumo == '雷') {
+				msg.push(
+					'触发磐岩结绿被动技能:[护国的无垢之心],血量恢复20%\n手中的水元素异常贴切[磐岩结绿],雷元素附魔与其产生共鸣,触发了感电反应' +
+						A_player.名号 +
+						'感到筋脉中的元素之力得到了异常增益，元素伤害提升100%' +
+						B_player.名号 +
+						'将收到持续伤害' +
+						gandianhuihe +
+						'回合'
+				);
+				if (A_player.当前血量 + A_player.血量上限 * 0.2 >= A_player.血量上限 * 1.2) {
+					A_player.当前血量 = A_player.血量上限;
+				} else {
+					A_player.当前血量 += A_player.血量上限 * 0.2;
+				}
+				att *= 2;
+				gandianhuihe += 3;
+				gandianhuihe -= 3;
+				chufa = true;
+				gandian = true;
+			} else if (A_lin == yuansu[1] && equipment.武器.fumo == '冰') {
+				msg.push(
+					'触发磐岩结绿被动技能:[护国的无垢之心],血量恢复20%\n手中的水元素异常贴切[磐岩结绿],冰元素附魔与其产生共鸣,触发了冻结反应' +
+						A_player.名号 +
+						'感到筋脉中的元素之力得到了异常增益,' +
+						B_player.名号 +
+						'被冻结1回合'
+				);
+				if (A_player.当前血量 + A_player.血量上限 * 0.2 >= A_player.血量上限 * 1.2) {
+					A_player.当前血量 = A_player.血量上限;
+				} else {
+					A_player.当前血量 += A_player.血量上限 * 0.2;
+				}
+				donjie = true;
+			} else if (A_lin == yuansu[1]) {
+				msg.push(
+					'触发磐岩结绿被动技能:[护国的无垢之心],血量恢复20%\n手中的水元素异常贴切[磐岩结绿],' +
+						A_player.名号 +
+						'感到筋脉中的元素之力得到了异常增益,下回合元素伤害提升20%'
+				);
+				if (A_player.当前血量 + A_player.血量上限 * 0.2 >= A_player.血量上限 * 1.2) {
+					A_player.当前血量 = A_player.血量上限;
+				} else {
+					A_player.当前血量 += A_player.血量上限 * 0.2;
+				}
+				att *= 1.2;
 			} else {
-				msg.push('触发磐岩结绿被动技能:[护国的无垢之心],血量恢复30%');
-				if (A_player.血量上限 - A_player.当前血量 >= A_player.血量上限 * 0.3) {
+				msg.push('触发磐岩结绿被动技能:[护国的无垢之心],血量恢复20%');
+				A_player.当前血量 += A_player.血量上限 * 0.2;
+				if (A_player.当前血量 > A_player.血量上限) {
 					A_player.当前血量 = A_player.血量上限;
-				} else {
-					A_player.当前血量 += A_player.血量上限 * 0.3;
 				}
 			}
 		}
@@ -2498,7 +2574,7 @@ export async function Gaodenyuansulun(
 						'是大魔王,触发了长板之龙被动技能惩奸除恶,下次伤害提升了50%'
 				);
 				att *= 1.5;
-			} else if ( random > 0.5 && random <= 0.6 ){
+			} else if (random > 0.5 && random <= 0.6) {
 				msg.push(A_player.名号 + '使用了虎守,下次防御增加20%,血量增加20%');
 				A_player.防御 *= 1.2;
 				A_player.当前血量 += A_player.血量上限 * 0.2;
@@ -2762,26 +2838,46 @@ export async function Gaodenyuansulun(
 			A_player.当前血量 -= A_player.当前血量 * 0.1;
 		}
 	}
-	 if (B.护具.fumo == "荆棘1") {
-            msg.push(`${B_player.名号}触发护具附魔属性荆棘1,${A_player.名号}下次伤害被反弹了5%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.1}`)
-            A_player.当前血量 = A_player.当前血量 - att * 0.05
-    }
-    if (B.护具.fumo == "荆棘2") {
-            msg.push(`${B_player.名号}触发护具附魔属性荆棘2,${A_player.名号}下次伤害被反弹了10%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.2}`)
-            A_player.当前血量 = A_player.当前血量 - att * 0.1
-    }
-    if (B.护具.fumo == "荆棘3") {
-            msg.push(`${B_player.名号}触发护具附魔属性荆棘3,${A_player.名号}下次伤害被反弹了15%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.3}`)
-            A_player.当前血量 = A_player.当前血量 - att * 0.15
-    }
-    if (B.护具.fumo == "荆棘4") {
-            msg.push(`${B_player.名号}触发护具附魔属性荆棘4,${A_player.名号}下次伤害被反弹了20%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.4}`)
-            A_player.当前血量 = A_player.当前血量 - att * 0.2
-    }
-    if (B.护具.fumo == "荆棘5") {
-            msg.push(`${B_player.名号}触发护具附魔属性荆棘5,${A_player.名号}下次伤害被反弹了25%,${A_player.名号}剩余血量${A_player.当前血量 - att * 0.5}`)
-            A_player.当前血量 = A_player.当前血量 - att * 0.25
-    }
+	if (B.护具.fumo == '荆棘1') {
+		msg.push(
+			`${B_player.名号}触发护具附魔属性荆棘1,${A_player.名号}下次伤害被反弹了5%,${
+				A_player.名号
+			}剩余血量${A_player.当前血量 - att * 0.1}`
+		);
+		A_player.当前血量 = A_player.当前血量 - att * 0.05;
+	}
+	if (B.护具.fumo == '荆棘2') {
+		msg.push(
+			`${B_player.名号}触发护具附魔属性荆棘2,${A_player.名号}下次伤害被反弹了10%,${
+				A_player.名号
+			}剩余血量${A_player.当前血量 - att * 0.2}`
+		);
+		A_player.当前血量 = A_player.当前血量 - att * 0.1;
+	}
+	if (B.护具.fumo == '荆棘3') {
+		msg.push(
+			`${B_player.名号}触发护具附魔属性荆棘3,${A_player.名号}下次伤害被反弹了15%,${
+				A_player.名号
+			}剩余血量${A_player.当前血量 - att * 0.3}`
+		);
+		A_player.当前血量 = A_player.当前血量 - att * 0.15;
+	}
+	if (B.护具.fumo == '荆棘4') {
+		msg.push(
+			`${B_player.名号}触发护具附魔属性荆棘4,${A_player.名号}下次伤害被反弹了20%,${
+				A_player.名号
+			}剩余血量${A_player.当前血量 - att * 0.4}`
+		);
+		A_player.当前血量 = A_player.当前血量 - att * 0.2;
+	}
+	if (B.护具.fumo == '荆棘5') {
+		msg.push(
+			`${B_player.名号}触发护具附魔属性荆棘5,${A_player.名号}下次伤害被反弹了25%,${
+				A_player.名号
+			}剩余血量${A_player.当前血量 - att * 0.5}`
+		);
+		A_player.当前血量 = A_player.当前血量 - att * 0.25;
+	}
 	if (equipment.护具.fumo == '无双鬼神') {
 		if (random > 0.7) {
 			msg.push(
