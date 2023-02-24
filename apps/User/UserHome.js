@@ -2973,17 +2973,17 @@ export class UserHome extends plugin {
                     await Add_修为(usr_qq, xiuwei)
                     if (math > 0.9 && math <= 1) {
                         await Add_HP(usr_qq, -kouxue)
-                        await Add_najie_thing(usr_qq, "腐肉", "食材", 128 * n);
+                        await Add_najie_thing(usr_qq, "泥土", "材料", 30 * n);
                         if (heiyaoshi == true) {
                             e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
                                 钻石${3 * muchan * n + 3 * shichan * n + 9 * zuanshichan * n}个,
                                 青金石${9 * muchan * n + 9 * shichan * n + 18 * zuanshichan * n}个,黑曜石${12 * n},
-                                在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到腐肉${128 * n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到泥土${30 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         } else {
                             e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
                                 钻石${3 * muchan * n + 3 * shichan * n + 9 * zuanshichan * n}个,
                                 青金石${9 * muchan * n + 9 * shichan * n + 18 * zuanshichan * n}个,
-                                在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到腐肉${128 * n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到泥土${30 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         }
                     } else if (math > 0.8 && math <= 0.9) {
                         await Add_HP(usr_qq, -kouxue)
