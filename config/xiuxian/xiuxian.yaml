@@ -18,8 +18,8 @@ CD: #各种操作cd 必须为整数 单位：分
 
 percentage:
   cost: 0.05 #手续费
-  Moneynumber: 0.6 #金银坊收益
-  punishment: 0.4 #出千收益
+  Moneynumber: 1 #金银坊收益
+  punishment: 0.5 #出千收益
 
 size:
   Money: 100 #单位：万，出千控制
