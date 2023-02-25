@@ -90,7 +90,7 @@ export class Showningmeng extends plugin {
 					fnc: 'show_ningmenghome',
 				},
 				{
-					reg: '^#元素武器图鉴$',
+					reg: '^#元素武器列表$',
 					fnc: 'yuansu',
 				},
 			],

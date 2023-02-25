@@ -16,7 +16,7 @@
       title: "#装备图纸"
       desc: "查看图纸列表"
     - icon: help-icon_13
-      title: "#元素武器图鉴"
+      title: "#元素武器列表"
       desc: "查看神界武器"
     - icon: help-icon_45
       title: "#炼制+丹药名*N"
