@@ -755,7 +755,7 @@ export async function mjzd_battle(A_player, B_player) {
 			} else if (
 				A_player.学习的功法 &&
 				A_player.学习的功法.indexOf('八品·太皇经') > -1 &&
-				cnt == 2
+				cnt == 3
 			) {
 				msg.push(`${A_player.名号} 使用八品·太皇经【无量仙功】开始聚集仙气`);
 				伤害 *= 0.9;
