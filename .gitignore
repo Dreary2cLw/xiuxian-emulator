@@ -22,3 +22,11 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+resources/data/qinmidu/qinmidu.json
+resources/data/Exchange/Exchange.json
+resources/data/Exchange/Forum.json
+resources/data/Forum/Exchange.json
+resources/data/renwu/renwu.json
+resources/data/shitu/shitu.json
+resources/data/shop/shop.json
+resources/data/tiandibang/tiandibang.json
