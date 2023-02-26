@@ -721,9 +721,9 @@ async function InitWorldBoss(e) {
 	let X = AverageDamage * 0.01;
 	Bot.logger.mark(`[散兵] 化神玩家总数：${player_quantity}`);
 	Bot.logger.mark(`[散兵] 生成基数:${X}`);
-	let Health = Math.trunc(X * 500 * player_quantity*3);//血量要根据人数来
-    let Attack = Math.trunc(X * 1000);
-    let Defence = Math.trunc(X * 1000);
+	let Health = Math.trunc(X * 500 * player_quantity * 5); //血量要根据人数来
+	let Attack = Math.trunc(X);
+	let Defence = Math.trunc(X);
 	let Reward = Math.trunc(
 		X * (fairyNums > 7 ? 2 : 4) * (player_quantity > 20 ? 20 : player_quantity)
 	);
