@@ -57,7 +57,7 @@ Yunzai-Bot\plugins\xiuxian-emulator-plugin\resources\data
 
 ## 交流/直接游玩         
 - 官服：808321883(满了)
-- 二群533340900
+- 二群: 533340900
 - 交流群、bug反馈群、攻略群：560090307 
 - 新功能测试群:619744105  
 
