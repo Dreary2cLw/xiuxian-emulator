@@ -148,8 +148,8 @@ export class Battle extends plugin {
 		let playerA = data.getData('player', A);
 		let playerB = data.getData('player', B);
 		if (isNotNull(playerA.宗门) && isNotNull(playerB.宗门)) {
-			var assA = data.getAssociation(playerA.宗门.宗门名称);
-			var assB = data.getAssociation(playerB.宗门.宗门名称);
+			let assA = data.getAssociation(playerA.宗门.宗门名称);
+			let assB = data.getAssociation(playerB.宗门.宗门名称);
 			if (assA.宗门名称 == assB.宗门名称) {
 				e.reply('门派禁止内讧');
 				return;
@@ -281,7 +281,6 @@ export class Battle extends plugin {
 		await Add_HP(B, Data_battle.B_xue);
 		let A_win = `${A_player.名号}击败了${B_player.名号}`;
 		let B_win = `${B_player.名号}击败了${A_player.名号}`;
-
 		if (msg.find((item) => item == A_win)) {
 			let mdzJL = A_player.魔道值;
 			let lingshi = Math.trunc(B_player.灵石 / 5);
@@ -305,9 +304,9 @@ export class Battle extends plugin {
 				let qixue = Math.trunc(100 * now_level_idBB);
 				B_player.血气 += qixue;
 				await Write_player(B, B_player);
-				var time2 = 60; //时间（分钟）
-				var action_time2 = 60000 * time2; //持续时间，单位毫秒
-				var action2 = await redis.get('xiuxian:player:' + A + ':action');
+				let time2 = 60; //时间（分钟）
+				let action_time2 = 60000 * time2; //持续时间，单位毫秒
+				let action2 = await redis.get('xiuxian:player:' + A + ':action');
 				action2 = await JSON.parse(action2);
 				action2.action = '禁闭';
 				action2.end_time = new Date().getTime() + action_time2;
@@ -487,7 +486,7 @@ export async function zd_battle(AA_player, BB_player) {
 		let 伤害 = Harm(A_player.攻击 * 0.85, B_player.防御);
 		let 法球伤害 = Math.trunc(A_player.攻击 * A_player.法球倍率);
 		伤害 = Math.trunc(baoji * 伤害 + 法球伤害 + A_player.防御 * 0.1);
-		for (var i = 0; i < jineng1.length; i++) {
+		for (let i = 0; i < jineng1.length; i++) {
 			if (
 				(jineng1[i].class == '常驻' &&
 					(cnt2 == jineng1[i].cnt || jineng1[i].cnt == -1) &&
@@ -524,7 +523,7 @@ export async function zd_battle(AA_player, BB_player) {
 				伤害 = 伤害 * jineng1[i].beilv + jineng1[i].other;
 			}
 		}
-		for (var i = 0; i < jineng2.length; i++) {
+		for (let i = 0; i < jineng2.length; i++) {
 			if (
 				(jineng2[i].class == '常驻' &&
 					(cnt2 == jineng2[i].cnt || jineng2[i].cnt == -1) &&
@@ -561,7 +560,6 @@ export async function zd_battle(AA_player, BB_player) {
 				伤害 = 伤害 * jineng2[i].beilv + jineng2[i].other;
 			}
 		}
-
 		if (A_player.魔道值 > 999 && A_player.灵根.type == '魔头') {
 			buff += Math.trunc(A_player.魔道值 / 1000) / 100;
 			if (buff > 1.3) buff = 1.3;
@@ -571,7 +569,7 @@ export async function zd_battle(AA_player, BB_player) {
 			);
 		}
 		if (B_player.魔道值 < 1 && B_player.灵根.type == '转生') {
-			var buff2 = B_player.神石 * 0.0015;
+			let buff2 = B_player.神石 * 0.0015;
 			if (buff2 > 0.3) buff2 = 0.3;
 			if (B_player.灵根.name == '九转轮回体') buff2 += 0.2;
 			buff -= buff2;
