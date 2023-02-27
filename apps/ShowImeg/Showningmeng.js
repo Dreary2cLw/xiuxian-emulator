@@ -58,7 +58,7 @@ export class Showningmeng extends plugin {
 					fnc: 'Show_XianChong',
 				},
 				{
-					reg: '^#幻影楼$',
+					reg: '^#皮肤楼$',
 					fnc: 'Show_HuanYing',
 				},
 				/*{
@@ -202,7 +202,7 @@ export class Showningmeng extends plugin {
 		return;
 	}
 
-	//幻影楼
+	//皮肤楼
 	async Show_HuanYing(e) {
 		if (!e.isGroup) {
 			return;
