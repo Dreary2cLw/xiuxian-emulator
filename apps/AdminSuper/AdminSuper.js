@@ -1455,6 +1455,13 @@ export async function synchronization(e) {
 		}
 		for (let i = 0; i < najie.道具.length; i++) {
 			const element = najie.道具[i];
+			if (element.name == '附魔书-火元素') {
+				najie.道具[i].name = '附魔书-火';
+				break;
+			}
+		}
+		for (let i = 0; i < najie.道具.length; i++) {
+			const element = najie.道具[i];
 			if (element.name == '附魔书-雷元素') {
 				najie.道具[i].name = '附魔书-雷';
 				break;
@@ -1497,27 +1504,25 @@ export async function synchronization(e) {
 		}
 		for (let i = 0; i < najie.道具.length; i++) {
 			const element = najie.道具[i];
-			if (element.name == '附魔书-火元素') {
-				najie.道具[i].name = '附魔书-火';
-				break;
-			}
-		}
-		for (let i = 0; i < najie.道具.length; i++) {
-			const element = najie.道具[i];
-			if (element.name == '禁忌幻影-神里凌华') {
-				najie.道具[i].name = '禁忌幻影-神里绫华';
-				break;
-			}
-		}
-		for (let i = 0; i < najie.道具.length; i++) {
-			const element = najie.道具[i];
-			let yingzi = data.kamian1.find((item) => item.id == element.id);
-			let huanying = data.kamian2.find((item) => item.id == element.id);
+			let yingzi = data.kamian1.find((item) => item.name == element.name);
+			let huanying = data.kamian2.find((item) => item.name == element.name);
 			if (element.name == huanying.name) {
 				najie.道具[i].name = yingzi.name;
+				najie.道具[i].type = yingzi.type;
 				break;
 			}
 		}
+		for (let i = 0; i < najie.道具.length; i++) {
+			const element = najie.道具[i];
+			let yingzi = data.kamian.find((item) => item.id == element.id);
+			let huanying = data.kamian3.find((item) => item.id == element.id);
+			if (element.name == huanying.name) {
+				najie.道具[i].name = yingzi.name;
+				najie.道具[i].type = yingzi.type;
+				break;
+			}
+		}
+
 		for (let i = 0; i < najie.装备.length; i++) {
 			const element = najie.装备[i];
 			if (!isNotNull(element.fumo)) {
