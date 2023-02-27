@@ -250,10 +250,6 @@ class XiuxianData {
 		this.changzhu = JSON.parse(fs.readFileSync(`${this.lib_path}/常驻.json`));
 		//加载卡面列表
 		this.kamian = JSON.parse(fs.readFileSync(`${this.lib_path}/幻影卡面列表.json`));
-		this.kamian1 = JSON.parse(
-			fs.readFileSync(`${this.lib_path}/影子卡面列表.json`)
-		);
-		this.kamian2 = JSON.parse(fs.readFileSync(`${this.lib_path}/幻影卡面.json`));
 		this.kamian3 = JSON.parse(fs.readFileSync(`${this.lib_path}/影子卡面.json`));
 		//加载技能列表
 		this.jineng1 = JSON.parse(fs.readFileSync(`${this.lib_path}/技能列表1.json`));
