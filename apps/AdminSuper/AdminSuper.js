@@ -1424,7 +1424,7 @@ export async function synchronization(e) {
 		najie.仙宠口粮 = najie.仙宠口粮.filter(
 			(item) => item.数量 != null || item.数量 != 0
 		);
-		//1.24将纳戒中原石替换为圆石
+		//1.25将纳戒中原石替换为圆石
 		for (let i = 0; i < najie.材料.length; i++) {
 			const element = najie.材料[i];
 			if (element.name == '原石') {
