@@ -1330,7 +1330,7 @@ export class UserHome extends plugin {
                 e.reply(`你没有【${thing_name}】这样的【${thing_exist.class}】`);
                 return;
             }
-            if (thing_exist.type == "练气幻影卡面") {
+            if (thing_exist.type == "练气影子卡面") {
                 let photo = thing_exist.id
                 if (player.练气皮肤 == photo) {
                     e.reply("您的卡面已经是" + thing_exist.name)
@@ -1344,7 +1344,7 @@ export class UserHome extends plugin {
                 e.reply("更换" + thing_exist.type + "【" + thing_exist.name + "】成功")
                 return
             }
-            if (thing_exist.type == "装备幻影卡面") {
+            if (thing_exist.type == "装备影子卡面") {
                 let photo = thing_exist.id
                 if (player.装备皮肤 == photo) {
                     e.reply("您的卡面已经是" + thing_exist.name)
