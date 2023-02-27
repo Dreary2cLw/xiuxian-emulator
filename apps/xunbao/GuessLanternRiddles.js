@@ -237,9 +237,9 @@ export class GuessLanternRiddles extends plugin {
 		//数量判断
 		didian = code[0];
 		let type = code[1];
-		let x = await exist_najie_thing(usr_qq, '虚无幻影', '道具');
+		let x = await exist_najie_thing(usr_qq, '虚无影子', '道具');
 		if (!x) {
-			e.reply('你没有【虚无幻影】');
+			e.reply('你没有【虚无影子】');
 			return;
 		}
 		if (!isNotNull(type)) {
@@ -280,19 +280,19 @@ export class GuessLanternRiddles extends plugin {
 			let kamian = '';
 			if (type == '练气') {
 				kamian = data.daoju_list.find(
-					(item) => item.id == photo && item.type == '练气幻影卡面'
+					(item) => item.id == photo && item.type == '练气影子卡面'
 				);
 			}
 			if (type == '装备') {
 				kamian = data.daoju_list.find(
-					(item) => item.id == photo && item.type == '装备幻影卡面'
+					(item) => item.id == photo && item.type == '装备影子卡面'
 				);
 			}
 			let player = await Read_player(usr_qq);
 			player.练气皮肤 = kamian.id;
 			await Write_player(usr_qq, player);
 			await Add_najie_thing(usr_qq, kamian.name, '道具', 1);
-			await Add_najie_thing(usr_qq, '虚无幻影', '道具', -1);
+			await Add_najie_thing(usr_qq, '虚无影子', '道具', -1);
 			e.reply('兑换' + kamian.name + '成功');
 		}
 		return;
