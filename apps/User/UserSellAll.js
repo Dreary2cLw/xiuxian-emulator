@@ -278,7 +278,7 @@ export class UserSellAll extends plugin {
 			'材料',
 			'盒子',
 			'仙宠',
-			'仙米',
+			'口粮',
 			'食材',
 		];
 		let wupin1 = [];
