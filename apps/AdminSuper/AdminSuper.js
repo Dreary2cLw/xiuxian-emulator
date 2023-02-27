@@ -1422,7 +1422,35 @@ export async function synchronization(e) {
 		najie.仙宠口粮 = najie.仙宠口粮.filter(
 			(item) => item.数量 != null || item.数量 != 0
 		);
-		//1.25将纳戒中原石替换为圆石
+		//1.24将纳戒中原石替换为圆石
+		for (let i = 0; i < najie.材料.length; i++) {
+			const element = najie.材料[i];
+			if (element.name == '原石') {
+				najie.材料[i].name = '圆石';
+				break;
+			}
+		}
+		for (let i = 0; i < najie.道具.length; i++) {
+			const element = najie.道具[i];
+			if (element.name == '斧头') {
+				najie.道具[i].name = '木斧';
+				break;
+			}
+		}
+		for (let i = 0; i < najie.道具.length; i++) {
+			const element = najie.道具[i];
+			if (element.name == '天横山') {
+				najie.道具[i].name = '天衡山';
+				break;
+			}
+		}
+		for (let i = 0; i < najie.道具.length; i++) {
+			const element = najie.道具[i];
+			if (element.name == '剑帝一剑') {
+				najie.道具[i].name = '剑神一剑';
+				break;
+			}
+		}
 		for (let i = 0; i < najie.道具.length; i++) {
 			const element = najie.道具[i];
 			if (element.name == '附魔书-火元素') {
