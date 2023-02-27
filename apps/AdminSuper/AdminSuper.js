@@ -159,7 +159,6 @@ export class AdminSuper extends plugin {
 		await Add_修为(usr_qq, -number2);
 		e.reply('扣除成功');
 	}
-
 	async off_level(e) {
 		//不开放私聊功能
 		if (!e.isGroup) {
@@ -214,7 +213,6 @@ export class AdminSuper extends plugin {
 		await Add_HP(usr_qq, 99999999);
 		e.reply('扣除成功');
 	}
-
 	async liandanshi(e) {
 		if (!e.isMaster) {
 			e.reply('你凑什么热闹');
@@ -1425,34 +1423,6 @@ export async function synchronization(e) {
 			(item) => item.数量 != null || item.数量 != 0
 		);
 		//1.25将纳戒中原石替换为圆石
-		for (let i = 0; i < najie.材料.length; i++) {
-			const element = najie.材料[i];
-			if (element.name == '原石') {
-				najie.材料[i].name = '圆石';
-				break;
-			}
-		}
-		for (let i = 0; i < najie.道具.length; i++) {
-			const element = najie.道具[i];
-			if (element.name == '斧头') {
-				najie.道具[i].name = '木斧';
-				break;
-			}
-		}
-		for (let i = 0; i < najie.道具.length; i++) {
-			const element = najie.道具[i];
-			if (element.name == '天横山') {
-				najie.道具[i].name = '天衡山';
-				break;
-			}
-		}
-		for (let i = 0; i < najie.道具.length; i++) {
-			const element = najie.道具[i];
-			if (element.name == '剑帝一剑') {
-				najie.道具[i].name = '剑神一剑';
-				break;
-			}
-		}
 		for (let i = 0; i < najie.道具.length; i++) {
 			const element = najie.道具[i];
 			if (element.name == '附魔书-火元素') {
@@ -1503,23 +1473,16 @@ export async function synchronization(e) {
 			}
 		}
 		for (let i = 0; i < najie.道具.length; i++) {
-			const element = najie.道具[i];
-			let yingzi = data.kamian1.find((item) => item.name == element.name);
-			let huanying = data.kamian2.find((item) => item.name == element.name);
-			if (element.name == huanying.name) {
-				najie.道具[i].name = yingzi.name;
-				najie.道具[i].type = yingzi.type;
-				break;
-			}
-		}
-		for (let i = 0; i < najie.道具.length; i++) {
-			const element = najie.道具[i];
-			let yingzi = data.kamian.find((item) => item.id == element.id);
-			let huanying = data.kamian3.find((item) => item.id == element.id);
-			if (element.name == huanying.name) {
-				najie.道具[i].name = yingzi.name;
-				najie.道具[i].type = yingzi.type;
-				break;
+			let element = najie.道具[i];
+			let thing_name = element.name;
+			let huanying = data.kamian1.find((item) => item.name == thing_name);
+			if (huanying != undefined) {
+				if (element.name == huanying.name) {
+					najie.道具[i].name = huanying.desc;
+					najie.道具[i].type = huanying.type;
+					e.reply('1');
+					break;
+				}
 			}
 		}
 
