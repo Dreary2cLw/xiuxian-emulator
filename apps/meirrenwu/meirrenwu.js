@@ -1,5 +1,6 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import { __PATH } from '../Xiuxian/xiuxian.js';
+import fs from 'fs';
 import {
 	Read_player,
 	existplayer,
@@ -20,6 +21,7 @@ import {
 import Show from '../../model/show.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import data from '../../model/XiuxianData.js';
+import config from '../../model/Config.js';
 let allaction = false; //全局状态判断
 
 /**
@@ -55,6 +57,13 @@ export class meirrenwu extends plugin {
 				},
 			],
 		});
+		this.xiuxianConfigData = config.getConfig('xiuxian', 'xiuxian');
+		this.set = config.getdefSet('task', 'task');
+		this.task = {
+			cron: this.set.ExchangeTask,
+			name: 'renwutask',
+			fnc: () => this.renwutask(),
+		};
 	}
 	/**
 	 * 接取每日任务
@@ -503,6 +512,36 @@ export async function get_renwu_img(e) {
  * @param {Number} res 百分比小数
  * @return {*} css样式
  */
+async function renwutask(e) {
+	let File = fs.readdirSync(__PATH.player_path);
+	File = File.filter((file) => file.endsWith('.json'));
+	let File_length = File.length;
+	fs.rmSync(`${__PATH.renwu}/renwu.json`);
+	let temp = [];
+	for (var k = 0; k < File_length; k++) {
+		let this_qq = File[k].replace('.json', '');
+		this_qq = parseInt(this_qq);
+		let player = await Read_player(this_qq);
+		let A = this_qq;
+		let user_A = A;
+		let renwu = await Read_renwu();
+		let i = await found(user_A);
+		temp[k] = {
+			player: player.名号,
+			等级: renwu[i].等级,
+			经验: renwu[i].经验,
+			renwu: 0,
+			wancheng1: 1,
+			jilu1: 0,
+			wancheng2: 1,
+			jilu2: 0,
+			wancheng3: 1,
+			jilu3: 0,
+			jiequ: [],
+		};
+		await Write_renwu(renwu);
+	}
+}
 async function found(A) {
 	let renwu = await Read_renwu();
 	let i;
