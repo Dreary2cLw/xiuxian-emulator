@@ -1472,19 +1472,6 @@ export async function synchronization(e) {
 				break;
 			}
 		}
-		for (let i = 0; i < najie.道具.length; i++) {
-			let element = najie.道具[i];
-			let thing_name = element.name;
-			let huanying = data.kamian1.find((item) => item.name == thing_name);
-			if (huanying != undefined) {
-				if (element.name == huanying.name) {
-					najie.道具[i].name = huanying.desc;
-					najie.道具[i].type = huanying.type;
-					e.reply('1');
-					break;
-				}
-			}
-		}
 
 		for (let i = 0; i < najie.装备.length; i++) {
 			const element = najie.装备[i];
