@@ -143,11 +143,12 @@ export class Association extends plugin {
 		}
 		let player = data.getData('player', usr_qq);
 		if (isNotNull(player.宗门)) {
+			e.reply("你已有宗门！");
 			return;
 		}
 		let now_level_id;
 		if (!isNotNull(player.level_id)) {
-			e.reply('请先#同步信息');
+			e.reply('请先#一键同步');
 			return;
 		}
 		let association_name = e.msg.replace('#加入宗门', '');

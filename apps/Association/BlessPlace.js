@@ -650,6 +650,7 @@ export class BlessPlace extends plugin {
 			e.reply(`你的宗门还没有驻地，无法建设宗门`);
 			return;
 		}
+		let denji = Number(ass.宗门建设等级);
 		if (denji < 0) {
 			ass.宗门建设等级 = 0;
 			denji = 0;
@@ -657,8 +658,6 @@ export class BlessPlace extends plugin {
 		if (ass.灵石池 < 0) {
 			ass.灵石池 = 0;
 		}
-		let denji = Number(ass.宗门建设等级);
-
 		//灵石池扣除
 		let lsckc = Math.trunc(denji * 10000);
 		if (ass.灵石池 < lsckc) {
