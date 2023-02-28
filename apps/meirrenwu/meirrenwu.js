@@ -1,7 +1,7 @@
 import plugin from '../../../../lib/plugins/plugin.js';
-import { __PATH } from '../Xiuxian/xiuxian.js';
 import fs from 'fs';
 import {
+	__PATH,
 	Read_player,
 	existplayer,
 	sleep,
@@ -11,8 +11,6 @@ import {
 	fstadd_renwu,
 	find_renwu,
 	shijianc,
-} from '../Xiuxian/xiuxian.js';
-import {
 	Add_灵石,
 	Add_修为,
 	Add_血气,
@@ -360,10 +358,11 @@ export class meirrenwu extends plugin {
 			await Add_血气(usr_qq, jiangli);
 			await Add_灵石(usr_qq, jiangli);
 			await Add_najie_thing(usr_qq, '仙子邀约', '道具', wupin);
+			await Add_najie_thing(usr_qq, '秘境之匙', '道具', wupin);
 			renwu[i].经验 += jingyan;
 			await Write_renwu(renwu);
 			e.reply(
-				`你领取了每日任务奖励，获得了：\n1.修为*${jiangli}\n2.血气*${jiangli}\n3.灵石*${jiangli}\n4.任务经验*${jingyan}\n5.仙子邀约*${wupin}个\n`
+				`你领取了每日任务奖励，获得了：\n1.修为*${jiangli}\n2.血气*${jiangli}\n3.灵石*${jiangli}\n4.任务经验*${jingyan}\n5.仙子邀约*${wupin}个\n6.秘境之匙*${wupin}个\n`
 			);
 		} else if (
 			renwu[i].wancheng1 != 2 ||
