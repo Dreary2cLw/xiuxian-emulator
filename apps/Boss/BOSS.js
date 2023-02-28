@@ -56,7 +56,6 @@ export class BOSS extends plugin {
 			}
 		} else return;
 	}
-
 	//散兵结束指令
 	async DeleteWorldBoss(e) {
 		if (e.isMaster) {
@@ -67,7 +66,6 @@ export class BOSS extends plugin {
 			} else e.reply('散兵未开启');
 		} else return;
 	}
-
 	//散兵状态指令
 	async LookUpWorldBossStatus(e) {
 		if (await BossIsAlive()) {
@@ -111,7 +109,6 @@ export class BOSS extends plugin {
 		} else e.reply('散兵未开启！');
 		return true;
 	}
-
 	//散兵伤害贡献榜
 	async ShowDamageList(e) {
 		if (await BossIsAlive()) {
@@ -170,7 +167,6 @@ export class BOSS extends plugin {
 		} else e.reply('散兵未开启！');
 		return true;
 	}
-
 	//与散兵战斗
 	async WorldBossBattle(e) {
 		if (e.isPrivate) return;
@@ -721,9 +717,9 @@ async function InitWorldBoss(e) {
 	let X = AverageDamage * 0.01;
 	Bot.logger.mark(`[散兵] 化神玩家总数：${player_quantity}`);
 	Bot.logger.mark(`[散兵] 生成基数:${X}`);
-	let Health = Math.trunc(X * 500 * player_quantity * 5); //血量要根据人数来
-	let Attack = Math.trunc(X);
-	let Defence = Math.trunc(X);
+	let Health = Math.trunc(X * 500 * player_quantity * 3); //血量要根据人数来
+	let Attack = Math.trunc(X * player_quantity * 2);
+	let Defence = Math.trunc(X * player_quantity * 2);
 	let Reward = Math.trunc(
 		X * (fairyNums > 7 ? 2 : 4) * (player_quantity > 20 ? 20 : player_quantity)
 	);
@@ -771,7 +767,6 @@ async function SortPlayer(PlayerRecordJSON) {
 		return SortResult;
 	}
 }
-
 //设置防止锁卡死的计时器
 async function SetWorldBOSSBattleUnLockTimer(e) {
 	WorldBOSSBattleUnLockTimer = setTimeout(() => {
