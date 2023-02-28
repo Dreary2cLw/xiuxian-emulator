@@ -242,7 +242,7 @@ export async function Write_equipment(usr_qq, equipment) {
 		equipment.法宝.name == '下界合金头盔'
 	) {
 		player.攻击 = Math.trunc(1.2 * player.攻击);
-		player.血量上限 = Math.trunc(1.5 * player.血量上限);
+		player.血量上限 = Math.trunc(1.2 * player.血量上限);
 		player.防御 = Math.trunc(1.2 * player.防御);
 	}
 	if (
@@ -2526,10 +2526,14 @@ export async function Gaodenyuansulun(
 				gandianhuihe += 3;
 				gandianhuihe -= 3;
 				ranshao = true;
-			} else if (random > 0.4 && random <= 0.8) {
+				chufa = true;
+			} else if (random > 0.6 && random <= 0.8) {
 				msg.push(A_player.名号 + '使用了水卦-背水一战,双方血量同时减少20%');
 				A_player.当前血量 -= A_player.当前血量 * 0.2;
 				B_player.当前血量 -= B_player.当前血量 * 0.2;
+			} else if (random > 0.4 && random <= 0.6) {
+				msg.push(A_player.名号 + '使用了风卦-变化莫测,我方血量增加20%');
+				A_player.当前血量 += A_player.血量上限 * 0.2;
 			} else {
 				msg.push(A_player.名号 + '使用了地卦-运生万物,下次防御提升了50%');
 				A_player.防御 *= 1.5;
@@ -2912,14 +2916,18 @@ export async function Gaodenyuansulun(
 					A_player.名号 + '使用了赤壁奇谋被动技能疾风烈火,战斗中对敌人造成燃烧伤害'
 				);
 			}
+			att *= 2;
+			if (att == 0) {
+				att = last_att * 2;
+			}
 			msg.push(
 				A_player.名号 +
 					'使用了赤壁奇谋主动技能炎龙冲阵,下次伤害无视击退效果,伤害提升了100%'
 			);
-			att *= 2;
 			gandianhuihe += 3;
 			gandianhuihe -= 3;
 			ranshao = true;
+			chufa = true;
 		}
 	}
 
