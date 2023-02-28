@@ -17,6 +17,7 @@ import {
 	Read_najie,
 	Read_player,
 	Write_najie,
+    __PATH,
 } from '../Xiuxian/xiuxian.js';
 import { get_equipment_img } from '../ShowImeg/showData.js';
 import { synchronization } from '../AdminSuper/AdminSuper.js';
