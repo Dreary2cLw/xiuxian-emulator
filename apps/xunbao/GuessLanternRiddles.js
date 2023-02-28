@@ -12,8 +12,8 @@ import {
 	Read_player,
 	existplayer,
 	foundthing,
+	__PATH,
 } from '../Xiuxian/xiuxian.js';
-import { __PATH } from '../Xiuxian/xiuxian.js';
 
 export class GuessLanternRiddles extends plugin {
 	constructor() {
@@ -386,16 +386,25 @@ export class GuessLanternRiddles extends plugin {
 			}
 			if (player.书架 < 50) {
 				let x = await exist_najie_thing(usr_qq, '青金石', '材料');
-				if (!x && x < 10) {
+				if (!x) {
+					e.reply('你没有【青金石】');
+					return;
+				}
+				if (x < 10) {
 					e.reply('你没有足够的【青金石】');
 					return;
 				}
-				await Add_najie_thing(usr_qq, '青金石', '材料', -10);
 				let y = await exist_najie_thing(usr_qq, '书本', '材料');
-				if (!y && y < 10) {
+				if (!y) {
+					e.reply('你没有【书本】');
+					return;
+				}
+				if (y < 10) {
 					e.reply('你没有足够的【书本】');
 					return;
 				}
+				e.reply('十道金光从天而降');
+				await Add_najie_thing(usr_qq, '青金石', '材料', -10);
 				await Add_najie_thing(usr_qq, '书本', '材料', -10);
 				let msg = [];
 				let all = [];
@@ -422,16 +431,25 @@ export class GuessLanternRiddles extends plugin {
 				e.reply('恭喜获得\n' + all);
 			} else {
 				let x = await exist_najie_thing(usr_qq, '青金石', '材料');
-				if (!x && x < 30) {
+				if (!x) {
+					e.reply('你没有【青金石】');
+					return;
+				}
+				if (x < 30) {
 					e.reply('你没有足够的【青金石】');
 					return;
 				}
-				await Add_najie_thing(usr_qq, '青金石', '材料', -30);
 				let y = await exist_najie_thing(usr_qq, '书本', '材料');
-				if (!y && y < 10) {
+				if (!y) {
+					e.reply('你没有【书本】');
+					return;
+				}
+				if (y < 10) {
 					e.reply('你没有足够的【书本】');
 					return;
 				}
+				e.reply('十道金光从天而降');
+				await Add_najie_thing(usr_qq, '青金石', '材料', -30);
 				await Add_najie_thing(usr_qq, '书本', '材料', -10);
 				let msg = [];
 				let all = [];
@@ -529,13 +547,13 @@ export class GuessLanternRiddles extends plugin {
 					e.reply('你没有【青金石】');
 					return;
 				}
-				await Add_najie_thing(usr_qq, '青金石', '材料', -1);
 				let y = await exist_najie_thing(usr_qq, '书本', '材料');
 				if (!y) {
 					e.reply('你没有【书本】');
 					return;
 				}
 				await Add_najie_thing(usr_qq, '书本', '材料', -1);
+				await Add_najie_thing(usr_qq, '青金石', '材料', -1);
 				let tianluoRandom = Math.floor(
 					Math.random() * data.changzhufumoshu_list.length
 				);
@@ -552,17 +570,21 @@ export class GuessLanternRiddles extends plugin {
 				return;
 			} else {
 				let x = await exist_najie_thing(usr_qq, '青金石', '材料');
-				if (!x && x < 3) {
+				if (!x) {
+					e.reply('你没有【青金石】');
+					return;
+				}
+				if (x < 3) {
 					e.reply('你没有足够的【青金石】');
 					return;
 				}
-				await Add_najie_thing(usr_qq, '青金石', '材料', -1);
 				let y = await exist_najie_thing(usr_qq, '书本', '材料');
 				if (!y) {
 					e.reply('你没有【书本】');
 					return;
 				}
 				await Add_najie_thing(usr_qq, '书本', '材料', -1);
+				await Add_najie_thing(usr_qq, '青金石', '材料', -1);
 				let tianluoRandom = Math.floor(
 					Math.random() * data.changzhufumoshu_list.length
 				);
