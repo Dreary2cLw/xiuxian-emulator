@@ -112,7 +112,7 @@ export class Xijie extends plugin {
 		}
 
 		//开始准备洗劫
-		player.魔道值 += 25 * shop[i].Grade;
+		player.魔道值 -= (50 * shop[i].Grade);
 		await Write_player(usr_qq, player);
 
 		shop[i].state = 1;
