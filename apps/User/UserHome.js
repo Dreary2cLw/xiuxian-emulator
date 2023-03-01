@@ -2051,6 +2051,24 @@ export class UserHome extends plugin {
             } else if (thing_name == "幸运草") {
                 e.reply(`该道具无法在纳戒中消耗,在幸运突破/幸运破体时自动消耗`);
                 return;
+            } else if (thing_name == "神界秘宝" || thing_name == "魔界秘宝") {
+                e.reply(`该道具无法在纳戒中消耗,在闭关结算时自动消耗`);
+                return;
+            } else if (thing_name == "血魔丹" || thing_name == "修魔丹") {
+                e.reply(`该道具无法在纳戒中消耗,在魔界中自动消耗`);
+                return;
+            } else if (thing_name == "仙府通行证") {
+                e.reply(`该道具无法在纳戒中消耗,在探索仙府时自动消耗`);
+                return;
+            } else if (thing_name == "仙境优惠券") {
+                e.reply(`该道具无法在纳戒中消耗,在镇守仙境时自动消耗`);
+                return;
+            } else if (thing_name == "杀神崖通行证") {
+                e.reply(`该道具无法在纳戒中消耗,在镇守杀神崖时自动消耗`);
+                return;
+            } else if (thing_name == "替身人偶") {
+                e.reply(`该道具无法在纳戒中消耗,在被打劫时自动消耗`);
+                return;
             } else if (thing_name == "定灵珠") {
                 await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                 player.linggenshow = 0;
