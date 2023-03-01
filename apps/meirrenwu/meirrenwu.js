@@ -1,4 +1,5 @@
 import plugin from '../../../../lib/plugins/plugin.js';
+import config from '../../model/Config.js';
 import fs from 'fs';
 import {
 	__PATH,
@@ -19,7 +20,7 @@ import {
 import Show from '../../model/show.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import data from '../../model/XiuxianData.js';
-import config from '../../model/Config.js';
+
 let allaction = false; //全局状态判断
 
 /**
@@ -55,7 +56,6 @@ export class meirrenwu extends plugin {
 				},
 			],
 		});
-		this.xiuxianConfigData = config.getConfig('xiuxian', 'xiuxian');
 		this.set = config.getdefSet('task', 'task');
 		this.task = {
 			cron: this.set.ExchangeTask,
@@ -286,6 +286,7 @@ export class meirrenwu extends plugin {
 	/**
 	 * 我的任务
 	 */
+
 	async look_renwu(e) {
 		let A = e.user_id;
 		let user_A = A;
@@ -323,6 +324,36 @@ export class meirrenwu extends plugin {
 		let img = await get_renwu_img(e);
 		e.reply(img);
 		return;
+	}
+	async renwutask() {
+		let File = fs.readdirSync(__PATH.player_path);
+		File = File.filter((file) => file.endsWith('.json'));
+		let File_length = File.length;
+		fs.rmSync(`${__PATH.renwu}/renwu.json`);
+		let temp = [];
+		for (var k = 0; k < File_length; k++) {
+			let this_qq = File[k].replace('.json', '');
+			this_qq = parseInt(this_qq);
+			let player = await Read_player(this_qq);
+			let A = this_qq;
+			let user_A = A;
+			let renwu = await Read_renwu();
+			let i = await found(user_A);
+			temp[k] = {
+				player: player.名号,
+				等级: renwu[i].等级,
+				经验: renwu[i].经验,
+				renwu: 0,
+				wancheng1: 1,
+				jilu1: 0,
+				wancheng2: 1,
+				jilu2: 0,
+				wancheng3: 1,
+				jilu3: 0,
+				jiequ: [],
+			};
+			await Write_renwu(renwu);
+		}
 	}
 	/**
 	 * 领取每日奖励
@@ -391,6 +422,7 @@ export class meirrenwu extends plugin {
  * 我的任务
  * @return image
  */
+
 export async function get_renwu_img(e) {
 	let usr_qq = e.user_id;
 	let player = await Read_player(usr_qq);
@@ -511,36 +543,7 @@ export async function get_renwu_img(e) {
  * @param {Number} res 百分比小数
  * @return {*} css样式
  */
-async function renwutask(e) {
-	let File = fs.readdirSync(__PATH.player_path);
-	File = File.filter((file) => file.endsWith('.json'));
-	let File_length = File.length;
-	fs.rmSync(`${__PATH.renwu}/renwu.json`);
-	let temp = [];
-	for (var k = 0; k < File_length; k++) {
-		let this_qq = File[k].replace('.json', '');
-		this_qq = parseInt(this_qq);
-		let player = await Read_player(this_qq);
-		let A = this_qq;
-		let user_A = A;
-		let renwu = await Read_renwu();
-		let i = await found(user_A);
-		temp[k] = {
-			player: player.名号,
-			等级: renwu[i].等级,
-			经验: renwu[i].经验,
-			renwu: 0,
-			wancheng1: 1,
-			jilu1: 0,
-			wancheng2: 1,
-			jilu2: 0,
-			wancheng3: 1,
-			jilu3: 0,
-			jiequ: [],
-		};
-		await Write_renwu(renwu);
-	}
-}
+
 async function found(A) {
 	let renwu = await Read_renwu();
 	let i;
@@ -551,6 +554,7 @@ async function found(A) {
 	}
 	return i;
 }
+
 function Strand(now, max) {
 	let num = ((now / max) * 100).toFixed(0);
 	let mini;
