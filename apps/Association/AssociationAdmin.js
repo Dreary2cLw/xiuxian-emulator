@@ -89,7 +89,7 @@ export class AssociationAdmin extends plugin {
 
 		let now_level_id;
 		if (!isNotNull(player.level_id)) {
-			this.reply('请先#同步信息');
+			this.reply('请先#一键同步');
 			return;
 		}
 		now_level_id = data.Level_list.find(

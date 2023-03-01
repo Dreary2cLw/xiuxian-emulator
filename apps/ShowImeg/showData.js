@@ -181,7 +181,7 @@ export async function get_XianChong_img(e) {
   }
   let player = await data.getData('player', usr_qq);
   if (!isNotNull(player.level_id)) {
-    e.reply('请先#同步信息');
+    e.reply('请先#一键同步');
     return;
   }
   let najie = await Read_najie(usr_qq);
@@ -228,7 +228,7 @@ export async function get_daoju_img(e) {
   }
   let player = await data.getData('player', usr_qq);
   if (!isNotNull(player.level_id)) {
-    e.reply('请先#同步信息');
+    e.reply('请先#一键同步');
     return;
   }
   let najie = await Read_najie(usr_qq);
@@ -285,7 +285,7 @@ export async function get_huanying_img(e) {
   }
   let player = await data.getData('player', usr_qq);
   if (!isNotNull(player.level_id)) {
-    e.reply('请先#同步信息');
+    e.reply('请先#一键同步');
     return;
   }
   let najie = await Read_najie(usr_qq);
@@ -346,7 +346,7 @@ export async function get_huju_img(e) {
   }
   let player = await data.getData('player', usr_qq);
   if (!isNotNull(player.level_id)) {
-    e.reply('请先#同步信息');
+    e.reply('请先#一键同步');
     return;
   }
   let najie = await Read_najie(usr_qq);
@@ -436,7 +436,7 @@ export async function get_fabao_img(e) {
   }
   let player = await data.getData('player', usr_qq);
   if (!isNotNull(player.level_id)) {
-    e.reply('请先#同步信息');
+    e.reply('请先#一键同步');
     return;
   }
   let najie = await Read_najie(usr_qq);
@@ -526,7 +526,7 @@ export async function get_wuqi_img(e) {
   }
   let player = await data.getData('player', usr_qq);
   if (!isNotNull(player.level_id)) {
-    e.reply('请先#同步信息');
+    e.reply('请先#一键同步');
     return;
   }
   let najie = await Read_najie(usr_qq);
@@ -616,7 +616,7 @@ export async function get_danyao_img(e) {
   }
   let player = await data.getData('player', usr_qq);
   if (!isNotNull(player.level_id)) {
-    e.reply('请先#同步信息');
+    e.reply('请先#一键同步');
     return;
   }
   let najie = await Read_najie(usr_qq);
@@ -811,7 +811,7 @@ export async function get_gongfa_img(e) {
   }
   let player = await data.getData('player', usr_qq);
   if (!isNotNull(player.level_id)) {
-    e.reply('请先#同步信息');
+    e.reply('请先#一键同步');
     return;
   }
   let user_name = player.名号;
@@ -891,7 +891,7 @@ export async function get_power_img(e) {
   data.setData('player', usr_qq, player);
   await player_efficiency(usr_qq);
   if (!isNotNull(player.level_id)) {
-    e.reply('请先#同步信息');
+    e.reply('请先#一键同步');
     return;
   }
   let this_association;
@@ -1156,7 +1156,7 @@ export async function get_association_img(e) {
   //境界
   //let now_level_id;
   if (!isNotNull(player.level_id)) {
-    e.reply('请先#同步信息');
+    e.reply('请先#一键同步');
     return;
   }
   //now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
@@ -1565,7 +1565,7 @@ export async function get_adminset_img(e) {
 export async function get_ranking_power_img(e, Data, usr_paiming, thisplayer) {
   let usr_qq = e.user_id;
   if (!isNotNull(thisplayer.level_id)) {
-    e.reply('请先#同步信息');
+    e.reply('请先#一键同步');
     return;
   }
   let level = data.Level_list.find(item => item.level_id == thisplayer.level_id).level;

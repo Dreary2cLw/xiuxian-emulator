@@ -167,7 +167,7 @@ export async function Write_equipment(usr_qq, equipment) {
 	//
 	let player = await Read_player(usr_qq);
 	if (!isNotNull(player.level_id)) {
-		await e.reply('请先#同步信息');
+		await e.reply('请先#一键同步');
 		return;
 	}
 	let equ_atk =

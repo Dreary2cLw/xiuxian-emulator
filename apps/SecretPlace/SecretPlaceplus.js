@@ -142,7 +142,7 @@ export class SecretPlaceplus extends plugin {
 		}
 		let now_level_id;
 		if (!isNotNull(player.level_id)) {
-			e.reply('请先#同步信息');
+			e.reply('请先#一键同步');
 			return;
 		}
 
@@ -223,11 +223,11 @@ export class SecretPlaceplus extends plugin {
 		let player = await Read_player(usr_qq);
 		let now_level_id;
 		if (!isNotNull(player.level_id)) {
-			e.reply('请先#同步信息');
+			e.reply('请先#一键同步');
 			return;
 		}
 		if (!isNotNull(player.power_place)) {
-			e.reply('请#同步信息');
+			e.reply('请#一键同步');
 			return;
 		}
 		now_level_id = data.Level_list.find(
@@ -359,7 +359,7 @@ export class SecretPlaceplus extends plugin {
 		let didian = didianlist[suiji]; //赋值
 		let now_level_id;
 		if (!isNotNull(player.level_id)) {
-			e.reply('请先#同步信息');
+			e.reply('请先#一键同步');
 			return;
 		}
 		await sleep(1000);
@@ -480,7 +480,7 @@ export class SecretPlaceplus extends plugin {
 		}
 		let now_level_id;
 		if (!isNotNull(player.level_id)) {
-			e.reply('请先#同步信息');
+			e.reply('请先#一键同步');
 			return;
 		}
 		if (didian == '仙界矿场') {
@@ -495,7 +495,7 @@ export class SecretPlaceplus extends plugin {
 			return;
 		} else {
 			if (!isNotNull(player.power_place)) {
-				e.reply('请#同步信息');
+				e.reply('请#一键同步');
 				return;
 			}
 			if (player.power_place != 0) {

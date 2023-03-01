@@ -543,7 +543,7 @@ export class AdminSuper extends plugin {
 			let player = await Read_player(player_id);
 			let now_level_id;
 			if (!isNotNull(player.level_id)) {
-				e.reply('请先#同步信息');
+				e.reply('请先#一键同步');
 				return;
 			}
 			now_level_id = data.Level_list.find(
@@ -1036,7 +1036,7 @@ export class AdminSuper extends plugin {
 		}
 		let player = await Read_player(qq);
 		if (!isNotNull(player.power_place)) {
-			e.reply('请#同步信息');
+			e.reply('请#一键同步');
 			return;
 		}
 		player.power_place = 1;

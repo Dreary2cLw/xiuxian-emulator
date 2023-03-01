@@ -86,7 +86,7 @@ export class WDT extends plugin {
     //境界
     let now_level_idAA;
     if (!isNotNull(playerAA.level_id)) {
-      e.reply('请先#同步信息');
+      e.reply('请先#一键同步');
       return;
     }
     now_level_idAA = data.Level_list.find(

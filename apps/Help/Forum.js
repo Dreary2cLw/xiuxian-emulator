@@ -321,7 +321,7 @@ export class Forum extends plugin {
 		await redis.set('xiuxian:player:' + usr_qq + ':ForumCD', now_time);
 		let now_level_id;
 		if (!isNotNull(player.level_id)) {
-			e.reply('请先#同步信息');
+			e.reply('请先#一键同步');
 			return;
 		}
 		let Forum;

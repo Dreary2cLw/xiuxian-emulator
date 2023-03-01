@@ -103,7 +103,7 @@ export class Exchange extends plugin {
 		let player = await Read_player(usr_qq);
 		//let now_level_id;
 		if (!isNotNull(player.level_id)) {
-			e.reply('请先#同步信息');
+			e.reply('请先#一键同步');
 			return;
 		}
 		let x = parseInt(e.msg.replace('#下架', '')) - 1;
@@ -403,7 +403,7 @@ export class Exchange extends plugin {
 		let player = await Read_player(usr_qq);
 		let now_level_id;
 		if (!isNotNull(player.level_id)) {
-			e.reply('请先#同步信息');
+			e.reply('请先#一键同步');
 			return;
 		}
 		let Exchange;

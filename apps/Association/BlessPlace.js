@@ -424,7 +424,7 @@ export class BlessPlace extends plugin {
 		}
 
 		if (!isNotNull(player.level_id)) {
-			e.reply('请先#同步信息');
+			e.reply('请先#一键同步');
 			return;
 		}
 
@@ -585,7 +585,7 @@ export class BlessPlace extends plugin {
 		}
 
 		if (!isNotNull(player.level_id)) {
-			e.reply('请先#同步信息');
+			e.reply('请先#一键同步');
 			return;
 		}
 		let number = await exist_najie_thing(usr_qq, '秘境之匙', '道具');

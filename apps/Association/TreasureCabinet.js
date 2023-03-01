@@ -102,7 +102,7 @@ export class TreasureCabinet extends plugin {
 		}
 
 		if (!isNotNull(player.level_id)) {
-			e.reply('请先#同步信息');
+			e.reply('请先#一键同步');
 			return;
 		}
 		let ass = data.getAssociation(player.宗门.宗门名称);
@@ -412,7 +412,7 @@ export class TreasureCabinet extends plugin {
 
 		let player = await Read_player(usr_qq);
 		if (!isNotNull(player.level_id)) {
-			e.reply('请先#同步信息');
+			e.reply('请先#一键同步');
 			return;
 		}
 

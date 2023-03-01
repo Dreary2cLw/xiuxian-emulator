@@ -212,7 +212,7 @@ export class TopList extends plugin {
 			let player = await Read_player(this_qq);
 			let sum_exp = await Get_xiuwei(this_qq);
 			if (!isNotNull(player.level_id)) {
-				e.reply('请先#同步信息');
+				e.reply('请先#一键同步');
 				return;
 			}
 			//境界名字需要查找境界名

@@ -58,7 +58,7 @@ export class tzzyt extends plugin {
 			//       "当前血量": 8000,
 			//       "occupation":[],//职业
 			//       "镇妖塔层数":0 这里，添加上去就行了！！！！！！！
-			//同步信息那里也要 apps\AdminSuper\AdminSuper.js在这里
+			//一键同步那里也要 apps\AdminSuper\AdminSuper.js在这里
 			//大概115条左右的 ”补“哪里
 			//if ( !isNotNull(player.镇妖塔层数)) {
 			//                player.镇妖塔层数 = 0;
