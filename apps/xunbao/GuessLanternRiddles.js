@@ -565,7 +565,7 @@ export class GuessLanternRiddles extends plugin {
 					`金光掉落在地上，走近一看是 ${data.changzhufumoshu_list[tianluoRandom].name}`
 				);
 				await sleep(1000);
-				await Add_najie_thing(usr_qq, data.changzhufumoshu_list[tianluoRandom].name, 1);
+				await Add_najie_thing(usr_qq, data.changzhufumoshu_list[tianluoRandom].name,data.changzhufumoshu_list[tianluoRandom].class, 1)
 				e.reply('恭喜获得' + data.changzhufumoshu_list[tianluoRandom].name);
 				return;
 			} else {
@@ -595,7 +595,7 @@ export class GuessLanternRiddles extends plugin {
 					`金光掉落在地上，走近一看是 ${data.changzhufumoshu_list[tianluoRandom].name}`
 				);
 				await sleep(1000);
-				await Add_najie_thing(usr_qq, data.changzhufumoshu_list[tianluoRandom].name, 1);
+				 await Add_najie_thing(usr_qq, data.changzhufumoshu_list[tianluoRandom].name,data.changzhufumoshu_list[tianluoRandom].class, 1)
 				e.reply('恭喜获得' + data.changzhufumoshu_list[tianluoRandom].name);
 				return;
 			}
