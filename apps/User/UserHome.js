@@ -2549,7 +2549,7 @@ export class UserHome extends plugin {
                     await Add_najie_thing(usr_qq, "低语森林", "道具", -1);
                     await Add_血气(usr_qq, xueqi)
                     await Add_修为(usr_qq, xiuwei)
-                    if (math > 0 && math <= 0.3) {
+                    if (math > 0.01 && math <= 0.1) {
                         await Add_najie_thing(usr_qq, "水天丛林", "道具", 1 * n);
                         e.reply(`${last_msg}${fyd_msg}你在低语森林捡到了原木${3 * futou * n + 9 * shifu * n}个和一个水天丛林地图,获得了修为${xiuwei}血气${xueqi}`)
                         return;
@@ -2679,7 +2679,7 @@ export class UserHome extends plugin {
                         await Add_najie_thing(usr_qq, "煤炭", "材料", 5 * n);
                         e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${150 * muchan * n + 300 * n * shichan}个和土豆${150 * muchan * n + 300 * n * shichan}个,在猪人箱子里找到煤炭${5 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
-                    } else if (math > 0 && math <= 0.2) {
+                     } else if (math > 0 && math <= 0.1) {
                         await Add_najie_thing(usr_qq, "轻策庄", "道具", 1 * n);
                         e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${150 * muchan * n + 300 * n * shichan}个和土豆${150 * muchan * n + 300 * n * shichan}个,在猪人箱子里找到轻策庄地图${1 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
