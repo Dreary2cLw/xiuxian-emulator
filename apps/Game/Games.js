@@ -660,12 +660,13 @@ export class Games extends plugin {
 		let B_player = await Read_player(B);
 		let A_player = await Read_player(A);
 		if (
-			(A_player.sex != '男' && B_player.sex != '女') ||
-			(A_player.sex != '女' && B_player.sex != '男')
+			(A_player.sex != 1 && B_player.sex != 2) ||
+			(A_player.sex != 2 && B_player.sex != 1)
 		) {
 			e.reply('禁止同性恋！！');
 			return;
 		}
+		let j;
 		for (j = 0; j < A_player.学习的功法.length; j++) {
 			if (A_player.学习的功法[j] == '阴阳经') {
 				aa = true;
@@ -839,8 +840,8 @@ export class Games extends plugin {
 		let B_player = await Read_player(B);
 		let A_player = await Read_player(A);
 		if (
-			(A_player.sex != '男' && B_player.sex != '女') ||
-			(A_player.sex != '女' && B_player.sex != '男')
+			(A_player.sex != 1 && B_player.sex != 2) ||
+			(A_player.sex != 2 && B_player.sex != 1)
 		) {
 			e.reply('禁止同性恋！！');
 			return;
