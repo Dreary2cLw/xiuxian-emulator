@@ -1,5 +1,4 @@
 import plugin from '../../../../lib/plugins/plugin.js';
-import config from '../../model/Config.js';
 import fs from 'fs';
 import {
 	__PATH,
@@ -56,12 +55,6 @@ export class meirrenwu extends plugin {
 				},
 			],
 		});
-		this.set = config.getdefSet('task', 'task');
-		this.task = {
-			cron: this.set.ExchangeTask,
-			name: 'renwutask',
-			fnc: () => this.renwutask(),
-		};
 	}
 	/**
 	 * 接取每日任务
@@ -324,36 +317,6 @@ export class meirrenwu extends plugin {
 		let img = await get_renwu_img(e);
 		e.reply(img);
 		return;
-	}
-	async renwutask() {
-		let File = fs.readdirSync(__PATH.player_path);
-		File = File.filter((file) => file.endsWith('.json'));
-		let File_length = File.length;
-		fs.rmSync(`${__PATH.renwu}/renwu.json`);
-		let temp = [];
-		for (var k = 0; k < File_length; k++) {
-			let this_qq = File[k].replace('.json', '');
-			this_qq = parseInt(this_qq);
-			let player = await Read_player(this_qq);
-			let A = this_qq;
-			let user_A = A;
-			let renwu = await Read_renwu();
-			let i = await found(user_A);
-			temp[k] = {
-				player: player.名号,
-				等级: renwu[i].等级,
-				经验: renwu[i].经验,
-				renwu: 0,
-				wancheng1: 1,
-				jilu1: 0,
-				wancheng2: 1,
-				jilu2: 0,
-				wancheng3: 1,
-				jilu3: 0,
-				jiequ: [],
-			};
-			await Write_renwu(renwu);
-		}
 	}
 	/**
 	 * 领取每日奖励
