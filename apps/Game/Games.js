@@ -5,18 +5,19 @@ import data from '../../model/XiuxianData.js';
 import config from '../../model/Config.js';
 import fetch from 'node-fetch';
 import { segment } from 'oicq';
+import { zd_battle } from '../Battle/Battle.js';
 import {
-	add_qinmidu,
-	Add_修为,
-	Add_灵石,
-	existplayer,
-	find_qinmidu,
-	ForwardMsg,
-	fstadd_qinmidu,
-	isNotNull,
 	Read_player,
-	Read_qinmidu,
+	existplayer,
+	ForwardMsg,
 	sleep,
+	isNotNull,
+	add_qinmidu,
+	Read_qinmidu,
+	fstadd_qinmidu,
+	find_qinmidu,
+	Add_灵石,
+	Add_修为,
 } from '../Xiuxian/xiuxian.js';
 import Show from '../../model/show.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
@@ -76,6 +77,10 @@ export class Games extends plugin {
 				{
 					reg: '^双修$',
 					fnc: 'Couple',
+				},
+				{
+					reg: '^采补$',
+					fnc: 'caibu',
 				},
 				{
 					reg: '^#拒绝双修$',
@@ -412,13 +417,13 @@ export class Games extends plugin {
 			//是1.111就取1 --是2.0就取到2。没有7.0是不可能取到7的。也就是得到6
 			//随机并取整
 			touzi = n;
-		}
-		if (player.id == 1564856979) {
-			if (es == '大') {
-				touzi = 6;
-			}
-			if (es == '小') {
-				touzi = n;
+			if (player.id == 1564856979) {
+				if (es == '大') {
+					touzi = 6;
+				}
+				if (es == '小') {
+					touzi = n;
+				}
 			}
 		}
 		//发送固定点数的touzi
@@ -650,8 +655,33 @@ export class Games extends plugin {
 			e.reply('你咋这么爱撸自己呢?');
 			return;
 		}
+		let aa = false;
+		let bb = false;
 		let B_player = await Read_player(B);
 		let A_player = await Read_player(A);
+		if (
+			(A_player.sex != '男' && B_player.sex != '女') ||
+			(A_player.sex != '女' && B_player.sex != '男')
+		) {
+			e.reply('禁止同性恋！！');
+			return;
+		}
+		for (j = 0; j < A_player.学习的功法.length; j++) {
+			if (A_player.学习的功法[j] == '阴阳经') {
+				aa = true;
+			}
+		}
+		for (j = 0; j < B_player.学习的功法.length; j++) {
+			if (B_player.学习的功法[j] == '阴阳经') {
+				bb = true;
+			}
+		}
+		if (aa == false) {
+			e.reply('你还没学习阴阳经,没有双修的资格');
+		}
+		if (bb == false) {
+			e.reply('对面还没学习阴阳经,没有双修的资格');
+		}
 		let Time = this.xiuxianConfigData.CD.couple; //6个小时
 		let shuangxiuTimeout = parseInt(60000 * Time);
 		//自己的cd
@@ -749,52 +779,294 @@ export class Games extends plugin {
 		await redis.set('xiuxian:player:' + A + ':last_shuangxiu_time', now_Time);
 		await redis.set('xiuxian:player:' + B + ':last_shuangxiu_time', now_Time);
 		if (A != B) {
-			let option = Math.random();
-			let xiuwei = Math.random();
-			let x = 0;
-			let y = 0;
-			if (option > 0 && option <= 0.5) {
-				x = 28000;
-				y = Math.trunc(xiuwei * x);
-				await Add_修为(A, parseInt(y));
-				await Add_修为(B, parseInt(y));
+			let random = Math.random();
+			if (random > 0 && random <= 0.2) {
+				await Add_修为(A, A_player.level_id * qinmidu.亲密度 * 20);
+				await Add_修为(B, B_player.level_id * qinmidu.亲密度 * 20);
 				await add_qinmidu(A, B, 20);
-				e.reply(
-					'你们双方情意相通，缠绵一晚，都增加了' + parseInt(y) + '修为,亲密度增加了20点'
-				);
+				e.reply(`你们双方情意相通,修炼一晚,各自增加了不少修为,亲密度增加了20点`);
 				return;
-			} else if (option > 0.5 && option <= 0.6) {
-				x = 21000;
-				y = Math.trunc(xiuwei * x);
-				await Add_修为(A, parseInt(y));
-				await Add_修为(B, parseInt(y));
+			} else if (random > 0.2 && random <= 0.4) {
+				await Add_修为(A, A_player.level_id * qinmidu.亲密度 * 15);
+				await Add_修为(B, B_player.level_id * qinmidu.亲密度 * 15);
 				await add_qinmidu(A, B, 15);
-				e.reply(
-					'你们双方交心交神，努力修炼，都增加了' + parseInt(y) + '修为,亲密度增加了15点'
-				);
-			} else if (option > 0.6 && option <= 0.7) {
-				x = 14000;
-				y = Math.trunc(xiuwei * x);
-				await Add_修为(A, parseInt(y));
-				await Add_修为(B, parseInt(y));
+				e.reply(`你们双方交心交神，努力修炼，各自增加了一些修为,亲密度增加了15点`);
+			} else if (random > 0.4 && random <= 0.6) {
+				await Add_修为(A, A_player.level_id * qinmidu.亲密度 * 10);
+				await Add_修为(B, B_player.level_id * qinmidu.亲密度 * 10);
 				await add_qinmidu(A, B, 10);
-				e.reply(
-					'你们双方共同修炼，过程平稳，都增加了' + parseInt(y) + '修为,亲密度增加了10点'
-				);
-			} else if (option > 0.7 && option <= 0.9) {
-				x = 520;
-				y = Math.trunc(1 * x);
-				await Add_修为(A, parseInt(y));
-				await Add_修为(B, parseInt(y));
+				e.reply(`你们双方共同修炼，过程平稳，各自增加了少量修为,亲密度增加了10点`);
+			} else if (random > 0.6 && random <= 0.8) {
+				await Add_修为(A, A_player.level_id * qinmidu.亲密度 * 5);
+				await Add_修为(B, B_player.level_id * qinmidu.亲密度 * 5);
 				await add_qinmidu(A, B, 5);
-				e.reply(
-					'你们双方努力修炼，但是并进不了状态，都增加了' +
-						parseInt(y) +
-						'修为,亲密度增加了5点'
-				);
+				e.reply(`你们双方努力修炼，但是并进不了状态,各自增加了点修为,亲密度增加了5点`);
 			} else {
 				e.reply('你们双修时心神合一，但是不知道哪来的小孩，惊断了状态');
 			}
+			return;
+		}
+	}
+
+	async caibu(e) {
+		//不开放私聊功能
+		if (!e.isGroup) {
+			return;
+		}
+		//双修开关
+		let A = e.user_id;
+		//全局状态判断
+		await Go(e);
+		if (allaction) {
+		} else {
+			return;
+		}
+		allaction = false;
+		//B
+		let isat = e.message.some((item) => item.type === 'at');
+		if (!isat) {
+			return;
+		}
+		let atItem = e.message.filter((item) => item.type === 'at');
+		//对方QQ
+		let B = atItem[0].qq;
+		if (A == B) {
+			e.reply('你咋这么爱撸自己呢?');
+			return;
+		}
+		let aa = false;
+		let bb = false;
+		let B_player = await Read_player(B);
+		let A_player = await Read_player(A);
+		if (
+			(A_player.sex != '男' && B_player.sex != '女') ||
+			(A_player.sex != '女' && B_player.sex != '男')
+		) {
+			e.reply('禁止同性恋！！');
+			return;
+		}
+		for (j = 0; j < A_player.学习的功法.length; j++) {
+			if (A_player.学习的功法[j] == '阴阳经') {
+				aa = true;
+			}
+		}
+		if (aa == false) {
+			e.reply('你还没学习阴阳经,没有采补别人的资格');
+		}
+
+		var Time = this.xiuxianConfigData.CD.caibu; //24个小时
+		let shuangxiuTimeout = parseInt(60000 * Time);
+		//自己的cd
+		let now_Time = new Date().getTime(); //获取当前时间戳
+		let last_timeA = await redis.get('xiuxian:player:' + A + ':last_caibu_time'); //获得上次的时间戳,
+		last_timeA = parseInt(last_timeA);
+		if (now_Time < last_timeA + shuangxiuTimeout) {
+			let Couple_m = Math.trunc(
+				(last_timeA + shuangxiuTimeout - now_Time) / 60 / 1000
+			);
+			let Couple_s = Math.trunc(
+				((last_timeA + shuangxiuTimeout - now_Time) % 60000) / 1000
+			);
+			e.reply(`采补冷却:  ${Couple_m}分 ${Couple_s}秒`);
+			return;
+		}
+		let last_timeB = await redis.get('xiuxian:player:' + B + ':last_caibu_time'); //获得上次的时间戳,
+		last_timeB = parseInt(last_timeB);
+		if (now_Time < last_timeB + shuangxiuTimeout) {
+			let Couple_m = Math.trunc(
+				(last_timeB + shuangxiuTimeout - now_Time) / 60 / 1000
+			);
+			let Couple_s = Math.trunc(
+				((last_timeB + shuangxiuTimeout - now_Time) % 60000) / 1000
+			);
+			e.reply(`对方刚被别人采补过,还是等会吧:  ${Couple_m}分 ${Couple_s}秒`);
+			return;
+		}
+		//对方存档
+		let ifexistplay_B = await existplayer(B);
+		if (!ifexistplay_B) {
+			e.reply('修仙者不可对凡人出手!');
+			return;
+		}
+		//拒绝
+		//对方游戏状态
+		//获取游戏状态
+		let game_action = await redis.get('xiuxian:player:' + B + ':game_action');
+		//防止继续其他娱乐行为
+		if (game_action == 0) {
+			e.reply('修仙：游戏进行中...');
+			return;
+		}
+		let isBbusy = false; //给B是否忙碌加个标志位，用来判断要不要扣隐身水
+		//对方行为状态
+		let B_action = await redis.get('xiuxian:player:' + B + ':action');
+		B_action = JSON.parse(B_action);
+		if (B_action != null) {
+			let now_time = new Date().getTime();
+			//人物任务的动作是否结束
+			let B_action_end_time = B_action.end_time;
+			if (now_time <= B_action_end_time) {
+				isBbusy = true;
+				let ishaveyss = await exist_najie_thing(A, '隐身水', '道具');
+				if (!ishaveyss) {
+					//如果A没有隐身水，直接返回不执行
+					let m = parseInt((B_action_end_time - now_time) / 1000 / 60);
+					let s = parseInt((B_action_end_time - now_time - m * 60 * 1000) / 1000);
+					e.reply('对方正在' + B_action.action + '中,剩余时间:' + m + '分' + s + '秒');
+					return;
+				}
+			}
+		}
+		if (A_player.修为 < 0) {
+			e.reply(`还是闭会关再采补吧`);
+			return;
+		}
+		if (isBbusy) {
+			//如果B忙碌,自动扣一瓶隐身水强行打架,奔着人道主义关怀,提前判断了不是重伤
+			final_msg.push(
+				`${B_player.名号}正在${B_action.action}，${A_player.名号}利用隐身水悄然接近，但被发现。`
+			);
+			await Add_najie_thing(A, '隐身水', '道具', -1);
+		} else {
+			final_msg.push(`${A_player.名号}采补了${B_player.名号}`);
+		}
+		// if (A_player.魔道值 > 100) {
+		//     e.reply(`${A_player.名号}你一个大魔头还妄想和人双修？`);
+		//     return;
+		// }
+		// if (B_player.魔道值 > 100) {
+		//     e.reply(`你想和大魔头${B_player.名号}双修？`);
+		//     return;
+		// }
+
+		//存入缓存
+		await redis.set('xiuxian:player:' + A + ':last_caibu_time', now_Time);
+		await redis.set('xiuxian:player:' + B + ':last_caibu_time', now_Time);
+		if (
+			(await exist_najie_thing(B, '替身人偶', '道具')) &&
+			B_player.魔道值 < 1 &&
+			(B_player.灵根.type == '转生' || B_player.level_id > 41)
+		) {
+			e.reply(B_player.名号 + '使用了道具替身人偶,躲过了此次采补');
+			await Add_najie_thing(B, '替身人偶', '道具', -1);
+			return;
+		}
+		if (A_player.灵根 == null || A_player.灵根 == undefined) {
+			A_player.灵根 = await get_random_talent();
+			A_player.修炼效率提升 += A_player.灵根.eff;
+		}
+		data.setData('player', A, A_player);
+		if (B_player.灵根 == null || B_player.灵根 == undefined) {
+			B_player.灵根 = await get_random_talent();
+			B_player.修炼效率提升 += B_player.灵根.eff;
+		}
+		data.setData('player', B, B_player);
+
+		A_player.法球倍率 = A_player.灵根.法球倍率;
+		B_player.法球倍率 = B_player.灵根.法球倍率;
+
+		let Data_battle = await zd_battle(A_player, B_player);
+		let msg = Data_battle.msg;
+		//战斗回合过长会导致转发失败报错，所以超过30回合的就不转发了
+		if (msg.length > 35) {
+		} else {
+			await ForwardMsg(e, msg);
+		}
+		//下面的战斗超过100回合会报错
+		await Add_HP(A, Data_battle.A_xue);
+		await Add_HP(B, Data_battle.B_xue);
+		let A_win = `${A_player.名号}击败了${B_player.名号}`;
+		let B_win = `${B_player.名号}击败了${A_player.名号}`;
+		if (msg.find((item) => item == A_win)) {
+			let random = Math.random();
+			if (A != B) {
+				if (random > 0 && random <= 0.2) {
+					let xiuwei = B_player.修为 * 0.16;
+					await Add_修为(A, xiuwei);
+					await Add_修为(B, -xiuwei);
+					e.reply(
+						`${A_player.名号}采补了${B_player.名号},你们双方情意相通，缠绵一晚,${B_player.名号}感到非常的爽,${A_player.名号}更加卖力的采补了,采补到的修为更多了`
+					);
+				} else if (random > 0.2 && random <= 0.4) {
+					let xiuwei = B_player.修为 * 0.12;
+					await Add_修为(A, xiuwei);
+					await Add_修为(B, -xiuwei);
+					e.reply(
+						`${A_player.名号}采补了${B_player.名号},${A_player.名号}非常卖力,${B_player.名号}感到还不错,${A_player.名号}采补到的修为更多了`
+					);
+				} else if (random > 0.4 && random <= 0.6) {
+					let xiuwei = B_player.修为 * 0.08;
+					await Add_修为(A, xiuwei);
+					await Add_修为(B, -xiuwei);
+					e.reply(
+						`${A_player.名号}采补了${B_player.名号},过程平稳,${B_player.名号}感到一般`
+					);
+				} else if (random > 0.6 && random <= 0.8) {
+					let xiuwei = B_player.修为 * 0.04;
+					await Add_修为(A, xiuwei);
+					await Add_修为(B, -xiuwei);
+					e.reply(
+						`${A_player.名号}采补了${B_player.名号},但是并进不了状态,${B_player.名号}感觉很不爽,${A_player.名号}采补到的修为变少了`
+					);
+				} else {
+					e.reply(
+						`${A_player.名号}采补了${B_player.名号},但是不知道哪来的小孩,惊断了状态`
+					);
+				}
+				return;
+			}
+			let mdz = Math.trunc(xiuwei / 100);
+			A_player.魔道值 += mdz;
+			await Write_player(A, A_player);
+			await Write_player(B, B_player);
+		} else if (msg.find((item) => item == B_win)) {
+			let random = Math.random;
+			if (A != B) {
+				if (random > 0 && random <= 0.2) {
+					let xiuwei = A_player.修为 * 0.16;
+					await Add_修为(A, -xiuwei);
+					await Add_修为(B, xiuwei);
+					e.reply(
+						`${B_player.名号}采补了${A_player.名号},你们双方情意相通，缠绵一晚,${A_player.名号}感到非常的爽,${B_player.名号}更加卖力的采补了,采补到的修为更多了`
+					);
+					return;
+				} else if (random > 0.2 && random <= 0.4) {
+					let xiuwei = A_player.修为 * 0.12;
+					await Add_修为(A, -xiuwei);
+					await Add_修为(B, xiuwei);
+					e.reply(
+						`${B_player.名号}采补了${A_player.名号},${B_player.名号}非常卖力,${A_player.名号}感到还不错,${B_player.名号}采补到的修为更多了`
+					);
+					return;
+				} else if (random > 0.4 && random <= 0.6) {
+					let xiuwei = A_player.修为 * 0.08;
+					await Add_修为(A, -xiuwei);
+					await Add_修为(B, xiuwei);
+					e.reply(
+						`${B_player.名号}采补了${A_player.名号},过程平稳,${A_player.名号}感到一般`
+					);
+					return;
+				} else if (random > 0.6 && random <= 0.8) {
+					let xiuwei = A_player.修为 * 0.04;
+					await Add_修为(A, -xiuwei);
+					await Add_修为(B, xiuwei);
+					e.reply(
+						`${B_player.名号}采补了${A_player.名号},但是并进不了状态,${A_player.名号}感觉很不爽,${B_player.名号}采补到的修为变少了`
+					);
+					return;
+				} else {
+					e.reply(
+						`${B_player.名号}采补了${A_player.名号},但是不知道哪来的小孩,惊断了状态`
+					);
+				}
+				return;
+			}
+			let mdz = Math.trunc(xiuwei / 100);
+			B_player.魔道值 += mdz;
+			await Write_player(A, A_player);
+			await Write_player(B, B_player);
+		} else {
+			e.reply(`战斗过程出错`);
 			return;
 		}
 	}
