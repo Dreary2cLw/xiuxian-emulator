@@ -1336,7 +1336,7 @@ export class UserHome extends plugin {
                     e.reply("您的卡面已经是" + thing_exist.name)
                     return
                 }
-                let old = data.daoju_list.find(item => item.id == player.练气皮肤)
+                let old = data.kamian3.find(item => item.id == player.练气皮肤)
                 player.练气皮肤 = photo
                 await Write_player(usr_qq, player)
                 await Add_najie_thing(usr_qq, thing_name, "道具", -1)
