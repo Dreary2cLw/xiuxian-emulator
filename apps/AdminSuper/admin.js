@@ -61,10 +61,13 @@ export class admin extends plugin {
 					return;
 				}
 				that.e.reply(
-					'开发人员提醒您:\n[DD斩首]\n严禁游戏充值\n[再氪两单嘛][香菜]\n[xh][啵唧][墨宇]提醒您\n请珍惜生命\n切莫沉迷修仙！\n[仓库地址]\nhttps://gitee.com/YUAN__YU/longlife\n记得#一键同步'
+					'开发人员提醒您:\n[DD斩首]\n[闹钟不闹]\n[航][画手][晓飞][香菜]\n请珍惜生命\n切莫沉迷修仙！\n[仓库地址]\nhttps://gitee.com/YUAN__YU/longlife\n记得#一键同步'
 				);
 				that.e.reply('修仙插件更新成功，正在尝试重新启动Yunzai以应用更新...');
 				that.e.reply('副职已经从数据库中导出到存档里,记得#导出副职');
+				that.e.reply(
+					'严禁氪金,如若发现私服氪金请向闹钟不闹(1564856979)报告,举报氪金者能获得java版修仙内测资格'
+				);
 				timer && clearTimeout(timer);
 				timer = setTimeout(async () => {
 					try {
