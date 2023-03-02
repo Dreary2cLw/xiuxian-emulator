@@ -8,6 +8,7 @@ import { segment } from 'oicq';
 import { zd_battle } from '../Battle/Battle.js';
 import {
 	Read_player,
+	Write_player,
 	existplayer,
 	ForwardMsg,
 	sleep,
@@ -16,8 +17,12 @@ import {
 	Read_qinmidu,
 	fstadd_qinmidu,
 	find_qinmidu,
+	exist_najie_thing,
+	Add_najie_thing,
+	get_random_talent,
 	Add_灵石,
 	Add_修为,
+	Add_HP,
 } from '../Xiuxian/xiuxian.js';
 import Show from '../../model/show.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
@@ -426,6 +431,7 @@ export class Games extends plugin {
 				}
 			}
 		}
+
 		//发送固定点数的touzi
 		e.reply(segment.dice(touzi));
 		//你说大，touzi是大。赢了
@@ -679,9 +685,11 @@ export class Games extends plugin {
 		}
 		if (aa == false) {
 			e.reply('你还没学习阴阳经,没有双修的资格');
+			return;
 		}
 		if (bb == false) {
 			e.reply('对面还没学习阴阳经,没有双修的资格');
+			return;
 		}
 		let Time = this.xiuxianConfigData.CD.couple; //6个小时
 		let shuangxiuTimeout = parseInt(60000 * Time);
@@ -758,9 +766,9 @@ export class Games extends plugin {
 		//     return;
 		// }
 		let pd = await find_qinmidu(A, B);
+		let qinmidu = await Read_qinmidu();
 		if (pd == 0) {
 			let i;
-			let qinmidu = await Read_qinmidu();
 			for (i = 0; i < qinmidu.length; i++) {
 				if (
 					(qinmidu[i].QQ_A == A && qinmidu[i].QQ_B == B) ||
@@ -780,26 +788,27 @@ export class Games extends plugin {
 		await redis.set('xiuxian:player:' + A + ':last_shuangxiu_time', now_Time);
 		await redis.set('xiuxian:player:' + B + ':last_shuangxiu_time', now_Time);
 		if (A != B) {
+			e.reply('1');
 			let random = Math.random();
 			if (random > 0 && random <= 0.2) {
-				await Add_修为(A, A_player.level_id * qinmidu.亲密度 * 20);
-				await Add_修为(B, B_player.level_id * qinmidu.亲密度 * 20);
+				await Add_修为(A, A_player.level_id * qinmidu[i].亲密度 * 20);
+				await Add_修为(B, B_player.level_id * qinmidu[i].亲密度 * 20);
 				await add_qinmidu(A, B, 20);
 				e.reply(`你们双方情意相通,修炼一晚,各自增加了不少修为,亲密度增加了20点`);
 				return;
 			} else if (random > 0.2 && random <= 0.4) {
-				await Add_修为(A, A_player.level_id * qinmidu.亲密度 * 15);
-				await Add_修为(B, B_player.level_id * qinmidu.亲密度 * 15);
+				await Add_修为(A, A_player.level_id * qinmidu[i].亲密度 * 15);
+				await Add_修为(B, B_player.level_id * qinmidu[i].亲密度 * 15);
 				await add_qinmidu(A, B, 15);
 				e.reply(`你们双方交心交神，努力修炼，各自增加了一些修为,亲密度增加了15点`);
 			} else if (random > 0.4 && random <= 0.6) {
-				await Add_修为(A, A_player.level_id * qinmidu.亲密度 * 10);
-				await Add_修为(B, B_player.level_id * qinmidu.亲密度 * 10);
+				await Add_修为(A, A_player.level_id * qinmidu[i].亲密度 * 10);
+				await Add_修为(B, B_player.level_id * qinmidu[i].亲密度 * 10);
 				await add_qinmidu(A, B, 10);
 				e.reply(`你们双方共同修炼，过程平稳，各自增加了少量修为,亲密度增加了10点`);
 			} else if (random > 0.6 && random <= 0.8) {
-				await Add_修为(A, A_player.level_id * qinmidu.亲密度 * 5);
-				await Add_修为(B, B_player.level_id * qinmidu.亲密度 * 5);
+				await Add_修为(A, A_player.level_id * qinmidu[i].亲密度 * 5);
+				await Add_修为(B, B_player.level_id * qinmidu[i].亲密度 * 5);
 				await add_qinmidu(A, B, 5);
 				e.reply(`你们双方努力修炼，但是并进不了状态,各自增加了点修为,亲密度增加了5点`);
 			} else {
@@ -846,6 +855,7 @@ export class Games extends plugin {
 			e.reply('禁止同性恋！！');
 			return;
 		}
+		let j;
 		for (j = 0; j < A_player.学习的功法.length; j++) {
 			if (A_player.学习的功法[j] == '阴阳经') {
 				aa = true;
@@ -853,6 +863,7 @@ export class Games extends plugin {
 		}
 		if (aa == false) {
 			e.reply('你还没学习阴阳经,没有采补别人的资格');
+			return;
 		}
 
 		var Time = this.xiuxianConfigData.CD.caibu; //24个小时
@@ -924,12 +935,12 @@ export class Games extends plugin {
 		}
 		if (isBbusy) {
 			//如果B忙碌,自动扣一瓶隐身水强行打架,奔着人道主义关怀,提前判断了不是重伤
-			final_msg.push(
+			e.reply(
 				`${B_player.名号}正在${B_action.action}，${A_player.名号}利用隐身水悄然接近，但被发现。`
 			);
 			await Add_najie_thing(A, '隐身水', '道具', -1);
 		} else {
-			final_msg.push(`${A_player.名号}采补了${B_player.名号}`);
+			e.reply(`${A_player.名号}采补了${B_player.名号}`);
 		}
 		// if (A_player.魔道值 > 100) {
 		//     e.reply(`${A_player.名号}你一个大魔头还妄想和人双修？`);
