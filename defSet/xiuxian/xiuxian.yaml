@@ -5,6 +5,7 @@ CD: #各种操作cd 必须为整数 单位：分
   rob: 10 # 打劫CD
   gambling: 3 # 金银坊
   couple: 360 #双修
+  caibu:  360 #采补
   garden: 3 # 药园
   level_up: 10 # 突破
   secretplace: 5 #秘境
