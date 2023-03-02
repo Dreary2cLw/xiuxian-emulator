@@ -2564,6 +2564,9 @@ export async function Gaodenyuansulun(
 			msg.push(A_player.名号 + '使用了虎守,下次防御增加20%,血量增加20%');
 			A_player.防御 *= 1.2;
 			A_player.当前血量 += A_player.血量上限 * 0.2;
+			if(A_player.当前血量>A_player.血量上限){
+                A_player.当前血量=A_player.血量上限
+            }
 		}
 	}
 	if (equipment.护具.fumo == '长板之龙') {
