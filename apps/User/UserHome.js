@@ -1165,6 +1165,18 @@ export class UserHome extends plugin {
                     }
                 }
             }
+            if(this_danyao.type == '性别'){
+                if(player.sex==0||player.sex==2){
+                    player.sex=1;
+                    e.reply('转性成功,你现在的性别是男')
+                    return;
+                }
+                if(player.sex==1){
+                    player.sex==2;
+                    e.reply('转性成功,你现在的性别是女')
+                    return;
+                }
+            }
             if (this_danyao.type == '炼神') {
                 if (quantity != 1) {
                     e.reply(`一次闭关只能拥有一条炼神之力`);
@@ -2504,7 +2516,7 @@ export class UserHome extends plugin {
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", n * 2);
                         e.reply(`${last_msg}${fyd_msg}你运气太好了,钓上来了钓鱼掉上来的奇怪盒子${2 * n}个,还有一些鱼肉`)
                         return;
-                    } else if (math > 0 && math <= 0.1) {
+                    } else if (math > 0 && math <= 0.01) {
                         await Add_najie_thing(usr_qq, "烤鱼", "食材", 100 * n);
                         e.reply("你遇到了可莉,与他一起炸鱼去了,你们今天玩的很开心,可莉很感谢你,送了你100个烤鱼")
                         return;
@@ -2993,12 +3005,12 @@ export class UserHome extends plugin {
                         await Add_HP(usr_qq, -kouxue)
                         await Add_najie_thing(usr_qq, "泥土", "材料", 30 * n);
                         if (heiyaoshi == true) {
-                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
+                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
                                 钻石${3 * muchan * n + 3 * shichan * n + 9 * zuanshichan * n}个,
                                 青金石${9 * muchan * n + 9 * shichan * n + 18 * zuanshichan * n}个,黑曜石${12 * n},
                                 在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到泥土${30 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         } else {
-                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
+                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
                                 钻石${3 * muchan * n + 3 * shichan * n + 9 * zuanshichan * n}个,
                                 青金石${9 * muchan * n + 9 * shichan * n + 18 * zuanshichan * n}个,
                                 在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到泥土${30 * n}个,获得了修为${xiuwei}血气${xueqi}`)
@@ -3007,12 +3019,12 @@ export class UserHome extends plugin {
                         await Add_HP(usr_qq, -kouxue)
                         await Add_najie_thing(usr_qq, "骨头", "材料", 20 * n);
                         if (heiyaoshi == true) {
-                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
+                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
                                 钻石${3 * muchan * n + 3 * shichan * n + 9 * zuanshichan * n}个,
                                 青金石${9 * muchan * n + 9 * shichan * n + 18 * zuanshichan * n}个,黑曜石${12 * n}个,
                                 在探索途中遇到一些骷髅,你击败了他们,剩余${player.当前血量}捡到骨头${20 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         } else {
-                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
+                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
                                 钻石${3 * muchan * n + 3 * shichan * n + 9 * zuanshichan * n}个,
                                 青金石${9 * muchan * n + 9 * shichan * n + 18 * zuanshichan * n}个,
                                 在探索途中遇到一些骷髅,你击败了他们,剩余${player.当前血量}捡到骨头${20 * n}个,获得了修为${xiuwei}血气${xueqi}`)
@@ -3020,23 +3032,23 @@ export class UserHome extends plugin {
                     } else if (math > 0.3 && math <= 0.4) {
                         await Add_najie_thing(usr_qq, "红石", "材料", 256 * n);
                         if (heiyaoshi == true) {
-                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
+                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
                                 钻石${3 * muchan * n + 3 * shichan * n + 9 * zuanshichan * n}个,
                                 青金石${9 * muchan * n + 9 * shichan * n + 18 * zuanshichan * n}个,
                                 红石${256 * n}个，黑曜石${12 * n}个,,获得了修为${xiuwei}血气${xueqi}`)
                         } else {
-                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
+                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
                                 钻石${3 * muchan * n + 3 * shichan * n + 9 * zuanshichan * n}个,
                                 青金石${9 * muchan * n + 9 * shichan * n + 18 * zuanshichan * n}个,
                                 红石${256 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         }
                     } else {
                         if (heiyaoshi == true) {
-                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
+                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
                                 钻石${3 * muchan * n + 3 * shichan * n + 9 * zuanshichan * n}个,
                                 青金石${9 * muchan * n + 9 * shichan * n + 18 * zuanshichan * n}个,,黑曜石${12 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         } else {
-                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
+                            e.reply(`${last_msg}${fyd_msg}你在层岩巨渊挖到圆石${18 * muchan * n + 18 * shichan * n + 18 * zuanshichan * n}个,
                                 钻石${3 * muchan * n + 3 * shichan * n + 9 * zuanshichan * n}个,
                                 青金石${9 * muchan * n + 9 * shichan * n + 18 * zuanshichan * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         }
