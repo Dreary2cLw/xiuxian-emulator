@@ -3353,9 +3353,9 @@ export async function add_qinmidu(A, B, qinmi) {
 		qinmidu = await Read_qinmidu();
 	}
 	qinmidu[i].亲密度 += qinmi;
-	if (qinmidu[i].亲密度 >= 1000) {
-		qinmidu[i].亲密度 = 1000;
-		e.reply('亲密度最多1000!!');
+	if (qinmidu[i].亲密度 >= 5000) {
+		qinmidu[i].亲密度 = 5000;
+		e.reply('亲密度最多5000!!');
 	}
 	await Write_qinmidu(qinmidu);
 	return;
