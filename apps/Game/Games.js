@@ -665,11 +665,15 @@ export class Games extends plugin {
 		let bb = false;
 		let B_player = await Read_player(B);
 		let A_player = await Read_player(A);
+		if (A_player.sex == 0 || B_player.sex == 0) {
+			e.reply('性别未知,人妖啊');
+			return;
+		}
 		if (
-			(A_player.sex != 1 && B_player.sex != 2) ||
-			(A_player.sex != 2 && B_player.sex != 1)
+			(A_player.sex == 1 && B_player.sex == 1) ||
+			(A_player.sex == 2 && B_player.sex == 2)
 		) {
-			e.reply('禁止同性恋！！');
+			e.reply('禁止同性恋');
 			return;
 		}
 		let j;
@@ -848,12 +852,15 @@ export class Games extends plugin {
 		let bb = false;
 		let B_player = await Read_player(B);
 		let A_player = await Read_player(A);
-		if(A_player.sex==0||B_player.sex==0){
-            e.reply("性别未知,人妖啊")
-            return;
-        }
-         if((A_player.sex==1&&B_player.sex==1)||(A_player.sex==2&&B_player.sex==2)){
-            e.reply("禁止同性恋");
+		if (A_player.sex == 0 || B_player.sex == 0) {
+			e.reply('性别未知,人妖啊');
+			return;
+		}
+		if (
+			(A_player.sex == 1 && B_player.sex == 1) ||
+			(A_player.sex == 2 && B_player.sex == 2)
+		) {
+			e.reply('禁止同性恋');
 			return;
 		}
 		let j;
