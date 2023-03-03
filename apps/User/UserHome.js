@@ -1169,11 +1169,13 @@ export class UserHome extends plugin {
                 if(player.sex==0||player.sex==2){
                     player.sex=1;
                     e.reply('转性成功,你现在的性别是男')
+                    await Write_player(usr_qq, player);
                     return;
                 }
                 if(player.sex==1){
                     player.sex==2;
                     e.reply('转性成功,你现在的性别是女')
+                    await Write_player(usr_qq, player);
                     return;
                 }
             }
