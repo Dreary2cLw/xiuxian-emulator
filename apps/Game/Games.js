@@ -997,11 +997,14 @@ export class Games extends plugin {
 		await Add_HP(B, Data_battle.B_xue);
 		let A_win = `${A_player.名号}击败了${B_player.名号}`;
 		let B_win = `${B_player.名号}击败了${A_player.名号}`;
+
 		if (msg.find((item) => item == A_win)) {
 			let random = Math.random();
 			if (A != B) {
 				if (random > 0 && random <= 0.2) {
 					let xiuwei = B_player.修为 * 0.16;
+					let mdz = Math.trunc(xiuwei / 1000);
+					B_player.魔道值 += mdz;
 					await Add_修为(A, xiuwei);
 					await Add_修为(B, -xiuwei);
 					e.reply(
@@ -1009,6 +1012,8 @@ export class Games extends plugin {
 					);
 				} else if (random > 0.2 && random <= 0.4) {
 					let xiuwei = B_player.修为 * 0.12;
+					let mdz = Math.trunc(xiuwei / 1000);
+					B_player.魔道值 += mdz;
 					await Add_修为(A, xiuwei);
 					await Add_修为(B, -xiuwei);
 					e.reply(
@@ -1016,6 +1021,8 @@ export class Games extends plugin {
 					);
 				} else if (random > 0.4 && random <= 0.6) {
 					let xiuwei = B_player.修为 * 0.08;
+					let mdz = Math.trunc(xiuwei / 1000);
+					B_player.魔道值 += mdz;
 					await Add_修为(A, xiuwei);
 					await Add_修为(B, -xiuwei);
 					e.reply(
@@ -1023,6 +1030,8 @@ export class Games extends plugin {
 					);
 				} else if (random > 0.6 && random <= 0.8) {
 					let xiuwei = B_player.修为 * 0.04;
+					let mdz = Math.trunc(xiuwei / 1000);
+					B_player.魔道值 += mdz;
 					await Add_修为(A, xiuwei);
 					await Add_修为(B, -xiuwei);
 					e.reply(
@@ -1033,58 +1042,62 @@ export class Games extends plugin {
 						`${A_player.名号}采补了${B_player.名号},但是不知道哪来的小孩,惊断了状态`
 					);
 				}
-				return;
 			}
-			let mdz = Math.trunc(xiuwei / 100);
-			A_player.魔道值 += mdz;
 			await Write_player(A, A_player);
 			await Write_player(B, B_player);
+			return;
 		} else if (msg.find((item) => item == B_win)) {
 			let random = Math.random();
 			if (A != B) {
 				if (random > 0 && random <= 0.2) {
 					let xiuwei = A_player.修为 * 0.16;
+					let mdz = Math.trunc(xiuwei / 1000);
+					B_player.魔道值 += mdz;
 					await Add_修为(A, -xiuwei);
 					await Add_修为(B, xiuwei);
 					e.reply(
 						`${B_player.名号}采补了${A_player.名号},你们双方情意相通，缠绵一晚,${A_player.名号}感到非常的爽,${B_player.名号}更加卖力的采补了,采补到的修为更多了`
 					);
-					return;
 				} else if (random > 0.2 && random <= 0.4) {
 					let xiuwei = A_player.修为 * 0.12;
+					let mdz = Math.trunc(xiuwei / 1000);
+					B_player.魔道值 += mdz;
 					await Add_修为(A, -xiuwei);
 					await Add_修为(B, xiuwei);
 					e.reply(
 						`${B_player.名号}采补了${A_player.名号},${B_player.名号}非常卖力,${A_player.名号}感到还不错,${B_player.名号}采补到的修为更多了`
 					);
-					return;
 				} else if (random > 0.4 && random <= 0.6) {
 					let xiuwei = A_player.修为 * 0.08;
+					let mdz = Math.trunc(xiuwei / 1000);
+					B_player.魔道值 += mdz;
 					await Add_修为(A, -xiuwei);
 					await Add_修为(B, xiuwei);
 					e.reply(
 						`${B_player.名号}采补了${A_player.名号},过程平稳,${A_player.名号}感到一般`
 					);
-					return;
 				} else if (random > 0.6 && random <= 0.8) {
 					let xiuwei = A_player.修为 * 0.04;
+					let mdz = Math.trunc(xiuwei / 1000);
+					B_player.魔道值 += mdz;
 					await Add_修为(A, -xiuwei);
 					await Add_修为(B, xiuwei);
 					e.reply(
 						`${B_player.名号}采补了${A_player.名号},但是并进不了状态,${A_player.名号}感觉很不爽,${B_player.名号}采补到的修为变少了`
 					);
-					return;
 				} else {
+					let xiuwei = 100;
+					let mdz = Math.trunc(xiuwei / 1000);
+					B_player.魔道值 += mdz;
 					e.reply(
 						`${B_player.名号}采补了${A_player.名号},但是不知道哪来的小孩,惊断了状态`
 					);
 				}
-				return;
 			}
-			let mdz = Math.trunc(xiuwei / 100);
-			B_player.魔道值 += mdz;
+
 			await Write_player(A, A_player);
 			await Write_player(B, B_player);
+			return;
 		} else {
 			e.reply(`战斗过程出错`);
 			return;
