@@ -848,10 +848,7 @@ export class Games extends plugin {
 		let bb = false;
 		let B_player = await Read_player(B);
 		let A_player = await Read_player(A);
-		if (
-			(A_player.sex != 1 && B_player.sex != 2) ||
-			(A_player.sex != 2 && B_player.sex != 1)
-		) {
+		if((!(A_player.sex==2&&B_player.sex==1))||(!(A_player.sex==1&&B_player.sex==2))){
 			e.reply('禁止同性恋！！');
 			return;
 		}
