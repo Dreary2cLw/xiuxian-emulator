@@ -771,8 +771,8 @@ export class Games extends plugin {
 		// }
 		let pd = await find_qinmidu(A, B);
 		let qinmidu = await Read_qinmidu();
+		let i;
 		if (pd == 0) {
-			let i;
 			for (i = 0; i < qinmidu.length; i++) {
 				if (
 					(qinmidu[i].QQ_A == A && qinmidu[i].QQ_B == B) ||
@@ -792,27 +792,27 @@ export class Games extends plugin {
 		await redis.set('xiuxian:player:' + A + ':last_shuangxiu_time', now_Time);
 		await redis.set('xiuxian:player:' + B + ':last_shuangxiu_time', now_Time);
 		if (A != B) {
-			e.reply('1');
+			let qinmi = await find_qinmidu(A, B);
 			let random = Math.random();
 			if (random > 0 && random <= 0.2) {
-				await Add_修为(A, A_player.level_id * qinmidu[i].亲密度 * 20);
-				await Add_修为(B, B_player.level_id * qinmidu[i].亲密度 * 20);
+				await Add_修为(A, A_player.level_id * qinmi * 200);
+				await Add_修为(B, B_player.level_id * qinmi * 200);
 				await add_qinmidu(A, B, 20);
 				e.reply(`你们双方情意相通,修炼一晚,各自增加了不少修为,亲密度增加了20点`);
 				return;
 			} else if (random > 0.2 && random <= 0.4) {
-				await Add_修为(A, A_player.level_id * qinmidu[i].亲密度 * 15);
-				await Add_修为(B, B_player.level_id * qinmidu[i].亲密度 * 15);
+				await Add_修为(A, A_player.level_id * qinmi * 150);
+				await Add_修为(B, B_player.level_id * qinmi * 150);
 				await add_qinmidu(A, B, 15);
 				e.reply(`你们双方交心交神，努力修炼，各自增加了一些修为,亲密度增加了15点`);
 			} else if (random > 0.4 && random <= 0.6) {
-				await Add_修为(A, A_player.level_id * qinmidu[i].亲密度 * 10);
-				await Add_修为(B, B_player.level_id * qinmidu[i].亲密度 * 10);
+				await Add_修为(A, A_player.level_id * qinmi * 100);
+				await Add_修为(B, B_player.level_id * qinmi * 100);
 				await add_qinmidu(A, B, 10);
 				e.reply(`你们双方共同修炼，过程平稳，各自增加了少量修为,亲密度增加了10点`);
 			} else if (random > 0.6 && random <= 0.8) {
-				await Add_修为(A, A_player.level_id * qinmidu[i].亲密度 * 5);
-				await Add_修为(B, B_player.level_id * qinmidu[i].亲密度 * 5);
+				await Add_修为(A, A_player.level_id * qinmi * 50);
+				await Add_修为(B, B_player.level_id * qinmi * 50);
 				await add_qinmidu(A, B, 5);
 				e.reply(`你们双方努力修炼，但是并进不了状态,各自增加了点修为,亲密度增加了5点`);
 			} else {
@@ -1040,7 +1040,7 @@ export class Games extends plugin {
 			await Write_player(A, A_player);
 			await Write_player(B, B_player);
 		} else if (msg.find((item) => item == B_win)) {
-			let random = Math.random;
+			let random = Math.random();
 			if (A != B) {
 				if (random > 0 && random <= 0.2) {
 					let xiuwei = A_player.修为 * 0.16;
