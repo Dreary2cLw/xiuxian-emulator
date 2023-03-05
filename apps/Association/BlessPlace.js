@@ -2,7 +2,7 @@ import plugin from '../../../../lib/plugins/plugin.js';
 import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
 import fs from 'fs';
-import { segment } from 'oicq';
+import { segment } from 'icqq';
 import {
 	Add_HP,
 	Add_najie_thing,

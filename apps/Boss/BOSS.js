@@ -1,5 +1,5 @@
 import plugin from '../../../../lib/plugins/plugin.js';
-import { segment } from 'oicq';
+import { segment } from 'icqq';
 import data from '../../model/XiuxianData.js';
 import fs from 'fs';
 import { Add_najie_thing } from '../Xiuxian/xiuxian.js';

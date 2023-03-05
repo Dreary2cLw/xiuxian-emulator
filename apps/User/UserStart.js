@@ -19,7 +19,7 @@ import {
   Write_player
 } from '../Xiuxian/xiuxian.js';
 import { get_player_img } from '../ShowImeg/showData.js';
-import { segment } from 'oicq';
+import { segment } from 'icqq';
 
 /**
  * 全局

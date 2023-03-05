@@ -4,7 +4,7 @@ import data from '../../model/XiuxianData.js';
 import Show from '../../model/show.js';
 import path from 'path';
 import fs from 'fs';
-import { segment } from 'oicq';
+import { segment } from 'icqq';
 import { __PATH } from '../Xiuxian/xiuxian.js';
 
 let sudokukey = false;

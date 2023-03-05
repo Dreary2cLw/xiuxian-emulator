@@ -10,7 +10,7 @@ import {
 	Read_qinmidu,
 	Write_qinmidu,
 } from '../Xiuxian/xiuxian.js';
-import { segment } from 'oicq';
+import { segment } from 'icqq';
 
 let x = 0;
 let chaoshi_time;

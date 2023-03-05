@@ -12,7 +12,7 @@ import {
 	player_efficiency,
 	Read_player,
 } from '../Xiuxian/xiuxian.js';
-import { segment } from 'oicq';
+import { segment } from 'icqq';
 
 /**
  * 定时任务
