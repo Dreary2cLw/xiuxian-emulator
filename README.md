@@ -1,12 +1,8 @@
-# 绝云间修仙V1.2.5「附魔与拜师」
+# 绝云间修仙V1.2.5「附魔与拜师」<img src='https://gitee.com/YUAN__YU/longlife/badge/star.svg?theme=dark'  alt='star'></img></a>
 
 ## 玩家攻略：
 
 [修仙攻略](https://docs.qq.com/doc/DSUhqZWdpZXJuUndZ?&u=4bd0757f64094c48b02d7cfc4eaeb44b)
-
-## 访问量：
-
-[![访问量](https://profile-counter.glitch.me/longlife/count.svg)](https://gitee.com/YUAN__YU/longlife)     
 
 ## 安装
 
