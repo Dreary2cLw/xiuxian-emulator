@@ -6,7 +6,7 @@
 
 ## 访问量：
 
-<br><img src="https://count.getloli.com/get/@:longlife?theme=rule34" /> <br>
+[![访问量](https://profile-counter.glitch.me/longlife/count.svg)](https://gitee.com/YUAN__YU/longlife)     
 
 ## 安装
 
