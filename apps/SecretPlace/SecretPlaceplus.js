@@ -39,10 +39,10 @@ export class SecretPlaceplus extends plugin {
 					reg: '^#沉迷禁地.*$',
 					fnc: 'Goforbiddenarea',
 				},
-				/*{
-            reg: '^#沉迷仙府$',
-            fnc: 'GoTimeplace'
-        },*/
+			  /*{
+                    reg: '^#沉迷仙府$',
+                    fnc: 'GoTimeplace'
+                },*/
 				{
 					reg: '^#沉迷仙境.*$',
 					fnc: 'Gofairyrealm',
@@ -155,10 +155,6 @@ export class SecretPlaceplus extends plugin {
 		//}
 		if (didian == '小千世界' || didian == '中千世界' || didian == '大千世界') {
 			e.reply('打工本不支持沉迷哦');
-			return;
-		}
-		if (didian == '广寒宫') {
-			e.reply('不可对仙子无理');
 			return;
 		}
 		let rate = player.occupation_level;
