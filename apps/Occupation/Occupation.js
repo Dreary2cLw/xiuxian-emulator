@@ -18,7 +18,6 @@ import {
 } from '../Xiuxian/xiuxian.js';
 import Show from '../../model/show.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
-import { segment } from 'icqq';
 import { zd_battle } from '../Battle/Battle.js';
 /**
  * 全局变量

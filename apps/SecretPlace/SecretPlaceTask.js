@@ -3,7 +3,6 @@ import common from '../../../../lib/common/common.js';
 import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
 import fs from 'node:fs';
-import { segment } from 'icqq';
 import {
 	Add_HP,
 	Add_najie_thing,

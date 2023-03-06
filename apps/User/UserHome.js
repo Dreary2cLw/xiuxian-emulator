@@ -3,7 +3,6 @@ import plugin from '../../../../lib/plugins/plugin.js'
 import data from '../../model/XiuxianData.js'
 import config from "../../model/Config.js"
 import fs from "fs"
-import { segment } from "icqq"
 import {
     Read_player,
     existplayer,
@@ -14,11 +13,7 @@ import {
     get_random_talent,
     Write_player,
     sleep,
-    ForwardMsg,
     Reduse_player_学习功法,
-    Locked_najie_thing
-} from '../Xiuxian/xiuxian.js'
-import {
     Add_血气,
     Add_灵石,
     Add_热量,
@@ -34,9 +29,9 @@ import {
     Read_equipment,
     Write_equipment,
     foundthing,
-    convert2integer
+    convert2integer,
+    __PATH,
 } from '../Xiuxian/xiuxian.js'
-import { __PATH } from "../Xiuxian/xiuxian.js"
 import { Add_仙宠 } from "../Pokemon/Pokemon.js"
 import { get_equipment_img } from '../ShowImeg/showData.js'
 

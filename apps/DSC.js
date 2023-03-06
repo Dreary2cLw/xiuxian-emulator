@@ -1,5 +1,4 @@
 import plugin from '../../../lib/plugins/plugin.js';
-import { segment } from 'icqq';
 import data from '../model/XiuxianData.js';
 
 //本模块由(qq:1695037643)和jio佬完成
