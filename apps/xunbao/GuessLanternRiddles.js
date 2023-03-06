@@ -399,13 +399,13 @@ export class GuessLanternRiddles extends plugin {
 					e.reply('你没有【书本】');
 					return;
 				}
-				if (y < 10) {
+				if (y < 30) {
 					e.reply('你没有足够的【书本】');
 					return;
 				}
 				e.reply('十道金光从天而降');
 				await Add_najie_thing(usr_qq, '青金石', '材料', -10);
-				await Add_najie_thing(usr_qq, '书本', '材料', -10);
+				await Add_najie_thing(usr_qq, '书本', '材料', -30);
 				let msg = [];
 				let all = [];
 				await sleep(5000);
@@ -552,8 +552,8 @@ export class GuessLanternRiddles extends plugin {
 					e.reply('你没有【书本】');
 					return;
 				}
-				await Add_najie_thing(usr_qq, '书本', '材料', -1);
-				await Add_najie_thing(usr_qq, '青金石', '材料', -1);
+				await Add_najie_thing(usr_qq, '书本', '材料', -3);
+				await Add_najie_thing(usr_qq, '青金石', '材料', -3);
 				let tianluoRandom = Math.floor(
 					Math.random() * data.changzhufumoshu_list.length
 				);
