@@ -2849,7 +2849,7 @@ export async function Gaodenyuansulun(
 		msg.push(
 			`${B_player.名号}触发护具附魔属性荆棘1,${A_player.名号}下次伤害被反弹了5%,${
 				A_player.名号
-			}剩余血量${A_player.当前血量 - att * 0.1}`
+			}剩余血量${A_player.当前血量 - att * 0.05}`
 		);
 		A_player.当前血量 = A_player.当前血量 - att * 0.05;
 	}
@@ -2857,7 +2857,7 @@ export async function Gaodenyuansulun(
 		msg.push(
 			`${B_player.名号}触发护具附魔属性荆棘2,${A_player.名号}下次伤害被反弹了10%,${
 				A_player.名号
-			}剩余血量${A_player.当前血量 - att * 0.2}`
+			}剩余血量${A_player.当前血量 - att * 0.1}`
 		);
 		A_player.当前血量 = A_player.当前血量 - att * 0.1;
 	}
@@ -2865,7 +2865,7 @@ export async function Gaodenyuansulun(
 		msg.push(
 			`${B_player.名号}触发护具附魔属性荆棘3,${A_player.名号}下次伤害被反弹了15%,${
 				A_player.名号
-			}剩余血量${A_player.当前血量 - att * 0.3}`
+			}剩余血量${A_player.当前血量 - att * 0.15}`
 		);
 		A_player.当前血量 = A_player.当前血量 - att * 0.15;
 	}
@@ -2873,7 +2873,7 @@ export async function Gaodenyuansulun(
 		msg.push(
 			`${B_player.名号}触发护具附魔属性荆棘4,${A_player.名号}下次伤害被反弹了20%,${
 				A_player.名号
-			}剩余血量${A_player.当前血量 - att * 0.4}`
+			}剩余血量${A_player.当前血量 - att * 0.2}`
 		);
 		A_player.当前血量 = A_player.当前血量 - att * 0.2;
 	}
@@ -2881,7 +2881,7 @@ export async function Gaodenyuansulun(
 		msg.push(
 			`${B_player.名号}触发护具附魔属性荆棘5,${A_player.名号}下次伤害被反弹了25%,${
 				A_player.名号
-			}剩余血量${A_player.当前血量 - att * 0.5}`
+			}剩余血量${A_player.当前血量 - att * 0.25}`
 		);
 		A_player.当前血量 = A_player.当前血量 - att * 0.25;
 	}
