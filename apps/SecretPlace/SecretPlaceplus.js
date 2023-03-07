@@ -149,12 +149,12 @@ export class SecretPlaceplus extends plugin {
 		now_level_id = data.Level_list.find(
 			(item) => item.level_id == player.level_id
 		).level_id;
-		//if (now_level_id > 41) {
-		//    e.reply("境界不符！");
-		//     return;
-		//}
 		if (didian == '小千世界' || didian == '中千世界' || didian == '大千世界') {
 			e.reply('打工本不支持沉迷哦');
+			return;
+		}
+        if (didian == '广寒宫') {
+			e.reply('不可对仙子无理');
 			return;
 		}
 		let rate = player.occupation_level;
@@ -249,10 +249,6 @@ export class SecretPlaceplus extends plugin {
 			return;
 		}
 		let weizhi = await data.forbiddenarea_list.find((item) => item.name == didian);
-		//if (player.power_place == 0&& weizhi.id!=666) {
-		//    e.reply("仙人不得下凡")
-		//   return;
-		// }
 		if (!isNotNull(weizhi)) {
 			return;
 		}
