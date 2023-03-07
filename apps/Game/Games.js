@@ -1003,7 +1003,7 @@ export class Games extends plugin {
 				if (random > 0 && random <= 0.2) {
 					let xiuwei = B_player.修为 * 0.16;
 					let mdz = Math.trunc(xiuwei / 1000);
-					B_player.魔道值 += mdz;
+					A_player.魔道值 += mdz;
 					await Add_修为(A, xiuwei);
 					await Add_修为(B, -xiuwei);
 					e.reply(
@@ -1012,7 +1012,7 @@ export class Games extends plugin {
 				} else if (random > 0.2 && random <= 0.4) {
 					let xiuwei = B_player.修为 * 0.12;
 					let mdz = Math.trunc(xiuwei / 1000);
-					B_player.魔道值 += mdz;
+					A_player.魔道值 += mdz;
 					await Add_修为(A, xiuwei);
 					await Add_修为(B, -xiuwei);
 					e.reply(
@@ -1021,7 +1021,7 @@ export class Games extends plugin {
 				} else if (random > 0.4 && random <= 0.6) {
 					let xiuwei = B_player.修为 * 0.08;
 					let mdz = Math.trunc(xiuwei / 1000);
-					B_player.魔道值 += mdz;
+					A_player.魔道值 += mdz;
 					await Add_修为(A, xiuwei);
 					await Add_修为(B, -xiuwei);
 					e.reply(
@@ -1030,7 +1030,7 @@ export class Games extends plugin {
 				} else if (random > 0.6 && random <= 0.8) {
 					let xiuwei = B_player.修为 * 0.04;
 					let mdz = Math.trunc(xiuwei / 1000);
-					B_player.魔道值 += mdz;
+					A_player.魔道值 += mdz;
 					await Add_修为(A, xiuwei);
 					await Add_修为(B, -xiuwei);
 					e.reply(
