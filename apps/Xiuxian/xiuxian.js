@@ -2590,62 +2590,62 @@ export async function Gaodenyuansulun(
 	}
 	if (equipment.武器.fumo == '锋利1') {
 		if (random > 0.8) {
-			msg.push(`由于武器的附魔书属性是锋利1,${A_player.名号}下次伤害提升10%`);
-			att *= 1.1;
+			msg.push(`由于武器的附魔书属性是锋利1,${A_player.名号}下次伤害提升5%`);
+			att *= 1.05;
 		}
 	}
 	if (equipment.武器.fumo == '锋利2') {
 		if (random > 0.8) {
-			msg.push(`由于武器的附魔书属性是锋利2,${A_player.名号}下次伤害提升20%`);
-			att *= 1.2;
+			msg.push(`由于武器的附魔书属性是锋利2,${A_player.名号}下次伤害提升10%`);
+			att *= 1.1;
 		}
 	}
 	if (equipment.武器.fumo == '锋利3') {
 		if (random > 0.8) {
-			msg.push(`由于武器的附魔书属性是锋利3,${A_player.名号}下次伤害提升30%`);
-			att *= 1.3;
+			msg.push(`由于武器的附魔书属性是锋利3,${A_player.名号}下次伤害提升15%`);
+			att *= 1.15;
 		}
 	}
 	if (equipment.武器.fumo == '锋利4') {
 		if (random > 0.8) {
-			msg.push(`由于武器的附魔书属性是锋利4,${A_player.名号}下次伤害提升40%`);
-			att *= 1.4;
+			msg.push(`由于武器的附魔书属性是锋利4,${A_player.名号}下次伤害提升20%`);
+			att *= 1.2;
 		}
 	}
 	if (equipment.武器.fumo == '锋利5') {
 		if (random > 0.8) {
-			msg.push(`由于武器的附魔书属性是锋利5,${A_player.名号}下次伤害提升50%`);
-			att *= 1.5;
+			msg.push(`由于武器的附魔书属性是锋利5,${A_player.名号}下次伤害提升25%`);
+			att *= 1.25;
 		}
 	}
 	if (equipment.武器.fumo == '横扫之刃1') {
 		if (random > 0.8) {
-			msg.push(`由于武器的附魔书属性是横扫之刃1,${A_player.名号}下次伤害提升10%`);
-			att *= 1.1;
+			msg.push(`由于武器的附魔书属性是横扫之刃1,${A_player.名号}下次伤害提升5%`);
+			att *= 1.05;
 		}
 	}
 	if (equipment.武器.fumo == '横扫之刃2') {
 		if (random > 0.8) {
-			msg.push(`由于武器的附魔书属性是横扫之刃2,${A_player.名号}下次伤害提升20%`);
-			att *= 1.2;
+			msg.push(`由于武器的附魔书属性是横扫之刃2,${A_player.名号}下次伤害提升10%`);
+			att *= 1.1;
 		}
 	}
 	if (equipment.武器.fumo == '横扫之刃3') {
 		if (random > 0.8) {
-			msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升30%`);
-			att *= 1.3;
+			msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升15%`);
+			att *= 1.15;
 		}
 	}
 	if (equipment.武器.fumo == '横扫之刃4') {
 		if (random > 0.8) {
-			msg.push(`由于武器的附魔书属性是横扫之刃4,${A_player.名号}下次伤害提升40%`);
-			att *= 1.4;
+			msg.push(`由于武器的附魔书属性是横扫之刃4,${A_player.名号}下次伤害提升20%`);
+			att *= 1.2;
 		}
 	}
 	if (equipment.武器.fumo == '横扫之刃5') {
 		if (random > 0.8) {
-			msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升50%`);
-			att *= 1.5;
+			msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升25%`);
+			att *= 1.25;
 		}
 	}
 	if (equipment.法宝.fumo == '生命吸收1') {
