@@ -157,6 +157,10 @@ export class SecretPlaceplus extends plugin {
 			e.reply('打工本不支持沉迷哦');
 			return;
 		}
+        if (didian == '广寒宫') {
+			e.reply('不可对仙子无理');
+			return;
+		}
 		let rate = player.occupation_level;
 
 		if (player.occupation == '采药师' && rate < 15 && didian == '须弥') {
