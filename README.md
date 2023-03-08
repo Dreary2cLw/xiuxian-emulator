@@ -13,6 +13,9 @@
 git clone  https://gitee.com/YUAN__YU/longlife.git ./plugins/xiuxian-emulator-plugin/
 ```         
 
+## 如遇更新后报错，请看解决方法
+[解决方法](https://gitee.com/YUAN__YU/longlife/issues/I6KUAI)
+
 ## 转移存档
 
 ![转移存档](pic/photo4.jpg)     
