@@ -6,8 +6,9 @@ const versionData = Config.getdefSet('version', 'version');
 //打印启动日志
 logger.info(`__________________________`);
 logger.info(chalk.yellow(`修仙模拟器${versionData[0].version}「${versionData[0].name}」初始化`));
-logger.info(`体验群一：372093406`);
-logger.info(`体验群二：808321883`);
+logger.info(`官群：414780593`);
+logger.info(`二群：533340900`);
+logger.info(`新功能测试群：651351805`);
 logger.info(`原开发1：水脚脚`);
 logger.info(`原开发2：咸咸咸鱼鱼`);
 logger.info(`原开发3：零零零零`);
