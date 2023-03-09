@@ -2644,7 +2644,7 @@ export async function Gaodenyuansulun(
 	}
 	if (equipment.武器.fumo == '横扫之刃5') {
 		if (random > 0.8) {
-			msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升25%`);
+			msg.push(`由于武器的附魔书属性是横扫之刃5,${A_player.名号}下次伤害提升25%`);
 			att *= 1.25;
 		}
 	}
@@ -2714,13 +2714,13 @@ export async function Gaodenyuansulun(
 	}
 	if (equipment.护具.fumo == '保护3') {
 		if (random > 0.8) {
-			msg.push(`由于武器的附魔书属性是保护1,${A_player.名号}下次防御提升30%`);
+			msg.push(`由于武器的附魔书属性是保护3,${A_player.名号}下次防御提升30%`);
 			A_player.防御 += A_player.防御 * 0.3;
 		}
 	}
 	if (equipment.护具.fumo == '保护4') {
 		if (random > 0.8) {
-			msg.push(`由于武器的附魔书属性是保护1,${A_player.名号}下次防御提升40%`);
+			msg.push(`由于武器的附魔书属性是保护4,${A_player.名号}下次防御提升40%`);
 			A_player.防御 += A_player.防御 * 0.4;
 		}
 	}
