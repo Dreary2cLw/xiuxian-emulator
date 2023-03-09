@@ -607,7 +607,7 @@ export class Occupation extends plugin {
 			return;
 		}
 		let msg = [segment.at(usr_qq)];
-		// let size = this.xiuxianConfigData.plant.size;
+		//let size = this.xiuxianConfigData.plant.size;
 		//let plant_amount1 = Math.floor((0.07+Math.random()*0.04)*time);
 		//let plant_amount2 = Math.floor((0.07+Math.random()*0.04)*time);
 		//let plant_amount3 = Math.floor((0.07+Math.random()*0.04)*time);
