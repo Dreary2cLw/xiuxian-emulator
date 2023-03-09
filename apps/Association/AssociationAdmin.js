@@ -532,6 +532,20 @@ export class AssociationAdmin extends plugin {
 		if (ass.宗门名称 != bss.宗门名称) {
 			return;
 		}
+		let now = new Date();
+		let nowTime = now.getTime(); //获取当前时间戳
+		let addTime;
+		let time = this.xiuxianConfigData.CD.joinassociation; //分钟
+		if (typeof playerB.宗门.time == 'undefined') {
+			addTime = playerB.宗门.加入时间[1] + 60000 * time;
+		} else {
+			//新版本的数据变成了time
+			addTime = playerB.宗门.time[1] + 60000 * time;
+		}
+		if (addTime > nowTime) {
+			e.reply('对面加入宗门不满' + `${time}分钟,无法踢出`);
+			return;
+		}
 		if (player.宗门.职位 == '宗主') {
 			if (usr_qq == member_qq) {
 				e.reply('？？？'); //踢自己？
@@ -628,6 +642,20 @@ export class AssociationAdmin extends plugin {
 		let ass = data.getAssociation(player.宗门.宗门名称);
 		let bss = data.getAssociation(playerB.宗门.宗门名称);
 		if (ass.宗门名称 != bss.宗门名称) {
+			return;
+		}
+		let now = new Date();
+		let nowTime = now.getTime(); //获取当前时间戳
+		let addTime;
+		let time = this.xiuxianConfigData.CD.joinassociation; //分钟
+		if (typeof playerB.宗门.time == 'undefined') {
+			addTime = playerB.宗门.加入时间[1] + 60000 * time;
+		} else {
+			//新版本的数据变成了time
+			addTime = playerB.宗门.time[1] + 60000 * time;
+		}
+		if (addTime > nowTime) {
+			e.reply('对面加入宗门不满' + `${time}分钟,无法踢出`);
 			return;
 		}
 		if (player.宗门.职位 == '宗主') {
