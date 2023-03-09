@@ -629,15 +629,14 @@ export class Occupation extends plugin {
 		//plant_amount3 = parseInt(plant_amount3 * time);
 		//plant_amount4 = parseInt(plant_amount4 * time);
 		/*凝血草 甜甜花 何首乌 清心草 血精草*/
-		let res = [
-			[0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0],
+		let res = [0, 0, 0, 0, 0];
+		let names = [
+			'万年凝血草',
+			'万年甜甜花',
+			'万年何首乌',
+			'万年清心草',
+			'万年血精草',
 		];
-		let names = ['凝血草', '甜甜花', '何首乌', '清心草', '血精草'];
-		let years = ['一年', '十年', '百年', '千年', '万年'];
 		if (player.level_id <= 21) {
 			time = (time * player.level_id) / 40;
 			msg.push(
@@ -663,18 +662,16 @@ export class Occupation extends plugin {
 				plant_year = 0;
 			}
 			time -= 1;
-			res[plant_year][Math.floor(Math.random() * 5)] += 1; //数量=1到4随机数
+			res[plant_year] += 4; //数量=1到4随机数
 		}
 		let res_msg = '';
-		for (let i = 0; i < 5; i++) {
-			for (let j = 0; j < 5; j++) {
-				if (res[i][j] > 0) {
-					res_msg += `\n[${years[i]}${names[j]}]×${res[i][j]}，`;
-				}
-				await Add_najie_thing(usr_qq, years[i] + names[j], '草药', res[i][j]);
+		for (let j = 0; j < 5; j++) {
+			if (res[j] > 0) {
+				res_msg += `\n[${names[j]}]×${res[j]}，`;
 			}
+			await Add_najie_thing(usr_qq, names[j], '草药', res[j]);
+			await Add_职业经验(usr_qq, exp);
 		}
-		await Add_职业经验(usr_qq, exp);
 		msg.push(`\n采药归来，${ext}${res_msg}`);
 		//msg.push(`\n采药归来，${ext}收获人参×${plant_amount1}，何首乌×${plant_amount2}，当归×${plant_amount3}，枸杞×${plant_amount4}`);
 
