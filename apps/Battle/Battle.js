@@ -510,7 +510,7 @@ export async function zd_battle(AA_player, BB_player) {
 			if (
 				A_player.学习的功法 &&
 				jineng1[i].class == '魔根' &&
-				A_player.灵根.type == '魔头' &&
+				(A_player.灵根.type == '转生' || A_player.灵根.type == '魔头') &&
 				A_player.学习的功法.indexOf(jineng1[i].name) > -1 &&
 				Random < jineng1[i].pr
 			) {
@@ -547,7 +547,7 @@ export async function zd_battle(AA_player, BB_player) {
 			if (
 				B_player.学习的功法 &&
 				jineng2[i].class == '转生' &&
-				B_player.灵根.type == '转生' &&
+				(B_player.灵根.type == '转生' || B_player.灵根.type == '魔头') &&
 				B_player.学习的功法.indexOf(jineng2[i].name) > -1 &&
 				Random < jineng2[i].pr
 			) {
@@ -604,11 +604,11 @@ ${B_player.名号}冻结中`);
 			cnt += 2;
 			continue;
 		}
-        if(cnt>=10){
-            A_player.当前血量=-1;
-            B_player.当前血量=-1;
-            msg.push("回合数达到10,本场平局")
-        }
+		if (cnt >= 10) {
+			A_player.当前血量 = -1;
+			B_player.当前血量 = -1;
+			msg.push('回合数达到10,本场平局');
+		}
 		cnt++;
 	}
 	if (cnt % 2 == 0) {
