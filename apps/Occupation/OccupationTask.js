@@ -72,91 +72,52 @@ export class OccupationTask extends plugin {
 					if (now_time > end_time) {
 						log_mag += '当前人物未结算，结算状态';
 						let player = data.getData('player', player_id);
-
-						if (!isNotNull(player.level_id)) {
-							return;
-						}
-
 						let time = parseInt(action.time) / 1000 / 60;
-						// let plant_amount1 = Math.floor((0.07+Math.random()*0.04)*time);
-						// let plant_amount2 = Math.floor((0.07+Math.random()*0.04)*time);
-						// let plant_amount3 = Math.floor((0.07+Math.random()*0.04)*time);
-						// let plant_amount4 = Math.floor((0.07+Math.random()*0.04)*time);
-						let exp = 0;
-						let ext = '';
-						let rate = 0;
-						if (player.occupation == '采药师') {
-							exp = time * 10;
-							rate =
-								data.occupation_exp_list.find((item) => item.id == player.occupation_level)
-									.rate * 10;
-							ext = `你是采药师，获得采药经验${exp}`;
-						}
-						//plant_amount1 = parseInt(plant_amount1 * time);
-						//plant_amount2 = parseInt(plant_amount2 * time);
-						//plant_amount3 = parseInt(plant_amount3 * time);
-						//plant_amount4 = parseInt(plant_amount4 * time);
-
-						// await Add_najie_thing(player_id, "人参", "草药", plant_amount1);
-						// await Add_najie_thing(player_id, "何首乌", "草药", plant_amount2);
-						// await Add_najie_thing(player_id, "当归", "草药", plant_amount3);
-						// await Add_najie_thing(player_id, "枸杞", "草药", plant_amount4);
+						let exp = time * 10;
 						await Add_职业经验(player_id, exp);
-
-						/*凝血草 甜甜花 何首乌 清心草 血精草*/
-						let res = [
-							[0, 0, 0, 0, 0],
-							[0, 0, 0, 0, 0],
-							[0, 0, 0, 0, 0],
-							[0, 0, 0, 0, 0],
-							[0, 0, 0, 0, 0],
+						let k = 1;
+						if (player.level_id < 22) {
+							k = 0.5;
+						}
+						let sum = (time / 480) * (player.occupation_level * 2 + 12) * k;
+						if (player.level_id >= 36) {
+							sum = (time / 480) * (player.occupation_level * 3 + 11);
+						}
+						let names = [
+							'万年凝血草',
+							'万年何首乌',
+							'万年血精草',
+							'万年甜甜花',
+							'万年清心草',
+							'古神藤',
+							'万年太玄果',
+							'炼骨花',
+							'魔蕴花',
+							'万年清灵草',
+							'万年天魂菊',
+							'仙蕴花',
+							'仙缘草',
+							'太玄仙草',
 						];
-						let names = ['凝血草', '甜甜花', '何首乌', '清心草', '血精草']; //可以获得的药材
-						let years = ['一年', '十年', '百年', '千年', '万年']; //可以获得的品级
-						if (player.level_id <= 21) {
-							time = (time * player.level_id) / 40;
-							msg.push(
-								'由于你境界不足化神,在琥牢山爬上爬下总被石珀困住，挣脱花了很多时间，收入降低' +
-									(1 - player.level_id / 40) * 50 +
-									'%\n'
-							);
-						} else {
-							time = (time * player.level_id) / 40;
+						const sum2 = [0.2, 0.3, 0.2, 0.2, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+						const sum3 = [
+							0.17, 0.22, 0.17, 0.17, 0.17, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024,
+							0.012, 0.011,
+						];
+						let msg = [segment.at(player_id)];
+						msg.push(` 恭喜你获得了经验${exp},草药:`);
+						let newsum = sum3.map((item) => item * sum);
+						if (player.level_id < 36) {
+							newsum = sum2.map((item) => item * sum);
 						}
-
-						while (time > 0) {
-							//time=职业等级X采药时间(分钟)
-							let plant_year = Math.random(); //0到1随机一个数字
-							if (plant_year < 0.001 * (1 + rate)) {
-								//最高品质
-								plant_year = 4;
-							} else if (plant_year < 0.01 * (1 + rate)) {
-								plant_year = 3;
-							} else if (plant_year < 0.05 * (1 + rate)) {
-								plant_year = 2;
-							} else if (plant_year < 0.5 * (1 + rate)) {
-								plant_year = 1;
-							} else {
-								plant_year = 0;
+						for (let item in sum3) {
+							if (newsum[item] < 1) {
+								continue;
 							}
-							time -= 1; //一分钟加一次
-							res[plant_year][Math.floor(Math.random() * 5)] += 1; //数量=1到4随机数
-						}
-						let res_msg = '';
-						for (let i = 0; i < 5; i++) {
-							for (let j = 0; j < 5; j++) {
-								if (res[i][j] > 0) {
-									res_msg += `\n[${years[i]}${names[j]}]×${res[i][j]}，`;
-								}
-								console.log(player.id);
-								await Add_najie_thing(player.id, years[i] + names[j], '草药', res[i][j]);
-							}
+							msg.push(`\n${names[item]}${Math.floor(newsum[item])}个`);
+							await Add_najie_thing(player_id, names[item], '草药', Math.floor(newsum[item]));
 						}
 						await Add_职业经验(player_id, exp);
-						msg.push(`\n采药归来，${ext}${res_msg}`);
-
-						//msg.push(`\n采药归来，${ext}收获人参×${plant_amount1}，何首乌×${plant_amount2}，当归×${plant_amount3}，枸杞×${plant_amount4}`);
-
 						let arr = action;
 						//把状态都关了
 						arr.plant = 1; //闭关状态
@@ -167,7 +128,6 @@ export class OccupationTask extends plugin {
 						arr.Place_actionplus = 1; //沉迷状态
 						delete arr.group_id; //结算完去除group_id
 						await redis.set('xiuxian:player:' + player_id + ':action', JSON.stringify(arr));
-						//msg.push("\n增加修为:" + xiuwei * time, "血量增加:" + blood * time);
 						if (is_group) {
 							await this.pushInfo(push_address, is_group, msg);
 						} else {
