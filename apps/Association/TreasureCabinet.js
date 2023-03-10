@@ -340,7 +340,7 @@ export class TreasureCabinet extends plugin {
 					(item) => item.name == thing_name && item.pinji == thing_pinji_number
 				).pinji;
 
-				let wupin = {
+				var wupin = {
 					name: thing_name,
 					class: thing_exist.class,
 					price: thing_value,
@@ -352,7 +352,7 @@ export class TreasureCabinet extends plugin {
 					pinji: pinji2,
 				};
 			} else {
-				let wupin = {
+				var wupin = {
 					name: thing_name,
 					class: thing_exist.class,
 					price: thing_value,
