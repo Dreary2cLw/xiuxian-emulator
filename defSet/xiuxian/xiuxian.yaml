@@ -54,6 +54,7 @@ Boss:
   Boss: 1 #奖励倍率
 Sign:
   ticket: 1 #每日签到给的沉迷门票
+  yaoyue: 1 #每日签到给的仙子邀约
 Auction:
   interval: 3 #间歇时间
   openHour: 19 #星阁开启时间
