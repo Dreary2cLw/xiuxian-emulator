@@ -605,10 +605,10 @@ ${B_player.名号}冻结中`);
 			cnt += 2;
 			continue;
 		}
-		if (cnt >= 10) {
+		if (cnt >= 20) {
 			A_player.当前血量 = -1;
 			B_player.当前血量 = -1;
-			msg.push('回合数达到10,本场平局');
+			msg.push('回合数达到20,本场平局');
 		}
 		cnt++;
 	}
