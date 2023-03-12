@@ -2,6 +2,7 @@ import plugin from '../../../../lib/plugins/plugin.js';
 import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
 import fs from 'fs';
+import { segment } from 'icqq';
 import {
 	ForwardMsg,
 	get_random_fromARR,

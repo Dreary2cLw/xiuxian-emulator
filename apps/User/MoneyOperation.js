@@ -3,6 +3,7 @@ import plugin from '../../../../lib/plugins/plugin.js';
 import data from '../../model/XiuxianData.js';
 import config from '../../model/Config.js';
 import fs from 'fs';
+import { segment } from 'icqq';
 import {
 	__PATH,
 	Add_najie_thing,

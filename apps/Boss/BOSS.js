@@ -1,6 +1,7 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import data from '../../model/XiuxianData.js';
 import fs from 'fs';
+import { segment } from 'icqq';
 import { Add_najie_thing } from '../Xiuxian/xiuxian.js';
 
 //本模块由(qq:1695037643)和jio佬完成

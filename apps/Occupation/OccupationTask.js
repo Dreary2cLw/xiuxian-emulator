@@ -3,6 +3,7 @@ import common from '../../../../lib/common/common.js';
 import data from '../../model/XiuxianData.js';
 import config from '../../model/Config.js';
 import fs from 'node:fs';
+import { segment } from 'icqq';
 import {
 	Add_najie_thing,
 	Add_职业经验,

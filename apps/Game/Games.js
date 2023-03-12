@@ -4,6 +4,7 @@ import common from '../../../../lib/common/common.js';
 import data from '../../model/XiuxianData.js';
 import config from '../../model/Config.js';
 import fetch from 'node-fetch';
+import { segment } from 'icqq';
 import { zd_battle } from '../Battle/Battle.js';
 import {
 	Read_player,

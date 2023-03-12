@@ -1,5 +1,6 @@
 import plugin from '../../../lib/plugins/plugin.js';
 import data from '../model/XiuxianData.js';
+import { segment } from 'icqq';
 
 //本模块由(qq:1695037643)和jio佬完成
 export class DSC extends plugin {

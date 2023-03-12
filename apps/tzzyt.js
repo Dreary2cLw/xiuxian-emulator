@@ -1,5 +1,6 @@
 import plugin from '../../../lib/plugins/plugin.js';
 import data from '../model/XiuxianData.js';
+import { segment } from 'icqq';
 
 //作者：波叽在（1695037643）的协助下完成
 export class tzzyt extends plugin {

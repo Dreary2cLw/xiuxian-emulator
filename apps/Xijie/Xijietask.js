@@ -3,6 +3,7 @@ import common from '../../../../lib/common/common.js';
 import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
 import fs from 'node:fs';
+import { segment } from 'icqq';
 import { zd_battle } from '../Battle/Battle.js';
 import { Read_player, isNotNull, Add_najie_thing } from '../Xiuxian/xiuxian.js';
 import { Write_shop, Read_shop, existshop } from '../Xijie/Xijie.js';

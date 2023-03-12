@@ -1,4 +1,5 @@
 import plugin from '../../../../lib/plugins/plugin.js';
+import { segment } from 'icqq';
 import {
 	Add_najie_thing,
 	add_qinmidu,
