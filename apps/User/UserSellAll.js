@@ -79,7 +79,7 @@ export class UserSellAll extends plugin {
 					fnc: 'locked',
 				},
 				{
-					reg: '^#一键赠送(.*)$',
+					reg: '^#一键赠送(装备|道具|丹药|功法|草药|材料|食材|盒子|仙宠|仙宠口粮)$',
 					fnc: 'all_give',
 				},
 				{
@@ -94,89 +94,51 @@ export class UserSellAll extends plugin {
 		});
 	}
 /*by零*/
-	async all_give(e) {
-		//不开放私聊功能
-		if (!e.isGroup) {
-			return;
-		}
-		//这是自己的
-		let A_qq = e.user_id;
-		//自己没存档
-		let ifexistplay = await existplayer(A_qq);
-		if (!ifexistplay) {
-			return;
-		}
-		//对方
-		let isat = e.message.some((item) => item.type === 'at');
-		if (!isat) {
-			return;
-		}
-		let atItem = e.message.filter((item) => item.type === 'at'); //获取at信息
-		let B_qq = atItem[0].qq; //对方qq
-		//对方没存档
-		ifexistplay = await existplayer(B_qq);
-		if (!ifexistplay) {
-			e.reply(`此人尚未踏入仙途`);
-			return;
-		}
-		let A_najie = await data.getData('najie', A_qq);
-		let wupin = [
-			'装备',
-			'道具',
-			'丹药',
-			'功法',
-			'草药',
-			'材料',
-			'食材',
-			'盒子',
-			'仙宠',
-			'仙宠口粮',
-		];
-		let wupin1 = [];
-		if (e.msg != '#一键赠送') {
-			let thing = e.msg.replace('#一键赠送', '');
-            let thing_class = thing;
-			for (var i of wupin) {
-                let index = 0; index < A_najie[thing_class].length; index++
-                const element = A_najie[thing_class][index];
-				if (thing == i) {
-					wupin1.push(i);
-					thing = thing.replace(i, '');
-				}
-				if (
-					(await Locked_najie_thing(A_qq, element.name, element.class, element.pinji)) ==
-					1
-				) {
-					continue;
-				}
-				if ((await Check_thing(element)) == 1) {
-					continue;
-				}
-			}
-			if (thing.length == 0) {
-				wupin = wupin1;
-			} else {
-				return;
-			}
-		}
-		for (var i of wupin) {
-			for (let l of A_najie[i]) {
-				if (l && l.islockd == 0 && !(l.id >= 400991 && l.id <= 400999)) {
-					let quantity = l.数量;
-					//纳戒中的数量
-					if (i == '装备' || i == '仙宠') {
-						await Add_najie_thing(B_qq, l, l.class, quantity, l.pinji);
-						await Add_najie_thing(A_qq, l, l.class, -quantity, l.pinji);
-						continue;
-					}
-					await Add_najie_thing(A_qq, l.name, l.class, -quantity);
-					await Add_najie_thing(B_qq, l.name, l.class, quantity);
-				}
-			}
-		}
-		e.reply(`一键赠送完成`);
-		return;
-	}
+	async all_give(e){
+        //不开放私聊功能
+        if (!e.isGroup) {
+            return;
+        }
+        //这是自己的
+        let A_qq = e.user_id;
+        //自己没存档
+        let ifexistplay = await existplayer(A_qq);
+        if (!ifexistplay) {
+            return;
+        }
+        //对方
+        let isat = e.message.some((item) => item.type === "at");
+        if (!isat) {
+            return;
+        }
+        let atItem = e.message.filter((item) => item.type === "at");//获取at信息
+        let B_qq = atItem[0].qq;//对方qq
+        //对方没存档
+        ifexistplay = await existplayer(B_qq);
+        if (!ifexistplay) {
+            e.reply(`此人尚未踏入仙途`);
+            return;
+        }
+        let A_najie = await data.getData("najie", A_qq);
+        let B_najie = await data.getData("najie", B_qq);
+        //命令判断
+        let code=e.msg.replace("#一键赠送","");
+        let thing_class=code;
+        for (let index = 0; index < A_najie[thing_class].length; index++) {
+            const element = A_najie[thing_class][index];
+            if (await Locked_najie_thing(A_qq, element.name, element.class,element.pinji) == 1) {
+                continue;
+            }
+            if(await Check_thing(element)==1){
+                continue;
+            }
+            let number=await exist_najie_thing(A_qq,element.name,element.class,element.pinji);
+            await Add_najie_thing(A_qq, element.name,element.class, -number, element.pinji);
+            await Add_najie_thing(B_qq, element.name, element.class, number, element.pinji);
+        }
+        e.reply(`一键赠送${thing_class}完成`);
+        return;
+    }
 
 	async all_locked(e) {
 		//不开放私聊功能
