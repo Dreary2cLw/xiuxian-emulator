@@ -135,7 +135,9 @@ export class UserSellAll extends plugin {
 		let wupin1 = [];
 		if (e.msg != '#一键赠送') {
 			let thing = e.msg.replace('#一键赠送', '');
+            let thing_class=code;
 			for (var i of wupin) {
+                let index = 0; index < A_najie[thing_class].length; index++
                 const element = A_najie[thing_class][index];
 				if (thing == i) {
 					wupin1.push(i);
