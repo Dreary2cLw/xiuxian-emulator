@@ -216,7 +216,7 @@ export class meirrenwu extends plugin {
 		//计算公式：((任务等级*5)+player炼气+player练体)*8
 		let jingyan = (dengji * 5 + player.level_id + player.Physique_id) * 8;
 		//结算任务
-		if (renwu[i].jilu1 > xuyao1 - 1) {
+		if (renwu[i].jilu1 > xuyao1 - 1 && renwu[i].wancheng1 == 1) {
 			renwu[i].wancheng1 = 2;
 			renwu[i].jilu1 = 0;
 			await Add_修为(usr_qq, jiangli);
@@ -225,7 +225,7 @@ export class meirrenwu extends plugin {
 			renwu[i].经验 += jingyan;
 			m += `你完成了任务1,获得了：\n1.修为*${jiangli}\n2.血气*${jiangli}\n3.灵石*${jiangli}\n4.任务经验*${jingyan}\n`;
 		}
-		if (renwu[i].jilu2 > xuyao2 - 1) {
+		if (renwu[i].jilu2 > xuyao2 - 1 && renwu[i].wancheng1 == 2) {
 			renwu[i].wancheng2 = 2;
 			renwu[i].jilu2 = 0;
 			await Add_修为(usr_qq, jiangli);
@@ -234,7 +234,7 @@ export class meirrenwu extends plugin {
 			renwu[i].经验 += jingyan;
 			m += `你完成了任务2,获得了：\n1.修为*${jiangli}\n2.血气*${jiangli}\n3.灵石*${jiangli}\n4.任务经验*${jingyan}\n`;
 		}
-		if (renwu[i].jilu3 > xuyao3 - 1) {
+		if (renwu[i].jilu3 > xuyao3 - 1 && renwu[i].wancheng1 == 3) {
 			renwu[i].wancheng3 = 2;
 			renwu[i].jilu3 = 0;
 			await Add_修为(usr_qq, jiangli);
