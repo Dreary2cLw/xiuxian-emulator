@@ -1664,9 +1664,9 @@ export class UserHome extends plugin {
                     return
                 } else {
                     await Add_najie_thing(usr_qq, "经验瓶", "丹药", 3);
-                   await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
-                   e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有3个经验瓶"])
-                   return
+                    await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
+                    e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有3个经验瓶"])
+                    return
                 }
             }
             if (thing_name == "煤炭") {
