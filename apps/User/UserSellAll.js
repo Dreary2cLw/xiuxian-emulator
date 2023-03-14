@@ -14,7 +14,7 @@ import {
 	instead_equipment,
 	Locked_najie_thing,
 	Read_player,
-    Read_najie,
+	Read_najie,
 	Write_najie,
 	__PATH,
 } from '../Xiuxian/xiuxian.js';
@@ -267,13 +267,13 @@ export class UserSellAll extends plugin {
 			return;
 		}
 		//命令判断
-		let msg = e.msg.replace("#", '');
-        let un_lock = msg.substr(0, 2);
-        let thing = msg.substr(2).split("\*");
-        let thing_name = thing[0];
+		let msg = e.msg.replace('#', '');
+		let un_lock = msg.substr(0, 2);
+		let thing = msg.substr(2).split('*');
+		let thing_name = thing[0];
 		let najie = await Read_najie(usr_qq);
-        thing[0]=parseInt(thing[0]);
-        let thing_pinji;
+		thing[0] = parseInt(thing[0]);
+		let thing_pinji;
 		if (msg.substr(2, 2) == '装备') {
 			thing_pinji = thing[1];
 			if (!isNotNull(thing_pinji)) {
@@ -281,21 +281,21 @@ export class UserSellAll extends plugin {
 				return;
 			}
 			let pj = {
-				"劣": 0,
-				"普": 1,
-				"优": 2,
-				"精": 3,
-				"极": 4,
-				"绝": 5,
-				"顶": 6
-			}
+				劣: 0,
+				普: 1,
+				优: 2,
+				精: 3,
+				极: 4,
+				绝: 5,
+				顶: 6,
+			};
 			thing_pinji = pj[thing[1]];
 		}
 		let thing_exist = await foundthing(thing_name);
 		if (!thing_exist) {
-            e.reply(`你瓦特了吧，这方世界没有这样的东西:${thing_name}`);
-            return;
-        }
+			e.reply(`你瓦特了吧，这方世界没有这样的东西:${thing_name}`);
+			return;
+		}
 		let ifexist;
 		if (ifexist.islockd == 0) {
 			if (un_lock == '锁定') {
@@ -319,7 +319,7 @@ export class UserSellAll extends plugin {
 			}
 		}
 		e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
-        return;
+		return;
 	}
 
 	async all_tongbu(e) {
