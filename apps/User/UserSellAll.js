@@ -12,7 +12,7 @@ import {
 	existplayer,
 	foundthing,
 	instead_equipment,
-	Locked_najie_thing,
+    re_najie_thing,
 	Read_player,
 	Read_najie,
 	Write_najie,
@@ -298,7 +298,7 @@ export class UserSellAll extends plugin {
 		}
 		let ifexist;
 		if (un_lock == '锁定') {
-			ifexist = await Locked_najie_thing(
+			ifexist = await re_najie_thing(
 				usr_qq,
 				thing_name,
 				thing_exist.class,
@@ -308,7 +308,7 @@ export class UserSellAll extends plugin {
 			e.reply(`${thing_exist.class}:${thing_name}已锁定`);
 			return;
 		} else if (un_lock == '解锁') {
-			ifexist = await Locked_najie_thing(
+			ifexist = await re_najie_thing(
 				usr_qq,
 				thing_name,
 				thing_exist.class,
