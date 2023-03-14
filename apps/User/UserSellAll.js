@@ -14,6 +14,7 @@ import {
 	instead_equipment,
 	Locked_najie_thing,
 	Read_player,
+    Read_najie,
 	Write_najie,
 	__PATH,
 } from '../Xiuxian/xiuxian.js';
