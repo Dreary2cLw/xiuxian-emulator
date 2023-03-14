@@ -149,24 +149,28 @@ export class UserSellAll extends plugin {
 		}
 		for (let index = 0; index < A_najie[thing_class].length; index++) {
 			const element = A_najie[thing_class][index];
+			if (
+				(await re_najie_thing(A_qq, element.name, element.class, element.pinji)) == 1
+			) {
+				continue;
+			}
 			if ((await Check_thing(element)) == 1) {
 				continue;
 			}
-		}
-		for (var i of wupin) {
-			for (let l of A_najie[i]) {
-				if (l && l.islockd == 0) {
-					let quantity = l.数量;
-					//纳戒中的数量
-					if (i == '装备' || i == '仙宠') {
-						await Add_najie_thing(B_qq, l, l.class, quantity, l.pinji);
-						await Add_najie_thing(A_qq, l, l.class, -quantity, l.pinji);
-						continue;
-					}
-					await Add_najie_thing(A_qq, l.name, l.class, -quantity);
-					await Add_najie_thing(B_qq, l.name, l.class, quantity);
-				}
-			}
+			let number = await exist_najie_thing(
+				A_qq,
+				element.name,
+				element.class,
+				element.pinji
+			);
+			await Add_najie_thing(
+				A_qq,
+				element.name,
+				element.class,
+				-number,
+				element.pinji
+			);
+			await Add_najie_thing(B_qq, element.name, element.class, number, element.pinji);
 		}
 		e.reply(`一键赠送完成`);
 		return;
