@@ -12,7 +12,7 @@ import {
 	existplayer,
 	foundthing,
 	instead_equipment,
-	re_najie_thing,
+	Locked_najie_thing,
 	Read_player,
 	Write_najie,
 	__PATH,
