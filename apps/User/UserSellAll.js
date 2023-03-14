@@ -120,60 +120,37 @@ export class UserSellAll extends plugin {
 			return;
 		}
 		let A_najie = await data.getData('najie', A_qq);
-		let wupin = [
-			'装备',
-			'道具',
-			'丹药',
-			'功法',
-			'草药',
-			'材料',
-			'食材',
-			'盒子',
-			'仙宠',
-			'仙宠口粮',
-		];
-		let wupin1 = [];
-		if (e.msg != '#一键赠送') {
-			let thing = e.msg.replace('#一键赠送', '');
-			let thing_class = thing;
-			for (var i of wupin) {
-				if (thing == i) {
-					wupin1.push(i);
-					thing = thing.replace(i, '');
-				}
+		let B_najie = await data.getData('najie', B_qq);
+		//命令判断
+		let code = e.msg.replace('#一键赠送', '');
+		let thing_class = code;
+		for (let index = 0; index < A_najie[thing_class].length; index++) {
+			const element = A_najie[thing_class][index];
+			if (
+				(await Locked_najie_thing(A_qq, element.name, element.class, element.pinji)) ==
+				1
+			) {
+				continue;
 			}
-			if (thing.length == 0) {
-				wupin = wupin1;
-			} else {
-				return;
+			if ((await Check_thing(element)) == 1) {
+				continue;
 			}
-			for (let index = 0; index < A_najie[thing_class].length; index++) {
-				const element = A_najie[thing_class][index];
-				if (
-					(await re_najie_thing(A_qq, element.name, element.class, element.pinji)) == 1
-				) {
-					continue;
-				}
-				if ((await Check_thing(element)) == 1) {
-					continue;
-				}
-				let number = await exist_najie_thing(
-					A_qq,
-					element.name,
-					element.class,
-					element.pinji
-				);
-				await Add_najie_thing(
-					A_qq,
-					element.name,
-					element.class,
-					-number,
-					element.pinji
-				);
-				await Add_najie_thing(B_qq, element.name, element.class, number, element.pinji);
-			}
+			let number = await exist_najie_thing(
+				A_qq,
+				element.name,
+				element.class,
+				element.pinji
+			);
+			await Add_najie_thing(
+				A_qq,
+				element.name,
+				element.class,
+				-number,
+				element.pinji
+			);
+			await Add_najie_thing(B_qq, element.name, element.class, number, element.pinji);
 		}
-		e.reply(`一键赠送完成`);
+		e.reply(`一键赠送${thing_class}完成`);
 		return;
 	}
 
