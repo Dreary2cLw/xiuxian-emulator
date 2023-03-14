@@ -136,9 +136,6 @@ export class UserSellAll extends plugin {
 		if (e.msg != '#一键赠送') {
 			let thing = e.msg.replace('#一键赠送', '');
 			for (var i of wupin) {
-				if ((await Check_thing(element)) == 1) {
-					continue;
-				}
 				if (thing == i) {
 					wupin1.push(i);
 					thing = thing.replace(i, '');
@@ -148,6 +145,12 @@ export class UserSellAll extends plugin {
 				wupin = wupin1;
 			} else {
 				return;
+			}
+		}
+        for (let index = 0; index < A_najie[thing_class].length; index++) {
+			const element = A_najie[thing_class][index];
+			if ((await Check_thing(element)) == 1) {
+				continue;
 			}
 		}
 		for (var i of wupin) {
