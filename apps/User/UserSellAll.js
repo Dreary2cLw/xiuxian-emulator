@@ -266,76 +266,36 @@ export class UserSellAll extends plugin {
 			return;
 		}
 		//命令判断
-		let msg = e.msg.replace('#', '');
-		let un_lock = msg.substr(0, 2);
-		let thing = msg.substr(4).split('*');
-		let thing_name = thing[0];
-		let thing_pinji;
+		let msg = e.msg.replace("#", '');
+        let un_lock = msg.substr(0, 2);
+        let thing = msg.substr(2).split("\*");
+        let thing_name = thing[0];
+		let najie = await Read_najie(usr_qq);
+        thing[0]=parseInt(thing[0]);
+        let thing_pinji;
 		if (msg.substr(2, 2) == '装备') {
 			thing_pinji = thing[1];
 			if (!isNotNull(thing_pinji)) {
 				e.reply('装备未指定品级！');
 				return;
 			}
-			let pinji = ['劣', '普', '优', '精', '极', '绝', '顶'];
-			let pinji_yes = true;
-			for (let i = 0; i < pinji.length; i++) {
-				if (pinji[i] == thing_pinji) {
-					pinji_yes = false;
-					thing_pinji = i;
-					break;
-				}
+			let pj = {
+				"劣": 0,
+				"普": 1,
+				"优": 2,
+				"精": 3,
+				"极": 4,
+				"绝": 5,
+				"顶": 6
 			}
-			if (pinji_yes) {
-				e.reply('未输入正确品级');
-				return;
-			}
+			thing_pinji = pj[thing[1]];
 		}
 		let thing_exist = await foundthing(thing_name);
 		if (!thing_exist) {
-			e.reply(`你瓦特了吧，这方世界没有这样的东西:${thing_name}`);
-			return;
-		}
-
-		let najie = await Read_najie(usr_qq);
+            e.reply(`你瓦特了吧，这方世界没有这样的东西:${thing_name}`);
+            return;
+        }
 		let ifexist;
-		if (thing_exist.class == '装备') {
-			ifexist = najie.装备.find(
-				(item) => item.name == thing_name && item.pinji == thing_pinji
-			);
-		}
-		if (thing_exist.class == '丹药') {
-			ifexist = najie.丹药.find((item) => item.name == thing_name);
-		}
-		if (thing_exist.class == '道具') {
-			ifexist = najie.道具.find((item) => item.name == thing_name);
-		}
-		if (thing_exist.class == '功法') {
-			ifexist = najie.功法.find((item) => item.name == thing_name);
-		}
-		if (thing_exist.class == '草药') {
-			ifexist = najie.草药.find((item) => item.name == thing_name);
-		}
-		if (thing_exist.class == '材料') {
-			ifexist = najie.材料.find((item) => item.name == thing_name);
-		}
-		if (thing_exist.class == '食材') {
-			ifexist = najie.食材.find((item) => item.name == thing_name);
-		}
-		if (thing_exist.class == '盒子') {
-			ifexist = najie.盒子.find((item) => item.name == thing_name);
-		}
-		if (thing_exist.class == '仙宠') {
-			ifexist = najie.仙宠.find((item) => item.name == thing_name);
-		}
-		if (thing_exist.class == '仙米') {
-			ifexist = najie.仙宠口粮.find((item) => item.name == thing_name);
-		}
-		if (!ifexist) {
-			//没有
-			e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
-			return;
-		}
 		if (ifexist.islockd == 0) {
 			if (un_lock == '锁定') {
 				ifexist.islockd = 1;
@@ -357,6 +317,8 @@ export class UserSellAll extends plugin {
 				return;
 			}
 		}
+		e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
+        return;
 	}
 
 	async all_tongbu(e) {
