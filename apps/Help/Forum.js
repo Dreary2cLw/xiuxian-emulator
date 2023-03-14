@@ -11,7 +11,7 @@ import {
 	existplayer,
 	foundthing,
 	isNotNull,
-	Locked_najie_thing,
+	re_najie_thing,
 	Read_najie,
 	Read_player,
 } from '../Xiuxian/xiuxian.js';
@@ -145,7 +145,7 @@ async function Pu(e, x) {
 			}
 		}
 		if (
-			(await Locked_najie_thing(usr_qq, thing_name, thingless.thing.class)) == 1
+			(await re_najie_thing(usr_qq, thing_name, thingless.thing.class)) == 1
 		) {
 			//锁定
 			e.reply(`你的纳戒中的${thingless.thing.class}[${thing_name}]是锁定的`);
