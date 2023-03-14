@@ -76,7 +76,7 @@ export class UserSellAll extends plugin {
 					fnc: 'tiandao',
 				},
 				{
-					reg: '^#(锁定|解锁)(装备|道具|丹药|功法|草药|材料|食材|盒子|仙宠|口粮).*$',
+					reg: '^#(锁定|解锁).*$',
 					fnc: 'locked',
 				},
 				{
