@@ -291,52 +291,95 @@ export class UserSellAll extends plugin {
 		//命令判断
 		let msg = e.msg.replace('#', '');
 		let un_lock = msg.substr(0, 2);
-		let thing = msg.substr(2).split('*');
+		let thing = msg.substr(4).split('*');
 		let thing_name = thing[0];
 		let thing_pinji;
+		if (msg.substr(2, 2) == '装备') {
+			thing_pinji = thing[1];
+			if (!isNotNull(thing_pinji)) {
+				e.reply('装备未指定品级！');
+				return;
+			}
+			let pinji = ['劣', '普', '优', '精', '极', '绝', '顶'];
+			let pinji_yes = true;
+			for (let i = 0; i < pinji.length; i++) {
+				if (pinji[i] == thing_pinji) {
+					pinji_yes = false;
+					thing_pinji = i;
+					break;
+				}
+			}
+			if (pinji_yes) {
+				e.reply('未输入正确品级');
+				return;
+			}
+		}
 		let thing_exist = await foundthing(thing_name);
 		if (!thing_exist) {
 			e.reply(`你瓦特了吧，这方世界没有这样的东西:${thing_name}`);
 			return;
 		}
-		let pj = {
-			劣: 0,
-			普: 1,
-			优: 2,
-			精: 3,
-			极: 4,
-			绝: 5,
-			顶: 6,
-		};
-		thing_pinji = pj[thing[1]];
+
+		let najie = await Read_najie(usr_qq);
 		let ifexist;
-		if (un_lock == '锁定') {
-			ifexist = await re_najie_thing(
-				usr_qq,
-				thing_name,
-				thing_exist.class,
-				thing_pinji,
-				1
+		if (thing_exist.class == '装备') {
+			ifexist = najie.装备.find(
+				(item) => item.name == thing_name && item.pinji == thing_pinji
 			);
-			if (ifexist) {
+		}
+		if (thing_exist.class == '丹药') {
+			ifexist = najie.丹药.find((item) => item.name == thing_name);
+		}
+		if (thing_exist.class == '道具') {
+			ifexist = najie.道具.find((item) => item.name == thing_name);
+		}
+		if (thing_exist.class == '功法') {
+			ifexist = najie.功法.find((item) => item.name == thing_name);
+		}
+		if (thing_exist.class == '草药') {
+			ifexist = najie.草药.find((item) => item.name == thing_name);
+		}
+		if (thing_exist.class == '材料') {
+			ifexist = najie.材料.find((item) => item.name == thing_name);
+		}
+		if (thing_exist.class == '食材') {
+			ifexist = najie.食材.find((item) => item.name == thing_name);
+		}
+		if (thing_exist.class == '盒子') {
+			ifexist = najie.盒子.find((item) => item.name == thing_name);
+		}
+		if (thing_exist.class == '仙宠') {
+			ifexist = najie.仙宠.find((item) => item.name == thing_name);
+		}
+		if (thing_exist.class == '仙米') {
+			ifexist = najie.仙宠口粮.find((item) => item.name == thing_name);
+		}
+		if (!ifexist) {
+			//没有
+			e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
+			return;
+		}
+		if (ifexist.islockd == 0) {
+			if (un_lock == '锁定') {
+				ifexist.islockd = 1;
+				await Write_najie(usr_qq, najie);
 				e.reply(`${thing_exist.class}:${thing_name}已锁定`);
 				return;
+			} else if (un_lock == '解锁') {
+				e.reply(`${thing_exist.class}:${thing_name}本就是未锁定的`);
+				return;
 			}
-		} else if (un_lock == '解锁') {
-			ifexist = await re_najie_thing(
-				usr_qq,
-				thing_name,
-				thing_exist.class,
-				thing_pinji,
-				0
-			);
-			if (ifexist) {
+		} else if (ifexist.islockd == 1) {
+			if (un_lock == '解锁') {
+				ifexist.islockd = 0;
+				await Write_najie(usr_qq, najie);
 				e.reply(`${thing_exist.class}:${thing_name}已解锁`);
+				return;
+			} else if (un_lock == '锁定') {
+				e.reply(`${thing_exist.class}:${thing_name}本就是锁定的`);
 				return;
 			}
 		}
-		e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
-		return;
 	}
 
 	async all_tongbu(e) {
