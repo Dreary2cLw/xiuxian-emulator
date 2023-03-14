@@ -14,7 +14,7 @@ import {
 	ForwardMsg,
 	foundthing,
 	isNotNull,
-	re_najie_thing,
+	Locked_najie_thing,
 	Read_najie,
 	Read_player,
 	shijianc,
@@ -878,7 +878,7 @@ export class TreasureCabinet extends plugin {
 			return;
 		}
 		if (
-			(await re_najie_thing(usr_qq, thing_name, thing_exist.class, pj)) == 1
+			(await Locked_najie_thing(usr_qq, thing_name, thing_exist.class, pj)) == 1
 		) {
 			e.reply(`${thing_exist.class}:${thing_name}已锁定，请解锁后再出售。`);
 			return;
