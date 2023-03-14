@@ -588,23 +588,61 @@ export async function exist_najie_thing(
  * @param {*} thing_pinji 品级 数字0-6
  * @returns
  */
-//修改纳戒物品锁定状态
-export async function re_najie_thing(usr_qq, thing_name, thing_class, thing_pinji, lock) {
-    let najie = await Read_najie(usr_qq);
-    if (thing_class == "装备" && (thing_pinji || thing_pinji == 0)) {
-        for (let i of najie["装备"]) {
-            if (i.name == thing_name && i.pinji == thing_pinji)
-                i.islockd = lock;
-        }
-    }
-    else {
-        for (let i of najie[thing_class]) {
-            if (i.name == thing_name)
-                i.islockd = lock;
-        }
-    }
-    await Write_najie(usr_qq, najie);
-    return true;
+///检查纳戒内物品是否锁定
+//判断物品
+//要用await
+export async function Locked_najie_thing(
+	usr_qq,
+	thing_name,
+	thing_class,
+	thing_pinji = null
+) {
+	let najie = await Read_najie(usr_qq);
+	if (!isNotNull(najie.草药)) {
+		najie.草药 = [];
+		await Write_najie(usr_qq, najie);
+	}
+	if (!isNotNull(najie.盒子)) {
+		najie.盒子 = [];
+		await Write_najie(usr_qq, najie);
+	}
+	let ifexist;
+	if (thing_class == '装备') {
+		ifexist = najie.装备.find(
+			(item) => item.name == thing_name && item.pinji == thing_pinji
+		);
+	}
+	if (thing_class == '丹药') {
+		ifexist = najie.丹药.find((item) => item.name == thing_name);
+	}
+	if (thing_class == '道具') {
+		ifexist = najie.道具.find((item) => item.name == thing_name);
+	}
+	if (thing_class == '功法') {
+		ifexist = najie.功法.find((item) => item.name == thing_name);
+	}
+	if (thing_class == '草药') {
+		ifexist = najie.草药.find((item) => item.name == thing_name);
+	}
+	if (thing_class == '材料') {
+		ifexist = najie.材料.find((item) => item.name == thing_name);
+	}
+	if (thing_class == '食材') {
+		ifexist = najie.食材.find((item) => item.name == thing_name);
+	}
+	if (thing_class == '盒子') {
+		ifexist = najie.盒子.find((item) => item.name == thing_name);
+	}
+	if (thing_class == '仙宠') {
+		ifexist = najie.仙宠.find((item) => item.name == thing_name);
+	}
+	if (thing_class == '仙米') {
+		ifexist = najie.仙宠口粮.find((item) => item.name == thing_name);
+	}
+	if (ifexist) {
+		return ifexist.islockd;
+	}
+	return false;
 }
 /**
  * 增加减少纳戒内物品
