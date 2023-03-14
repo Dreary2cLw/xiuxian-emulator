@@ -644,6 +644,24 @@ export async function Locked_najie_thing(
 	}
 	return false;
 }
+//修改纳戒物品锁定状态
+export async function re_najie_thing(usr_qq, thing_name, thing_class, thing_pinji, lock) {
+    let najie = await Read_najie(usr_qq);
+    if (thing_class == "装备" && (thing_pinji || thing_pinji == 0)) {
+        for (let i of najie["装备"]) {
+            if (i.name == thing_name && i.pinji == thing_pinji)
+                i.islockd = lock;
+        }
+    }
+    else {
+        for (let i of najie[thing_class]) {
+            if (i.name == thing_name)
+                i.islockd = lock;
+        }
+    }
+    await Write_najie(usr_qq, najie);
+    return true;
+}
 /**
  * 增加减少纳戒内物品
  * @param usr_qq 操作存档的qq号
