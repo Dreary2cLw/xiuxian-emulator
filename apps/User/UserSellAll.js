@@ -76,7 +76,7 @@ export class UserSellAll extends plugin {
 					fnc: 'tiandao',
 				},
 				{
-					reg: '^#(锁定|解锁).*$',
+					reg: '^#(锁定|解锁)(装备|道具|丹药|功法|草药|材料|食材|盒子|仙宠|口粮).*$',
 					fnc: 'locked',
 				},
 				{
@@ -297,26 +297,34 @@ export class UserSellAll extends plugin {
 			return;
 		}
 		let ifexist;
-		if (ifexist.islockd == 0) {
-			if (un_lock == '锁定') {
-				ifexist.islockd = 1;
-				await Write_najie(usr_qq, najie);
-				e.reply(`${thing_exist.class}:${thing_name}已锁定`);
-				return;
-			} else if (un_lock == '解锁') {
-				e.reply(`${thing_exist.class}:${thing_name}本就是未锁定的`);
-				return;
-			}
-		} else if (ifexist.islockd == 1) {
-			if (un_lock == '解锁') {
-				ifexist.islockd = 0;
-				await Write_najie(usr_qq, najie);
-				e.reply(`${thing_exist.class}:${thing_name}已解锁`);
-				return;
-			} else if (un_lock == '锁定') {
-				e.reply(`${thing_exist.class}:${thing_name}本就是锁定的`);
-				return;
-			}
+		if (un_lock == '锁定') {
+			ifexist = await Locked_najie_thing(
+				usr_qq,
+				thing_name,
+				thing_exist.class,
+				thing_pinji,
+				1
+			);
+			e.reply(`${thing_exist.class}:${thing_name}已锁定`);
+			return;
+		}
+		if (un_lock == '解锁') {
+			e.reply(`${thing_exist.class}:${thing_name}本就是未锁定的`);
+			return;
+		} else if (un_lock == '解锁') {
+			ifexist = await Locked_najie_thing(
+				usr_qq,
+				thing_name,
+				thing_exist.class,
+				thing_pinji,
+				1
+			);
+			e.reply(`${thing_exist.class}:${thing_name}已解锁`);
+			return;
+		}
+		if (un_lock == '锁定') {
+			e.reply(`${thing_exist.class}:${thing_name}本就是锁定的`);
+			return;
 		}
 		e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
 		return;
