@@ -108,17 +108,17 @@ export class Taopaotask extends plugin {
 						let npc_damage = Harm(B_player.攻击, A_player.防御);
 						let last_msg = '';
 						if (Random < 0.1) {
-							A_player.当前血量 -= npc_damage;
+							A_player.当前血量 -= Math.trunc(npc_damage*0.3);
 							last_msg +=
 								B_player.名号 + '似乎不屑追你,只是随手丢出神通,剩余血量' + A_player.当前血量;
 						} else if (Random < 0.25) {
-							A_player.当前血量 -= Math.trunc(npc_damage * 0.3);
+							A_player.当前血量 -= Math.trunc(npc_damage * 0.5);
 							last_msg +=
 								'你引起了' +
 								B_player.名号 +
 								'的兴趣,' +
 								B_player.名号 +
-								'决定试探你,只用了三分力,剩余血量' +
+								'决定试探你,只用了五分力,剩余血量' +
 								A_player.当前血量;
 						} else if (Random < 0.5) {
 							A_player.当前血量 -= Math.trunc(npc_damage * 1.5);
@@ -144,7 +144,7 @@ export class Taopaotask extends plugin {
 								'的攻势愈加猛烈,已经快招架不住了,剩余血量' +
 								A_player.当前血量;
 						} else {
-							A_player.当前血量 -= Math.trunc(npc_damage * 0.5);
+							A_player.当前血量 -= Math.trunc(npc_damage);
 							last_msg +=
 								'身体快到极限了嘛,你暗暗问道,脚下逃跑的步伐更加迅速,剩余血量' +
 								A_player.当前血量;
