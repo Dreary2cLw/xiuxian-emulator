@@ -147,7 +147,7 @@ export class UserSellAll extends plugin {
 				return;
 			}
 		}
-        for (let index = 0; index < A_najie[thing_class].length; index++) {
+		for (let index = 0; index < A_najie[thing_class].length; index++) {
 			const element = A_najie[thing_class][index];
 			if ((await Check_thing(element)) == 1) {
 				continue;
