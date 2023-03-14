@@ -307,10 +307,6 @@ export class UserSellAll extends plugin {
 			);
 			e.reply(`${thing_exist.class}:${thing_name}已锁定`);
 			return;
-		}
-		if (un_lock == '解锁') {
-			e.reply(`${thing_exist.class}:${thing_name}本就是未锁定的`);
-			return;
 		} else if (un_lock == '解锁') {
 			ifexist = await Locked_najie_thing(
 				usr_qq,
@@ -320,10 +316,6 @@ export class UserSellAll extends plugin {
 				1
 			);
 			e.reply(`${thing_exist.class}:${thing_name}已解锁`);
-			return;
-		}
-		if (un_lock == '锁定') {
-			e.reply(`${thing_exist.class}:${thing_name}本就是锁定的`);
 			return;
 		}
 		e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
