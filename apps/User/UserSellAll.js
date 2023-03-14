@@ -12,7 +12,6 @@ import {
 	existplayer,
 	foundthing,
 	instead_equipment,
-	Locked_najie_thing,
 	re_najie_thing,
 	Read_player,
 	Write_najie,
@@ -127,7 +126,7 @@ export class UserSellAll extends plugin {
         let thing_class=code;
         for (let index = 0; index < A_najie[thing_class].length; index++) {
             const element = A_najie[thing_class][index];
-            if (await Locked_najie_thing(A_qq, element.name, element.class,element.pinji) == 1) {
+            if (await re_najie_thing(A_qq, element.name, element.class,element.pinji) == 1) {
                 continue;
             }
             if(await Check_thing(element)==1){

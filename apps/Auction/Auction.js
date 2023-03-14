@@ -10,7 +10,7 @@ import {
 	convert2integer,
 	existplayer,
 	isNotNull,
-	Locked_najie_thing,
+	re_najie_thing,
 	Read_najie,
 	Read_player,
 } from '../Xiuxian/xiuxian.js';
@@ -378,7 +378,7 @@ export class Auction extends plugin {
 			e.reply(`${thing_exist.name}特殊！`);
 			return;
 		}
-		if ((await Locked_najie_thing(usr_qq, thing_name, thing_data.class)) == 1) {
+		if ((await re_najie_thing(usr_qq, thing_name, thing_data.class)) == 1) {
 			//锁定
 			e.reply(`你的纳戒中的${thing_data.class}[${thing_name}]是锁定的`);
 			return;
