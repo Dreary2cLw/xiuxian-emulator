@@ -645,22 +645,25 @@ export async function Locked_najie_thing(
 	return false;
 }
 //修改纳戒物品锁定状态
-export async function re_najie_thing(usr_qq, thing_name, thing_class, thing_pinji, lock) {
-    let najie = await Read_najie(usr_qq);
-    if (thing_class == "装备" && (thing_pinji || thing_pinji == 0)) {
-        for (let i of najie["装备"]) {
-            if (i.name == thing_name && i.pinji == thing_pinji)
-                i.islockd = lock;
-        }
-    }
-    else {
-        for (let i of najie[thing_class]) {
-            if (i.name == thing_name)
-                i.islockd = lock;
-        }
-    }
-    await Write_najie(usr_qq, najie);
-    return true;
+export async function re_najie_thing(
+	usr_qq,
+	thing_name,
+	thing_class,
+	thing_pinji,
+	lock
+) {
+	let najie = await Read_najie(usr_qq);
+	if (thing_class == '装备' && (thing_pinji || thing_pinji == 0)) {
+		for (let i of najie['装备']) {
+			if (i.name == thing_name && i.pinji == thing_pinji) i.islockd = lock;
+		}
+	} else {
+		for (let i of najie[thing_class]) {
+			if (i.name == thing_name) i.islockd = lock;
+		}
+	}
+	await Write_najie(usr_qq, najie);
+	return true;
 }
 /**
  * 增加减少纳戒内物品
@@ -1577,12 +1580,12 @@ export async function Gaodenyuansulun(
 	if (A_lin == yuansu[0]) {
 		//火水
 		if (B_lin == yuansu[1]) {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			msg.push(A_player.名号 + '使用了火元素战技,触发了蒸发反应,额外造成了50%伤害');
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '水') {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			msg.push(
 				A_player.名号 +
 					'使用了火元素战技,水属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了50%伤害'
@@ -1590,12 +1593,12 @@ export async function Gaodenyuansulun(
 		}
 		//火雷
 		if (B_lin == yuansu[2]) {
-			att = last_att * 1.2;
+			att = att * 1.2;
 			msg.push(A_player.名号 + '使用了火元素战技,触发了超载反应,额外造成了20%伤害');
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '雷') {
-			att = last_att * 1.2;
+			att = att * 1.2;
 			msg.push(
 				A_player.名号 +
 					'使用了火元素战技,雷属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了50%伤害'
@@ -1603,12 +1606,12 @@ export async function Gaodenyuansulun(
 		}
 		//火冰
 		if (B_lin == yuansu[4]) {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			msg.push(A_player.名号 + '使用了火元素战技,触发了融化反应,额外造成了50%伤害');
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '冰') {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			msg.push(
 				A_player.名号 +
 					'使用了火元素战技,冰属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了50%伤害'
@@ -1617,7 +1620,7 @@ export async function Gaodenyuansulun(
 		//火草
 		let random5 = Math.random();
 		if (B_lin == yuansu[6] && random5 > 0.6) {
-			att = last_att * 1.2;
+			att = att * 1.2;
 			gandianhuihe += 3;
 			msg.push(
 				A_player.名号 +
@@ -1632,7 +1635,7 @@ export async function Gaodenyuansulun(
 			ranshao = true;
 		}
 		if (equipment.武器.fumo == '草' && random5 > 0.6) {
-			att = last_att * 1.2;
+			att = att * 1.2;
 			gandianhuihe += 3;
 			msg.push(
 				A_player.名号 +
@@ -1651,12 +1654,12 @@ export async function Gaodenyuansulun(
 	if (A_lin == yuansu[1]) {
 		//火水
 		if (B_lin == yuansu[0]) {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			msg.push(A_player.名号 + '使用了水元素战技,触发了蒸发反应,额外造成了50%伤害');
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '火') {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			msg.push(
 				A_player.名号 +
 					'使用了火元素战技,火属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了50%伤害'
@@ -1665,7 +1668,7 @@ export async function Gaodenyuansulun(
 		}
 		//水雷
 		if (B_lin == yuansu[2]) {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			gandianhuihe += 3;
 			msg.push(
 				A_player.名号 +
@@ -1680,7 +1683,7 @@ export async function Gaodenyuansulun(
 			gandian = true;
 		}
 		if (equipment.武器.fumo == '雷') {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			gandianhuihe += 3;
 			msg.push(
 				A_player.名号 +
@@ -1717,7 +1720,7 @@ export async function Gaodenyuansulun(
 
 		//水草
 		if (B_lin == yuansu[6]) {
-			att = last_att * 1.2;
+			att = att * 1.2;
 			msg.push(
 				A_player.名号 +
 					'使用了水元素战技,触发了绽放反应,草原核爆炸了！' +
@@ -1735,7 +1738,7 @@ export async function Gaodenyuansulun(
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '草') {
-			att = last_att * 1.2;
+			att = att * 1.2;
 			msg.push(
 				A_player.名号 +
 					'使用了水元素战技,草属性附魔武器与其产生共鸣,触发了绽放反应,草原核爆炸了！' +
@@ -1757,21 +1760,21 @@ export async function Gaodenyuansulun(
 	if (A_lin == yuansu[2]) {
 		//雷火
 		if (B_lin == yuansu[0]) {
-			att = last_att * 1.2;
-			msg.push(A_player.名号 + '使用了火元素战技,触发了超载反应,额外造成了20%伤害');
+			att = att * 1.2;
+			msg.push(A_player.名号 + '使用了雷元素战技,触发了超载反应,额外造成了20%伤害');
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '火') {
-			att = last_att * 1.2;
+			att = att * 1.2;
 			msg.push(
 				A_player.名号 +
-					'使用了火元素战技,火属性附魔武器与其产生共鸣,触发了超载反应,额外造成了20%伤害'
+					'使用了雷元素战技,火属性附魔武器与其产生共鸣,触发了超载反应,额外造成了20%伤害'
 			);
 			chufa = true;
 		}
 		//水雷
 		if (B_lin == yuansu[1]) {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			gandianhuihe += 3;
 			msg.push(
 				A_player.名号 +
@@ -1786,7 +1789,7 @@ export async function Gaodenyuansulun(
 			gandian = true;
 		}
 		if (equipment.武器.fumo == '水') {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			gandianhuihe += 3;
 			msg.push(
 				A_player.名号 +
@@ -1803,7 +1806,7 @@ export async function Gaodenyuansulun(
 		//雷冰(50%)
 		let random2 = Math.random();
 		if (B_lin == yuansu[4] && random2 > 0.5) {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			chaodaohuihe2 += 3;
 			msg.push(
 				A_player.名号 +
@@ -1818,7 +1821,7 @@ export async function Gaodenyuansulun(
 			chaodao = true;
 		}
 		if (equipment.武器.fumo == '冰') {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			chaodaohuihe2 += 3;
 			msg.push(
 				A_player.名号 +
@@ -1851,12 +1854,12 @@ export async function Gaodenyuansulun(
 	if (A_lin == yuansu[4]) {
 		//火冰
 		if (B_lin == yuansu[0]) {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			msg.push(A_player.名号 + '使用了冰元素战技,触发了融化反应,额外造成了50%伤害');
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '火') {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			msg.push(
 				A_player.名号 +
 					'使用了冰元素战技,火属性附魔武器与其产生共鸣,触发了融化反应,额外造成了50%伤害'
@@ -1886,7 +1889,7 @@ export async function Gaodenyuansulun(
 		//雷冰(50%)
 		let random4 = Math.random();
 		if (B_lin == yuansu[2] && random4 > 0.5) {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			chaodaohuihe2 += 3;
 			msg.push(
 				A_player.名号 +
@@ -1901,7 +1904,7 @@ export async function Gaodenyuansulun(
 			chaodao = true;
 		}
 		if (equipment.武器.fumo == '冰' && random4 > 0.5) {
-			att = last_att * 1.5;
+			att = att * 1.5;
 			chaodaohuihe2 += 3;
 			msg.push(
 				A_player.名号 +
@@ -1921,7 +1924,7 @@ export async function Gaodenyuansulun(
 		//火草
 		let random6 = Math.random();
 		if (B_lin == yuansu[0] && random6 > 0.6) {
-			att = last_att * 1.2;
+			att = att * 1.2;
 			gandianhuihe += 3;
 			msg.push(
 				A_player.名号 +
@@ -1936,7 +1939,7 @@ export async function Gaodenyuansulun(
 			ranshao = true;
 		}
 		if (equipment.武器.fumo == '火' && random6 > 0.6) {
-			att = last_att * 1.2;
+			att = att * 1.2;
 			gandianhuihe += 3;
 			msg.push(
 				A_player.名号 +
@@ -1952,7 +1955,7 @@ export async function Gaodenyuansulun(
 		}
 		//水草
 		if (B_lin == yuansu[1]) {
-			att = last_att * 1.2;
+			att = att * 1.2;
 			msg.push(
 				A_player.名号 +
 					'使用了木元素战技,触发了绽放反应,草原核爆炸了！' +
@@ -1970,7 +1973,7 @@ export async function Gaodenyuansulun(
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '水') {
-			att = last_att * 1.2;
+			att = att * 1.2;
 			msg.push(
 				A_player.名号 +
 					'使用了木元素战技,水属性附魔武器与其产生共鸣,触发了绽放反应,草原核爆炸了！' +
