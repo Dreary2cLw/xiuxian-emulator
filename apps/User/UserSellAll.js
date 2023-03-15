@@ -272,31 +272,23 @@ export class UserSellAll extends plugin {
 		let un_lock = msg.substr(0, 2);
 		let thing = msg.substr(2).split('*');
 		let thing_name = thing[0];
-		let najie = await Read_najie(usr_qq);
 		thing[0] = parseInt(thing[0]);
 		let thing_pinji;
-		if (msg.substr(2, 2) == '装备') {
-			thing_pinji = thing[1];
-			if (!isNotNull(thing_pinji)) {
-				e.reply('装备未指定品级！');
-				return;
-			}
-			let pj = {
-				劣: 0,
-				普: 1,
-				优: 2,
-				精: 3,
-				极: 4,
-				绝: 5,
-				顶: 6,
-			};
-			thing_pinji = pj[thing[1]];
-		}
 		let thing_exist = await foundthing(thing_name);
 		if (!thing_exist) {
 			e.reply(`你瓦特了吧，这方世界没有这样的东西:${thing_name}`);
 			return;
 		}
+		let pj = {
+			劣: 0,
+			普: 1,
+			优: 2,
+			精: 3,
+			极: 4,
+			绝: 5,
+			顶: 6,
+		};
+		thing_pinji = pj[thing[1]];
 		let ifexist;
 		if (un_lock == '锁定') {
 			ifexist = await re_najie_thing(
@@ -306,18 +298,22 @@ export class UserSellAll extends plugin {
 				thing_pinji,
 				1
 			);
-			e.reply(`${thing_exist.class}:${thing_name}已锁定`);
-			return;
+			if (ifexist) {
+				e.reply(`${thing_exist.class}:${thing_name}已锁定`);
+				return;
+			}
 		} else if (un_lock == '解锁') {
 			ifexist = await re_najie_thing(
 				usr_qq,
 				thing_name,
 				thing_exist.class,
 				thing_pinji,
-				1
+				0
 			);
-			e.reply(`${thing_exist.class}:${thing_name}已解锁`);
-			return;
+			if (ifexist) {
+				e.reply(`${thing_exist.class}:${thing_name}已解锁`);
+				return;
+			}
 		}
 		e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
 		return;
