@@ -111,7 +111,8 @@ export class AdminSuper extends plugin {
 					fnc: 'off_level',
 				},
 				{
-					reg:'#将米娜桑的纳戒里叫.*的的的(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链|食材)(抹除|替换为叫.*之之之(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链|食材))$',
+					reg:
+						'#将米娜桑的纳戒里叫.*的的的(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链|食材)(抹除|替换为叫.*之之之(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链|食材))$',
 					fnc: 'replaceThing',
 				},
 			],
@@ -1496,6 +1497,13 @@ export async function synchronization(e) {
 			const element = najie.道具[i];
 			if (element.name == '附魔书-风元素') {
 				najie.道具[i].name = '附魔书-风';
+				break;
+			}
+		}
+		for (let i = 0; i < najie.道具.length; i++) {
+			const element = najie.道具[i];
+			if (element.desc == '附魔书-力量1') {
+				najie.道具[i].desc = '力量1';
 				break;
 			}
 		}
