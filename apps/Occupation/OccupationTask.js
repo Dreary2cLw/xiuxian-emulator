@@ -95,8 +95,7 @@ export class OccupationTask extends plugin {
 							'魔蕴花',
 							'仙蕴花',
 							'仙缘草',
-							'太玄仙草',
-							'神之眼',
+							'太玄仙草'
 						];
 						const sum2 = [0.1, 0.1, 0.1, 0.1, 0.1, 0, 0, 0, 0, 0, 0];
 						const sum3 = [
