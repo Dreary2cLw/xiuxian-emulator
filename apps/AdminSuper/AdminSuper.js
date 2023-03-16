@@ -1596,6 +1596,9 @@ export async function synchronization(e) {
 		if (!isNotNull(equipment.法宝.fumo)) {
 			equipment.法宝.fumo = '无';
 		}
+		if (equipment.武器.fumo == '附魔书-力量1') {
+			equipment.武器.fumo = '力量1';
+		}
 		await Write_najie(usr_qq, najie);
 		await Write_player(usr_qq, player);
 		await Write_equipment(usr_qq, equipment);
