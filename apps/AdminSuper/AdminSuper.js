@@ -1506,13 +1506,6 @@ export async function synchronization(e) {
 				break;
 			}
 		}
-
-		for (let i = 0; i < najie.装备.length; i++) {
-			const element = najie.装备[i];
-			if (!isNotNull(element.fumo)) {
-				najie.装备[i].fumo = '无';
-			}
-		}
 		for (i = 0; i < data.shicai_list.length; i++) {
 			if (najie.食材.name == data.shicai_list[i].name) {
 				najie.食材[i].加成 = data.shicai_list[i].加成;
