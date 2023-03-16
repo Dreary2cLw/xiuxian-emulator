@@ -4,11 +4,8 @@ import data from '../../model/XiuxianData.js';
 import config from '../../model/Config.js';
 import fs from 'node:fs';
 import { segment } from 'icqq';
-import {
-	Add_najie_thing,
-	Add_职业经验,
-	isNotNull,
-} from '../Xiuxian/xiuxian.js';
+import { isNotNull, Read_player } from '../Xiuxian/xiuxian.js';
+import { Add_najie_thing, Add_职业经验 } from '../Xiuxian/xiuxian.js';
 
 /**
  * 定时任务
@@ -95,11 +92,11 @@ export class OccupationTask extends plugin {
 							'魔蕴花',
 							'仙蕴花',
 							'仙缘草',
-							'太玄仙草'
+							'太玄仙草',
 						];
 						const sum2 = [0.1, 0.1, 0.1, 0.1, 0.1, 0, 0, 0, 0, 0, 0];
 						const sum3 = [
-							0.15, 0.15, 0.15, 0.15, 0.15, 0.024, 0.024, 0.024, 0.024, 0.012, 0.012
+							0.15, 0.15, 0.15, 0.15, 0.15, 0.024, 0.024, 0.024, 0.024, 0.012, 0.012,
 						];
 						let msg = [segment.at(player_id)];
 						msg.push(` 恭喜你获得了经验${exp},草药:`);
@@ -144,7 +141,7 @@ export class OccupationTask extends plugin {
 							return;
 						}
 
-						// let size=this.xiuxianConfigData.mine.size;
+						// var size=this.xiuxianConfigData.mine.size;
 						let time = parseInt(action.time) / 1000 / 60; //最高480分钟
 						//以下1到5为每种的数量
 						let mine_amount1 = Math.floor((1.8 + Math.random() * 0.4) * time); //(1.8+随机0到0.4)x时间(分钟)
@@ -227,7 +224,7 @@ export class OccupationTask extends plugin {
 							return;
 						}
 
-						// let size=this.xiuxianConfigData.shoulie.size;
+						// var size=this.xiuxianConfigData.shoulie.size;
 						let time = parseInt(action.time) / 1000 / 60; //最高480分钟
 						//以下1到5为每种的数量
 						let shoulie_amount1 = Math.floor((1.8 + Math.random() * 0.4) * time); //(1.8+随机0到0.4)x时间(分钟)

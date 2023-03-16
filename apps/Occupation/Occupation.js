@@ -5,18 +5,17 @@ import config from '../../model/Config.js';
 import fs from 'fs';
 import { segment } from 'icqq';
 import {
-	__PATH,
-	Add_najie_thing,
-	Add_灵石,
-	Add_职业经验,
-	exist_najie_thing,
 	existplayer,
-	ForwardMsg,
-	isNotNull,
-	Read_player,
-	sleep,
 	Write_player,
+	isNotNull,
+	exist_najie_thing,
+	Add_najie_thing,
+	Add_职业经验,
+	Add_灵石,
+	sleep,
+	ForwardMsg,
 } from '../Xiuxian/xiuxian.js';
+import { Read_player, __PATH } from '../Xiuxian/xiuxian.js';
 import Show from '../../model/show.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import { zd_battle } from '../Battle/Battle.js';
@@ -27,7 +26,6 @@ import { zd_battle } from '../Battle/Battle.js';
  * 境界模块
  */
 let allaction = false;
-
 export class Occupation extends plugin {
 	constructor() {
 		super({
@@ -120,7 +118,6 @@ export class Occupation extends plugin {
 		});
 		this.xiuxianConfigData = config.getConfig('xiuxian', 'xiuxian');
 	}
-
 	async daochu(e) {
 		if (!e.isGroup) {
 			return;
@@ -148,7 +145,6 @@ export class Occupation extends plugin {
 		e.reply(`恭喜${player.名号}副职转移成功,您的副职为${action.职业名}`);
 		return;
 	}
-
 	async chose_occupation(e) {
 		if (!e.isGroup) {
 			return;
@@ -209,7 +205,7 @@ export class Occupation extends plugin {
 			player.副职 = action;
 			await Write_player(usr_qq, player);
 		}
-		let arr = {
+		var arr = {
 			职业名: player.occupation,
 			职业经验: player.occupation_exp,
 			职业等级: player.occupation_level,
@@ -223,7 +219,6 @@ export class Occupation extends plugin {
 		e.reply(`恭喜${player.名号}转职为[${occupation}],您的副职为${arr.职业名}`);
 		return;
 	}
-
 	async chose_occupation2(e) {
 		if (!e.isGroup) {
 			return;
@@ -268,7 +263,6 @@ export class Occupation extends plugin {
 		);
 		return;
 	}
-
 	async plant(e) {
 		let usr_qq = e.user_id; //用户qq
 		//有无存档
@@ -296,10 +290,10 @@ export class Occupation extends plugin {
 		time = time.replace('分钟', '');
 		if (parseInt(time) == parseInt(time)) {
 			time = parseInt(time);
-			let y = 15; //时间
-			let x = 48; //循环次数
+			var y = 15; //时间
+			var x = 48; //循环次数
 			//如果是 >=16*33 ----   >=30
-			for (let i = x; i > 0; i--) {
+			for (var i = x; i > 0; i--) {
 				if (time >= y * i) {
 					time = y * i;
 					break;
@@ -390,15 +384,15 @@ export class Occupation extends plugin {
 		let start_time = action.end_time - action.time;
 		let now_time = new Date().getTime();
 		let time;
-		let y = 15; //固定时间
-		let x = 48; //循环次数
+		var y = 15; //固定时间
+		var x = 48; //循环次数
 
 		if (end_time > now_time) {
 			//属于提前结束
 			time = parseInt((new Date().getTime() - start_time) / 1000 / 60);
 			//超过就按最低的算，即为满足30分钟才结算一次
 			//如果是 >=16*33 ----   >=30
-			for (let i = x; i > 0; i--) {
+			for (var i = x; i > 0; i--) {
 				if (time >= y * i) {
 					time = y * i;
 					break;
@@ -413,7 +407,7 @@ export class Occupation extends plugin {
 			time = parseInt(action.time / 1000 / 60);
 			//超过就按最低的算，即为满足30分钟才结算一次
 			//如果是 >=16*33 ----   >=30
-			for (let i = x; i > 0; i--) {
+			for (var i = x; i > 0; i--) {
 				if (time >= y * i) {
 					time = y * i;
 					break;
@@ -441,7 +435,6 @@ export class Occupation extends plugin {
 		delete arr.group_id; //结算完去除group_id
 		await redis.set('xiuxian:player:' + e.user_id + ':action', JSON.stringify(arr));
 	}
-
 	async mine(e) {
 		let usr_qq = e.user_id; //用户qq
 		//有无存档
@@ -470,10 +463,10 @@ export class Occupation extends plugin {
 		time = time.replace('分钟', '');
 		if (parseInt(time) == parseInt(time)) {
 			time = parseInt(time);
-			let y = 30; //时间
-			let x = 24; //循环次数
+			var y = 30; //时间
+			var x = 24; //循环次数
 			//如果是 >=16*33 ----   >=30
-			for (let i = x; i > 0; i--) {
+			for (var i = x; i > 0; i--) {
 				if (time >= y * i) {
 					time = y * i;
 					break;
@@ -545,14 +538,14 @@ export class Occupation extends plugin {
 		let start_time = action.end_time - action.time;
 		let now_time = new Date().getTime();
 		let time;
-		let y = this.xiuxianConfigData.mine.time; //固定时间
-		let x = this.xiuxianConfigData.mine.cycle; //循环次数
+		var y = this.xiuxianConfigData.mine.time; //固定时间
+		var x = this.xiuxianConfigData.mine.cycle; //循环次数
 		if (end_time > now_time) {
 			//属于提前结束
 			time = parseInt((new Date().getTime() - start_time) / 1000 / 60);
 			//超过就按最低的算，即为满足30分钟才结算一次
 			//如果是 >=16*33 ----   >=30
-			for (let i = x; i > 0; i--) {
+			for (var i = x; i > 0; i--) {
 				if (time >= y * i) {
 					time = y * i;
 					break;
@@ -567,7 +560,7 @@ export class Occupation extends plugin {
 			time = parseInt(action.time / 1000 / 60);
 			//超过就按最低的算，即为满足30分钟才结算一次
 			//如果是 >=16*33 ----   >=30
-			for (let i = x; i > 0; i--) {
+			for (var i = x; i > 0; i--) {
 				if (time >= y * i) {
 					time = y * i;
 					break;
@@ -624,11 +617,11 @@ export class Occupation extends plugin {
 			'魔蕴花',
 			'仙蕴花',
 			'仙缘草',
-			'太玄仙草'
+			'太玄仙草',
 		];
 		const sum2 = [0.1, 0.1, 0.1, 0.1, 0.1, 0, 0, 0, 0, 0, 0];
 		const sum3 = [
-			0.15, 0.15, 0.15, 0.15, 0.15, 0.024, 0.024, 0.024, 0.024, 0.012, 0.012
+			0.15, 0.15, 0.15, 0.15, 0.15, 0.024, 0.024, 0.024, 0.024, 0.012, 0.012,
 		];
 		msg.push(` 恭喜你获得了经验${exp},草药:`);
 		let newsum = sum3.map((item) => item * sum);
@@ -661,7 +654,7 @@ export class Occupation extends plugin {
 			return;
 		}
 		let msg = [segment.at(usr_qq)];
-		let size = this.xiuxianConfigData.mine.size;
+		var size = this.xiuxianConfigData.mine.size;
 		let mine_amount1 = Math.floor((1.8 + Math.random() * 0.4) * time);
 		let mine_amount2 = Math.floor((1.8 + Math.random() * 0.4) * time);
 		let mine_amount3 = Math.floor(time / 30);
@@ -728,7 +721,6 @@ export class Occupation extends plugin {
 		e.reply(img);
 		return;
 	}
-
 	async yaoxiao(e) {
 		//不开放私聊功能
 		if (!e.isGroup) {
@@ -1018,7 +1010,6 @@ export class Occupation extends plugin {
 			})×1${tmp_msg2}`
 		);
 	}
-
 	async search_sb(e) {
 		let usr_qq = e.user_id;
 		let ifexistplay = await existplayer(usr_qq);
@@ -1037,7 +1028,7 @@ export class Occupation extends plugin {
 		if (action != null) {
 			if (action.end_time > new Date().getTime()) {
 				msg = action.arm;
-				let msg_data = {
+				var msg_data = {
 					msg,
 					type,
 				};
@@ -1054,7 +1045,7 @@ export class Occupation extends plugin {
 		let File = fs.readdirSync(__PATH.player_path);
 		File = File.filter((file) => file.endsWith('.json'));
 		let File_length = File.length;
-		for (let k = 0; k < File_length; k++) {
+		for (var k = 0; k < File_length; k++) {
 			let this_qq = File[k].replace('.json', '');
 			this_qq = parseInt(this_qq);
 			let players = await Read_player(this_qq);
@@ -1091,7 +1082,7 @@ export class Occupation extends plugin {
 			};
 			i++;
 		}
-		for (let k = 0; k < 3; k++) {
+		for (var k = 0; k < 3; k++) {
 			msg.push(mubiao[Math.trunc(Math.random() * i)]);
 		}
 		let arr = {
@@ -1099,7 +1090,7 @@ export class Occupation extends plugin {
 			end_time: new Date().getTime() + 60000 * 60 * 20, //结束时间
 		};
 		await redis.set('xiuxian:player:' + usr_qq + ':shangjing', JSON.stringify(arr));
-		let msg_data = {
+		var msg_data = {
 			msg,
 			type,
 		};
@@ -1110,7 +1101,6 @@ export class Occupation extends plugin {
 		e.reply(img);
 		return;
 	}
-
 	async taofa_sb(e) {
 		let usr_qq = e.user_id;
 		let ifexistplay = await existplayer(usr_qq);
@@ -1145,7 +1135,7 @@ export class Occupation extends plugin {
 			e.reply('每日限杀,请等待20小时后新的赏金目标'); //悬赏做完了(20h后刷新)
 			return;
 		}
-		let num = e.msg.replace('#讨伐目标', '');
+		var num = e.msg.replace('#讨伐目标', '');
 		num = num.trim() - 1;
 		let qq;
 		try {
@@ -1158,6 +1148,7 @@ export class Occupation extends plugin {
 		if (qq != 1) {
 			let player_B = await Read_player(qq);
 			player_B.当前血量 = player_B.血量上限;
+
 			player_B.法球倍率 = player_B.灵根.法球倍率;
 			let buff = 1 + player.occupation_level * 0.055;
 			let player_A = {
@@ -1192,7 +1183,7 @@ export class Occupation extends plugin {
 					player_B.名号 +
 					'失去了1000000灵石,罪恶得到了洗刷,魔道值-50,无名侠客获得了部分灵石,自己的正气提升了,同时获得了更多的悬赏加成';
 			} else if (msg.find((item) => item == B_win)) {
-				let shangjing = Math.trunc(action.arm[num].赏金 * 0.5);
+				var shangjing = Math.trunc(action.arm[num].赏金 * 0.5);
 				player.当前血量 = 0;
 				player.灵石 += shangjing;
 				player.魔道值 -= 5;
@@ -1220,7 +1211,7 @@ export class Occupation extends plugin {
 		if (last_msg == '你惩戒了仙路窃贼,获得了部分灵石') {
 			e.reply(last_msg);
 		} else {
-			for (let i = 0; i < this.xiuxianConfigData.Group.length; i++) {
+			for (var i = 0; i < this.xiuxianConfigData.Group.length; i++) {
 				await this.pushInfo(this.xiuxianConfigData.Group[i], true, last_msg);
 			}
 		}
@@ -1257,7 +1248,7 @@ export class Occupation extends plugin {
 			e.reply('世间没有这人'); //查无此人
 			return;
 		}
-		let arr = {
+		var arr = {
 			名号: player_B.名号,
 			QQ: qq,
 			赏金: money,
@@ -1275,13 +1266,12 @@ export class Occupation extends plugin {
 		e.reply('悬赏成功!');
 		let msg = '';
 		msg += '【全服公告】' + player_B.名号 + '被悬赏了' + money + '灵石';
-		for (let i = 0; i < this.xiuxianConfigData.Group.length; i++) {
+		for (var i = 0; i < this.xiuxianConfigData.Group.length; i++) {
 			await this.pushInfo(this.xiuxianConfigData.Group[i], true, msg);
 		}
 		await redis.set('xiuxian:player:' + 1 + ':shangjing', JSON.stringify(action));
 		return;
 	}
-
 	async shangjingbang(e) {
 		//不开放私聊功能
 		if (!e.isGroup) {
@@ -1298,11 +1288,11 @@ export class Occupation extends plugin {
 			e.reply('悬赏已经被抢空了'); //没人被悬赏
 			return;
 		}
-		for (let i = 0; i < action.length - 1; i++) {
-			let count = 0;
-			for (let j = 0; j < action.length - i - 1; j++) {
+		for (var i = 0; i < action.length - 1; i++) {
+			var count = 0;
+			for (var j = 0; j < action.length - i - 1; j++) {
 				if (action[j].赏金 < action[j + 1].赏金) {
-					let t;
+					var t;
 					t = action[j];
 					action[j] = action[j + 1];
 					action[j + 1] = t;
@@ -1313,7 +1303,7 @@ export class Occupation extends plugin {
 		}
 		await redis.set('xiuxian:player:' + 1 + ':shangjing', JSON.stringify(action));
 		let type = 1;
-		let msg_data = {
+		var msg_data = {
 			msg: action,
 			type,
 		};
@@ -1324,7 +1314,6 @@ export class Occupation extends plugin {
 		e.reply(img);
 		return;
 	}
-
 	async cisha_sb(e) {
 		//不开放私聊功能
 		if (!e.isGroup) {
@@ -1350,7 +1339,7 @@ export class Occupation extends plugin {
 		}
 		let action = await redis.get('xiuxian:player:' + 1 + ':shangjing');
 		action = await JSON.parse(action);
-		let num = e.msg.replace('#刺杀目标', '');
+		var num = e.msg.replace('#刺杀目标', '');
 		num = num.trim() - 1;
 		let qq;
 		try {
@@ -1437,12 +1426,11 @@ export class Occupation extends plugin {
 		} else {
 			await ForwardMsg(e, msg);
 		}
-		for (let i = 0; i < this.xiuxianConfigData.Group.length; i++) {
+		for (var i = 0; i < this.xiuxianConfigData.Group.length; i++) {
 			await this.pushInfo(this.xiuxianConfigData.Group[i], true, last_msg);
 		}
 		return;
 	}
-
 	async shoulie(e) {
 		let usr_qq = e.user_id; //用户qq
 		//有无存档
@@ -1474,10 +1462,10 @@ export class Occupation extends plugin {
 		time = time.replace('分钟', '');
 		if (parseInt(time) == parseInt(time)) {
 			time = parseInt(time);
-			let y = 30; //时间
-			let x = 24; //循环次数
+			var y = 30; //时间
+			var x = 24; //循环次数
 			//如果是 >=16*33 ----   >=30
-			for (let i = x; i > 0; i--) {
+			for (var i = x; i > 0; i--) {
 				if (time >= y * i) {
 					time = y * i;
 					break;
@@ -1528,7 +1516,6 @@ export class Occupation extends plugin {
 
 		return true;
 	}
-
 	async shoulie_back(e) {
 		//不开放私聊功能
 		if (!e.isGroup) {
@@ -1548,15 +1535,15 @@ export class Occupation extends plugin {
 		let start_time = action.end_time - action.time;
 		let now_time = new Date().getTime();
 		let time;
-		let y = this.xiuxianConfigData.mine.time; //固定时间
-		let x = this.xiuxianConfigData.mine.cycle; //循环次数
+		var y = this.xiuxianConfigData.mine.time; //固定时间
+		var x = this.xiuxianConfigData.mine.cycle; //循环次数
 
 		if (end_time > now_time) {
 			//属于提前结束
 			time = parseInt((new Date().getTime() - start_time) / 1000 / 60);
 			//超过就按最低的算，即为满足30分钟才结算一次
 			//如果是 >=16*33 ----   >=30
-			for (let i = x; i > 0; i--) {
+			for (var i = x; i > 0; i--) {
 				if (time >= y * i) {
 					time = y * i;
 					break;
@@ -1571,7 +1558,7 @@ export class Occupation extends plugin {
 			time = parseInt(action.time / 1000 / 60);
 			//超过就按最低的算，即为满足30分钟才结算一次
 			//如果是 >=16*33 ----   >=30
-			for (let i = x; i > 0; i--) {
+			for (var i = x; i > 0; i--) {
 				if (time >= y * i) {
 					time = y * i;
 					break;
@@ -1612,7 +1599,7 @@ export class Occupation extends plugin {
 			return;
 		}
 		let msg = [segment.at(usr_qq)];
-		let size = this.xiuxianConfigData.mine.size;
+		var size = this.xiuxianConfigData.mine.size;
 		let shoulie_amount1 = Math.floor((1.8 + Math.random() * 0.4) * time);
 		let shoulie_amount2 = Math.floor((1.8 + Math.random() * 0.4) * time);
 		let shoulie_amount3 = Math.floor(time / 30);
@@ -1764,7 +1751,6 @@ export async function get_tuzhi_img(e, all_level) {
 	});
 	return img;
 }
-
 export async function Go(e) {
 	let usr_qq = e.user_id;
 	//不支持私聊
