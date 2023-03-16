@@ -4,8 +4,11 @@ import data from '../../model/XiuxianData.js';
 import config from '../../model/Config.js';
 import fs from 'node:fs';
 import { segment } from 'icqq';
-import { isNotNull, Read_player } from '../Xiuxian/xiuxian.js';
-import { Add_najie_thing, Add_职业经验 } from '../Xiuxian/xiuxian.js';
+import {
+	Add_najie_thing,
+	Add_职业经验,
+	isNotNull,
+} from '../Xiuxian/xiuxian.js';
 
 /**
  * 定时任务
@@ -141,7 +144,7 @@ export class OccupationTask extends plugin {
 							return;
 						}
 
-						// var size=this.xiuxianConfigData.mine.size;
+						// let size=this.xiuxianConfigData.mine.size;
 						let time = parseInt(action.time) / 1000 / 60; //最高480分钟
 						//以下1到5为每种的数量
 						let mine_amount1 = Math.floor((1.8 + Math.random() * 0.4) * time); //(1.8+随机0到0.4)x时间(分钟)
@@ -224,7 +227,7 @@ export class OccupationTask extends plugin {
 							return;
 						}
 
-						// var size=this.xiuxianConfigData.shoulie.size;
+						// let size=this.xiuxianConfigData.shoulie.size;
 						let time = parseInt(action.time) / 1000 / 60; //最高480分钟
 						//以下1到5为每种的数量
 						let shoulie_amount1 = Math.floor((1.8 + Math.random() * 0.4) * time); //(1.8+随机0到0.4)x时间(分钟)
