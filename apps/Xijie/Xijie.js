@@ -70,13 +70,13 @@ export class Xijie extends plugin {
 			'xiuxian:player:' + usr_qq + ':lastxijie_time'
 		);
 		lastxijie_time = parseInt(lastxijie_time);
-		if (nowTime < lastxijie_time + 5400000) {
-			let lastxijie_m = Math.trunc((lastxijie_time + 5400000 - nowTime) / 60 / 1000);
+		if (nowTime < lastxijie_time + 21600000) {
+			let lastxijie_m = Math.trunc((lastxijie_time + 21600000 - nowTime) / 60 / 1000);
 			let lastxijie_s = Math.trunc(
-				((lastxijie_time + 5400000 - nowTime) % 60000) / 1000
+				((lastxijie_time + 21600000 - nowTime) % 60000) / 1000
 			);
 			e.reply(
-				`每90分钟洗劫一次，正在CD中，` + `剩余cd: ${lastxijie_m}分${lastxijie_s}秒`
+				`每6小时洗劫一次，正在CD中，` + `剩余cd: ${lastxijie_m}分${lastxijie_s}秒`
 			);
 			return;
 		}
