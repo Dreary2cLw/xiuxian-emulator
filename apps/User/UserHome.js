@@ -2250,6 +2250,17 @@ export class UserHome extends plugin {
                 e.reply(`你已经学过该功法了`);
                 return;
             }
+            let lingen = player.灵根.name
+            let yuansu = ["仙之心·火", "仙之心·水", "仙之心·雷", "仙之心·岩", "仙之心·冰", "仙之心·风", "仙之心·木"]
+            if (!(lingen == yuansu[0] || lingen == yuansu[1] || lingen == yuansu[2] || lingen == yuansu[3] || lingen == yuansu[4] || lingen == yuansu[5] || lingen == yuansu[6])) {
+                let arr= ["六稻-军略", "六稻-文伐", "六稻-金鼓", "孙子-兵势", "孙子-始计", "孙子-谋攻", "二十四篇-治军", "二十四篇-治乱", "子午谷谋", "孟德新书"];
+                for (  i = 0; i < arr.length; i++) {
+                    if(thing_name==i){
+                        e.reply("非仙心不能学习该功法");
+                        return;
+                    }
+                }
+            }
             await Add_najie_thing(usr_qq, thing_name, "功法", -1);
             //
             await Add_player_学习功法(usr_qq, thing_name);
