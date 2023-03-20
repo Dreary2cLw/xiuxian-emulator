@@ -522,55 +522,62 @@ export class UserSellAll extends plugin {
 		}
 		//检索方法
 		let najie = await data.getData('najie', usr_qq);
-		let gongfa = [];
 		let player = await Read_player(usr_qq);
+		let gongfa = [];
 		let name = '';
-		let lingen = player.灵根.name;
-		let yuansu = [
-			'仙之心·火',
-			'仙之心·水',
-			'仙之心·雷',
-			'仙之心·岩',
-			'仙之心·冰',
-			'仙之心·风',
-			'仙之心·木',
-		];
-		if (
-			!(
-				lingen == yuansu[0] ||
-				lingen == yuansu[1] ||
-				lingen == yuansu[2] ||
-				lingen == yuansu[3] ||
-				lingen == yuansu[4] ||
-				lingen == yuansu[5] ||
-				lingen == yuansu[6]
-			)
-		) {
-			let arr = [
-				'六稻-军略',
-				'六稻-文伐',
-				'六稻-金鼓',
-				'孙子-兵势',
-				'孙子-始计',
-				'孙子-谋攻',
-				'二十四篇-治军',
-				'二十四篇-治乱',
-				'子午谷谋',
-				'孟德新书',
+		for (var l of najie.功法) {
+			let lingen = player.灵根.name;
+			let yuansu = [
+				'仙之心·火',
+				'仙之心·水',
+				'仙之心·雷',
+				'仙之心·岩',
+				'仙之心·冰',
+				'仙之心·风',
+				'仙之心·木',
 			];
-			for (i = 0; i < arr.length; i++) {
-				if (thing_name == i) {
-					e.reply('非仙心不能学习该功法');
-					return;
+			if (
+				!(
+					lingen == yuansu[0] ||
+					lingen == yuansu[1] ||
+					lingen == yuansu[2] ||
+					lingen == yuansu[3] ||
+					lingen == yuansu[4] ||
+					lingen == yuansu[5] ||
+					lingen == yuansu[6]
+				)
+			) {
+				let arr = [
+					'六稻-军略',
+					'六稻-文伐',
+					'六稻-金鼓',
+					'孙子-兵势',
+					'孙子-始计',
+					'孙子-谋攻',
+					'二十四篇-治军',
+					'二十四篇-治乱',
+					'子午谷谋',
+					'孟德新书',
+				];
+				for (let i = 0; i < arr.length; i++) {
+					player = await Read_player(usr_qq);
+					let islearned = player.学习的功法.find((item) => item == l.name);
+					if (!islearned) {
+						if (l.name != arr[i]) {
+							await Add_najie_thing(usr_qq, l.name, '功法', -1);
+							await Add_player_学习功法(usr_qq, l.name);
+							name = name + ' ' + l.name;
+						}
+					}
 				}
-			}
-		}
-		for (let l of najie.功法) {
-			let islearned = player.学习的功法.find((item) => item == l.name);
-			if (!islearned) {
-				await Add_najie_thing(usr_qq, l.name, '功法', -1);
-				await Add_player_学习功法(usr_qq, l.name);
-				name = name + ' ' + l.name;
+			} else {
+				player = await Read_player(usr_qq);
+				let islearned = player.学习的功法.find((item) => item == l.name);
+				if (!islearned) {
+					await Add_najie_thing(usr_qq, l.name, '功法', -1);
+					await Add_player_学习功法(usr_qq, l.name);
+					name = name + ' ' + l.name;
+				}
 			}
 		}
 		if (name) {
