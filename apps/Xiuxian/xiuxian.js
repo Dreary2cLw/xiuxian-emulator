@@ -1593,15 +1593,15 @@ export async function Gaodenyuansulun(
 		}
 		//火雷
 		if (B_lin == yuansu[2]) {
-			att = att * 1.2;
-			msg.push(A_player.名号 + '使用了火元素战技,触发了超载反应,额外造成了20%伤害');
+			att = att * 1.5;
+			msg.push(A_player.名号 + '使用了火元素战技,触发了超载反应,额外造成了50%伤害');
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '雷') {
-			att = att * 1.2;
+			att = att * 1.5;
 			msg.push(
 				A_player.名号 +
-					'使用了火元素战技,雷属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了50%伤害'
+					'使用了火元素战技,雷属性附魔武器与其产生共鸣,触发了超载反应,额外造成了50%伤害'
 			);
 		}
 		//火冰
@@ -1614,13 +1614,13 @@ export async function Gaodenyuansulun(
 			att = att * 1.5;
 			msg.push(
 				A_player.名号 +
-					'使用了火元素战技,冰属性附魔武器与其产生共鸣,触发了蒸发反应,额外造成了50%伤害'
+					'使用了火元素战技,冰属性附魔武器与其产生共鸣,触发了融化反应,额外造成了50%伤害'
 			);
 		}
 		//火草
 		let random5 = Math.random();
 		if (B_lin == yuansu[6] && random5 > 0.6) {
-			att = att * 1.2;
+			att = att * 1.5;
 			gandianhuihe += 3;
 			msg.push(
 				A_player.名号 +
@@ -1635,7 +1635,7 @@ export async function Gaodenyuansulun(
 			ranshao = true;
 		}
 		if (equipment.武器.fumo == '草' && random5 > 0.6) {
-			att = att * 1.2;
+			att = att * 1.5;
 			gandianhuihe += 3;
 			msg.push(
 				A_player.名号 +
@@ -1720,7 +1720,7 @@ export async function Gaodenyuansulun(
 
 		//水草
 		if (B_lin == yuansu[6]) {
-			att = att * 1.2;
+			att = att * 1.5;
 			msg.push(
 				A_player.名号 +
 					'使用了水元素战技,触发了绽放反应,草原核爆炸了！' +
@@ -1738,7 +1738,7 @@ export async function Gaodenyuansulun(
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '草') {
-			att = att * 1.2;
+			att = att * 1.5;
 			msg.push(
 				A_player.名号 +
 					'使用了水元素战技,草属性附魔武器与其产生共鸣,触发了绽放反应,草原核爆炸了！' +
@@ -1760,15 +1760,15 @@ export async function Gaodenyuansulun(
 	if (A_lin == yuansu[2]) {
 		//雷火
 		if (B_lin == yuansu[0]) {
-			att = att * 1.2;
-			msg.push(A_player.名号 + '使用了雷元素战技,触发了超载反应,额外造成了20%伤害');
+			att = att * 1.5;
+			msg.push(A_player.名号 + '使用了雷元素战技,触发了超载反应,额外造成了50%伤害');
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '火') {
-			att = att * 1.2;
+			att = att * 1.5;
 			msg.push(
 				A_player.名号 +
-					'使用了雷元素战技,火属性附魔武器与其产生共鸣,触发了超载反应,额外造成了20%伤害'
+					'使用了雷元素战技,火属性附魔武器与其产生共鸣,触发了超载反应,额外造成了50%伤害'
 			);
 			chufa = true;
 		}
@@ -1924,7 +1924,7 @@ export async function Gaodenyuansulun(
 		//火草
 		let random6 = Math.random();
 		if (B_lin == yuansu[0] && random6 > 0.6) {
-			att = att * 1.2;
+			att = att * 1.5;
 			gandianhuihe += 3;
 			msg.push(
 				A_player.名号 +
@@ -1939,7 +1939,7 @@ export async function Gaodenyuansulun(
 			ranshao = true;
 		}
 		if (equipment.武器.fumo == '火' && random6 > 0.6) {
-			att = att * 1.2;
+			att = att * 1.5;
 			gandianhuihe += 3;
 			msg.push(
 				A_player.名号 +
@@ -1955,7 +1955,7 @@ export async function Gaodenyuansulun(
 		}
 		//水草
 		if (B_lin == yuansu[1]) {
-			att = att * 1.2;
+			att = att * 1.5;
 			msg.push(
 				A_player.名号 +
 					'使用了木元素战技,触发了绽放反应,草原核爆炸了！' +
@@ -1973,7 +1973,7 @@ export async function Gaodenyuansulun(
 			chufa = true;
 		}
 		if (equipment.武器.fumo == '水') {
-			att = att * 1.2;
+			att = att * 1.5;
 			msg.push(
 				A_player.名号 +
 					'使用了木元素战技,水属性附魔武器与其产生共鸣,触发了绽放反应,草原核爆炸了！' +
@@ -2067,11 +2067,6 @@ export async function Gaodenyuansulun(
 	}
 	//===============================================================================这里是武器======================================================================================================
 
-	//将字符串数据转变成数组格式
-
-	let random = Math.random(); //是否触发
-	// let random=1
-
 	//项链加成
 	let element = A_lin;
 	element = element.replace('仙之心·', '');
@@ -2088,6 +2083,7 @@ export async function Gaodenyuansulun(
 		}
 	}
 	if (equipment.武器.name == '赤角石溃杵') {
+		let random = Math.random();
 		if (A_lin == yuansu[3] && random > 0.5) {
 			if (equipment.武器.fumo == '岩') {
 				msg.push('触发元素爆发:[鬼域狂欢],50%的防御转化成攻击');
@@ -2100,14 +2096,14 @@ export async function Gaodenyuansulun(
 				att = att + A_player.防御 * 0.2;
 			}
 		} else {
-			msg.push('触发赤角石溃杵被动技能:[御嘉大王],防御增强50%,攻击增强120%');
-			fyjiachen += A_player.防御 * 0.5;
+			msg.push('触发赤角石溃杵被动技能:[御嘉大王],攻击增强120%');
 			att *= 1.2;
 		}
 	}
 
 	//玄冰之枪
 	if (equipment.武器.name == '玄冰之枪') {
+		let random = Math.random();
 		if (A_lin == yuansu[4] && equipment.武器.fumo == '水' && random > 0.5) {
 			msg.push('寒冰之枪，出鞘！\n成功冻结对方一回合');
 			donjie = true;
@@ -2146,6 +2142,7 @@ export async function Gaodenyuansulun(
 	}
 	//护摩之杖
 	if (equipment.武器.name == '护摩之杖') {
+		let random = Math.random();
 		if (A_player.当前血量 < A_player.血量上限 / 2 && random > 0.8) {
 			msg.push(
 				'起！' +
@@ -2196,6 +2193,7 @@ export async function Gaodenyuansulun(
 	}
 	//雾切
 	if (equipment.武器.name == '雾切之回光') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(
 				'迅影如剑！' + A_player.名号 + '向' + B_player.名号 + '使用[星斗归位]闪现了过来'
@@ -2248,6 +2246,7 @@ export async function Gaodenyuansulun(
 	}
 	//贯虹之槊
 	if (equipment.武器.name == '贯虹之槊') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push('安如磐石' + A_player.名号 + '使用了元素战技[地心]');
 			if (A_lin == yuansu[3] && equipment.武器.fumo == '岩') {
@@ -2274,6 +2273,7 @@ export async function Gaodenyuansulun(
 	}
 	//磐岩结绿
 	if (equipment.武器.name == '磐岩结绿') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(
 				A_player.名号 +
@@ -2374,6 +2374,7 @@ export async function Gaodenyuansulun(
 	}
 	//苍古自由之誓
 	if (equipment.武器.name == '苍古自由之誓') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(
 				"'可叹落叶飘零'" + A_player.名号 + '的周围吹起风墙,无数枫叶飞舞在双方周围'
@@ -2444,6 +2445,7 @@ export async function Gaodenyuansulun(
 	}
 	//终末嗟叹之诗
 	if (equipment.武器.name == '终末嗟叹之诗') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(
 				A_player.名号 +
@@ -2515,20 +2517,22 @@ export async function Gaodenyuansulun(
 		}
 	}
 	if (equipment.武器.fumo == '夏侯兄弟') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(
-				`${A_player.名号}使用了箭震山河,对敌方造成200%伤害并给对方附加胆懈效果,${B_player.名号害怕了}`
+				`${A_player.名号}使用了箭震山河,对敌方造成150%伤害并给对方附加胆懈效果,${B_player.名号害怕了}`
 			);
-			att *= 2;
-		} else if (random > 0.6) {
-			msg.push(A_player.名号 + '使用了侵略如火,对敌方造成了150%伤害');
 			att *= 1.5;
-		} else {
-			msg.push(A_player.名号 + '使用了不动如山,下次防御增加30%');
-			A_player.防御 *= 1.3;
+		} else if (random > 0.6 && random < 0.8) {
+			msg.push(A_player.名号 + '使用了侵略如火,对敌方造成了120%伤害');
+			att *= 1.2;
+		} else if (random > 0.5 && random < 0.6) {
+			msg.push(A_player.名号 + '使用了不动如山,下次防御增加20%');
+			A_player.防御 *= 1.2;
 		}
 	}
 	if (equipment.护具.fumo == '乱世枭雄') {
+		let random = Math.random();
 		if (
 			A_lin == yuansu[0] ||
 			A_lin == yuansu[1] ||
@@ -2563,23 +2567,25 @@ export async function Gaodenyuansulun(
 	}
 
 	if (equipment.武器.fumo == '江东霸王') {
-		if (random > 0.6 && random <= 0.8) {
-			msg.push(A_player.名号 + '使用了决机,下次伤害提升了100%');
-			att *= 2;
+		let random = Math.random();
+		if (random > 0.5 && random <= 0.6) {
+			msg.push(A_player.名号 + '使用了技能傲视凌霄,下次伤害提升了80%');
+			att *= 1.8;
 		} else if (random > 0.8) {
-			msg.push(A_player.名号 + '使用了火船摄阵');
+			msg.push(A_player.名号 + '使用了技能火船摄阵,下次伤害提升50%');
 			att *= 1.5;
-		} else {
-			msg.push(A_player.名号 + '使用了余音绕梁');
+		} else if (random > 0.5 && random <= 0.6) {
+			msg.push(A_player.名号 + '使用了技能余音绕梁,下次伤害提升20%');
 			att *= 1.2;
 		}
 	}
 	if (equipment.法宝.fumo == '天变之龙') {
+		let random = Math.random();
 		if (random > 0.8) {
-			msg.push(A_player.名号 + '使用了八卦奇袭');
-			att *= 2;
+			msg.push(A_player.名号 + '使用了技能八卦奇袭,下次伤害提升80%');
+			att *= 1.8;
 		} else if (random > 0.6 && random < 0.8) {
-			msg.push(A_player.名号 + '使用了十面之围');
+			msg.push(A_player.名号 + '使用了技能十面之围,下次伤害提升50%');
 			att *= 1.5;
 		} else if (random > 0.5 && random < 0.6) {
 			msg.push(A_player.名号 + '使用了虎守,下次防御增加20%,血量增加20%');
@@ -2591,9 +2597,10 @@ export async function Gaodenyuansulun(
 		}
 	}
 	if (equipment.护具.fumo == '长板之龙') {
+		let random = Math.random();
 		if (random > 0.8) {
-			msg.push(A_player.名号 + '使用了长板之龙主动技能百鸟朝凤,下次伤害提升了100%');
-			att *= 2;
+			msg.push(A_player.名号 + '使用了长板之龙主动技能百鸟朝凤,下次伤害提升了80%');
+			att *= 1.8;
 		} else {
 			if (B_player.魔道值 > 1000 && random > 0.6 && random <= 0.8) {
 				msg.push(
@@ -2610,66 +2617,77 @@ export async function Gaodenyuansulun(
 		}
 	}
 	if (equipment.武器.fumo == '锋利1') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是锋利1,${A_player.名号}下次伤害提升5%`);
 			att *= 1.05;
 		}
 	}
 	if (equipment.武器.fumo == '锋利2') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是锋利2,${A_player.名号}下次伤害提升10%`);
 			att *= 1.1;
 		}
 	}
 	if (equipment.武器.fumo == '锋利3') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是锋利3,${A_player.名号}下次伤害提升15%`);
 			att *= 1.15;
 		}
 	}
 	if (equipment.武器.fumo == '锋利4') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是锋利4,${A_player.名号}下次伤害提升20%`);
 			att *= 1.2;
 		}
 	}
 	if (equipment.武器.fumo == '锋利5') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是锋利5,${A_player.名号}下次伤害提升25%`);
 			att *= 1.25;
 		}
 	}
 	if (equipment.武器.fumo == '横扫之刃1') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是横扫之刃1,${A_player.名号}下次伤害提升5%`);
 			att *= 1.05;
 		}
 	}
 	if (equipment.武器.fumo == '横扫之刃2') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是横扫之刃2,${A_player.名号}下次伤害提升10%`);
 			att *= 1.1;
 		}
 	}
 	if (equipment.武器.fumo == '横扫之刃3') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升15%`);
 			att *= 1.15;
 		}
 	}
 	if (equipment.武器.fumo == '横扫之刃4') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是横扫之刃4,${A_player.名号}下次伤害提升20%`);
 			att *= 1.2;
 		}
 	}
 	if (equipment.武器.fumo == '横扫之刃5') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是横扫之刃5,${A_player.名号}下次伤害提升25%`);
 			att *= 1.25;
 		}
 	}
 	if (equipment.法宝.fumo == '生命吸收1') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(
 				`${A_player.名号}使用了生命吸收,${B_player.名号}10%血量被${A_player.名号}吸取了`
@@ -2679,6 +2697,7 @@ export async function Gaodenyuansulun(
 		}
 	}
 	if (equipment.法宝.fumo == '生命吸收2') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(
 				`${A_player.名号}使用了生命吸收,${B_player.名号}20%血量被${A_player.名号}吸取了`
@@ -2688,64 +2707,75 @@ export async function Gaodenyuansulun(
 		}
 	}
 	if (equipment.武器.fumo == '斩首') {
+		let random = Math.random();
 		msg.push(`${A_player.名号}使用了斩首,冲向了${B_player.名号},下次伤害提升50%`);
 		att *= 1.5;
 	}
 	if (equipment.武器.fumo == '力量1') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是力量1,${A_player.名号}下次伤害提升10%`);
 			att *= 1.1;
 		}
 	}
 	if (equipment.武器.fumo == '力量2') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是力量2,${A_player.名号}下次伤害提升20%`);
 			att *= 1.2;
 		}
 	}
 	if (equipment.武器.fumo == '力量3') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是力量3,${A_player.名号}下次伤害提升30%`);
 			att *= 1.3;
 		}
 	}
 	if (equipment.武器.fumo == '力量4') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是力量4,${A_player.名号}下次伤害提升40%`);
 			att *= 1.4;
 		}
 	}
 	if (equipment.武器.fumo == '力量5') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是力量5,${A_player.名号}下次伤害提升50%`);
 			att *= 1.5;
 		}
 	}
 	if (equipment.护具.fumo == '保护1') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是保护1,${A_player.名号}下次防御提升10%`);
 			A_player.防御 += A_player.防御 * 0.1;
 		}
 	}
 	if (equipment.护具.fumo == '保护2') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是保护2,${A_player.名号}下次防御提升20%`);
 			A_player.防御 += A_player.防御 * 0.2;
 		}
 	}
 	if (equipment.护具.fumo == '保护3') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是保护3,${A_player.名号}下次防御提升30%`);
 			A_player.防御 += A_player.防御 * 0.3;
 		}
 	}
 	if (equipment.护具.fumo == '保护4') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是保护4,${A_player.名号}下次防御提升40%`);
 			A_player.防御 += A_player.防御 * 0.4;
 		}
 	}
 	if (equipment.护具.fumo == '保护5') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`由于武器的附魔书属性是保护5,${A_player.名号}下次防御提升50%`);
 			A_player.防御 += A_player.防御 * 0.5;
@@ -2852,12 +2882,14 @@ export async function Gaodenyuansulun(
 		}
 	}
 	if (B.武器.fumo == '击退1') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(`${B_player.名号}使用了击退,${A_player.名号}下次攻击将无效`);
 			att *= 0;
 		}
 	}
 	if (B.武器.fumo == '击退2') {
+		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(
 				`${B_player.名号}使用了击退,${A_player.名号}下次攻击被打断,受到了反噬,血量减少10%`
@@ -2907,6 +2939,7 @@ export async function Gaodenyuansulun(
 		A_player.当前血量 = A_player.当前血量 - att * 0.25;
 	}
 	if (equipment.护具.fumo == '无双鬼神') {
+		let random = Math.random();
 		if (random > 0.7) {
 			msg.push(
 				`${A_player.名号}使用了无双鬼神主动技能战意破守,${A_player.名号}士气更高了,${B_player.名号}士气变低了`
@@ -2920,9 +2953,9 @@ export async function Gaodenyuansulun(
 			att *= 1.5;
 		} else {
 			msg.push(
-				`${A_player.名号}使用了无双鬼神被动技能战意固守,${A_player.名号}下次防御提升30%`
+				`${A_player.名号}使用了无双鬼神被动技能战意固守,${A_player.名号}下次防御提升20%`
 			);
-			A_player.防御 *= 1.3;
+			A_player.防御 *= 1.2;
 		}
 	}
 	if (equipment.法宝.fumo == '赤壁奇谋') {
