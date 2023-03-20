@@ -50,6 +50,7 @@ Yunzai-Bot\plugins\xiuxian-emulator-plugin\resources\data
 > 19.修复一些bug以及显示  
 > 20.新增mc与原神修仙结合玩法  
 > 21.新增寻宝玩法
+> 22.新增一键锁定/解锁（by零）
 
 ## 交流/直接游玩         
 - 官群: 414780593
