@@ -1075,6 +1075,11 @@ export class UserHome extends plugin {
                 return;
             }
             if (this_danyao.type == '闭关') {
+                if (quantity != 1) {
+                    e.reply(`只能服用一枚辟谷丹哦`);
+                    await Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity);
+                    return;
+                }
                 for (i = 0; i < action.length; i++) {
                     if (action[i].qq == usr_qq) {
                         if (action[i].biguan > 0) {
@@ -1096,12 +1101,6 @@ export class UserHome extends plugin {
                         );
                     }
                 }
-                await redis.set(
-                    'xiuxian:player:' + 10 + ':biguang',
-                    JSON.stringify(action)
-                );
-                await data.setData('player', usr_qq, player);
-                return;
             }
             if (this_danyao.type == '仙缘') {
                 if (quantity != 1) {
