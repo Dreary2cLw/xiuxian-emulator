@@ -1418,7 +1418,7 @@ export class Occupation extends plugin {
 			player.灵石 += Math.trunc(action[num].赏金 * 0.3);
 			await Write_player(usr_qq, player);
 			last_msg +=
-				'【全服公告】' + player_B.名号 + '被' + player.名号 + '悄无声息的刺杀了';
+				'【全服公告】' + player_B.名号 + '被' + player.名号 + '当众刺杀了';
 			//优化下文案，比如xxx在刺杀xxx中
 			action.splice(num, 1);
 			await redis.set('xiuxian:player:' + 1 + ':shangjing', JSON.stringify(action));
