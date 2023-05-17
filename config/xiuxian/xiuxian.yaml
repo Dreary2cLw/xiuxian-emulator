@@ -7,7 +7,7 @@ CD: #各种操作cd 必须为整数 单位：分
   couple: 360 #双修
   caibu:  360 #采补
   garden: 3 # 药园
-  level_up: 3 # 突破
+  level_up: 2 # 突破
   secretplace: 7 #秘境
   timeplace: 6 #仙府
   forbiddenarea: 4 #禁地
@@ -16,6 +16,7 @@ CD: #各种操作cd 必须为整数 单位：分
   honbao: 1 # 抢红包
   boss: 30 #boss
   bossSpawn: 43200000 #boss刷新
+  xijie: 720 #洗劫
 
 percentage:
   cost: 0.05 #手续费

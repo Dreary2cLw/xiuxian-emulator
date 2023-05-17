@@ -97,7 +97,7 @@ export class Level extends plugin {
 			e.reply(`血气不足,再积累${need_exp - now_exp}血气后方可突破`);
 			return;
 		}
-		if (now_level_id == 54) {
+		if (now_level_id == 99) {
 			e.reply(`你已突破至最高境界`);
 			return;
 		}
@@ -290,7 +290,7 @@ export class Level extends plugin {
 			}
 		}
 		//凡人突破
-		if (now_level_id == 64) {
+		if (now_level_id == 80) {
 			return;
 		}
 		let now_exp = player.修为;

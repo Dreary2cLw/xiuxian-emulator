@@ -228,7 +228,7 @@ export class motou extends plugin {
 				return;
 			}
 			await Add_najie_thing(usr_qq, '魔石', '道具', -40);
-			if (random < 0.4) {
+			if (random < 0.5) {
 				player.灵根 = {
 					id: 100997,
 					name: '七重魔功',
@@ -249,7 +249,7 @@ export class motou extends plugin {
 				return;
 			}
 			await Add_najie_thing(usr_qq, '魔石', '道具', -50);
-			if (random < 0.3) {
+			if (random < 0.5) {
 				player.灵根 = {
 					id: 100998,
 					name: '八重魔功',
@@ -270,7 +270,7 @@ export class motou extends plugin {
 				return;
 			}
 			await Add_najie_thing(usr_qq, '魔石', '道具', -50);
-			if (random < 0.2) {
+			if (random < 0.5) {
 				player.灵根 = {
 					id: 100999,
 					name: '九重魔功',

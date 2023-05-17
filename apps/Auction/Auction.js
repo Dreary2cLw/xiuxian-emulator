@@ -312,20 +312,20 @@ export class Auction extends plugin {
 
 		if (isNotNull(last_auction)) {
 			last_auction = JSON.parse(last_auction);
-			if (now_time - last_auction <= 24 * 60 * 60 * 1000) {
-				let h = parseInt((last_auction + 24 * 60 * 60 * 1000 - now_time) / 1000 / 3600);
+			if (now_time - last_auction <= 0 * 60 * 60 * 1000) {
+				let h = parseInt((last_auction + 0 * 60 * 60 * 1000 - now_time) / 1000 / 3600);
 				let m = parseInt(
-					(last_auction + 24 * 60 * 60 * 1000 - now_time - h * 3600 * 1000) / 1000 / 60
+					(last_auction + 0 * 60 * 60 * 1000 - now_time - h * 3600 * 1000) / 1000 / 60
 				);
 				let s = parseInt(
 					(last_auction +
-						24 * 60 * 60 * 1000 -
+						0 * 60 * 60 * 1000 -
 						now_time -
 						m * 60 * 1000 -
 						h * 3600 * 1000) /
 						1000
 				);
-				e.reply(`每24小时可以上架一次拍卖，还剩${h}小时${m}分${s}秒`);
+				e.reply(`每0小时可以上架一次拍卖，还剩${h}小时${m}分${s}秒`);
 				return;
 			}
 		}
