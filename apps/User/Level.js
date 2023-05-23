@@ -97,7 +97,7 @@ export class Level extends plugin {
 			e.reply(`血气不足,再积累${need_exp - now_exp}血气后方可突破`);
 			return;
 		}
-		if (now_level_id == 99) {
+		if (now_level_id == 54) {
 			e.reply(`你已突破至最高境界`);
 			return;
 		}
