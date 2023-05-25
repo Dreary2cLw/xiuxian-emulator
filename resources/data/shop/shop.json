@@ -145,8 +145,8 @@
 	{
 		"id": 333,
 		"name": "万宝楼",
-		"Grade": 2,
-		"state": 1,
+		"Grade": 3,
+		"state": 0,
 		"price": 600000,
 		"one": [
 			{
@@ -214,8 +214,8 @@
 	{
 		"id": 444,
 		"name": "星阁",
-		"Grade": 2,
-		"state": 1,
+		"Grade": 3,
+		"state": 0,
 		"price": 900000,
 		"one": [
 			{
@@ -289,7 +289,7 @@
 		"id": 555,
 		"name": "万仙盟",
 		"Grade": 1,
-		"state": 0,
+		"state": 1,
 		"price": 1000000,
 		"one": [
 			{
