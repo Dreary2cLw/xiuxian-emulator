@@ -6,18 +6,7 @@ const versionData = Config.getdefSet('version', 'version');
 //打印启动日志
 logger.info(`__________________________`);
 logger.info(chalk.yellow(`修仙模拟器${versionData[0].version}「${versionData[0].name}」初始化`));
-logger.info(`官群：414780593`);
-logger.info(`二群：533340900`);
-logger.info(`新功能测试群：651351805`);
-logger.info(`原开发1：水脚脚`);
-logger.info(`原开发2：咸咸咸鱼鱼`);
-logger.info(`原开发3：零零零零`);
-logger.info(`开发1：DD斩首`);
-logger.info(`开发2：零`);
-logger.info(`开发3：RetuEase`);
-logger.info(`开发4：香菜`);
-logger.info(`策划1：再氪两单嘛`);
-logger.info(`源码提供：墨宇,啵唧,xh`);
+logger.info(`🐔神降临`);
 logger.info(`__________________________`);
 /**
  * 遍历获取
