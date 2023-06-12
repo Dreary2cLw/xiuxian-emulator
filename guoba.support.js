@@ -13,9 +13,9 @@ export function supportGuoba() {
     pluginInfo: {
       name: 'xiuxian-emulator-plugin',
       title: '修仙模拟器',
-      author: '@柠檬冲水 @DD斩首',
-      authorLink: 'https://gitee.com/YUAN__YU',
-      link: 'https://gitee.com/YUAN__YU/longlife',
+      author: '',
+      authorLink: 'https://gitee.com/zhu28',
+      link: 'https://gitee.com/zhu28/xiuxian-emulator-plugin',
       isV3: true,
       isV2: false,
       description: `绝云间修仙模拟器${versionData[0].version}「${versionData[0].name}」]`,
