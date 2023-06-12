@@ -504,7 +504,7 @@ export class Tiandibang extends plugin {
 			await Add_灵石(usr_qq, lingshi);
 			if (msg.length > 50) {
 			} else {
-				await ForwardMsg(e, msg);
+				//await ForwardMsg(e, msg);
 			}
 			e.reply(last_msg);
 		}

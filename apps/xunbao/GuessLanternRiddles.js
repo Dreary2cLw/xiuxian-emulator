@@ -376,7 +376,7 @@ export class GuessLanternRiddles extends plugin {
 				all.push('【' + data.xianding[tianluoRandom].name + '】');
 			}
 			await Add_najie_thing(usr_qq, '树苗', '食材', -10);
-			await ForwardMsg(e, msg);
+			//await ForwardMsg(e, msg);
 			e.reply('恭喜获得\n' + all);
 		}
 		if (thing == '附魔台') {
