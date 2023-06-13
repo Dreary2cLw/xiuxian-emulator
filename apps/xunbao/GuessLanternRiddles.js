@@ -344,7 +344,7 @@ export class GuessLanternRiddles extends plugin {
 				all.push('【' + data.changzhu[tianluoRandom].name + '】');
 			}
 			await Add_najie_thing(usr_qq, '泥土', '材料', -10);
-			await ForwardMsg(e, msg);
+			//await ForwardMsg(e, msg);
 			e.reply('恭喜获得\n' + all);
 		}
 		if (thing == '寻宝活动祈愿') {
@@ -427,7 +427,7 @@ export class GuessLanternRiddles extends plugin {
 					);
 					all.push('【' + data.changzhufumoshu_list[tianluoRandom].name + '】');
 				}
-				await ForwardMsg(e, msg);
+				//await ForwardMsg(e, msg);
 				e.reply('恭喜获得\n' + all);
 			} else {
 				let x = await exist_najie_thing(usr_qq, '青金石', '材料');
@@ -472,7 +472,7 @@ export class GuessLanternRiddles extends plugin {
 					);
 					all.push('【' + data.changzhufumoshu_list[tianluoRandom].name + '】');
 				}
-				await ForwardMsg(e, msg);
+				//await ForwardMsg(e, msg);
 				e.reply('恭喜获得\n' + all);
 			}
 		}

@@ -2940,7 +2940,7 @@ export class UserHome extends plugin {
                         await Add_najie_thing(usr_qq, "红石", "材料", 128 * n);
                         e.reply(`${last_msg}${fyd_msg}你在星荧洞窟捡到了挖到圆石${18 * mugao * n + 9 * shigao * n}个,
                                     煤炭${18 * mugao * n + 9 * shigao * n}个,铁矿${9 * mugao * n + 3 * shigao * n}个,黄金矿${9 * mugao * n}个和红石${128 * n}个,获得了修为${xiuwei}血气${xueqi}`)
-                    } else if (math == 0.01) {
+                    } else if (math <= 0.02) {
                         await Add_najie_thing(usr_qq, "圆石", "材料", -18 * mugao * n);
                         await Add_najie_thing(usr_qq, "煤炭", "材料", -18 * mugao * n);
                         await Add_najie_thing(usr_qq, "铁矿", "材料", -9 * mugao * n);
