@@ -285,7 +285,8 @@ export class SecretPlaceTask extends plugin {
 									m = '捡到了[' + thing_name;
 								}
 							}
-							if (weizhi.one[0].name != '洗根水') {
+							//if (weizhi.one[0].name != '洗根水') {
+							if (true) {
 								//判断是不是旧神界
 								let random = Math.random();
 								let equipment = await Read_equipment(player_id);
