@@ -2,7 +2,10 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import data from '../../model/XiuxianData.js';
 import config from '../../model/Config.js';
-import {
+import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
+import fs from 'fs';
+import path from 'path';
+import {__PATH,
 	Add_najie_thing,
 	Add_修为,
 	Add_灵石,
@@ -17,6 +20,7 @@ import {
 	Write_renwu,
 } from '../Xiuxian/xiuxian.js';
 import { add_mingdang, add_time } from '../jiance/jiance.js';
+import Show from '../../model/show.js';
 
 /**
  * 秘境模块
@@ -99,9 +103,9 @@ export class SecretPlace extends plugin {
 		if (!e.isGroup) {
 			return;
 		}
-		let addres = '秘境';
-		let weizhi = data.didian_list;
-		await Goweizhi(e, weizhi, addres);
+	 let img = await get_map_img(e);
+		e.reply(img);
+		return;
 	}
 
 	//禁地
@@ -641,7 +645,24 @@ export class SecretPlace extends plugin {
 		return;
 	}
 }
-
+export async  function get_map_img(e, thing_type) {
+	let map_list;
+	let usr_qq = e.user_id;
+	try {
+		map_list = await Read_mapName();
+	} catch {
+		map_list = await Read_mapName();
+	}
+	let supermarket_data = {
+		user_id: usr_qq,
+		Exchange_list: map_list,
+	};
+	const data1 = await new Show(e).get_mapData(supermarket_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
 /**
  * 地点查询
  */
@@ -665,7 +686,20 @@ export async function Goweizhi(e, weizhi, addres) {
 	}
 	await ForwardMsg(e, msg);
 }
-
+export async function Read_mapName() {
+	let dir = path.join(`${__PATH.map}/map.json`);
+	console.log(dir);
+	let Exchange = fs.readFileSync(dir, 'utf8', (err, data) => {
+		if (err) {
+			console.log(err);
+			return 'error';
+		}
+		return data;
+	});
+	//将字符串数据转变成数组格式
+	Exchange = JSON.parse(Exchange);
+	return Exchange;
+}
 export async function jindi(e, weizhi, addres) {
 	let adr = addres;
 	let msg = ['***' + adr + '***'];

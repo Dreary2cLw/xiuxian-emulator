@@ -416,6 +416,14 @@ export default class Game extends base {
 		};
 	}
 
+async get_mapData(myData) {
+		this.model = 'mapPlace';
+		return {
+			...this.screenData,
+			saveId: 'mapPlace',
+			...myData,
+		};
+	}
 	async get_supermarketData(myData) {
 		this.model = 'supermarket';
 		return {

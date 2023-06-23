@@ -37,6 +37,7 @@ export const __PATH = {
 	player_pifu_path: path.join(__dirname, '/resources/img/player_pifu'),
 	shitu: path.join(__dirname, '/resources/data/shitu'),
 	renwu: path.join(__dirname, '/resources/data/renwu'),
+    map: path.join(__dirname, '/resources/data/map'),
 	equipment_pifu_path: path.join(__dirname, '/resources/img/equipment_pifu'),
 };
 let xiuxianSetFile =
