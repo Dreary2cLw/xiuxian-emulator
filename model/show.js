@@ -424,6 +424,14 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
+	async get_biwuData(myData) {
+		this.model = 'biwu';
+		return {
+			...this.screenData,
+			saveId: 'biwu',
+			...myData,
+		};
+	}
 	async get_supermarketData(myData) {
 		this.model = 'supermarket';
 		return {

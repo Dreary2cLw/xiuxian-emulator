@@ -2,6 +2,9 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
+import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
+import fs from 'fs';
+import Show from '../../model/show.js';
 import { segment } from 'icqq';
 import {
 	Add_HP,
@@ -15,7 +18,7 @@ import {
 	isNotNull,
 	Read_player,
 	Write_player,
-} from '../Xiuxian/xiuxian.js';
+} from '../Xiuxian/xiuxian.js'; import { get_map_img,Read_mapName } from '../SecretPlace/SecretPlace'; import Show from '../../model/show';
 /**
  * 战斗类
  */
@@ -392,7 +395,10 @@ export class Battle extends plugin {
 		// if (msg.length > 30) {
 		//     e.reply("战斗过程超过30回合，略");
 		// } else {
-		await ForwardMsg(e, msg);
+		//await ForwardMsg(e, msg);
+		console.log(msg);
+		let img = await get_biwu_img(e,msg);
+		e.reply(img);
 		// }
 		//下面的战斗超过100回合会报错
 		let A_win = `${A_player.名号}击败了${B_player.名号}`;
@@ -661,7 +667,18 @@ export function Harm(atk, def) {
 	x = Math.trunc(x * atk * rand);
 	return x;
 }
-
+export async  function get_biwu_img(e, msg) {
+	let usr_qq = e.user_id;
+		let biwu_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_biwuData(biwu_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
 export async function mjzd_battle(A_player, B_player) {
 	let now_A_HP = A_player.当前血量; //保留初始血量方便计算最后扣多少血,避免反复读写文件
 	let now_B_HP = B_player.当前血量;

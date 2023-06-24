@@ -501,6 +501,7 @@ export class SecretPlaceTask extends plugin {
 			await Bot.pickGroup(id)
 				.sendMsg(msg)
 				.catch((err) => {
+				 console.log(err);
 					Bot.logger.mark(err);
 				});
 		} else {
