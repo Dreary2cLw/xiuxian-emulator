@@ -3,8 +3,8 @@ import plugin from '../../../../lib/plugins/plugin.js';
 import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
-import fs from 'fs';
 import Show from '../../model/show.js';
+import fs from 'fs';
 import { segment } from 'icqq';
 import {
 	Add_HP,
@@ -18,7 +18,7 @@ import {
 	isNotNull,
 	Read_player,
 	Write_player,
-} from '../Xiuxian/xiuxian.js'; import { get_map_img,Read_mapName } from '../SecretPlace/SecretPlace'; import Show from '../../model/show';
+} from '../Xiuxian/xiuxian.js';
 /**
  * 战斗类
  */
@@ -347,6 +347,7 @@ export class Battle extends plugin {
 			return;
 		}
 		let A = e.user_id;
+		console.log(e);
 
 		//先判断
 		let ifexistplay_A = await existplayer(A);
@@ -389,6 +390,8 @@ export class Battle extends plugin {
 		B_player.法球倍率 = B_player.灵根.法球倍率;
 		A_player.当前血量 = A_player.血量上限;
 		B_player.当前血量 = B_player.血量上限;
+		A_player.id = e.user_id;
+		B_player.id = e.at;
 		let Data_battle = await zd_battle(A_player, B_player);
 		let msg = Data_battle.msg;
 		//战斗回合过长会导致转发失败报错，所以超过30回合的就不转发了
@@ -421,6 +424,7 @@ export class Battle extends plugin {
 	}
 }
 export async function zd_battle(AA_player, BB_player) {
+	//console.log(AA_player);
 	let A_player = BB_player;
 	let B_player = AA_player;
 	let afangyu = AA_player.防御; //记录A原防御

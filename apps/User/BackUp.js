@@ -146,7 +146,8 @@ export class BackUp extends plugin {
 						user_id: Bot.uin,
 					};
 				});
-
+			 console.log(backUpObj);
+				e.reply(backUpObj);
 			return e.reply(await Bot.makeForwardMsg(backUpObj));
 		} catch (err) {
 			await e.reply(`查看存档列表失败，${err}`);
