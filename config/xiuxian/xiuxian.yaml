@@ -31,7 +31,7 @@ mine: #挖矿最长时间：最低*周期
   cycle: 24 #闭关周期
 switch: #开true 关false
   play: true #怡红院开关
-  Moneynumber: true #金银坊开关
+  Moneynumber: false #金银坊开关
   couple: true #双修开关
   Xiuianplay_key: false #怡红院卡图开关
 
