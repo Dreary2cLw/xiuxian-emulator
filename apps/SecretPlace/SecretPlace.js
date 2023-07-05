@@ -114,9 +114,9 @@ export class SecretPlace extends plugin {
 		if (!e.isGroup) {
 			return;
 		}
-		let addres = '禁地';
-		let weizhi = data.forbiddenarea_list;
-		await jindi(e, weizhi, addres);
+		let img = await get_jindi_img(e);
+		e.reply(img);
+		return;
 	}
 
 	//限定仙府
@@ -133,9 +133,9 @@ export class SecretPlace extends plugin {
 		if (!e.isGroup) {
 			return;
 		}
-		let addres = '寻宝';
-		let weizhi = data.xunbao_list;
-		await Goweizhi(e, weizhi, addres);
+		let img = await get_xunbao_img(e);
+		e.reply(img);
+		return;
 	}
 
 	//仙境
@@ -144,9 +144,9 @@ export class SecretPlace extends plugin {
 		if (!e.isGroup) {
 			return;
 		}
-		let addres = '仙境';
-		let weizhi = data.Fairyrealm_list;
-		await Goweizhi(e, weizhi, addres);
+		let img = await get_xian_img(e);
+		e.reply(img);
+		return;
 	}
 
 	//降临秘境
@@ -663,6 +663,48 @@ export async  function get_map_img(e, thing_type) {
 	});
 	return img;
 }
+export async  function get_jindi_img(e, thing_type) {
+	let jindi_list;
+	let usr_qq = e.user_id;
+	jindi_list = await Read_jindiName();
+	let supermarket_data = {
+		user_id: usr_qq,
+		Exchange_list: jindi_list,
+	};
+	const data1 = await new Show(e).get_jindiData(supermarket_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
+export async  function get_xunbao_img(e, thing_type) {
+	let xunbao_list;
+	let usr_qq = e.user_id;
+	xunbao_list = await Read_xunbaoName();
+	let supermarket_data = {
+		user_id: usr_qq,
+		Exchange_list: xunbao_list,
+	};
+	const data1 = await new Show(e).get_xunbaoData(supermarket_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
+export async  function get_xian_img(e, thing_type) {
+	let xian_list;
+	let usr_qq = e.user_id;
+	xian_list = await Read_xianName();
+	let supermarket_data = {
+		user_id: usr_qq,
+		Exchange_list: xian_list,
+	};
+	const data1 = await new Show(e).get_xianData(supermarket_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
 /**
  * 地点查询
  */
@@ -688,6 +730,48 @@ export async function Goweizhi(e, weizhi, addres) {
 }
 export async function Read_mapName() {
 	let dir = path.join(`${__PATH.map}/map.json`);
+	console.log(dir);
+	let Exchange = fs.readFileSync(dir, 'utf8', (err, data) => {
+		if (err) {
+			console.log(err);
+			return 'error';
+		}
+		return data;
+	});
+	//将字符串数据转变成数组格式
+	Exchange = JSON.parse(Exchange);
+	return Exchange;
+}
+export async function Read_jindiName() {
+	let dir = path.join(`${__PATH.map}/jindi.json`);
+	console.log(dir);
+	let Exchange = fs.readFileSync(dir, 'utf8', (err, data) => {
+		if (err) {
+			console.log(err);
+			return 'error';
+		}
+		return data;
+	});
+	//将字符串数据转变成数组格式
+	Exchange = JSON.parse(Exchange);
+	return Exchange;
+}
+export async function Read_xunbaoName() {
+	let dir = path.join(`${__PATH.map}/xunbao.json`);
+	console.log(dir);
+	let Exchange = fs.readFileSync(dir, 'utf8', (err, data) => {
+		if (err) {
+			console.log(err);
+			return 'error';
+		}
+		return data;
+	});
+	//将字符串数据转变成数组格式
+	Exchange = JSON.parse(Exchange);
+	return Exchange;
+}
+export async function Read_xianName() {
+	let dir = path.join(`${__PATH.map}/xian.json`);
 	console.log(dir);
 	let Exchange = fs.readFileSync(dir, 'utf8', (err, data) => {
 		if (err) {

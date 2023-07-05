@@ -424,6 +424,30 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
+	async get_jindiData(myData) {
+		this.model = 'jindi';
+		return {
+			...this.screenData,
+			saveId: 'jindi',
+			...myData,
+		};
+	}
+	async get_xunbaoData(myData) {
+		this.model = 'xunbao';
+		return {
+			...this.screenData,
+			saveId: 'xunbao',
+			...myData,
+		};
+	}
+	async get_xianData(myData) {
+		this.model = 'xian';
+		return {
+			...this.screenData,
+			saveId: 'xian',
+			...myData,
+		};
+	}
 	async get_biwuData(myData) {
 		this.model = 'biwu';
 		return {
