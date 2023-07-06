@@ -20,6 +20,7 @@ import {
 	shijianc,
 	Write_player,
 } from '../Xiuxian/xiuxian.js';
+import Show from '../../model/show.js';
 
 /**
  * 洞天福地
@@ -399,7 +400,8 @@ export class TreasureCabinet extends plugin {
 
 		let yes = 0;
 		let msg = await cangbaoge(ass.藏宝阁);
-		await ForwardMsg(e, msg);
+		let img = await get_baowu_img(e,msg);
+		e.reply(img);
 
 		return;
 	}
@@ -993,7 +995,18 @@ function findIndex(list, item) {
 	// 没有找到元素返回-1
 	return -1;
 }
-
+export async  function get_baowu_img(e, msg) {
+	let usr_qq = e.user_id;
+	let biwu_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_baowuData(biwu_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
 export async function Synchronization_ASS(e) {
 	if (!e.isMaster) {
 		return;

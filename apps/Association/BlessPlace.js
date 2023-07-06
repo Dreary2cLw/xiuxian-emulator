@@ -17,6 +17,8 @@ import {
 	Read_player,
 	shijianc,
 } from '../Xiuxian/xiuxian.js';
+import Show from '../../model/show.js';
+import {__PATH} from "../Xiuxian/xiuxian";
 
 let allaction = false;
 const 宗门灵石池上限 = [
@@ -77,9 +79,9 @@ export class BlessPlace extends plugin {
 		if (!e.isGroup) {
 			return;
 		}
-		let addres = '洞天福地';
-		let weizhi = data.bless_list;
-		GoBlessPlace(e, weizhi, addres);
+		let img = await get_fudi_img(e);
+		e.reply(img);
+		return;
 	}
 
 	//秘境地点
@@ -88,9 +90,9 @@ export class BlessPlace extends plugin {
 		if (!e.isGroup) {
 			return;
 		}
-		let addres = '宗门秘境';
-		let weizhi = data.guildSecrets_list;
-		Goweizhi(e, weizhi, addres);
+		let img = await get_zonmen_img(e);
+		e.reply(img);
+		return;
 	}
 
 	//入驻洞天
@@ -863,7 +865,70 @@ async function Go(e) {
 	allaction = true;
 	return;
 }
-
+export async function Read_zonmenName() {
+	let dir = path.join(`${__PATH.map}/zonmen.json`);
+	console.log(dir);
+	let Exchange = fs.readFileSync(dir, 'utf8', (err, data) => {
+		if (err) {
+			console.log(err);
+			return 'error';
+		}
+		return data;
+	});
+	//将字符串数据转变成数组格式
+	Exchange = JSON.parse(Exchange);
+	return Exchange;
+}
+export async function Read_fudiName() {
+	let dir = path.join(`${__PATH.map}/fudi.json`);
+	console.log(dir);
+	let Exchange = fs.readFileSync(dir, 'utf8', (err, data) => {
+		if (err) {
+			console.log(err);
+			return 'error';
+		}
+		return data;
+	});
+	//将字符串数据转变成数组格式
+	Exchange = JSON.parse(Exchange);
+	return Exchange;
+}
+export async  function get_zonmen_img(e, thing_type) {
+	let zonmen_list;
+	let usr_qq = e.user_id;
+	try {
+		zonmen_list = await Read_zonmenName();
+	} catch {
+		zonmen_list = await Read_zonmenName();
+	}
+	let supermarket_data = {
+		user_id: usr_qq,
+		Exchange_list: zonmen_list,
+	};
+	const data1 = await new Show(e).get_zonmenData(supermarket_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
+export async  function get_fudi_img(e, thing_type) {
+	let fudi_list;
+	let usr_qq = e.user_id;
+	try {
+		fudi_list = await Read_fudiName();
+	} catch {
+		fudi_list = await Read_fudiName();
+	}
+	let supermarket_data = {
+		user_id: usr_qq,
+		Exchange_list: fudi_list,
+	};
+	const data1 = await new Show(e).get_fudiData(supermarket_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
 export async function Goweizhi(e, weizhi, addres) {
 	let adr = addres;
 	let msg = ['***' + adr + '***'];

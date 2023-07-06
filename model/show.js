@@ -456,6 +456,38 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
+	async get_baowuData(myData) {
+		this.model = 'baowu';
+		return {
+			...this.screenData,
+			saveId: 'baowu',
+			...myData,
+		};
+	}
+	async get_zonmenlistData(myData) {
+		this.model = 'zonmenlist';
+		return {
+			...this.screenData,
+			saveId: 'zonmenlist',
+			...myData,
+		};
+	}
+	async get_zonmenData(myData) {
+		this.model = 'zonmen';
+		return {
+			...this.screenData,
+			saveId: 'zonmen',
+			...myData,
+		};
+	}
+	async get_fudiData(myData) {
+		this.model = 'fudi';
+		return {
+			...this.screenData,
+			saveId: 'fudi',
+			...myData,
+		};
+	}
 	async get_supermarketData(myData) {
 		this.model = 'supermarket';
 		return {
