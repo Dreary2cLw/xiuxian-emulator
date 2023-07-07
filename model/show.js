@@ -424,11 +424,67 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
+	async get_jindiData(myData) {
+		this.model = 'jindi';
+		return {
+			...this.screenData,
+			saveId: 'jindi',
+			...myData,
+		};
+	}
+	async get_xunbaoData(myData) {
+		this.model = 'xunbao';
+		return {
+			...this.screenData,
+			saveId: 'xunbao',
+			...myData,
+		};
+	}
+	async get_xianData(myData) {
+		this.model = 'xian';
+		return {
+			...this.screenData,
+			saveId: 'xian',
+			...myData,
+		};
+	}
 	async get_biwuData(myData) {
 		this.model = 'biwu';
 		return {
 			...this.screenData,
 			saveId: 'biwu',
+			...myData,
+		};
+	}
+	async get_baowuData(myData) {
+		this.model = 'baowu';
+		return {
+			...this.screenData,
+			saveId: 'baowu',
+			...myData,
+		};
+	}
+	async get_zonmenlistData(myData) {
+		this.model = 'zonmenlist';
+		return {
+			...this.screenData,
+			saveId: 'zonmenlist',
+			...myData,
+		};
+	}
+	async get_zonmenData(myData) {
+		this.model = 'zonmen';
+		return {
+			...this.screenData,
+			saveId: 'zonmen',
+			...myData,
+		};
+	}
+	async get_fudiData(myData) {
+		this.model = 'fudi';
+		return {
+			...this.screenData,
+			saveId: 'fudi',
 			...myData,
 		};
 	}

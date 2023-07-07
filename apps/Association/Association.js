@@ -9,6 +9,7 @@ import {
 	shijianc,
 	timestampToTime,
 } from '../Xiuxian/xiuxian.js';
+import Show from '../../model/show.js';
 //要DIY的话，确保这两个数组长度相等
 const 宗门人数上限 = [6, 9, 12, 15, 18, 21, 24, 27, 30];
 const 宗门灵石池上限 = [
@@ -467,7 +468,8 @@ export class Association extends plugin {
 					`宗主: ${this_ass.宗主}`
 			);
 		}
-		await ForwardMsg(e, temp);
+		let img = await get_zonmenlist_img(e,temp);
+		e.reply(img);
 		return;
 	}
 }
@@ -490,7 +492,18 @@ export async function setFileValue(user_qq, num, type) {
 	await data.setData('player', user_qq, user_data);
 	return;
 }
-
+export async  function get_zonmenlist_img(e, msg) {
+	let usr_qq = e.user_id;
+	let zonmenlist_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_zonmenlistData(zonmenlist_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
 //sleep
 async function sleep(time) {
 	return new Promise((resolve) => {

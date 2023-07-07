@@ -16,18 +16,19 @@
     <!-- 你要是闲得无聊,每个装备可以搞个icon -->
     <div class='use_data'>
       <div class='user_font use_data_head' style='text-align: center;padding-left: 0px;'>
-        <div>秘境</div>
+        <div>禁地</div>
       </div>
       <div class='use_data_body'>
         {{each Exchange_list}}
         <div class='user_font'>
           <div>
-            <div style='display:inline-block;'>【秘境】{{$value.name}} </div>
+            <div style='display:inline-block;'>【禁地】{{$value.name}} </div>
             <div class='number'>No.{{$index+1}}</div>
           </div>
           <div class='info'>等级：{{$value.Grade}}</div>
           <div class='info'>极品：{{$value.Best[0]}}</div>
-          <div class='info'>价格：{{$value.Price}}灵石</div>
+          <div class='info'>灵石：{{$value.Price}}灵石</div>
+          <div class='info'>修为：{{$value.experience}}灵石</div>
         </div>
         {{/each}}
 
