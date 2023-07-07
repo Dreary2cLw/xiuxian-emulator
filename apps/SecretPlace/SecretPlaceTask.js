@@ -3,7 +3,6 @@ import common from '../../../../lib/common/common.js';
 import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
 import fs from 'node:fs';
-import { segment } from 'icqq';
 import {
 	Add_HP,
 	Add_najie_thing,
@@ -52,7 +51,9 @@ export class SecretPlaceTask extends plugin {
 			log_mag = log_mag + '查询' + player_id + '是否有动作,';
 			//得到动作
 			let action = await redis.get('xiuxian:player:' + player_id + ':action');
+					
 			action = await JSON.parse(action);
+			//console.log('--'+action.group_id);
 			//不为空，存在动作
 			if (action != null) {
 				let push_address; //消息推送地址
@@ -64,7 +65,7 @@ export class SecretPlaceTask extends plugin {
 					}
 				}
 				//最后发送的消息
-				let msg = [segment.at(Number(player_id))];
+				let msg = [segment.at(player_id)];
 				//动作结束时间
 				let end_time = action.end_time;
 				//现在的时间
@@ -460,7 +461,7 @@ export class SecretPlaceTask extends plugin {
 						} else {
 							return;
 						}
-						msg.push('\n' + player.名号 + last_msg + fyd_msg);
+						//msg.push('\n' + player.名号 + last_msg + fyd_msg);
 						let arr = action;
 						//把状态都关了
 						arr.shutup = 1; //闭关状态
@@ -480,8 +481,10 @@ export class SecretPlaceTask extends plugin {
 						await Add_HP(player_id, Data_battle.A_xue);
 						//发送消息
 						if (is_group) {
+							console.log(push_address);
 							await this.pushInfo(push_address, is_group, msg);
 						} else {
+							console.log(player_id);
 							await this.pushInfo(player_id, is_group, msg);
 						}
 					}

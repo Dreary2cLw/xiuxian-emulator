@@ -3,7 +3,6 @@ import common from '../../../../lib/common/common.js';
 import data from '../../model/XiuxianData.js';
 import config from '../../model/Config.js';
 import fs from 'node:fs';
-import { segment } from 'icqq';
 import {
 	Add_najie_thing,
 	Add_职业经验,
@@ -264,7 +263,7 @@ export class OccupationTask extends plugin {
 						//shoulie_amount2 = parseInt(shoulie_amount2 * time);
 						//shoulie_amount3 = parseInt(shoulie_amount3 * time);
 						//shoulie_amount4 = parseInt(shoulie_amount4 * time);
-						let usr_qq = player.id;
+						let usr_qq = player_id;
 						end_amount = Math.floor(end_amount) / 50;
 						end_amount = Math.floor(end_amount);
 						await Add_najie_thing(usr_qq, '野兔', '食材', end_amount);

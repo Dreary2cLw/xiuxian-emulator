@@ -1,7 +1,6 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
-import { segment } from 'icqq';
 import {
 	player_efficiency,
 	shijianc,

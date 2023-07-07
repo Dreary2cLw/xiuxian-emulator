@@ -5,7 +5,6 @@ import data from '../../model/XiuxianData.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import Show from '../../model/show.js';
 import fs from 'fs';
-import { segment } from 'icqq';
 import {
 	Add_HP,
 	Add_najie_thing,

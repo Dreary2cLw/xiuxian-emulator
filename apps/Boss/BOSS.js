@@ -1,7 +1,6 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import data from '../../model/XiuxianData.js';
 import fs from 'fs';
-import { segment } from 'icqq';
 import { Add_najie_thing } from '../Xiuxian/xiuxian.js';
 
 //本模块由(qq:1695037643)和jio佬完成
@@ -842,6 +841,10 @@ async function GetAverageDamage() {
 		let this_qq = File[i].replace('.json', '');
 		this_qq = parseInt(this_qq);
 		let player = await data.getData('player', this_qq);
+		let test = data.Level_list.find(
+			(item) => item.level_id == player.level_id
+		);
+			console.log(test);
 		let level_id = data.Level_list.find(
 			(item) => item.level_id == player.level_id
 		).level_id;

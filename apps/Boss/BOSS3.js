@@ -1,7 +1,6 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import data from '../../model/XiuxianData.js';
 import fs from 'fs';
-import { segment } from 'icqq';
 import { Add_najie_thing, Gaodenyuansulun } from '../Xiuxian/xiuxian.js';
 import config from '../../model/Config.js';
 

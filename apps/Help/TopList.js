@@ -204,6 +204,7 @@ export class TopList extends plugin {
 		let usr_paiming;
 		let File = fs.readdirSync(__PATH.player_path);
 		File = File.filter((file) => file.endsWith('.json'));
+		console.log(File);
 		let File_length = File.length;
 		let temp = [];
 		for (let i = 0; i < File_length; i++) {
