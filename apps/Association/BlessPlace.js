@@ -1,8 +1,11 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
+import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
+import path from 'path';
 import fs from 'fs';
 import {
+	__PATH,
 	Add_HP,
 	Add_najie_thing,
 	Add_修为,
@@ -17,7 +20,6 @@ import {
 	shijianc,
 } from '../Xiuxian/xiuxian.js';
 import Show from '../../model/show.js';
-import {__PATH} from "../Xiuxian/xiuxian";
 
 let allaction = false;
 const 宗门灵石池上限 = [

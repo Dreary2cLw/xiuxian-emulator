@@ -1,4 +1,5 @@
 import plugin from '../../../../lib/plugins/plugin.js';
+import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
 import fs from 'fs';

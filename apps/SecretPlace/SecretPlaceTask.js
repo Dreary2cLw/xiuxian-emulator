@@ -461,7 +461,7 @@ export class SecretPlaceTask extends plugin {
 						} else {
 							return;
 						}
-						//msg.push('\n' + player.名号 + last_msg + fyd_msg);
+						msg.push('\n' + player.名号 + last_msg + fyd_msg);
 						let arr = action;
 						//把状态都关了
 						arr.shutup = 1; //闭关状态
@@ -500,6 +500,7 @@ export class SecretPlaceTask extends plugin {
 	 * @returns {Promise<void>}
 	 */
 	async pushInfo(id, is_group, msg) {
+		//console.log(id+'is_group:'+is_group+':msg:'+msg);
 		if (is_group) {
 			await Bot.pickGroup(id)
 				.sendMsg(msg)

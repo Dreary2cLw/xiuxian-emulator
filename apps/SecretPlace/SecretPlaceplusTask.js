@@ -65,7 +65,7 @@ export class SecretPlaceplusTask extends plugin {
 					}
 				}
 				//最后发送的消息
-				let msg = [segment.at(Number(player_id))];
+				let msg = [segment.at(player_id)];
 				//动作结束时间
 				let end_time = action.end_time;
 				//现在的时间
@@ -507,11 +507,14 @@ export class SecretPlaceplusTask extends plugin {
 	 * @returns {Promise<void>}
 	 */
 	async pushInfo(id, is_group, msg) {
+			//console.log(id+'is_group:'+is_group+':msg:'+msg);
+		//id = '7283317058247477226-535131438';
 		if (is_group) {
 			await Bot.pickGroup(id)
 				.sendMsg(msg)
 				.catch((err) => {
-					Bot.logger.mark(err);
+					console.log(err);
+					//Bot.logger.mark(err);
 				});
 		} else {
 			await common.relpyPrivate(id, msg);

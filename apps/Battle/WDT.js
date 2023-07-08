@@ -246,7 +246,7 @@ export class WDT extends plugin {
     //战斗回合过长会导致转发失败报错，所以超过30回合的就不转发了
     if (msg.length > 35) {
     } else {
-      await ForwardMsg(e, msg);
+      //await ForwardMsg(e, msg);
     }
     //下面的战斗超过100回合会报错
     await Add_HP(A, Data_battle.A_xue);
