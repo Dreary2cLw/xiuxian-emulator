@@ -403,7 +403,7 @@ export class Association extends plugin {
 		let dir = data.filePathMap.association;
 		let File = fs.readdirSync(dir);
 		File = File.filter((file) => file.endsWith('.json')); //这个数组内容是所有的宗门名称
-		let temp = ['宗门列表'];
+		let temp = [];
 		if (File.length == 0) {
 			temp.push('暂时没有宗门数据');
 		}
