@@ -55,7 +55,7 @@ export class Taopaotask extends plugin {
 				}
 
 				//最后发送的消息
-				let msg = [segment.at(Number(player_id))];
+				let msg = [segment.at(player_id)];
 				//动作结束时间
 				let end_time = action.end_time;
 				//现在的时间
