@@ -1017,12 +1017,12 @@
 		"player": "5176642646267616054",
 		"等级": 1,
 		"经验": 31680,
-		"renwu": 2,
-		"wancheng1": 2,
+		"renwu": 0,
+		"wancheng1": 1,
 		"jilu1": 0,
-		"wancheng2": 2,
+		"wancheng2": 1,
 		"jilu2": 0,
-		"wancheng3": 2,
+		"wancheng3": 1,
 		"jilu3": 0,
 		"jiequ": []
 	},
@@ -1114,7 +1114,7 @@
 		"wancheng2": 1,
 		"jilu2": 0,
 		"wancheng3": 1,
-		"jilu3": 10,
+		"jilu3": 15,
 		"jiequ": []
 	},
 	{
