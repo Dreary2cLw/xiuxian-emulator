@@ -209,7 +209,6 @@ export class TopList extends plugin {
 		let temp = [];
 		for (let i = 0; i < File_length; i++) {
 			let this_qq = File[i].replace('.json', '');
-			this_qq = parseInt(this_qq);
 			let player = await Read_player(this_qq);
 			let sum_exp = await Get_xiuwei(this_qq);
 			if (!isNotNull(player.level_id)) {
@@ -262,7 +261,6 @@ export class TopList extends plugin {
 		let temp = [];
 		for (let i = 0; i < File_length; i++) {
 			let this_qq = File[i].replace('.json', '');
-			this_qq = parseInt(this_qq);
 			let player = await Read_player(this_qq);
 			let najie = await Read_najie(this_qq);
 			let lingshi = player.灵石 + najie.灵石;
