@@ -156,7 +156,7 @@ export class PHB extends plugin {
 					temp[j].qq
 			);
 		}
-		await ForwardMsg(e, msg);
+		//await ForwardMsg(e, msg);
 		return;
 	}
 }
