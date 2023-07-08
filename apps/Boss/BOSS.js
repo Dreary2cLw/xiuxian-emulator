@@ -839,7 +839,6 @@ async function GetAverageDamage() {
 	let TotalPlayer = 0;
 	for (let i = 0; i < File.length; i++) {
 		let this_qq = File[i].replace('.json', '');
-		this_qq = parseInt(this_qq);
 		let player = await data.getData('player', this_qq);
 		let test = data.Level_list.find(
 			(item) => item.level_id == player.level_id
