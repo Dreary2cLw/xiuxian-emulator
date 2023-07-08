@@ -118,7 +118,7 @@ export class TopList extends plugin {
 					temp[j].qq
 			);
 		}
-		await ForwardMsg(e, msg);
+		//await ForwardMsg(e, msg);
 		return;
 	}
 
@@ -187,7 +187,7 @@ export class TopList extends plugin {
 					temp[j].qq
 			);
 		}
-		await ForwardMsg(e, msg);
+		//await ForwardMsg(e, msg);
 		return;
 	}
 
