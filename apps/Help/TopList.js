@@ -17,6 +17,8 @@ import {
 	sleep,
 	sortBy,
 } from '../Xiuxian/xiuxian.js';
+import {get_modaobang_img} from "./PHB";
+import Show from "../../model/show";
 
 /**
  * 所有榜单
@@ -119,6 +121,8 @@ export class TopList extends plugin {
 			);
 		}
 		//await ForwardMsg(e, msg);
+		let img = await get_fengshen_img(e,msg);
+		e.reply(img);
 		return;
 	}
 
@@ -132,7 +136,7 @@ export class TopList extends plugin {
 		if (!ifexistplay) {
 			return;
 		}
-		let msg = ['___[至尊榜]___'];
+		let msg = [];
 		let playerList = [];
 		//数组
 		let temp = [];
@@ -188,6 +192,8 @@ export class TopList extends plugin {
 			);
 		}
 		//await ForwardMsg(e, msg);
+		let img = await get_zhizun_img(e,msg);
+		e.reply(img);
 		return;
 	}
 
@@ -296,4 +302,28 @@ export class TopList extends plugin {
 		e.reply(img);
 		return;
 	}
+}
+export async  function get_fengshen_img(e, msg) {
+	let usr_qq = e.user_id;
+	let pk_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_fengshenData(pk_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
+export async  function get_zhizun_img(e, msg) {
+	let usr_qq = e.user_id;
+	let pk_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_zhizunData(pk_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
 }

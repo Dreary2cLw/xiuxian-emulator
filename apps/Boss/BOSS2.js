@@ -3,6 +3,8 @@ import data from '../../model/XiuxianData.js';
 import fs from 'fs';
 import { Add_najie_thing, Gaodenyuansulun } from '../Xiuxian/xiuxian.js';
 import config from '../../model/Config.js';
+import {get_sanbing_img} from "./BOSS";
+import Show from "../../model/show";
 
 //本模块由(qq:1695037643)和jio佬完成
 let WorldBOSSBattleCD = []; //CD
@@ -710,7 +712,11 @@ export class BOSS2 extends plugin {
 			WorldBossStatus.防御 = bfangyu;
 			CurrentPlayerAttributes.攻击 = aATK;
 			WorldBossStatus.攻击 = bATK;
-			if (msg.length <= 60){} //await ForwardMsg(e, msg);
+			if (msg.length <= 60){
+				//await ForwardMsg(e, msg);
+				let img = await get_sanbing_img(e,msg);
+				e.reply(img);
+			}
 			else {
 				msg.length = 60;
 				//await ForwardMsg(e, msg);
@@ -1079,4 +1085,16 @@ async function GetAverageDamage() {
 		fairy_nums: fairyNums,
 	};
 	return res;
+}
+export async  function get_tianli_img(e, msg) {
+	let usr_qq = e.user_id;
+	let biwu_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_tianliData(biwu_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
 }

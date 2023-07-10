@@ -7,6 +7,8 @@ import {
 	Read_player,
 	sortBy,
 } from '../Xiuxian/xiuxian.js';
+import {get_tiandibang_img} from "../Tiandibang/Tiandibang";
+import Show from "../../model/show";
 
 /**
  * 所有榜单
@@ -42,7 +44,7 @@ export class PHB extends plugin {
 		if (!ifexistplay) {
 			return;
 		}
-		let msg = ['___[魔道榜]___'];
+		let msg = [];
 		let playerList = [];
 		//数组
 		let temp = [];
@@ -92,7 +94,9 @@ export class PHB extends plugin {
 					temp[j].qq
 			);
 		}
-		await ForwardMsg(e, msg);
+		//await ForwardMsg(e, msg);
+		let img = await get_modaobang_img(e,msg);
+		e.reply(img);
 		return;
 	}
 
@@ -106,7 +110,7 @@ export class PHB extends plugin {
 		if (!ifexistplay) {
 			return;
 		}
-		let msg = ['___[强化榜]___'];
+		let msg = [];
 		let playerList = [];
 		//数组
 		let temp = [];
@@ -157,6 +161,32 @@ export class PHB extends plugin {
 			);
 		}
 		//await ForwardMsg(e, msg);
+		let img = await get_qianghua_img(e,msg);
+		e.reply(img);
 		return;
 	}
+}
+export async  function get_modaobang_img(e, msg) {
+	let usr_qq = e.user_id;
+	let pk_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_modaobangData(pk_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
+export async  function get_qianghua_img(e, msg) {
+	let usr_qq = e.user_id;
+	let pk_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_qianghuaData(pk_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
 }

@@ -2,6 +2,8 @@ import plugin from '../../../../lib/plugins/plugin.js';
 import data from '../../model/XiuxianData.js';
 import fs from 'fs';
 import { Add_najie_thing } from '../Xiuxian/xiuxian.js';
+import {get_tiandibang_img} from "../Tiandibang/Tiandibang";
+import Show from "../../model/show";
 
 //本模块由(qq:1695037643)和jio佬完成
 let WorldBOSSBattleCD = []; //CD
@@ -544,7 +546,11 @@ export class BOSS extends plugin {
 				BattleFrame++;
 			}
 
-			if (msg.length <= 30){} //await ForwardMsg(e, msg);
+			if (msg.length <= 30){
+				//await ForwardMsg(e, msg);
+				let img = await get_sanbing_img(e,msg);
+				e.reply(img);
+			}
 			else {
 				msg.length = 30;
 				//await ForwardMsg(e, msg);
@@ -876,4 +882,16 @@ async function GetAverageDamage() {
 		fairy_nums: fairyNums,
 	};
 	return res;
+}
+export async  function get_sanbing_img(e, msg) {
+	let usr_qq = e.user_id;
+	let biwu_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_sanbingData(biwu_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
 }

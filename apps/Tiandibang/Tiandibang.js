@@ -16,6 +16,7 @@ import {
 } from '../Xiuxian/xiuxian.js';
 import { zd_battle } from '../Battle/Battle.js';
 import config from '../../model/Config.js';
+import {get_biwu_img} from "../Battle/Battle";
 
 export class Tiandibang extends plugin {
 	constructor() {
@@ -218,7 +219,7 @@ export class Tiandibang extends plugin {
 		tiandibang = await Read_tiandibang();
 		let x = tiandibang.length;
 		let l = 10;
-		let msg = ['***天地榜(每日免费三次)***\n       周一0点清空积分'];
+		let msg = [];
 		for (let i = 0; i < tiandibang.length; i++) {
 			if (tiandibang[i].qq == usr_qq) {
 				x = i;
@@ -266,7 +267,9 @@ export class Tiandibang extends plugin {
 				);
 			}
 		}
-		await ForwardMsg(e, msg);
+		//await ForwardMsg(e, msg);
+		let img = await get_tiandibang_img(e,msg);
+		e.reply(img);
 		return;
 	}
 
@@ -448,11 +451,8 @@ export class Tiandibang extends plugin {
 				return;
 			}
 			await Add_灵石(usr_qq, lingshi);
-			if (msg.length > 50) {
-			} else {
-				//await ForwardMsg(e, msg);
-			}
-			e.reply(last_msg);
+			let img = await get_pk_img(e,msg);
+			e.reply(img);
 		} else {
 			let A_player = {
 				名号: tiandibang[x].名号,
@@ -502,11 +502,8 @@ export class Tiandibang extends plugin {
 				return;
 			}
 			await Add_灵石(usr_qq, lingshi);
-			if (msg.length > 50) {
-			} else {
-				//await ForwardMsg(e, msg);
-			}
-			e.reply(last_msg);
+			let img = await get_pk_img(e,msg);
+			e.reply(img);
 		}
 		tiandibang = await Read_tiandibang();
 		let t;
@@ -787,4 +784,28 @@ async function re_bangdang(e) {
 	}
 	e.reply('积分已经重置！');
 	return;
+}
+export async  function get_pk_img(e, msg) {
+	let usr_qq = e.user_id;
+	let pk_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_pkData(pk_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
+export async  function get_tiandibang_img(e, msg) {
+	let usr_qq = e.user_id;
+	let pk_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_tiandibangData(pk_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
 }

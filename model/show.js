@@ -456,6 +456,70 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
+	async get_tiandibangData(myData) {
+		this.model = 'tiandibang';
+		return {
+			...this.screenData,
+			saveId: 'tiandibang',
+			...myData,
+		};
+	}
+	async get_modaobangData(myData) {
+		this.model = 'modaobang';
+		return {
+			...this.screenData,
+			saveId: 'modaobang',
+			...myData,
+		};
+	}
+	async get_qianghuaData(myData) {
+		this.model = 'qianghua';
+		return {
+			...this.screenData,
+			saveId: 'qianghua',
+			...myData,
+		};
+	}
+	async get_pkData(myData) {
+		this.model = 'pk';
+		return {
+			...this.screenData,
+			saveId: 'pk',
+			...myData,
+		};
+	}
+	async get_fengshen_img(myData) {
+		this.model = 'fengshen';
+		return {
+			...this.screenData,
+			saveId: 'fengshen',
+			...myData,
+		};
+	}
+	async get_sanbing_img(myData) {
+		this.model = 'sanbing';
+		return {
+			...this.screenData,
+			saveId: 'sanbing',
+			...myData,
+		};
+	}
+	async get_tianli_img(myData) {
+		this.model = 'tianli';
+		return {
+			...this.screenData,
+			saveId: 'tianli',
+			...myData,
+		};
+	}
+	async get_zhizun_img(myData) {
+		this.model = 'zhizun';
+		return {
+			...this.screenData,
+			saveId: 'zhizun',
+			...myData,
+		};
+	}
 	async get_baowuData(myData) {
 		this.model = 'baowu';
 		return {
