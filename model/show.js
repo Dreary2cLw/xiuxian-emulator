@@ -488,7 +488,7 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
-	async get_fengshen_img(myData) {
+	async get_fengshenData(myData) {
 		this.model = 'fengshen';
 		return {
 			...this.screenData,
@@ -496,7 +496,7 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
-	async get_sanbing_img(myData) {
+	async get_sanbingData(myData) {
 		this.model = 'sanbing';
 		return {
 			...this.screenData,
@@ -504,7 +504,7 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
-	async get_tianli_img(myData) {
+	async get_tianliData(myData) {
 		this.model = 'tianli';
 		return {
 			...this.screenData,
@@ -512,7 +512,7 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
-	async get_zhizun_img(myData) {
+	async get_zhizunData(myData) {
 		this.model = 'zhizun';
 		return {
 			...this.screenData,

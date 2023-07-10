@@ -1,6 +1,7 @@
 //插件加载
 import plugin from '../../../../lib/plugins/plugin.js';
 import data from '../../model/XiuxianData.js';
+import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import fs from 'fs';
 import {
 	get_ranking_money_img,
@@ -17,8 +18,7 @@ import {
 	sleep,
 	sortBy,
 } from '../Xiuxian/xiuxian.js';
-import {get_modaobang_img} from "./PHB";
-import Show from "../../model/show";
+import Show from "../../model/show.js";
 
 /**
  * 所有榜单
