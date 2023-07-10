@@ -2,8 +2,8 @@ import plugin from '../../../../lib/plugins/plugin.js';
 import data from '../../model/XiuxianData.js';
 import fs from 'fs';
 import { Add_najie_thing } from '../Xiuxian/xiuxian.js';
-import {get_tiandibang_img} from "../Tiandibang/Tiandibang";
-import Show from "../../model/show";
+import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
+import Show from '../../model/show.js';
 
 //本模块由(qq:1695037643)和jio佬完成
 let WorldBOSSBattleCD = []; //CD

@@ -3,8 +3,8 @@ import data from '../../model/XiuxianData.js';
 import fs from 'fs';
 import { Add_najie_thing, Gaodenyuansulun } from '../Xiuxian/xiuxian.js';
 import config from '../../model/Config.js';
-import {get_sanbing_img} from "./BOSS";
-import Show from "../../model/show";
+import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
+import Show from "../../model/show.js";
 
 //本模块由(qq:1695037643)和jio佬完成
 let WorldBOSSBattleCD = []; //CD
