@@ -316,11 +316,19 @@ export class SecretPlaceTask extends plugin {
 							}
 							m += `]×${n}个。`;
 						} else {
+							if(weizhi.one[0].name == '洗根水'){
+							thing_name = '';
+							thing_class = '';
+							m = '走在路上遇到阿巴怪，你的奖励都被抢走了！';
+							t1 = 0.5 + Math.random() * 0.5;
+							t2 = 0.5 + Math.random() * 0.5;
+							}else{
 							thing_name = '';
 							thing_class = '';
 							m = '走在路上都没看见一只蚂蚁！';
 							t1 = 0.5 + Math.random() * 0.5;
 							t2 = 0.5 + Math.random() * 0.5;
+							}
 						}
 						let xiuwei = 0;
 						//默认结算装备数
@@ -347,6 +355,26 @@ export class SecretPlaceTask extends plugin {
 								xiuwei +
 								',气血' +
 								qixue;
+							if(weizhi.one[0].name == '洗根水'){
+									let randomPP = Math.random(); //万分之一出神迹
+									if (randomPP < 0.005){
+										last_msg +=
+										'突然狂风大作，定睛一看竟是竹神，竹神随手给了你一亿灵石！';
+								await Add_najie_thing(player_id, '1k', '道具', 100000);
+									}else if(randomPP < 0.01){
+									last_msg +=
+										'突然狂风大作，定睛一看竟是竹神，竹神随手给了你一个天罗地网！';
+								await Add_najie_thing(player_id, '天罗地网', '道具', 1);
+									}else if(randomPP < 0.05){
+									last_msg +=
+										'突然狂风大作，定睛一看竟是竹神，竹神随手给了你一个金丝仙网！';
+								await Add_najie_thing(player_id, '金丝仙网', '道具', 1);
+									}else if(randomPP < 0.08){
+									last_msg +=
+										'突然狂风大作，定睛一看竟是竹神，竹神随手给了你一个银丝仙网！';
+								await Add_najie_thing(player_id, '银丝仙网', '道具', 1);
+									}
+							}
 							let random = Math.random(); //万分之一出神迹
 							if (random < 0.0001) {
 								last_msg +=
