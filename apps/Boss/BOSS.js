@@ -155,7 +155,7 @@ export class BOSS extends plugin {
 				}
 				if (PlayerRecordJSON.QQ[PlayerList[i]] == e.user_id) CurrentQQ = i + 1;
 			}
-			await ForwardMsg(e, msg);
+			//await ForwardMsg(e, msg);
 			await sleep(1000);
 			if (CurrentQQ != undefined)
 				e.reply(
@@ -544,10 +544,10 @@ export class BOSS extends plugin {
 				BattleFrame++;
 			}
 
-			if (msg.length <= 30) await ForwardMsg(e, msg);
+			if (msg.length <= 30){} //await ForwardMsg(e, msg);
 			else {
 				msg.length = 30;
-				await ForwardMsg(e, msg);
+				//await ForwardMsg(e, msg);
 				e.reply('战斗过长，仅展示部分内容');
 			}
 			await sleep(1000);
@@ -621,7 +621,7 @@ export class BOSS extends plugin {
 						'!',
 				]);
 				CurrentPlayerAttributes.灵石 += 100000;
-				Bot.logger.mark(`[散兵] 结算:${e.user_id}增加奖励100000`);
+				//Bot.logger.mark(`[散兵] 结算:${e.user_id}增加奖励100000`);
 				await data.setData('player', e.user_id, CurrentPlayerAttributes);
 				let action = await redis.get('xiuxian:player:' + e.user_id + ':action');
 				action = await JSON.parse(action);
@@ -672,21 +672,21 @@ export class BOSS extends plugin {
 						);
 						CurrentPlayer.灵石 += Reward;
 						await data.setData('player', PlayerRecordJSON.QQ[PlayerList[i]], CurrentPlayer);
-						Bot.logger.mark(
-							`[散兵周本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励${Reward}`
-						);
+						//Bot.logger.mark(
+						//	`[散兵周本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励${Reward}`
+						//);
 						continue;
 					} else {
 						CurrentPlayer.灵石 += 150000;
-						Bot.logger.mark(
-							`[散兵周本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励150000`
-						);
+						//Bot.logger.mark(
+						//	`[散兵周本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励150000`
+						//);
 						await data.setData('player', PlayerRecordJSON.QQ[PlayerList[i]], CurrentPlayer);
 					}
 					if (i == PlayerList.length - 1)
 						Rewardmsg.push('其余参与的修仙者均获得15000灵石奖励！');
 				}
-				await ForwardMsg(e, Rewardmsg);
+				//await ForwardMsg(e, Rewardmsg);
 			}
 			WorldBOSSBattleCD[e.user_id] = new Date().getTime();
 			WorldBOSSBattleLock = 0;
@@ -714,8 +714,8 @@ async function InitWorldBoss(e) {
 		player_quantity = 1;
 	}
 	let X = AverageDamage * 0.01;
-	Bot.logger.mark(`[散兵] 化神玩家总数：${player_quantity}`);
-	Bot.logger.mark(`[散兵] 生成基数:${X}`);
+	//Bot.logger.mark(`[散兵] 化神玩家总数：${player_quantity}`);
+	//Bot.logger.mark(`[散兵] 生成基数:${X}`);
 	let Health = Math.trunc(X * 500 * player_quantity * 3); //血量要根据人数来
 	let Attack = Math.trunc(X * player_quantity * 2);
 	let Defence = Math.trunc(X * player_quantity * 2);
@@ -849,8 +849,8 @@ async function GetAverageDamage() {
 		).level_id;
 		if (level_id >= 17) {
 			temp[TotalPlayer] = parseInt(player.攻击);
-			Bot.logger.mark(`[散兵] ${this_qq}玩家攻击:${temp[TotalPlayer]}`);
-			TotalPlayer++;
+			//Bot.logger.mark(`[散兵] ${this_qq}玩家攻击:${temp[TotalPlayer]}`);
+			TotalPlayer++; 
 		}
 		if (level_id > 33) {
 			fairyNums++;
