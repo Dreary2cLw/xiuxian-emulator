@@ -357,19 +357,19 @@ export class SecretPlaceTask extends plugin {
 								qixue;
 							if(weizhi.one[0].name == '洗根水'){
 									let randomPP = Math.random(); //万分之一出神迹
-									if (randomPP < 0.005){
+									if (randomPP < 0.008){
 										last_msg +=
 										'突然狂风大作，定睛一看竟是竹神，竹神随手给了你一亿灵石！';
 								await Add_najie_thing(player_id, '1k', '道具', 100000);
-									}else if(randomPP < 0.01){
+									}else if(randomPP < 0.023){
 									last_msg +=
 										'突然狂风大作，定睛一看竟是竹神，竹神随手给了你一个天罗地网！';
 								await Add_najie_thing(player_id, '天罗地网', '道具', 1);
-									}else if(randomPP < 0.05){
+									}else if(randomPP < 0.08){
 									last_msg +=
 										'突然狂风大作，定睛一看竟是竹神，竹神随手给了你一个金丝仙网！';
 								await Add_najie_thing(player_id, '金丝仙网', '道具', 1);
-									}else if(randomPP < 0.08){
+									}else if(randomPP < 0.112){
 									last_msg +=
 										'突然狂风大作，定睛一看竟是竹神，竹神随手给了你一个银丝仙网！';
 								await Add_najie_thing(player_id, '银丝仙网', '道具', 1);
