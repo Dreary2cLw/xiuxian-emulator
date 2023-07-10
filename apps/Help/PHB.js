@@ -1,5 +1,6 @@
 //插件加载
 import plugin from '../../../../lib/plugins/plugin.js';
+import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import fs from 'fs';
 import {
 	existplayer,
@@ -7,8 +8,7 @@ import {
 	Read_player,
 	sortBy,
 } from '../Xiuxian/xiuxian.js';
-import {get_tiandibang_img} from "../Tiandibang/Tiandibang";
-import Show from "../../model/show";
+import Show from "../../model/show.js";
 
 /**
  * 所有榜单

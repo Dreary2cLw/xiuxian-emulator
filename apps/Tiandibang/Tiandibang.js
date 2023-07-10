@@ -16,7 +16,6 @@ import {
 } from '../Xiuxian/xiuxian.js';
 import { zd_battle } from '../Battle/Battle.js';
 import config from '../../model/Config.js';
-import {get_biwu_img} from "../Battle/Battle";
 
 export class Tiandibang extends plugin {
 	constructor() {
