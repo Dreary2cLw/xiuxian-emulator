@@ -520,6 +520,14 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
+	async get_yaoyuanData(myData) {
+		this.model = 'yaoyuan';
+		return {
+			...this.screenData,
+			saveId: 'yaoyuan',
+			...myData,
+		};
+	}
 	async get_baowuData(myData) {
 		this.model = 'baowu';
 		return {

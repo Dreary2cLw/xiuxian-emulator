@@ -1,6 +1,7 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import data from '../../model/XiuxianData.js';
 import config from '../../model/Config.js';
+import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import {
 	Add_najie_thing,
 	exist_najie_thing,
@@ -8,6 +9,7 @@ import {
 	shijianc,
 	timestampToTime,
 } from '../Xiuxian/xiuxian.js';
+import Show from "../../model/show.js";
 
 /**
  * 作者：湖中屋
@@ -116,7 +118,9 @@ export class Garden extends plugin {
 			];
 			msg.push(msg1);
 		}
-		await ForwardMsg(e, msg);
+		//await ForwardMsg(e, msg);
+		let img = await get_yaoyuan_img(e,msg);
+		e.reply(img);
 		return;
 	}
 
@@ -719,4 +723,16 @@ async function getLastsign_Asso(usr_qq) {
 		return data;
 	}
 	return false;
+}
+export async  function get_yaoyuan_img(e, msg) {
+	let usr_qq = e.user_id;
+	let pk_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_yaoyuanData(pk_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
 }
