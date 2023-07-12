@@ -1528,9 +1528,9 @@ export class UserHome extends plugin {
                     e.reply("你充满期待的打开了盒子，结果发现了里面有一个清灵藏的新春木盒")
                     return;
                 } else {
-                    await Add_najie_thing(usr_qq, "潘多拉魔盒", "盒子", 1);
+                    await Add_najie_thing(usr_qq, "社长藏的三八盒子", "盒子", 1);
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    e.reply("你充满期待的打开了盒子，结果发现了是1个潘多拉魔盒")
+                    e.reply("你充满期待的打开了盒子，结果发现了是1个社长藏的三八盒子")
                     return;
                 }
             }
@@ -1555,6 +1555,30 @@ export class UserHome extends plugin {
                     await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", 5);
                     await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", -1);
                     e.reply(["你打开了雪铃零藏的新春木盒，里面有5个清灵藏的新春木盒"])
+                    return
+                }
+            }
+            if (thing_name == "小竹藏的新春铁盒") {
+                let math = Math.random();
+                if (math > 0.9 && math < 1) {
+                    await Add_najie_thing(usr_qq, "1k", "道具", 30000);
+                    await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
+                    e.reply(["你打开了小竹藏的新春铁盒,里面有一袋灵石"])
+                    return
+                } else if (math > 0.8 && math < 0.9) {
+                    await Add_najie_thing(usr_qq, "树苗", "食材", 10);
+                    await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
+                    e.reply(["你打开了小竹藏的新春铁盒，里面有10个树苗"])
+                    return
+                } else if (math > 0.7 && math < 0.8) {
+                    await Add_修为(usr_qq, -100000);
+                    await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
+                    e.reply(["你打开了小竹藏的新春铁盒，未曾想里面是阿巴怪，受到惊吓，损失10w修为"])
+                    return
+                } else {
+                    await Add_najie_thing(usr_qq, "社长藏的三八盒子", "盒子", 5);
+                    await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
+                    e.reply(["你打开了小竹藏的新春铁盒，里面有5张瑟图（社长藏的三八盒子）"])
                     return
                 }
             }
@@ -2356,7 +2380,7 @@ export class UserHome extends plugin {
                 return;
             }
             allaction = false;
-            var Time = 7;
+            var Time = 6;
             let now_Time = new Date().getTime(); //获取当前时间戳
             let shuangxiuTimeout = parseInt(60000 * Time);
             let last_time = await redis.get("xiuxian:player:" + usr_qq + "xunbaocd");//获得上次的时间戳,
@@ -2901,7 +2925,7 @@ export class UserHome extends plugin {
                         await Add_najie_thing(usr_qq, "圆石", "材料", 18 * n);
                         await Add_najie_thing(usr_qq, "煤炭", "材料", 18 * n);
                         await Add_najie_thing(usr_qq, "铁矿", "材料", 9 * n);
-                        await Add_najie_thing(usr_qq, "黄金矿", "材料", 9 * n);
+                        await Add_najie_thing(usr_qq, "黄金矿", "材料", 8 * n);
                         await Add_najie_thing(usr_qq, "铁镐", "道具", -1);
                         mugao = 1;
                     } else {
@@ -2922,23 +2946,23 @@ export class UserHome extends plugin {
                     if (math > 0.9 && math <= 1) {
                         await Add_najie_thing(usr_qq, "层岩巨渊", "道具", 1 * n);
                         e.reply(`${last_msg}${fyd_msg}你在星荧洞窟捡到了挖到圆石${18 * mugao * n + 9 * shigao * n}个,
-                                    煤炭${18 * mugao * n + 9 * shigao * n}个,铁矿${9 * mugao * n + 3 * shigao * n}个,黄金矿${9 * mugao * n}个和层岩巨渊地图${1 * n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                    煤炭${18 * mugao * n + 9 * shigao * n}个,铁矿${9 * mugao * n + 3 * shigao * n}个,黄金矿${8 * mugao * n}个和层岩巨渊地图${1 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                     } else if (math > 0.1 && math <= 0.3) {
                         await Add_HP(usr_qq, -kouxue)
                         await Add_najie_thing(usr_qq, "泥土", "材料", 20 * n);
                         e.reply(`${last_msg}${fyd_msg}你在星荧洞窟捡到了挖到圆石${18 * mugao * n + 9 * shigao * n}个,
-                                    煤炭${18 * mugao * n + 9 * shigao * n}个,铁矿${9 * mugao * n + 3 * shigao * n}个,黄金矿${9 * mugao * n}个,
+                                    煤炭${18 * mugao * n + 9 * shigao * n}个,铁矿${9 * mugao * n + 3 * shigao * n}个,黄金矿${8 * mugao * n}个,
                                 '在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到泥土${20 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                     } else if (math > 0.3 && math <= 0.5) {
                         await Add_HP(usr_qq, -kouxue)
                         await Add_najie_thing(usr_qq, "骨头", "材料", 10 * n);
                         e.reply(`${last_msg}${fyd_msg}你在星荧洞窟捡到了挖到圆石${18 * mugao * n + 9 * shigao * n}个,
-                                    煤炭${18 * mugao * n + 9 * shigao * n}个,铁矿${9 * mugao * n + 3 * shigao * n}个,黄金矿${9 * mugao * n}个,
+                                    煤炭${18 * mugao * n + 9 * shigao * n}个,铁矿${9 * mugao * n + 3 * shigao * n}个,黄金矿${8 * mugao * n}个,
                                 在探索途中遇到一些骷髅,你击败了他们,剩余${player.当前血量}捡到骨头${10 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                     } else if (math > 0.8 && math <= 0.9) {
                         await Add_najie_thing(usr_qq, "红石", "材料", 128 * n);
                         e.reply(`${last_msg}${fyd_msg}你在星荧洞窟捡到了挖到圆石${18 * mugao * n + 9 * shigao * n}个,
-                                    煤炭${18 * mugao * n + 9 * shigao * n}个,铁矿${9 * mugao * n + 3 * shigao * n}个,黄金矿${9 * mugao * n}个和红石${128 * n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                    煤炭${18 * mugao * n + 9 * shigao * n}个,铁矿${9 * mugao * n + 3 * shigao * n}个,黄金矿${8 * mugao * n}个和红石${128 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                     } else if (math <= 0.02) {
                         await Add_najie_thing(usr_qq, "圆石", "材料", -18 * mugao * n);
                         await Add_najie_thing(usr_qq, "煤炭", "材料", -18 * mugao * n);
@@ -2954,7 +2978,7 @@ export class UserHome extends plugin {
                         e.reply('你在挖矿途中一只苦力怕靠近你然后爆炸了,你来不及反应,剩余' + player.当前血量 + '你什么都没有得到')
                     } else {
                         e.reply(`${last_msg}${fyd_msg}你在星荧洞窟捡到了挖到圆石${18 * mugao * n + 9 * shigao * n}个,
-                                    煤炭${18 * mugao * n + 9 * shigao * n}个,铁矿${9 * mugao * n + 3 * shigao * n}个,黄金矿${9 * mugao * n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                    煤炭${18 * mugao * n + 9 * shigao * n}个,铁矿${9 * mugao * n + 3 * shigao * n}个,黄金矿${8 * mugao * n}个,获得了修为${xiuwei}血气${xueqi}`)
                     }
                 } else {
                     e.reply('你想起来你没有石镐或铁镐,于是又回家了')

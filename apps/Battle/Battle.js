@@ -496,6 +496,7 @@ export async function zd_battle(AA_player, BB_player) {
 		let 法球伤害 = Math.trunc(A_player.攻击 * A_player.法球倍率);
 		伤害 = Math.trunc(baoji * 伤害 + 法球伤害 + A_player.防御 * 0.1);
 		for (let i = 0; i < jineng1.length; i++) {
+			let Random = Math.random();
 			if (
 				(jineng1[i].class == '常驻' &&
 					(cnt2 == jineng1[i].cnt || jineng1[i].cnt == -1) &&
@@ -519,6 +520,7 @@ export async function zd_battle(AA_player, BB_player) {
 			}
 		}
 		for (let i = 0; i < jineng2.length; i++) {
+			let random = Math.random();
 			if (
 				(jineng2[i].class == '常驻' &&
 					(cnt2 == jineng2[i].cnt || jineng2[i].cnt == -1) &&

@@ -2275,7 +2275,7 @@ export async function Gaodenyuansulun(
 	//磐岩结绿
 	if (equipment.武器.name == '磐岩结绿') {
 		let random = Math.random();
-		if (random > 0.8) {
+		if (random > 0.4) {
 			msg.push(
 				A_player.名号 +
 					'拿起[磐岩结绿]使用了古华剑派独门剑技[雨画笼山]向' +
