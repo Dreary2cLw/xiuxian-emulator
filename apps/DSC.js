@@ -1,7 +1,7 @@
 import plugin from '../../../lib/plugins/plugin.js';
 import data from '../model/XiuxianData.js';
 import Show from "../model/show.js";
-import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
+import puppeteer from '../../../lib/puppeteer/puppeteer.js';
 
 
 //本模块由(qq:1695037643)和jio佬完成
