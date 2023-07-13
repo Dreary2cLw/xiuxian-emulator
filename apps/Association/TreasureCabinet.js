@@ -21,6 +21,8 @@ import {
 	Write_player,
 } from '../Xiuxian/xiuxian.js';
 import Show from '../../model/show.js';
+import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
+
 
 /**
  * 洞天福地
