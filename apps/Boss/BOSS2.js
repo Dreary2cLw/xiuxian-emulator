@@ -720,6 +720,8 @@ export class BOSS2 extends plugin {
 			else {
 				msg.length = 60;
 				//await ForwardMsg(e, msg);
+				let img = await get_sanbing_img(e,msg);
+				e.reply(img);
 				e.reply('战斗过长，仅展示部分内容');
 			}
 			await sleep(1000);

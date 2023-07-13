@@ -1,5 +1,8 @@
 import plugin from '../../../lib/plugins/plugin.js';
 import data from '../model/XiuxianData.js';
+import Show from "../model/show.js";
+import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
+
 
 //作者：波叽在（1695037643）的协助下完成
 export class tzzyt extends plugin {
@@ -199,10 +202,14 @@ export class tzzyt extends plugin {
 				BattleFrame++;
 			}
 
-			if (msg.length <= 30) await ForwardMsg(e, msg);
+			if (msg.length <= 30){
+				let img = await get_zhenyao_img(e,msg);
+				e.reply(img);
+			}
 			else {
 				msg.length = 30;
-				await ForwardMsg(e, msg);
+				let img = await get_zhenyao_img(e,msg);
+				e.reply(img);
 				e.reply('战斗过长，仅展示部分内容');
 			}
 			await redis.set('xiuxian:player:' + usr_qq + 'CD', now_Time);
@@ -281,4 +288,16 @@ function Harm(atk, def) {
 	}
 	x = Math.trunc(x * atk * rand);
 	return x;
+}
+export async  function get_zhenyao_img(e, msg) {
+	let usr_qq = e.user_id;
+	let pk_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_zhenyaoData(pk_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
 }
