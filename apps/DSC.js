@@ -1,5 +1,8 @@
 import plugin from '../../../lib/plugins/plugin.js';
 import data from '../model/XiuxianData.js';
+import Show from "../model/show.js";
+import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
+
 
 //本模块由(qq:1695037643)和jio佬完成
 export class DSC extends plugin {
@@ -143,10 +146,16 @@ export class DSC extends plugin {
 				BattleFrame++;
 			}
 
-			if (msg.length <= 30) await ForwardMsg(e, msg);
+			if (msg.length <= 30){
+				//await ForwardMsg(e, msg);
+				let img = await get_shenpo_img(e,msg);
+				e.reply(img);
+			}
 			else {
 				msg.length = 30;
-				await ForwardMsg(e, msg);
+				//await ForwardMsg(e, msg);
+				let img = await get_shenpo_img(e,msg);
+				e.reply(img);
 				e.reply('战斗过长，仅展示部分内容');
 			}
 			await redis.set('xiuxian:player:' + usr_qq + 'CD', now_Time);
@@ -225,4 +234,16 @@ function Harm(atk, def) {
 	}
 	x = Math.trunc(x * atk * rand);
 	return x;
+}
+export async  function get_shenpo_img(e, msg) {
+	let usr_qq = e.user_id;
+	let pk_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_shenpoData(pk_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
 }

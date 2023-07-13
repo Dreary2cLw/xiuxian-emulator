@@ -7,6 +7,9 @@ import {
 	Read_player,
 	sortBy,
 } from '../Xiuxian/xiuxian.js';
+import Show from "../../model/show.js";
+import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
+
 
 /**
  * 所有榜单
@@ -42,7 +45,7 @@ export class PHB2 extends plugin {
 		if (!ifexistplay) {
 			return;
 		}
-		let msg = ['___[镇妖塔榜]___'];
+		let msg = [];
 		let playerList = [];
 		//数组
 		let temp = [];
@@ -93,6 +96,8 @@ export class PHB2 extends plugin {
 			);
 		}
 		//await ForwardMsg(e, msg);
+		let img = await get_zhenyaobang_img(e,msg);
+		e.reply(img);
 		return;
 	}
 
@@ -106,7 +111,7 @@ export class PHB2 extends plugin {
 		if (!ifexistplay) {
 			return;
 		}
-		let msg = ['___[神魄榜]___'];
+		let msg = [];
 		let playerList = [];
 		//数组
 		let temp = [];
@@ -157,6 +162,32 @@ export class PHB2 extends plugin {
 			);
 		}
 		//await ForwardMsg(e, msg);
+		let img = await get_shenpobang_img(e,msg);
+		e.reply(img);
 		return;
 	}
+}
+export async  function get_zhenyaobang_img(e, msg) {
+	let usr_qq = e.user_id;
+	let pk_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_zhenyaobang(pk_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
+export async  function get_shenpobang_img(e, msg) {
+	let usr_qq = e.user_id;
+	let pk_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_shenpobangData(pk_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
 }

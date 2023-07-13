@@ -520,6 +520,46 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
+	async get_yaoyuanData(myData) {
+		this.model = 'yaoyuan';
+		return {
+			...this.screenData,
+			saveId: 'yaoyuan',
+			...myData,
+		};
+	}
+	async get_zhenyaoData(myData) {
+		this.model = 'zhenyao';
+		return {
+			...this.screenData,
+			saveId: 'zhenyao',
+			...myData,
+		};
+	}
+	async get_zhenyaobangData(myData) {
+		this.model = 'zhenyaobang';
+		return {
+			...this.screenData,
+			saveId: 'zhenyaobang',
+			...myData,
+		};
+	}
+	async get_shenpobangData(myData) {
+		this.model = 'shenpobang';
+		return {
+			...this.screenData,
+			saveId: 'shenpobang',
+			...myData,
+		};
+	}
+	async get_shenpoData(myData) {
+		this.model = 'shenpo';
+		return {
+			...this.screenData,
+			saveId: 'shenpo',
+			...myData,
+		};
+	}
 	async get_baowuData(myData) {
 		this.model = 'baowu';
 		return {
