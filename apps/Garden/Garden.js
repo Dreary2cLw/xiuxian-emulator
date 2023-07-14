@@ -109,14 +109,12 @@ export class Garden extends plugin {
 				chengshu_m = 0;
 				chengshu_s = 0;
 			}
-			let msg1 = [
-				`作物: ${zuowu[i].name} ` +
+			//let msg1 = ;
+			msg.push(`作物: ${zuowu[i].name} ` +
 					'\n' +
 					`描述: ${zuowu[i].desc}` +
 					'\n' +
-					`成长时间:${chengshu_t}天${chengshu_m}小时${chengshu_s}分钟`,
-			];
-			msg.push(msg1);
+					`成长时间:${chengshu_t}天${chengshu_m}小时${chengshu_s}分钟`);
 		}
 		//await ForwardMsg(e, msg);
 		let img = await get_yaoyuan_img(e,msg);
