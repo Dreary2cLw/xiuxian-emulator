@@ -714,13 +714,13 @@ export class BOSS2 extends plugin {
 			WorldBossStatus.攻击 = bATK;
 			if (msg.length <= 60){
 				//await ForwardMsg(e, msg);
-				let img = await get_sanbing_img(e,msg);
+				let img = await get_tianli_img(e,msg);
 				e.reply(img);
 			}
 			else {
 				msg.length = 60;
 				//await ForwardMsg(e, msg);
-				let img = await get_sanbing_img(e,msg);
+				let img = await get_tianli_img(e,msg);
 				e.reply(img);
 				e.reply('战斗过长，仅展示部分内容');
 			}
