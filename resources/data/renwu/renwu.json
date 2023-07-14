@@ -1029,14 +1029,14 @@
 	{
 		"player": "4813758672950374467",
 		"等级": 2,
-		"经验": 24123,
-		"renwu": 0,
-		"wancheng1": 1,
+		"经验": 28407,
+		"renwu": 2,
+		"wancheng1": 2,
 		"jilu1": 0,
-		"wancheng2": 1,
-		"jilu2": 710600,
-		"wancheng3": 1,
-		"jilu3": 17,
+		"wancheng2": 2,
+		"jilu2": 0,
+		"wancheng3": 2,
+		"jilu3": 0,
 		"jiequ": []
 	},
 	{
@@ -1055,14 +1055,14 @@
 	{
 		"player": "9724897357374071515",
 		"等级": 2,
-		"经验": 22079,
-		"renwu": 0,
-		"wancheng1": 1,
-		"jilu1": 2000000,
-		"wancheng2": 1,
+		"经验": 26255,
+		"renwu": 2,
+		"wancheng1": 2,
+		"jilu1": 75000,
+		"wancheng2": 2,
 		"jilu2": 0,
-		"wancheng3": 1,
-		"jilu3": 7,
+		"wancheng3": 2,
+		"jilu3": 0,
 		"jiequ": []
 	},
 	{
@@ -1094,14 +1094,14 @@
 	{
 		"player": "11986469978445910461",
 		"等级": 2,
-		"经验": 8447,
-		"renwu": 0,
-		"wancheng1": 1,
-		"jilu1": 2434002,
-		"wancheng2": 1,
-		"jilu2": 6000000,
-		"wancheng3": 1,
-		"jilu3": 15,
+		"经验": 12299,
+		"renwu": 2,
+		"wancheng1": 2,
+		"jilu1": 0,
+		"wancheng2": 2,
+		"jilu2": 0,
+		"wancheng3": 2,
+		"jilu3": 0,
 		"jiequ": []
 	},
 	{
@@ -1125,9 +1125,9 @@
 		"wancheng1": 1,
 		"jilu1": 0,
 		"wancheng2": 1,
-		"jilu2": 0,
+		"jilu2": 205200,
 		"wancheng3": 1,
-		"jilu3": 6,
+		"jilu3": 7,
 		"jiequ": []
 	},
 	{
@@ -1140,7 +1140,7 @@
 		"wancheng2": 1,
 		"jilu2": 0,
 		"wancheng3": 1,
-		"jilu3": 7,
+		"jilu3": 23,
 		"jiequ": []
 	},
 	{
@@ -1153,20 +1153,20 @@
 		"wancheng2": 1,
 		"jilu2": 0,
 		"wancheng3": 1,
-		"jilu3": 7,
+		"jilu3": 21,
 		"jiequ": []
 	},
 	{
 		"player": "1614693146645592063",
 		"等级": 1,
-		"经验": 27384,
-		"renwu": 0,
-		"wancheng1": 1,
-		"jilu1": 162000,
-		"wancheng2": 1,
-		"jilu2": 12082800,
-		"wancheng3": 1,
-		"jilu3": 5,
+		"经验": 30552,
+		"renwu": 2,
+		"wancheng1": 2,
+		"jilu1": 0,
+		"wancheng2": 2,
+		"jilu2": 0,
+		"wancheng3": 2,
+		"jilu3": 0,
 		"jiequ": []
 	},
 	{
@@ -1224,7 +1224,7 @@
 	{
 		"player": "10969845655487445579",
 		"等级": 1,
-		"经验": 5636,
+		"经验": 8220,
 		"renwu": 2,
 		"wancheng1": 2,
 		"jilu1": 0,
@@ -1263,14 +1263,14 @@
 	{
 		"player": "6430310199826199916",
 		"等级": 1,
-		"经验": 592,
+		"经验": 1572,
 		"renwu": 0,
-		"wancheng1": 2,
-		"jilu1": 0,
+		"wancheng1": 1,
+		"jilu1": 525000,
 		"wancheng2": 1,
-		"jilu2": 469558,
-		"wancheng3": 2,
-		"jilu3": 0,
+		"jilu2": 265399,
+		"wancheng3": 1,
+		"jilu3": 7,
 		"jiequ": []
 	},
 	{
