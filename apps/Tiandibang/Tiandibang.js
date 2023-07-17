@@ -452,6 +452,7 @@ export class Tiandibang extends plugin {
 			await Add_灵石(usr_qq, lingshi);
 			let img = await get_pk_img(e,msg);
 			e.reply(img);
+			e.reply(last_msg);
 		} else {
 			let A_player = {
 				名号: tiandibang[x].名号,
@@ -503,6 +504,7 @@ export class Tiandibang extends plugin {
 			await Add_灵石(usr_qq, lingshi);
 			let img = await get_pk_img(e,msg);
 			e.reply(img);
+			e.reply(last_msg);
 		}
 		tiandibang = await Read_tiandibang();
 		let t;

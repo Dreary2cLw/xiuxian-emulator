@@ -32,10 +32,6 @@
     "name": "辟谷丹",
     "materials": [
       {
-		"name": "万年何首乌",
-		"amount": 1
-	  },
-      {
         "name": "万年清心草",
         "amount": 1
       },
@@ -49,6 +45,23 @@
     "exp": [
       100,
       300
+    ]
+  },
+  {
+    "name": "性转丹",
+    "materials": [
+      {
+        "name": "创世花",
+        "amount": 1
+      },
+      {
+        "name": "皇草",
+        "amount": 1
+      },
+      {
+        "name": "天灵花",
+        "amount": 1
+      }
     ]
   },
   {
@@ -113,7 +126,7 @@
         "amount": 1
       },
       {
-        "name": "创世花",
+        "name": "万年何首乌",
         "amount": 1
       }
     ],
@@ -225,6 +238,131 @@
     ]
   },
   {
+    "name": "四阶玄元丹",
+    "type": "修为",
+    "exp2": 70000,
+    "materials": [
+      {
+        "name": "万年凝血草",
+        "amount": 1
+      },
+      {
+        "name": "万年何首乌",
+        "amount": 1
+      },
+      {
+        "name": "万年血精草",
+        "amount": 1
+      }
+    ],
+    "rate": 1,
+    "level_limit": 0,
+    "exp": [
+      100,
+      150
+    ]
+  },
+  {
+    "name": "五阶玄元丹",
+    "type": "修为",
+    "exp2": 140000,
+    "materials": [
+      {
+        "name": "万年凝血草",
+        "amount": 1
+      },
+      {
+        "name": "万年何首乌",
+        "amount": 2
+      },
+      {
+        "name": "万年血精草",
+        "amount": 1
+      }
+    ],
+    "rate": 0.8,
+    "level_limit": 0,
+    "exp": [
+      150,
+      200
+    ]
+  },
+  {
+    "name": "六阶玄元丹",
+    "type": "修为",
+    "exp2": 700000,
+    "materials": [
+      {
+        "name": "万年凝血草",
+        "amount": 8
+      },
+      {
+        "name": "万年何首乌",
+        "amount": 8
+      },
+      {
+        "name": "万年血精草",
+        "amount": 8
+      }
+    ],
+    "rate": 1,
+    "level_limit": 6,
+    "exp": [
+      300,
+      400
+    ]
+  },
+  {
+    "name": "七阶玄元丹",
+    "type": "修为",
+    "exp2": 1400000,
+    "materials": [
+      {
+        "name": "万年凝血草",
+        "amount": 16
+      },
+      {
+        "name": "万年何首乌",
+        "amount": 16
+      },
+      {
+        "name": "万年血精草",
+        "amount": 16
+      }
+    ],
+    "rate": 1,
+    "level_limit": 10,
+    "exp": [
+      500,
+      700
+    ]
+  },
+  {
+    "name": "八阶玄元丹",
+    "type": "修为",
+    "exp2": 7000000,
+    "materials": [
+      {
+        "name": "万年凝血草",
+        "amount": 80
+      },
+      {
+        "name": "万年何首乌",
+        "amount": 80
+      },
+      {
+        "name": "万年血精草",
+        "amount": 80
+      }
+    ],
+    "rate": 1,
+    "level_limit": 15,
+    "exp": [
+      2000,
+      3000
+    ]
+  },
+  {
     "name": "九阶淬体丹",
     "type": "血气",
     "exp2": 9000000,
@@ -245,8 +383,8 @@
     "rate": 1,
     "level_limit": 20,
     "exp": [
-      250,
-      500
+      114514,
+      114514
     ]
   },
   {
