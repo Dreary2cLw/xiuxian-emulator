@@ -898,7 +898,14 @@ export class Occupation extends plugin {
 							total_exp * m
 						}`
 					);
-				} else {
+				}else if(newrandom2<=0.01&&(danyao == '仙缘丹'||danyao == '神赐丹')){
+					await Add_najie_thing(usr_qq, '圣品' + danyao, '丹药', res_n);
+					e.reply(
+						`${tmp_msg}炼制失败${lose}次，得到"圣品"${danyao}${res_n}颗，获得炼丹经验${
+							total_exp * m
+						}`
+					);
+				}else {
 					await Add_najie_thing(usr_qq, '仙品' + danyao, '丹药', res_n);
 					e.reply(
 						`${tmp_msg}炼制失败${lose}次，得到"仙品"${danyao}${res_n}颗，获得炼丹经验${
