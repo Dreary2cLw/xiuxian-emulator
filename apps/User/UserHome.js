@@ -1571,14 +1571,17 @@ export class UserHome extends plugin {
                         await Add_najie_thing(usr_qq, "混沌钟", "装备", 1);
                         await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
                         e.reply(["你打开了小竹藏的新春铁盒，获得混沌钟*1"])
+                        return
                     }else if(math2>0.33 && math2<= 0.66){
                         await Add_najie_thing(usr_qq, "混沌针", "装备", 1);
                         await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
                         e.reply(["你打开了小竹藏的新春铁盒，获得混沌针*1"])
+                        return
                     }else{
                         await Add_najie_thing(usr_qq, "混沌花", "装备", 1);
                         await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
                         e.reply(["你打开了小竹藏的新春铁盒，获得混沌花*1"])
+                        return
                     }
                     return
                 } else if (math > 0.7 && math < 0.8) {
