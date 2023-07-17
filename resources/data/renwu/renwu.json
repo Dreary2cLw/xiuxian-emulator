@@ -1006,11 +1006,11 @@
 		"经验": 20763,
 		"renwu": 0,
 		"wancheng1": 1,
-		"jilu1": 0,
+		"jilu1": 45324800,
 		"wancheng2": 1,
 		"jilu2": 0,
 		"wancheng3": 1,
-		"jilu3": 20,
+		"jilu3": 51,
 		"jiequ": []
 	},
 	{
@@ -1029,12 +1029,12 @@
 	{
 		"player": "4813758672950374467",
 		"等级": 2,
-		"经验": 37927,
-		"renwu": 0,
-		"wancheng1": 1,
+		"经验": 41259,
+		"renwu": 2,
+		"wancheng1": 2,
 		"jilu1": 0,
-		"wancheng2": 1,
-		"jilu2": 25105696,
+		"wancheng2": 2,
+		"jilu2": 0,
 		"wancheng3": 2,
 		"jilu3": 0,
 		"jiequ": []
@@ -1042,14 +1042,14 @@
 	{
 		"player": "14223893180062500396",
 		"等级": 2,
-		"经验": 29711,
+		"经验": 31551,
 		"renwu": 0,
-		"wancheng1": 1,
-		"jilu1": 75000,
-		"wancheng2": 1,
+		"wancheng1": 2,
+		"jilu1": 0,
+		"wancheng2": 2,
 		"jilu2": 0,
 		"wancheng3": 1,
-		"jilu3": 3,
+		"jilu3": 14,
 		"jiequ": []
 	},
 	{
@@ -1062,20 +1062,20 @@
 		"wancheng2": 1,
 		"jilu2": 0,
 		"wancheng3": 1,
-		"jilu3": 0,
+		"jilu3": 12,
 		"jiequ": []
 	},
 	{
 		"player": "13126462896358487096",
 		"等级": 2,
-		"经验": 7619,
-		"renwu": 0,
-		"wancheng1": 1,
+		"经验": 11759,
+		"renwu": 2,
+		"wancheng1": 2,
 		"jilu1": 0,
-		"wancheng2": 1,
+		"wancheng2": 2,
 		"jilu2": 0,
-		"wancheng3": 1,
-		"jilu3": 8,
+		"wancheng3": 2,
+		"jilu3": 0,
 		"jiequ": []
 	},
 	{
@@ -1123,11 +1123,11 @@
 		"经验": 23727,
 		"renwu": 0,
 		"wancheng1": 1,
-		"jilu1": 0,
+		"jilu1": 20075000,
 		"wancheng2": 1,
-		"jilu2": 0,
+		"jilu2": 10657199,
 		"wancheng3": 1,
-		"jilu3": 1,
+		"jilu3": 2,
 		"jiequ": []
 	},
 	{
@@ -1140,20 +1140,20 @@
 		"wancheng2": 1,
 		"jilu2": 0,
 		"wancheng3": 1,
-		"jilu3": 16,
+		"jilu3": 21,
 		"jiequ": []
 	},
 	{
 		"player": "2678570236720224014",
 		"等级": 2,
-		"经验": 26183,
-		"renwu": 0,
-		"wancheng1": 1,
-		"jilu1": 1429112,
-		"wancheng2": 1,
-		"jilu2": 2440000,
-		"wancheng3": 1,
-		"jilu3": 8,
+		"经验": 30359,
+		"renwu": 2,
+		"wancheng1": 2,
+		"jilu1": 0,
+		"wancheng2": 2,
+		"jilu2": 0,
+		"wancheng3": 2,
+		"jilu3": 0,
 		"jiequ": []
 	},
 	{
@@ -1231,7 +1231,7 @@
 		"wancheng2": 1,
 		"jilu2": 259600,
 		"wancheng3": 1,
-		"jilu3": 0,
+		"jilu3": 6,
 		"jiequ": []
 	},
 	{
