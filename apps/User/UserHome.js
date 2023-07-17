@@ -1561,24 +1561,49 @@ export class UserHome extends plugin {
             if (thing_name == "小竹藏的新春铁盒") {
                 let math = Math.random();
                 if (math > 0.9 && math < 1) {
-                    await Add_najie_thing(usr_qq, "1k", "道具", 30000);
+                    await Add_najie_thing(usr_qq, "1k", "道具", 2000);
                     await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
-                    e.reply(["你打开了小竹藏的新春铁盒,里面有一袋灵石"])
+                    e.reply(["你打开了小竹藏的新春铁盒,获得1k*2000"])
                     return
                 } else if (math > 0.8 && math < 0.9) {
-                    await Add_najie_thing(usr_qq, "树苗", "食材", 10);
-                    await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
-                    e.reply(["你打开了小竹藏的新春铁盒，里面有10个树苗"])
+                    let math2 = Math.random();
+                    if(math2>0.66){
+                        await Add_najie_thing(usr_qq, "混沌钟", "装备", 1);
+                        await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
+                        e.reply(["你打开了小竹藏的新春铁盒，获得混沌钟*1"])
+                    }else if(math2>0.33 && math2<= 0.66){
+                        await Add_najie_thing(usr_qq, "混沌针", "装备", 1);
+                        await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
+                        e.reply(["你打开了小竹藏的新春铁盒，获得混沌针*1"])
+                    }else{
+                        await Add_najie_thing(usr_qq, "混沌花", "装备", 1);
+                        await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
+                        e.reply(["你打开了小竹藏的新春铁盒，获得混沌花*1"])
+                    }
                     return
                 } else if (math > 0.7 && math < 0.8) {
-                    await Add_修为(usr_qq, -100000);
+                    await Add_灵石(usr_qq, -100000);
                     await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
-                    e.reply(["你打开了小竹藏的新春铁盒，未曾想里面是阿巴怪，受到惊吓，损失10w修为"])
+                    e.reply(["你打开了小竹藏的新春铁盒，未曾想里面是阿巴怪，你被抢走了10w灵石"])
                     return
-                } else {
-                    await Add_najie_thing(usr_qq, "社长藏的三八盒子", "盒子", 5);
+                } else if(math>0.6 && math< 0.7){
                     await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
-                    e.reply(["你打开了小竹藏的新春铁盒，里面有5张瑟图（社长藏的三八盒子）"])
+                    e.reply(["你打开了小竹藏的新春铁盒，里面有一张纸条，上面写着下次丕定"])
+                    return
+                } else if(math>0.5 && math< 0.6){
+                    await Add_najie_thing(usr_qq, "树苗", "食材", 3);
+                    await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
+                    e.reply(["你打开了小竹藏的新春铁盒，获得树苗*3"])
+                    return
+                } else if(math>0.4 && math< 0.5){
+                    await Add_najie_thing(usr_qq, "生肉", "食材", 10000);
+                    await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
+                    e.reply(["你打开了小竹藏的新春铁盒，获得生肉*10000"])
+                    return
+                } else{
+                    await Add_najie_thing(usr_qq, "万年甜甜花", "草药", 1);
+                    await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", -1);
+                    e.reply(["你打开了小竹藏的新春铁盒，里面有一朵甜甜花，^_^"])
                     return
                 }
             }
