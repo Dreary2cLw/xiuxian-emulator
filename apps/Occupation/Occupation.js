@@ -877,6 +877,7 @@ export class Occupation extends plugin {
 			danyao == '五阶玄元丹' ||
 			danyao == '四阶玄元丹' ||
 			danyao == '转生丹' ||
+			danyao == '性转丹' ||
 			danyao == '破境丹'
 		) {
 			await Add_najie_thing(usr_qq, danyao, '丹药', res_n);
