@@ -215,7 +215,7 @@
 		"id": 444,
 		"name": "星阁",
 		"Grade": 2,
-		"state": 0,
+		"state": 1,
 		"price": 900000,
 		"one": [
 			{
