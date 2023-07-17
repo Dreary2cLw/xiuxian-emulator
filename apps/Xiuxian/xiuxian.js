@@ -801,6 +801,8 @@ export async function Add_najie_thing(
 			} else {
 				najie.丹药.push(daoyao);
 			}
+			console.log(daoyao);
+			console.log(najie.丹药.find((item) => item.name == name));
 			najie.丹药.find((item) => item.name == name).数量 = x;
 			najie.丹药.find((item) => item.name == name).islockd = 0;
 			await Write_najie(usr_qq, najie);
