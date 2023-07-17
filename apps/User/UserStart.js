@@ -532,8 +532,7 @@ export class UserStart extends plugin {
     await Add_修为(usr_qq, gift_xiuwei);
     let msg = [
       segment.at(usr_qq),
-      `已经连续签到${player.连续签到天数}天了，获得了${gift_xiuwei}修为,秘境之匙x${this.xiuxianConfigData.Sign.ticket},
-      仙子邀约x${this.xiuxianConfigData.Sign.yaoyue},小竹藏的新春铁盒x${this.xiuxianConfigData.Sign.xiaozhu}`
+      `已经连续签到${player.连续签到天数}天了，获得了${gift_xiuwei}修为,秘境之匙x${this.xiuxianConfigData.Sign.ticket},仙子邀约x${this.xiuxianConfigData.Sign.yaoyue},小竹藏的新春铁盒x${this.xiuxianConfigData.Sign.xiaozhu}`
     ];
     e.reply(msg);
     return;
