@@ -121,6 +121,29 @@
     ]
   },
   {
+    "name": "福源丹",
+    "materials": [
+      {
+        "name": "凝血草",
+        "amount": 1
+      },
+      {
+        "name": "小吉祥草",
+        "amount": 1
+      },
+      {
+        "name": "大吉祥草",
+        "amount": 1
+      }
+    ],
+    "rate": 0.8,
+    "level_limit": 0,
+    "exp": [
+      250,
+      500
+    ]
+  },
+  {
     "name": "仙缘丹",
     "materials": [
       {
