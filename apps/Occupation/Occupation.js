@@ -867,6 +867,17 @@ export class Occupation extends plugin {
 				e.reply('你的仙宠只是在旁边看着');
 			}
 		}
+		//测试代码
+		if(usr_qq == 9536826149557637141){
+			await Add_najie_thing(usr_qq, '圣品' + danyao, '丹药', res_n);
+			e.reply(
+				`${tmp_msg}炼制失败${lose}次，得到"圣品"${danyao}${res_n}颗，获得炼丹经验${
+					total_exp * m
+				}`
+			);
+			return
+		}
+
 		if (
 			danyao == '神心丹' ||
 			danyao == '九阶淬体丹' ||
@@ -887,6 +898,7 @@ export class Occupation extends plugin {
 				}`
 			);
 		} else {
+			let xiuxiandengji = player.level_id;
 			let dengjixiuzheng = player.occupation_level;
 			let newrandom = Math.random();
 			let newrandom2 = Math.random();
@@ -915,7 +927,9 @@ export class Occupation extends plugin {
 						);
 					}
 
-				}else if(newrandom2<=0.01&&(danyao == '仙缘丹'||danyao == '神赐丹')){
+				} else if(
+					newrandom2<=0.0002*(xiuxiandengji+dengjixiuzheng)&&(danyao == '仙缘丹'||danyao == '神赐丹'||danyao == '福源丹')&&res_n<10
+				){
 					await Add_najie_thing(usr_qq, '圣品' + danyao, '丹药', res_n);
 					e.reply(
 						`${tmp_msg}炼制失败${lose}次，得到"圣品"${danyao}${res_n}颗，获得炼丹经验${
