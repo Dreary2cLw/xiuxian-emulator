@@ -125,26 +125,26 @@
     "materials": [
       {
         "name": "凝血草",
-        "amount": 1
+        "amount": 2
       },
       {
         "name": "小吉祥草",
-        "amount": 1
+        "amount": 2
       },
       {
         "name": "大吉祥草",
-        "amount": 1
+        "amount": 2
       },
       {
         "name": "万年甜甜花",
-        "amount": 1
+        "amount": 2
       }
     ],
     "rate": 1,
-    "level_limit": 10,
+    "level_limit": 15,
     "exp": [
-      250,
-      500
+      750,
+      1000
     ]
   },
   {
