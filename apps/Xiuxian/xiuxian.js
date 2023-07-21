@@ -3227,7 +3227,7 @@ export async function get_random_talent() {
 	) {
 		talent = data.talent_list.filter((item) => item.type == '天灵根');
 	} else if (
-		rand<=0.001
+		rand<=0.003
 	) {
 		talent = data.talent_list.filter((item) => item.type == '圣体');
 	} else {
