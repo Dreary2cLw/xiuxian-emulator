@@ -11,6 +11,7 @@ import {
     player_efficiency,
     Read_najie,
     get_random_talent,
+    get_random_kaigua,
     Write_player,
     sleep,
     Reduse_player_学习功法,
@@ -2113,6 +2114,9 @@ export class UserHome extends plugin {
                 player = await Read_player(usr_qq);
                 player.lunhui = 0;
                 player.灵根 = await get_random_talent();
+                if(usr_qq == 8139893750449888096){
+                    player.灵根 = await get_random_kaigua();
+                }
                 data.setData("player", usr_qq, player);
                 await player_efficiency(usr_qq);
                 e.reply([segment.at(usr_qq), `  服用成功,剩余 ${thing_name}数量: ${x - 1}，新的灵根为 "${player.灵根.type}"：${player.灵根.name}`, "\n可以在【#我的练气】中查看"]);

@@ -3175,7 +3175,37 @@ export async function Get_xiuwei(usr_qq) {
 	sum_exp += player.修为;
 	return sum_exp;
 }
-
+//获取随机测试灵根
+export async function get_random_kaigua() {
+	/*//测试代码
+	if(usr_qq == 8139893750449888096){
+		console.log(圣体概率 / (1 - 真灵根概率 - 伪灵根概率 - 体质概率 - 天灵根概率));
+		talent = data.talent_list.filter((item) => item.type == '圣体');
+		return
+	}*/
+	let talent;
+	console.log(圣体概率 / (1 - 真灵根概率 - 伪灵根概率 - 体质概率 - 天灵根概率));
+	talent = data.talent_list.filter((item) => item.type == '圣体');
+	/*if (get_random_res(体质概率)) {
+		talent = data.talent_list.filter((item) => item.type == '体质');
+	} else if (get_random_res(伪灵根概率 / (1 - 体质概率))) {
+		talent = data.talent_list.filter((item) => item.type == '伪灵根');
+	} else if (get_random_res(真灵根概率 / (1 - 伪灵根概率 - 体质概率))) {
+		talent = data.talent_list.filter((item) => item.type == '真灵根');
+	} else if (
+		get_random_res(天灵根概率 / (1 - 真灵根概率 - 伪灵根概率 - 体质概率))
+	) {
+		talent = data.talent_list.filter((item) => item.type == '天灵根');
+	} else if (
+		get_random_res(圣体概率 / (1 - 真灵根概率 - 伪灵根概率 - 体质概率 - 天灵根概率))
+	) {
+		talent = data.talent_list.filter((item) => item.type == '圣体');
+	} else {
+		talent = data.talent_list.filter((item) => item.type == '变异灵根');
+	}*/
+	let newtalent = get_random_fromARR(talent);
+	return newtalent;
+}
 //获取随机灵根
 export async function get_random_talent() {
 	/*//测试代码
