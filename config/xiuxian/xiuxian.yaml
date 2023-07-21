@@ -1,6 +1,6 @@
 CD: #各种操作cd 必须为整数 单位：分
   association: 10080 #宗门维护
-  joinassociation: 10080 #退宗
+  joinassociation: 720 #退宗
   associationbattle: 1440 #宗门大战
   rob: 120 # 打劫CD
   gambling: 3 # 金银坊
