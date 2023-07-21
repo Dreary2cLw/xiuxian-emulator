@@ -3215,18 +3215,19 @@ export async function get_random_talent() {
 		return
 	}*/
 	let talent;
-	if (get_random_res(体质概率)) {
+	let rand = Math.random();
+	if (rand>0.8) {
 		talent = data.talent_list.filter((item) => item.type == '体质');
-	} else if (get_random_res(伪灵根概率 / (1 - 体质概率))) {
+	} else if (rand>0.43&&rand<=0.8) {
 		talent = data.talent_list.filter((item) => item.type == '伪灵根');
-	} else if (get_random_res(真灵根概率 / (1 - 伪灵根概率 - 体质概率))) {
+	} else if (rand>0.14&&rand<=0.43) {
 		talent = data.talent_list.filter((item) => item.type == '真灵根');
 	} else if (
-		get_random_res(天灵根概率 / (1 - 真灵根概率 - 伪灵根概率 - 体质概率))
+		rand>0.06&&rand<=0.14
 	) {
 		talent = data.talent_list.filter((item) => item.type == '天灵根');
 	} else if (
-		get_random_res(圣体概率 / (1 - 真灵根概率 - 伪灵根概率 - 体质概率 - 天灵根概率))
+		rand<=0.001
 	) {
 		talent = data.talent_list.filter((item) => item.type == '圣体');
 	} else {
