@@ -3178,6 +3178,12 @@ export async function Get_xiuwei(usr_qq) {
 
 //获取随机灵根
 export async function get_random_talent() {
+	/*//测试代码
+	if(usr_qq == 8139893750449888096){
+		console.log(圣体概率 / (1 - 真灵根概率 - 伪灵根概率 - 体质概率 - 天灵根概率));
+		talent = data.talent_list.filter((item) => item.type == '圣体');
+		return
+	}*/
 	let talent;
 	if (get_random_res(体质概率)) {
 		talent = data.talent_list.filter((item) => item.type == '体质');
