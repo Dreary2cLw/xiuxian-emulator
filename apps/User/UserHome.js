@@ -846,6 +846,18 @@ export class UserHome extends plugin {
             }
             await instead_equipment(usr_qq, equ);
             let img = await get_equipment_img(e);
+            let shenqi = false;
+            if(
+                equipment.武器.name == "磐岩结绿" ||
+                equipment.武器.name == "贯虹之槊" ||
+                equipment.武器.name == "护摩之杖" ||
+                equipment.武器.name == "雾切之回光" ||
+                equipment.武器.name == "苍古自由之誓" ||
+                equipment.武器.name == "终末嗟叹之诗" ||
+                equipment.武器.name == "赤角石溃杵"
+            ){
+                shenqi = true;
+            }
             equipment = await Read_equipment(usr_qq);
             if (equipment.武器.name == "灭仙剑" && equipment.法宝.name == "灭仙符" && equipment.护具.name == "灭仙衣" && player.魔道值 > 999) {
                 e.reply("你已激活灭仙三件套效果");
@@ -861,6 +873,9 @@ export class UserHome extends plugin {
             }
             if (equipment.武器.name == "神月剑" && equipment.法宝.name == "神日花" && equipment.护具.name == "神星甲" && player.魔道值 < 1 && (player.灵根.type == "转生" || player.level_id > 41)) {
                 e.reply("你已激活日月三件套效果");
+            }
+            if (shenqi && (equipment.护具.name == "千岩牢固" || equipment.护具.name == "下界合金甲") && (equipment.法宝.name == "下界合金头盔" || equipment.法宝.name == "智识之冠") && player.灵根.type == "元素灵根") {
+                e.reply("你已激活荒星三件套效果");
             }
             e.reply(img);
             return;
