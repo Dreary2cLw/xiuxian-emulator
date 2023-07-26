@@ -220,6 +220,18 @@ export async function Write_equipment(usr_qq, equipment) {
 			player['暴击伤害'] = 2.5 + player.仙宠.加成;
 		}
 	}
+	let shenqi = false;
+	if(
+		equipment.武器.name == "磐岩结绿" ||
+		equipment.武器.name == "贯虹之槊" ||
+		equipment.武器.name == "护摩之杖" ||
+		equipment.武器.name == "雾切之回光" ||
+		equipment.武器.name == "苍古自由之誓" ||
+		equipment.武器.name == "终末嗟叹之诗" ||
+		equipment.武器.name == "赤角石溃杵"
+	){
+		shenqi = true;
+	}
 	if (
 		equipment.武器.name == '灭仙剑' &&
 		equipment.法宝.name == '灭仙符' &&
@@ -264,6 +276,17 @@ export async function Write_equipment(usr_qq, equipment) {
 	) {
 		player.攻击 = Math.trunc(1.05 * player.攻击);
 		player.血量上限 = Math.trunc(1.2 * player.血量上限);
+	}
+	if (
+		shenqi &&
+		(equipment.法宝.name == "下界合金头盔" || equipment.法宝.name == "智识之冠") &&
+		(equipment.护具.name == "千岩牢固" || equipment.护具.name == "下界合金甲") &&
+		player.灵根.type == "元素灵根"
+	) {
+		player.攻击 = Math.trunc(1.05 * player.攻击);
+		player.血量上限 = Math.trunc(1.2 * player.血量上限);
+		player.防御 = Math.trunc(1.05 * player.防御);
+
 	}
 	await Write_player(usr_qq, player);
 	await Add_HP(usr_qq, 0);
