@@ -444,6 +444,7 @@ export async function zd_battle(AA_player, BB_player) {
 	let msg = [];
 	let jineng1 = data.jineng1;
 	let jineng2 = data.jineng2;
+	let n = 1;
 	while (A_player.当前血量 > 0 && B_player.当前血量 > 0) {
 		cnt2 = Math.trunc(cnt / 2);
 		let Random = Math.random();
@@ -471,7 +472,8 @@ export async function zd_battle(AA_player, BB_player) {
 			msg,
 			cnt,
 			A_player.gandianhuihe,
-			A_player.chaodaohuihe
+			A_player.chaodaohuihe,
+			n
 		);
 		A_player.gandianhuihe = yuansu.gandianhuihe;
 		A_player.chaodaohuihe = yuansu.chaodaohuihe2;

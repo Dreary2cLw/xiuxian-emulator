@@ -1149,6 +1149,7 @@ export async function Getmsg_battle(A_player, B_player) {
 	let Bgandianhuihe = 0; //感电燃烧回合数
 	let Achaodaohuihe = 0; //超导回合数
 	let Bchaodaohuihe = 0; //超导回合数
+	let n = 1;
 	while (A_player.当前血量 > 0 && B_player.当前血量 > 0) {
 		if (cnt % 2 == 0) {
 			let baoji = baojishanghai(A_player.暴击率);
@@ -1168,7 +1169,8 @@ export async function Getmsg_battle(A_player, B_player) {
 				msg,
 				cnt,
 				Agandianhuihe,
-				Achaodaohuihe
+				Achaodaohuihe,
+				n
 			);
 			Agandianhuihe = yuansu.gandianhuihe;
 			Achaodaohuihe = yuansu.chaodaohuihe2;
@@ -1234,7 +1236,8 @@ ${A_player.名号}攻击了${B_player.名号}，${ifbaoji(baoji)}造成伤害${�
 				msg,
 				cnt,
 				Bgandianhuihe,
-				Bchaodaohuihe
+				Bchaodaohuihe,
+				n
 			);
 			Bgandianhuihe = yuansu.gandianhuihe;
 			Bchaodaohuihe = yuansu.chaodaohuihe2;
@@ -1318,6 +1321,7 @@ export async function TEXT_battle(A_player, B_player) {
 	let Bgandianhuihe = 0; //感电燃烧回合数
 	let Achaodaohuihe = 0; //超导回合数
 	let Bchaodaohuihe = 0; //超导回合数
+	let n = 1;
 	while (A_player.当前血量 > 0 && B_player.当前血量 > 0) {
 		if (cnt % 2 == 0) {
 			let baoji = baojishanghai(A_player.暴击率);
@@ -1337,7 +1341,8 @@ export async function TEXT_battle(A_player, B_player) {
 				msg,
 				cnt,
 				Agandianhuihe,
-				Achaodaohuihe
+				Achaodaohuihe,
+				n
 			);
 			Agandianhuihe = yuansu.gandianhuihe;
 			Achaodaohuihe = yuansu.chaodaohuihe2;
@@ -1404,7 +1409,8 @@ export async function TEXT_battle(A_player, B_player) {
 				msg,
 				cnt,
 				Bgandianhuihe,
-				Bchaodaohuihe
+				Bchaodaohuihe,
+				n
 			);
 			Bgandianhuihe = yuansu.gandianhuihe;
 			Bchaodaohuihe = yuansu.chaodaohuihe2;
@@ -1477,7 +1483,8 @@ export async function Gaodenyuansulun(
 	msg,
 	cnt,
 	Agandianhuihe,
-	chaodaohuihe
+	chaodaohuihe,
+	n
 ) {
 	let yuansu = [
 		'仙之心·火',

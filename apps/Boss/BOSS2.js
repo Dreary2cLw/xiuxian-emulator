@@ -369,6 +369,7 @@ export class BOSS2 extends plugin {
 			let Bgandianhuihe = 0; //感电燃烧回合数
 			let Achaodaohuihe = 0; //超导回合数
 			let Bchaodaohuihe = 0; //超导回合数
+			let n = 1;
 			while (CurrentPlayerAttributes.当前血量 > 0 && WorldBossStatus.当前血量 > 0) {
 				let Random = Math.random();
 				if (!(BattleFrame & 1)) {
@@ -380,7 +381,8 @@ export class BOSS2 extends plugin {
 						msg,
 						BattleFrame,
 						Agandianhuihe,
-						Achaodaohuihe
+						Achaodaohuihe,
+						n
 					);
 					Agandianhuihe = yuansu.gandianhuihe;
 					Achaodaohuihe = yuansu.chaodaohuihe2;
@@ -581,7 +583,8 @@ export class BOSS2 extends plugin {
 						msg,
 						BattleFrame,
 						Bgandianhuihe,
-						Bchaodaohuihe
+						Bchaodaohuihe,
+						n
 					);
 					Bgandianhuihe = yuansu.gandianhuihe;
 					Bchaodaohuihe = yuansu.chaodaohuihe2;
