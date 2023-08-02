@@ -887,7 +887,6 @@ export class Occupation extends plugin {
 			danyao == '六阶玄元丹' ||
 			danyao == '五阶玄元丹' ||
 			danyao == '四阶玄元丹' ||
-			danyao == '转生丹' ||
 			danyao == '性转丹' ||
 			danyao == '破境丹'
 		) {
@@ -1754,7 +1753,8 @@ export class Occupation extends plugin {
 			await Bot.pickGroup(id)
 				.sendMsg(msg)
 				.catch((err) => {
-					Bot.logger.mark(err);
+					console.log(err);
+					//Bot.logger.mark(err);
 				});
 		} else {
 			await common.relpyPrivate(id, msg);
