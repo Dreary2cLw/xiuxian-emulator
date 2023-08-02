@@ -332,7 +332,7 @@ export class GuessLanternRiddles extends plugin {
 				e.reply('你没有足够数量的"泥土百连券"');
 				return;
 			}
-			e.reply('十道金光从天而降');
+			e.reply('百道金光从天而降');
 			let msg = [];
 			let all = [];
 			await sleep(5000);

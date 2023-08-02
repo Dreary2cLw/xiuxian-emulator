@@ -376,7 +376,7 @@ export class SecretPlaceTask extends plugin {
 									}
 							}
 							let random = Math.random(); //万分之一出神迹
-							if (random < 0.0001) {
+					  if (random < 0.0001) {
 								last_msg +=
 									'\n' +
 									B_player.名号 +
@@ -415,6 +415,13 @@ export class SecretPlaceTask extends plugin {
 									B_player.名号 +
 									'倒下后,你正准备离开此地，看见路边草丛里有个长相奇怪的石头，顺手放进了纳戒。';
 								await Add_najie_thing(player_id, '长相奇怪的小石头', '道具', 1);
+							}
+							if (random > 0.94) {
+							last_msg +=
+									'\n' +
+									B_player.名号 +
+									'倒下后,你正准备离开此地，发现阿巴怪注视着你，阿巴怪从袋子随手掏出一个奇怪的东西给你。';
+								await Add_najie_thing(player_id, '泥土百连券', '道具', 1);
 							}
 							let random2 = Math.random();
 							let caoyao = '';
