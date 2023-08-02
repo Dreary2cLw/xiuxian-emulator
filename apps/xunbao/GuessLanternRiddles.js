@@ -35,6 +35,10 @@ export class GuessLanternRiddles extends plugin {
 					fnc: 'skten',
 				},
 				{
+					reg: '^#百连抽寻宝常驻祈愿$',
+					fnc: 'sktenPlus',
+				},
+				{
 					reg: '^#自选存档皮肤.*$',
 					fnc: 'cundan_pifu',
 				},
@@ -297,6 +301,59 @@ export class GuessLanternRiddles extends plugin {
 		}
 		return;
 	}
+		async sktenPlus(e) {
+		if (!e.isGroup) {
+			return;
+		}
+		let usr_qq = e.user_id;
+		let player = await Read_player(usr_qq);
+		//判断是否为匿名创建存档
+		if (usr_qq == 80000000) {
+			return;
+		}
+		//有无存档
+		let ifexistplay = await existplayer(usr_qq);
+		if (!ifexistplay) {
+			return;
+		}
+				let x = await exist_najie_thing(usr_qq, '泥土', '材料');
+				let number = await exist_najie_thing(usr_qq, '泥土', '材料');
+				if (isNotNull(number) && number >= 1) {
+				await Add_najie_thing(usr_qq, '泥土百连券', '道具', -1);
+			} else {
+				e.reply('你没有足够数量的"仙子邀约"');
+				return;
+			}
+			if (!x) {
+				e.reply('你没有【泥土】');
+				return;
+			}
+			if (x < 100) {
+				e.reply('你没有足够的【泥土】');
+				return;
+			}
+			e.reply('十道金光从天而降');
+			let msg = [];
+			let all = [];
+			await sleep(5000);
+			for (var i = 0; 100 > i; i++) {
+				let tianluoRandom = Math.floor(Math.random() * data.changzhu.length);
+
+				msg.push(
+					'一道金光掉落在地上，走近一看是【' + data.changzhu[tianluoRandom].name + '】'
+				);
+				await Add_najie_thing(
+					usr_qq,
+					data.changzhu[tianluoRandom].name,
+					data.changzhu[tianluoRandom].class,
+					1
+				);
+				all.push('【' + data.changzhu[tianluoRandom].name + '】');
+			}
+			await Add_najie_thing(usr_qq, '泥土', '材料', -100);
+			//await ForwardMsg(e, msg);
+			e.reply('恭喜获得\n' + all);
+		}
 	async skten(e) {
 		if (!e.isGroup) {
 			return;
