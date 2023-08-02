@@ -317,19 +317,19 @@ export class GuessLanternRiddles extends plugin {
 			return;
 		}
 				let x = await exist_najie_thing(usr_qq, '泥土', '材料');
-				let number = await exist_najie_thing(usr_qq, '泥土', '材料');
-				if (isNotNull(number) && number >= 1) {
-				await Add_najie_thing(usr_qq, '泥土百连券', '道具', -1);
-			} else {
-				e.reply('你没有足够数量的"仙子邀约"');
-				return;
-			}
-			if (!x) {
+							if (!x) {
 				e.reply('你没有【泥土】');
 				return;
 			}
 			if (x < 100) {
 				e.reply('你没有足够的【泥土】');
+				return;
+			}
+			let number = await exist_najie_thing(usr_qq, '泥土百连券', '道具');
+				if (isNotNull(number) && number >= 1) {
+				await Add_najie_thing(usr_qq, '泥土百连券', '道具', -1);
+			} else {
+				e.reply('你没有足够数量的"泥土百连券"');
 				return;
 			}
 			e.reply('十道金光从天而降');
