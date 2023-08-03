@@ -2134,7 +2134,7 @@ export class UserHome extends plugin {
                 }
                 data.setData("player", usr_qq, player);
                 await player_efficiency(usr_qq);
-                e.reply([segment.at(usr_qq), `  服用成功,剩余 ${thing_name}数量: ${x - 1}，新的灵根为 "${player.灵根.type}"：${player.灵根.name}`, "\n可以在【#我的练气】中查看"]);
+                e.reply([segment.at(usr_qq), `  服用成功,剩余 ${thing_name}数量: ${x - 1}，新的灵根为 "${player.灵根.type}"：${player.灵根.name}`, "\n可以在【/我的练气】中查看"]);
                 return;
             } else if (thing_name == "隐身水") {
                 e.reply(`该道具无法在纳戒中消耗,在打劫非空闲群友时自动消耗`);

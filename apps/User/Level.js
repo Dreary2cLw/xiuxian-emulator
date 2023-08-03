@@ -34,7 +34,7 @@ export class Level extends plugin {
 			priority: 600,
 			rule: [
 				{
-					reg: '^#突破$',
+					reg: '^/突破$',
 					fnc: 'Level_up_normal',
 				},
 				{
@@ -437,7 +437,7 @@ export class Level extends plugin {
 			return;
 		} else if (choice == '确认突破') {
 			redis.set('xiuxian:player:' + usr_qq + ':levelup', 1);
-			e.reply('请再次#突破，或#幸运突破！');
+			e.reply('请再次/突破，或#幸运突破！');
 			//console.log(this.getContext().recall);
 			this.finish('yes');
 			return;
