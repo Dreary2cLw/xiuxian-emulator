@@ -903,7 +903,7 @@ export class Games extends plugin {
 				((last_timeB + shuangxiuTimeout - now_Time) % 60000) / 1000
 			);
 			e.reply(`对方刚被别人采补过,还是等会吧:  ${Couple_m}分 ${Couple_s}秒`);
-			return;
+			//return;
 		}
 		//对方存档
 		let ifexistplay_B = await existplayer(B);
@@ -978,6 +978,7 @@ export class Games extends plugin {
 			A_player.灵根 = await get_random_talent();
 			A_player.修炼效率提升 += A_player.灵根.eff;
 		}
+		console.log(A_player);
 		data.setData('player', A, A_player);
 		if (B_player.灵根 == null || B_player.灵根 == undefined) {
 			B_player.灵根 = await get_random_talent();
