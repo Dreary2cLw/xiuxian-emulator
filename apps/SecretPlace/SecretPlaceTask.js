@@ -416,7 +416,7 @@ export class SecretPlaceTask extends plugin {
 									'倒下后,你正准备离开此地，看见路边草丛里有个长相奇怪的石头，顺手放进了纳戒。';
 								await Add_najie_thing(player_id, '长相奇怪的小石头', '道具', 1);
 							}
-							if (random > 0.94) {
+							if (random > 0.97) {
 							last_msg +=
 									'\n' +
 									B_player.名号 +
