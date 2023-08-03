@@ -901,6 +901,18 @@ export class UserHome extends plugin {
                     return;
                 }
             }
+            if (thing_name == "阿巴亲手包的粽子") {
+                let shicai = await exist_najie_thing(usr_qq, thing_name, "食材")
+                if (shicai >= quantity) {
+                    await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
+                    await Add_饱食度(usr_qq, 2305 * quantity)
+                    e.reply(`服用成功,增加了${2305 * quantity}点饱食度`)
+                    return;
+                } else {
+                    e.reply("你没有那么多的" + thing_name)
+                    return;
+                }
+            }
             if (thing_name == "熟肉") {
                 let shicai = await exist_najie_thing(usr_qq, thing_name, "食材")
                 if (shicai >= quantity) {
@@ -1460,7 +1472,12 @@ export class UserHome extends plugin {
                 await Add_najie_thing(usr_qq, "附魔台", "道具", -1);
                 return
             }
-
+            if (thing_name == "骨头兑换券") {
+                e.reply("获得骨头*100");
+                await Add_najie_thing(usr_qq, "骨头兑换券", "道具", -1);
+                await Add_najie_thing(usr_qq, "骨头", "材料", 100);
+                return
+            }
 
             //寄术原因，写了很多多余的东西，但是能跑
             if (thing_name == "打火石") {
