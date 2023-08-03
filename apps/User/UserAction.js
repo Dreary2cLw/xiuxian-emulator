@@ -29,7 +29,7 @@ export class UserAction extends plugin {
 			priority: 600,
 			rule: [
 				{
-					reg: '^#我的纳戒$',
+					reg: '^/我的纳戒$',
 					fnc: 'Show_najie',
 				},
 				{
@@ -41,7 +41,7 @@ export class UserAction extends plugin {
 		this.xiuxianConfigData = config.getConfig('xiuxian', 'xiuxian');
 	}
 
-	//#我的纳戒
+	///我的纳戒
 	async Show_najie(e) {
 		let usr_qq = e.user_id;
 		//有无存档
@@ -94,7 +94,7 @@ export class UserAction extends plugin {
 		e.reply(
 			`你的纳戒升级成功,花了${
 				najie_price[najie.等级 - 1]
-			}灵石,目前纳戒灵石存储上限为${najie.灵石上限},可以使用【#我的纳戒】来查看`
+			}灵石,目前纳戒灵石存储上限为${najie.灵石上限},可以使用【/我的纳戒】来查看`
 		);
 		return;
 	}

@@ -39,7 +39,7 @@ export class UserStart extends plugin {
       priority: 600,
       rule: [
         {
-          reg: '^#踏入仙途$',
+          reg: '^/踏入仙途$',
           fnc: 'Create_player'
         },
         {
@@ -47,7 +47,7 @@ export class UserStart extends plugin {
           fnc: 'reCreate_player'
         },
         {
-          reg: '^#我的练气$',
+          reg: '^/我的练气$',
           fnc: 'Show_player'
         },
         {
@@ -87,7 +87,7 @@ export class UserStart extends plugin {
       return;
   }*/
 
-  //#踏入仙途
+  ///踏入仙途
   async Create_player(e) {
     //不开放私聊功能
     if (!e.isGroup) {
@@ -355,7 +355,7 @@ export class UserStart extends plugin {
     return;
   }
 
-  //#我的练气
+  ///我的练气
   async Show_player(e) {
     //不开放私聊功能
     let usr_qq = e.user_id;
