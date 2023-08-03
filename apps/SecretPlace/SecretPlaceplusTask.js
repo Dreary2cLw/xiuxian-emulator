@@ -382,12 +382,22 @@ export class SecretPlaceplusTask extends plugin {
 									'倒下后,你正准备离开此地，看见路边草丛里有个长相奇怪的石头，顺手放进了纳戒。';
 								await Add_najie_thing(player_id, '长相奇怪的小石头', '道具', 1);
 							}
-							if (random > 0.97) {
+							if (random > 0.95) {
 							last_msg +=
 									'\n' +
 									B_player.名号 +
 									'倒下后,你正准备离开此地，发现阿巴怪注视着你，阿巴怪从袋子随手掏出一个奇怪的东西给你。';
-								await Add_najie_thing(player_id, '泥土百连券', '道具', 1);
+								let randomAb = Math.random();
+								if(randomAb<0.34){
+									last_msg +='\n' + '获得泥土百连券*1';
+									await Add_najie_thing(player_id, '泥土百连券', '道具', 1);
+								}else if(randomAb>0.66){
+									last_msg +='\n' + '获得骨头兑换券*1';
+									await Add_najie_thing(player_id, '骨头兑换券', '道具', 1);
+								}else{
+									last_msg +='\n' + '获得粽子*1';
+									await Add_najie_thing(player_id, '阿巴亲手包的粽子', '食材', 1);
+								}
 							}
 							let random2 = Math.random();
 							let caoyao = '';
