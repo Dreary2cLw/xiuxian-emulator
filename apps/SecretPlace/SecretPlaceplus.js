@@ -155,8 +155,8 @@ export class SecretPlaceplus extends plugin {
 		}
         if (didian == '广寒宫') {
 			let number = await exist_najie_thing(usr_qq, '可以对仙子无礼券', '道具');
-			if (isNotNull(number) && number >= 1) {
-				await Add_najie_thing(usr_qq, '可以对仙子无礼券', '道具', -1);
+			if (isNotNull(number) && number >= i) {
+				await Add_najie_thing(usr_qq, '可以对仙子无礼券', '道具', -i);
 			} else {
 				e.reply('不可对仙子无理');
 				return;
