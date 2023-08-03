@@ -154,8 +154,13 @@ export class SecretPlaceplus extends plugin {
 			return;
 		}
         if (didian == '广寒宫') {
-			e.reply('不可对仙子无理');
-			return;
+			let number = await exist_najie_thing(usr_qq, '可以对仙子无礼券', '道具');
+			if (isNotNull(number) && number >= 1) {
+				await Add_najie_thing(usr_qq, '可以对仙子无礼券', '道具', -1);
+			} else {
+				e.reply('不可对仙子无理');
+				return;
+			}
 		}
 		let rate = player.occupation_level;
 
