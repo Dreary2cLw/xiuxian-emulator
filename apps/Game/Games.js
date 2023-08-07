@@ -978,11 +978,14 @@ export class Games extends plugin {
 			A_player.灵根 = await get_random_talent();
 			A_player.修炼效率提升 += A_player.灵根.eff;
 		}
+		//console.log(e);
+		A_player.id = e.user_id;
 		data.setData('player', A, A_player);
 		if (B_player.灵根 == null || B_player.灵根 == undefined) {
 			B_player.灵根 = await get_random_talent();
 			B_player.修炼效率提升 += B_player.灵根.eff;
 		}
+		B_player.id = e.at;
 		data.setData('player', B, B_player);
 
 		A_player.法球倍率 = A_player.灵根.法球倍率;
