@@ -666,6 +666,14 @@ export class Occupation extends plugin {
 		let mine_amount3 = Math.floor(time / 30);
 		let mine_amount4 = Math.floor(time / 30);
 		let mine_amount5 = Math.floor(time / 30);
+		let mine_amount6 = Math.floor(time / 30);
+		//煤炭,园石
+		mine_amount4 = mine_amount4*player.occupation_level/4;
+		//金锭
+		mine_amount5 = mine_amount5*player.occupation_level/64;
+		//钻石
+		mine_amount6 = mine_amount6*player.occupation_level/96;
+
 		let rate =
 			data.occupation_exp_list.find((item) => item.id == player.occupation_level)
 				.rate * 10;
@@ -681,6 +689,11 @@ export class Occupation extends plugin {
 
 		let end_amount = Math.floor(4 * (rate + 1) * mine_amount1); //普通矿石
 		let end_amount2 = Math.floor(4 * (rate + 1) * mine_amount3); //稀有
+
+		let end_amount4 = Math.floor(0.7 * (rate + 1) * mine_amount4); //稀有
+		let end_amount5 = Math.floor(0.7 * (rate + 1) * mine_amount5); //稀有
+		let end_amount6 = Math.floor(0.7 * (rate + 1) * mine_amount6); //稀有
+
 		if (player.level_id <= 21) {
 			end_amount *= player.level_id / 40;
 			end_amount2 *= player.level_id / 40;
@@ -707,7 +720,7 @@ export class Occupation extends plugin {
 		await Add_najie_thing(usr_qq, '蓝宝石', '材料', end_amount2);
 		await Add_职业经验(usr_qq, exp);
 		msg.push(
-			`\n采矿归来，${ext}\n收获庚金×${end_amount}\n玄土×${end_amount}\n红宝石×${end_amount2}\n绿宝石×${end_amount2}\n蓝宝石×${end_amount2}`
+			`\n采矿归来，${ext}\n收获庚金×${end_amount}\n玄土×${end_amount}\n红宝石×${end_amount2}\n绿宝石×${end_amount2}\n蓝宝石×${end_amount2}\n圆石×${end_amount4}\n煤炭×${end_amount4}\n金锭×${end_amount5}\n钻石×${end_amount6}`
 		);
 
 		if (group_id) {
