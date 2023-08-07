@@ -416,8 +416,8 @@ export class SecretPlaceplusTask extends plugin {
 											'\n' +
 											B_player.名号 +
 											'倒下后,你正准备离开此地，发现阿巴怪注视着你，阿巴怪随手给了一掌并抢走了你一袋钱。';
-										last_msg +='\n' + '灵石损失20w,修为损失10w,血气增加10w(恼)';
-										await Add_灵石(player_id, -200000);
+										last_msg +='\n' + '灵石损失10w,修为损失10w,血气增加10w(恼)';
+										await Add_灵石(player_id, -100000);
 										await Add_修为(player_id, -100000);
 										await Add_血气(player_id, 100000);
 									}
