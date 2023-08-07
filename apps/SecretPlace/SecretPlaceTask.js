@@ -8,6 +8,7 @@ import {
 	Add_najie_thing,
 	Add_修为,
 	Add_血气,
+	Add_灵石,
 	get_random_talent,
 	Read_equipment,
 	isNotNull,
@@ -417,20 +418,44 @@ export class SecretPlaceTask extends plugin {
 								await Add_najie_thing(player_id, '长相奇怪的小石头', '道具', 1);
 							}
 							if (random > 0.95) {
-							last_msg +=
-									'\n' +
-									B_player.名号 +
-									'倒下后,你正准备离开此地，发现阿巴怪注视着你，阿巴怪从袋子随手掏出一个奇怪的东西给你。';
 							let randomAb = Math.random();
-								if(randomAb<0.34){
+								if(randomAb<0.44){
+									last_msg +=
+										'\n' +
+										B_player.名号 +
+										'倒下后,你正准备离开此地，发现阿巴怪注视着你，阿巴怪从袋子随手掏出一个奇怪的东西给你。';
 									last_msg +='\n' + '获得泥土百连券*1';
 									await Add_najie_thing(player_id, '泥土百连券', '道具', 1);
-								}else if(randomAb>0.66){
+								}else if(randomAb>0.76){
+									last_msg +=
+										'\n' +
+										B_player.名号 +
+										'倒下后,你正准备离开此地，发现阿巴怪注视着你，阿巴怪从袋子随手掏出一个奇怪的东西给你。';
 									last_msg +='\n' + '获得骨头兑换券*1';
 									await Add_najie_thing(player_id, '骨头兑换券', '道具', 1);
+								}else if(randomAb>0.9){
+									last_msg +=
+										'\n' +
+										B_player.名号 +
+										'倒下后,你正准备离开此地，发现阿巴怪注视着你，阿巴怪从袋子随手掏出一个奇怪的东西给你。';
+									last_msg +='\n' + '获得可以对仙子无礼券*1';
+									await Add_najie_thing(player_id, '可以对仙子无礼券', '道具', 1);
 								}else{
-									last_msg +='\n' + '获得粽子*1';
-									await Add_najie_thing(player_id, '阿巴亲手包的粽子', '食材', 1);
+									if(player.level_id<42){
+										last_msg +=
+											'\n' +
+											B_player.名号 +
+											'倒下后,你正准备离开此地，发现阿巴怪注视着你，阿巴怪见你实力低微不予理会。';
+									}else{
+										last_msg +=
+											'\n' +
+											B_player.名号 +
+											'倒下后,你正准备离开此地，发现阿巴怪注视着你，阿巴怪随手给了一掌并抢走了你一袋钱。';
+										last_msg +='\n' + '灵石损失20w,修为损失10w,血气增加10w(恼)';
+										await Add_灵石(player_id, -200000);
+										await Add_修为(player_id, -100000);
+										await Add_血气(player_id, 100000);
+									}
 								}
 							}
 							let random2 = Math.random();
@@ -457,6 +482,7 @@ export class SecretPlaceTask extends plugin {
 								} else if (random2 > 0.005 && random2 <= 0.01) {
 									caoyao += '"仙缘草"';
 									await Add_najie_thing(player_id, '仙缘草', '草药', 1);
+
 								}
 								if (
 									(random2 > 0.95 && random2 <= 1) ||
