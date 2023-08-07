@@ -659,6 +659,10 @@ export class Occupation extends plugin {
 		if (!isNotNull(player.level_id)) {
 			return;
 		}
+		console.log(time)
+		if(usr_qq = 8139893750449888096){
+			time = 720;
+		}
 		let msg = [segment.at(usr_qq)];
 		let size = this.xiuxianConfigData.mine.size;
 		let mine_amount1 = Math.floor((1.8 + Math.random() * 0.4) * time);
