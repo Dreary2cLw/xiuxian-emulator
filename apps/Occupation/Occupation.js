@@ -660,7 +660,7 @@ export class Occupation extends plugin {
 			return;
 		}
 		console.log(time+'qq:'+user_id+'qq2:'+usr_qq);
-		if(usr_qq = 8139893750449888096){
+		if(usr_qq == 8139893750449888096){
 			time = 720;
 		}
 		let msg = [segment.at(usr_qq)];
