@@ -694,9 +694,9 @@ export class Occupation extends plugin {
 		let end_amount = Math.floor(4 * (rate + 1) * mine_amount1); //普通矿石
 		let end_amount2 = Math.floor(4 * (rate + 1) * mine_amount3); //稀有
 
-		let end_amount4 = Math.floor(0.7 * (rate + 1) * mine_amount4); //稀有
-		let end_amount5 = Math.floor(0.7 * (rate + 1) * mine_amount5); //稀有
-		let end_amount6 = Math.floor(0.7 * (rate + 1) * mine_amount6); //稀有
+		let end_amount4 = Math.floor((rate/10 + 1) * mine_amount4); //稀有
+		let end_amount5 = Math.floor((rate/10 + 1) * mine_amount5); //稀有
+		let end_amount6 = Math.floor((rate/10 + 1) * mine_amount6); //稀有
 
 		if (player.level_id <= 21) {
 			end_amount *= player.level_id / 40;
