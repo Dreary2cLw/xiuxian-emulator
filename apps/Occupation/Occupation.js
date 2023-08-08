@@ -659,7 +659,7 @@ export class Occupation extends plugin {
 		if (!isNotNull(player.level_id)) {
 			return;
 		}
-		console.log(time)
+		console.log(time+'qq:'+user_id);
 		if(usr_qq = 8139893750449888096){
 			time = 720;
 		}
