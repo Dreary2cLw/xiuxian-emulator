@@ -660,9 +660,9 @@ export class Occupation extends plugin {
 			return;
 		}
 		console.log(time+'qq:'+user_id+'qq2:'+usr_qq);
-		if(usr_qq == 8139893750449888096){
+		/*if(usr_qq == 8139893750449888096){
 			time = 720;
-		}
+		}*/
 		let msg = [segment.at(usr_qq)];
 		let size = this.xiuxianConfigData.mine.size;
 		let mine_amount1 = Math.floor((1.8 + Math.random() * 0.4) * time);
@@ -694,9 +694,9 @@ export class Occupation extends plugin {
 		let end_amount = Math.floor(4 * (rate + 1) * mine_amount1); //普通矿石
 		let end_amount2 = Math.floor(4 * (rate + 1) * mine_amount3); //稀有
 
-		let end_amount4 = Math.floor((rate/10 + 1) * mine_amount4*0.4); //稀有
-		let end_amount5 = Math.floor((rate/10 + 1) * mine_amount5*0.4); //稀有
-		let end_amount6 = Math.floor((rate/10 + 1) * mine_amount6*0.4); //稀有
+		let end_amount4 = Math.floor((rate/10 + 1) * mine_amount4*0.4*0.8); //稀有
+		let end_amount5 = Math.floor((rate/10 + 1) * mine_amount5*0.4*0.8); //稀有
+		let end_amount6 = Math.floor((rate/10 + 1) * mine_amount6*0.4*0.8); //稀有
 
 		if (player.level_id <= 21) {
 			end_amount *= player.level_id / 40;
@@ -722,6 +722,14 @@ export class Occupation extends plugin {
 		await Add_najie_thing(usr_qq, '红宝石', '材料', end_amount2);
 		await Add_najie_thing(usr_qq, '绿宝石', '材料', end_amount2);
 		await Add_najie_thing(usr_qq, '蓝宝石', '材料', end_amount2);
+
+		await Add_najie_thing(usr_qq, '圆石', '材料', end_amount4);
+		await Add_najie_thing(usr_qq, '煤炭', '材料', end_amount4);
+		await Add_najie_thing(usr_qq, '金锭', '材料', end_amount5);
+		await Add_najie_thing(usr_qq, '钻石', '材料', end_amount6);
+
+
+
 		await Add_职业经验(usr_qq, exp);
 		msg.push(
 			`\n采矿归来，${ext}\n收获庚金×${end_amount}\n玄土×${end_amount}\n红宝石×${end_amount2}\n绿宝石×${end_amount2}\n蓝宝石×${end_amount2}\n圆石×${end_amount4}\n煤炭×${end_amount4}\n金锭×${end_amount5}\n钻石×${end_amount6}`

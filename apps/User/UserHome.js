@@ -2234,11 +2234,15 @@ export class UserHome extends plugin {
                     return;
                 }
                 if (player.攻击加成 < 9000000) {
-                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    player.攻击加成 += 10000;
-                    player.攻击 += 10000;
+                    await Add_najie_thing(usr_qq, thing_name, "道具", -quantity);
+                    let jiacheng = 10000*quantity;
+                    if(player.攻击加成 + jiacheng > 9000000){
+                        jiacheng = 9000000 - player.攻击加成;
+                    }
+                    player.攻击加成 += jiacheng;
+                    player.攻击 += jiacheng;
                     await Write_player(usr_qq, player);
-                    e.reply(`你的攻击力提高了`);
+                    e.reply(`你的攻击力提高了`+jiacheng);
                     return;
                 }
                 if (player.攻击加成 >= 9000000) {
@@ -2256,12 +2260,16 @@ export class UserHome extends plugin {
                     return;
                 }
                 if (player.生命加成 < 90000000) {
-                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    player.生命加成 += 100000;
-                    player.血量上限 += 100000;
-                    player.当前血量 += 100000;
+                    await Add_najie_thing(usr_qq, thing_name, "道具", -quantity);
+                    let jiacheng = 100000*quantity;
+                    if(player.生命加成 + jiacheng>90000000){
+                        jiacheng = 90000000 - player.生命加成;
+                    }
+                    player.生命加成 += jiacheng;
+                    player.血量上限 += jiacheng;
+                    player.当前血量 += jiacheng;
                     await Write_player(usr_qq, player);
-                    e.reply(`你的生命值提高了`);
+                    e.reply(`你的生命值提高了`+jiacheng);
                     return;
                 }
                 if (player.生命加成 >= 90000000) {
@@ -2279,11 +2287,15 @@ export class UserHome extends plugin {
                     return;
                 }
                 if (player.防御加成 < 9000000) {
-                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    player.防御加成 += 10000;
-                    player.防御 += 10000;
+                    await Add_najie_thing(usr_qq, thing_name, "道具", -quantity);
+                    let jiacheng = 10000*quantity;
+                    if(player.防御加成 + jiacheng > 9000000){
+                        jiacheng = 9000000 - player.防御加成;
+                    }
+                    player.防御加成 += jiacheng;
+                    player.防御 += jiacheng;
                     await Write_player(usr_qq, player);
-                    e.reply(`你的防御力提高了`);
+                    e.reply(`你的防御力提高了`+jiacheng);
                     return;
                 }
                 if (player.防御加成 >= 9000000) {
@@ -2301,11 +2313,15 @@ export class UserHome extends plugin {
                     return;
                 }
                 if (player.攻击加成 < 9000000) {
-                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    player.攻击加成 += 10000;
-                    player.攻击 += 10000;
+                    await Add_najie_thing(usr_qq, thing_name, "道具", -quantity);
+                    let jiacheng = 10000*quantity;
+                    if (player.攻击加成 + jiacheng > 9000000) {
+                        jiacheng = 9000000 - player.攻击加成;
+                    }
+                    player.攻击加成 += jiacheng;
+                    player.攻击 += jiacheng;
                     await Write_player(usr_qq, player);
-                    e.reply(`你的攻击力提高了`);
+                    e.reply(`你的攻击力提高了`+jiacheng);
                     return;
                 }
                 if (player.攻击加成 >= 9000000) {
@@ -2323,12 +2339,16 @@ export class UserHome extends plugin {
                     return;
                 }
                 if (player.生命加成 < 90000000) {
-                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    player.生命加成 += 100000;
-                    player.血量上限 += 100000;
-                    player.当前血量 += 100000;
+                    await Add_najie_thing(usr_qq, thing_name, "道具", -quantity);
+                    let jiacheng = 100000*quantity;
+                    if (player.生命加成 > 90000000){
+                        jiacheng = 90000000 - player.生命加成;
+                    }
+                    player.生命加成 += jiacheng;
+                    player.血量上限 += jiacheng;
+                    player.当前血量 += jiacheng;
                     await Write_player(usr_qq, player);
-                    e.reply(`你的生命值提高了`);
+                    e.reply(`你的生命值提高了`+jiacheng);
                     return;
                 }
                 if (player.生命加成 >= 90000000) {
@@ -2337,7 +2357,6 @@ export class UserHome extends plugin {
                 }
             } else if (thing_name == "甲神石") {
                 let daoju = await exist_najie_thing(usr_qq, thing_name, '道具')
-                e.reply(thing_name+'！有'+daoju+'消耗'+quantity);
                 if(daoju<quantity){
                     e.reply(thing_name+'数量不足！有'+daoju+'消耗'+quantity);
                     return;
@@ -2349,7 +2368,7 @@ export class UserHome extends plugin {
                 if (player.防御加成 < 9000000) {
                     await Add_najie_thing(usr_qq, thing_name, "道具", -quantity);
                     let jiacheng = 10000*quantity;
-                    if( player.防御加成 + jiacheng >=  9000000){
+                    if( player.防御加成 + jiacheng >  9000000){
                         jiacheng = 9000000 - player.防御加成
                     }
                     player.防御加成 += jiacheng;
