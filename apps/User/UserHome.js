@@ -2224,6 +2224,11 @@ export class UserHome extends plugin {
                     return;
                 }
             } else if (thing_name == "武魂石") {
+                let daoju = await exist_najie_thing(usr_qq, thing_name, "道具");
+                if(daoju<quantity){
+                    e.reply(thing_name+'数量不足！');
+                    return;
+                }
                 if (player.魔道值 < 1000) {
                     e.reply(`你还是提升点魔道值再用吧!`);
                     return;
@@ -2241,6 +2246,11 @@ export class UserHome extends plugin {
                     return;
                 }
             } else if (thing_name == "法魂石") {
+                let daoju = await exist_najie_thing(usr_qq, thing_name, "道具");
+                if(daoju<quantity){
+                    e.reply(thing_name+'数量不足！');
+                    return;
+                }
                 if (player.魔道值 < 1000) {
                     e.reply(`你还是提升点魔道值再用吧!`);
                     return;
@@ -2259,6 +2269,11 @@ export class UserHome extends plugin {
                     return;
                 }
             } else if (thing_name == "甲魂石") {
+                let daoju = await exist_najie_thing(usr_qq, thing_name, "道具");
+                if(daoju<quantity){
+                    e.reply(thing_name+'数量不足！');
+                    return;
+                }
                 if (player.魔道值 < 1000) {
                     e.reply(`你还是提升点魔道值再用吧!`);
                     return;
@@ -2276,6 +2291,11 @@ export class UserHome extends plugin {
                     return;
                 }
             } else if (thing_name == "武神石") {
+                let daoju = await exist_najie_thing(usr_qq, thing_name, "道具")
+                if(daoju<quantity){
+                    e.reply(thing_name+'数量不足！');
+                    return;
+                }
                 if (player.魔道值 > 0 || (player.灵根.type != "转生" && player.level_id < 42)) {
                     e.reply(`你尝试使用它,但是失败了`);
                     return;
@@ -2293,6 +2313,11 @@ export class UserHome extends plugin {
                     return;
                 }
             } else if (thing_name == "法神石") {
+                let daoju = await exist_najie_thing(usr_qq, thing_name, "道具")
+                if(daoju<quantity){
+                    e.reply(thing_name+'数量不足！');
+                    return;
+                }
                 if (player.魔道值 > 0 || (player.灵根.type != "转生" && player.level_id < 42)) {
                     e.reply(`你尝试使用它,但是失败了`);
                     return;
@@ -2311,16 +2336,25 @@ export class UserHome extends plugin {
                     return;
                 }
             } else if (thing_name == "甲神石") {
+                let daoju = await exist_najie_thing(usr_qq, thing_name, "道具")
+                if(daoju<quantity){
+                    e.reply(thing_name+'数量不足！有'+daoju+'消耗'+quantity);
+                    return;
+                }
                 if (player.魔道值 > 0 || (player.灵根.type != "转生" && player.level_id < 42)) {
                     e.reply(`你尝试使用它,但是失败了`);
                     return;
                 }
                 if (player.防御加成 < 9000000) {
-                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    player.防御加成 += 10000;
-                    player.防御 += 10000;
+                    await Add_najie_thing(usr_qq, thing_name, "道具", -i);
+                    let jiacheng = 10000*i;
+                    if( player.防御加成 + jiacheng >=  9000000){
+                        jiacheng = 9000000 - player.防御加成
+                    }
+                    player.防御加成 += jiacheng;
+                    player.防御 += jiacheng;
                     await Write_player(usr_qq, player);
-                    e.reply(`你的防御力提高了`);
+                    e.reply(`你的防御力提高了`+jiacheng);
                     return;
                 }
                 if (player.防御加成 >= 9000000) {
