@@ -2336,7 +2336,7 @@ export class UserHome extends plugin {
                     return;
                 }
             } else if (thing_name == "甲神石") {
-                let daoju = await exist_najie_thing(usr_qq, thing_name, thing_name.class)
+                let daoju = await exist_najie_thing(usr_qq, thing_name, '道具')
                 e.reply(thing_name+'！有'+daoju+'消耗'+quantity);
                 if(daoju<quantity){
                     e.reply(thing_name+'数量不足！有'+daoju+'消耗'+quantity);
