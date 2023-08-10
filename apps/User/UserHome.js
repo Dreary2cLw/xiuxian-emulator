@@ -2358,7 +2358,7 @@ export class UserHome extends plugin {
             } else if (thing_name == "甲神石") {
                 let daoju = await exist_najie_thing(usr_qq, thing_name, '道具')
                 if(daoju<quantity){
-                    e.reply(thing_name+'数量不足！有'+daoju+'消耗'+quantity);
+                    e.reply(thing_name+'数量不足！');
                     return;
                 }
                 if (player.魔道值 > 0 || (player.灵根.type != "转生" && player.level_id < 42)) {
