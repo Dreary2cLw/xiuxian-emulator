@@ -2336,7 +2336,8 @@ export class UserHome extends plugin {
                     return;
                 }
             } else if (thing_name == "甲神石") {
-                let daoju = await exist_najie_thing(usr_qq, thing_name, "道具")
+                let daoju = await exist_najie_thing(usr_qq, thing_name, thing_name.class)
+                e.reply(thing_name+'！有'+daoju+'消耗'+quantity);
                 if(daoju<quantity){
                     e.reply(thing_name+'数量不足！有'+daoju+'消耗'+quantity);
                     return;
@@ -2346,8 +2347,8 @@ export class UserHome extends plugin {
                     return;
                 }
                 if (player.防御加成 < 9000000) {
-                    await Add_najie_thing(usr_qq, thing_name, "道具", -i);
-                    let jiacheng = 10000*i;
+                    await Add_najie_thing(usr_qq, thing_name, "道具", -quantity);
+                    let jiacheng = 10000*quantity;
                     if( player.防御加成 + jiacheng >=  9000000){
                         jiacheng = 9000000 - player.防御加成
                     }

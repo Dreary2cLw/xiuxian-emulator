@@ -154,7 +154,7 @@ export class OccupationTask extends plugin {
 						let mine_amount5 = Math.floor(time / 30);
 						let mine_amount6 = Math.floor(time / 30);
 						//煤炭,园石
-						mine_amount4 = mine_amount4*player.occupation_level/4;
+						mine_amount4 = mine_amount4*player.occupation_level/8;
 						//金锭
 						mine_amount5 = mine_amount5*player.occupation_level/64;
 						//钻石
@@ -174,9 +174,9 @@ export class OccupationTask extends plugin {
 						let end_amount = Math.floor(4 * (rate + 1) * mine_amount1); //普通矿石
 						let end_amount2 = Math.floor(4 * (rate + 1) * mine_amount3); //稀有
 
-						let end_amount4 = Math.floor((rate/10 + 1) * mine_amount4*0.6); //稀有
-						let end_amount5 = Math.floor((rate/10 + 1) * mine_amount5*0.6); //稀有
-						let end_amount6 = Math.floor((rate/10 + 1) * mine_amount6*0.6); //稀有
+						let end_amount4 = Math.floor((rate/10 + 1) * mine_amount4*0.4); //稀有
+						let end_amount5 = Math.floor((rate/10 + 1) * mine_amount5*0.4); //稀有
+						let end_amount6 = Math.floor((rate/10 + 1) * mine_amount6*0.4); //稀有
 
 						if (player.level_id <= 21) {
 							end_amount *= player.level_id / 40;
