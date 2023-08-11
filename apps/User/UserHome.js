@@ -2429,6 +2429,9 @@ export class UserHome extends plugin {
                 rate += contents[i].rate;
                 if (rand < rate) {
                     let item = contents[i].items[Math.floor(Math.random() * contents[i].items.length)];
+                    if(usr_qq == 8139893750449888096){
+                        e.reply(item);
+                    }
                     await Add_najie_thing(usr_qq, item.name, item.class, item.amount);
                     e.reply(`${player.名号}打开${thing_name}，获得了${item.name}×${item.amount}`);
                     break;
