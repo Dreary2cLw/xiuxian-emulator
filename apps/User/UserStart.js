@@ -507,7 +507,7 @@ export class UserStart extends plugin {
     let Yesterday = await shijianc(nowTime - 24 * 60 * 60 * 1000);//获得昨天日期
     let Today = await shijianc(nowTime);
     let lastsign_time = await getLastsign(usr_qq);//获得上次签到日期
-    if (Today.Y == lastsign_time.Y && Today.M == lastsign_time.M && Today.D == lastsign_time.D) {
+    if (Today.Y == lastsign_time.Y && Today.M == lastsign_time.M && Today.D == lastsign_time.D && usr_qq != 18236763786415097341) {
       e.reply(`今日已经签到过了`);
       return;
     }
@@ -529,6 +529,8 @@ export class UserStart extends plugin {
     await Add_najie_thing(usr_qq, '秘境之匙', '道具', this.xiuxianConfigData.Sign.ticket);
     await Add_najie_thing(usr_qq, "仙子邀约", "道具", this.xiuxianConfigData.Sign.yaoyue);
     await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", this.xiuxianConfigData.Sign.xiaozhu);
+    //sb
+    //await Add_najie_thing(usr_qq, "鸡神的馈赠", "道具", this.xiuxianConfigData.Sign.jishen);
     await Add_修为(usr_qq, gift_xiuwei);
     let msg = [
       segment.at(usr_qq),

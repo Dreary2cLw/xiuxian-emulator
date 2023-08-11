@@ -34,7 +34,7 @@ export class Level extends plugin {
 			priority: 600,
 			rule: [
 				{
-					reg: '^/突破$',
+					reg: '^#突破$',
 					fnc: 'Level_up_normal',
 				},
 				{
