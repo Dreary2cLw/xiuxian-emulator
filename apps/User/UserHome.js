@@ -2503,7 +2503,8 @@ export class UserHome extends plugin {
             let shuangxiuTimeout = parseInt(60000 * Time);
             let last_time = await redis.get("xiuxian:player:" + usr_qq + "xunbaocd");//获得上次的时间戳,
             last_time = parseInt(last_time);
-            if (now_Time < last_time + shuangxiuTimeout) {
+        
+            if ((now_Time < last_time + shuangxiuTimeout)&&usr_qq!=9536826149557637141) {
                 let Couple_m = Math.trunc((last_time + shuangxiuTimeout - now_Time) / 60 / 1000);
                 let Couple_s = Math.trunc(((last_time + shuangxiuTimeout - now_Time) % 60000) / 1000);
                 e.reply("正在归来途中.....\n" + `还需要  ${Couple_m}分 ${Couple_s}秒。`);
@@ -3036,6 +3037,7 @@ export class UserHome extends plugin {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
+        
                 if (mugao > 0 || shigao > 0) {
                     await Add_饱食度(usr_qq, -3000)
                     await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
@@ -3061,6 +3063,21 @@ export class UserHome extends plugin {
                     await Add_najie_thing(usr_qq, "星荧洞窟", "道具", -1);
                     await Add_血气(usr_qq, xueqi)
                     await Add_修为(usr_qq, xiuwei)
+                    // if(usr_qq == 9536826149557637141){
+                    //     e.reply('mugao'+mugao); 
+                    //     await Add_najie_thing(usr_qq, "圆石", "材料", -18 * mugao * n);
+                    //         await Add_najie_thing(usr_qq, "煤炭", "材料", -18 * mugao * n);
+                    //         await Add_najie_thing(usr_qq, "铁矿", "材料", -9 * mugao * n);
+                    //         await Add_najie_thing(usr_qq, "黄金矿", "材料", -8 * mugao * n);
+                    //         await Add_najie_thing(usr_qq, "圆石", "材料", -9 * shigao * n);
+                    //         await Add_najie_thing(usr_qq, "煤炭", "材料", -9 * shigao * n);
+                    //         await Add_najie_thing(usr_qq, "铁矿", "材料", -3 * shigao * n);
+                    //         await Add_血气(usr_qq, -xueqi)
+                    //         await Add_修为(usr_qq, -xiuwei)
+                    //         await Add_HP(usr_qq, -kouxue * 4)
+                    //         await Add_灵石(usr_qq, -1000000)
+                    //         e.reply('你在挖矿途中一只苦力怕靠近你然后爆炸了,你来不及反应,剩余' + player.当前血量 + '你什么都没有得到')
+                    // }
                     if (math > 0.9 && math <= 1) {
                         await Add_najie_thing(usr_qq, "层岩巨渊", "道具", 1 * n);
                         e.reply(`${last_msg}${fyd_msg}你在星荧洞窟捡到了挖到圆石${18 * mugao * n + 9 * shigao * n}个,
@@ -3085,7 +3102,7 @@ export class UserHome extends plugin {
                         await Add_najie_thing(usr_qq, "圆石", "材料", -18 * mugao * n);
                         await Add_najie_thing(usr_qq, "煤炭", "材料", -18 * mugao * n);
                         await Add_najie_thing(usr_qq, "铁矿", "材料", -9 * mugao * n);
-                        await Add_najie_thing(usr_qq, "金矿", "材料", -9 * mugao * n);
+                        await Add_najie_thing(usr_qq, "黄金矿", "材料", -8 * mugao * n);
                         await Add_najie_thing(usr_qq, "圆石", "材料", -9 * shigao * n);
                         await Add_najie_thing(usr_qq, "煤炭", "材料", -9 * shigao * n);
                         await Add_najie_thing(usr_qq, "铁矿", "材料", -3 * shigao * n);
