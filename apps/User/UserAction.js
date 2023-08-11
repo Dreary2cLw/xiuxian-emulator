@@ -29,7 +29,7 @@ export class UserAction extends plugin {
 			priority: 600,
 			rule: [
 				{
-					reg: '^/我的纳戒$',
+					reg: '^#我的纳戒$',
 					fnc: 'Show_najie',
 				},
 				{
