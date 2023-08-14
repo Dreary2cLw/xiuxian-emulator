@@ -7,6 +7,8 @@ import {
 	__PATH,
 	Add_najie_thing,
 	Add_灵石,
+	Add_修为,
+	Add_血气,
 	Check_thing,
 	convert2integer,
 	exist_najie_thing,
@@ -15,7 +17,7 @@ import {
 	Locked_najie_thing,
 	Read_player,
 } from '../Xiuxian/xiuxian.js';
-import {Add_修为, Add_血气, isNotNull} from "../Xiuxian/xiuxian";
+import {isNotNull} from "../Xiuxian/xiuxian";
 
 /**
  * 全局变量
