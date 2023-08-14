@@ -4,6 +4,7 @@ import Help from '../../model/help.js';
 import Help1 from '../../model/xunbaohelp.js';
 import Help2 from '../../model/shituhelp.js';
 import md5 from 'md5';
+import {Add_血气,Add_修为,existplayer, Read_player} from "../Xiuxian/xiuxian";
 
 let helpData = {
 	md5: '',
@@ -49,6 +50,10 @@ export class BotHelp extends plugin {
 					reg: '^#师徒帮助$',
 					fnc: 'shituhelp',
 				},
+				{
+					reg: '^#血气置换$',
+					fnc: 'xueqichange',
+				}
 			],
 		});
 	}
@@ -117,6 +122,51 @@ export class BotHelp extends plugin {
 		await e.reply(img);
 	}
 
+	async xueqichange(e) {
+		if (!e.isGroup) {
+			return;
+		}
+		//有无存档
+		let ifexistplay = await existplayer(usr_qq);
+		if (!ifexistplay) {
+			return;
+		}
+		//获取游戏状态
+		let game_action = await redis.get('xiuxian:player:' + usr_qq + ':game_action');
+		//防止继续其他娱乐行为
+		if (game_action == 0) {
+			e.reply('修仙：游戏进行中...');
+			return;
+		}
+		//查询redis中的人物动作
+		let action = await redis.get('xiuxian:player:' + usr_qq + ':action');
+		action = JSON.parse(action);
+		if (action != null) {
+			//人物有动作查询动作结束时间
+			let action_end_time = action.end_time;
+			let now_time = new Date().getTime();
+			if (now_time <= action_end_time) {
+				let m = parseInt((action_end_time - now_time) / 1000 / 60);
+				let s = parseInt((action_end_time - now_time - m * 60 * 1000) / 1000);
+				e.reply('正在' + action.action + '中,剩余时间:' + m + '分' + s + '秒');
+				return;
+			}
+		}
+		let usr_qq = e.user_id;
+		let A_player = await Read_player(usr_qq);
+		if(A_player.Physique_id != 54){
+			e.reply('只有炼体境界一介凡体可置换！')
+			return;
+		}
+		let xieqi = A_player.血气;
+		if(xieqi<900000000){
+			e.reply('血气大于900000000才可置换！')
+			return;
+		}
+		await Add_血气(usr_qq, -xieqi);
+		await Add_修为(usr_qq, Math.floor(xieqi*0.8));
+		return;
+	}
 	async cache(data) {
 		let tmp = md5(JSON.stringify(data));
 		if (helpData.md5 == tmp) return helpData.img;

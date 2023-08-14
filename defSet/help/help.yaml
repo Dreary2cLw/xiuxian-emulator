@@ -234,3 +234,6 @@
     - icon: help-icon_14
       title: '#寻宝帮助'
       desc: '查看寻宝指令'
+    - icon: help-icon_14
+      title: '#血气置换'
+      desc: '查看寻宝指令'

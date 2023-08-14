@@ -258,6 +258,16 @@ export class Garden extends plugin {
 		let player1 = data.getData('player', qq); //读取用户修仙信息
 		let qingdianshu = await exist_najie_thing(usr_qq, '剑神一剑', '道具');
 		if (qingdianshu !== false && qingdianshu !== 0) {
+			if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
+				let time2 = 60; //时间（分钟）
+				let action_time2 = 60000 * time2; //持续时间，单位毫秒
+				let action2 = await redis.get('xiuxian:player:' + qq + ':action');
+				action2 = await JSON.parse(action2);
+				action2.action = '禁闭';
+				action2.end_time = new Date().getTime() + action_time2;
+				await redis.set('xiuxian:player:' + qq + ':action', JSON.stringify(action2));
+				e.reply(`测试---剑神一剑【残云封天】，封！`);
+			}
 			//判断纳戒有没有剑帝信物
 			let num1 = Math.round(Math.random() * 100 * 1.1); //能跑就行，暂时不用在意取名细节
 			let num2 = Math.round((Math.random() * 100) / 1.1);
