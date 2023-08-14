@@ -76,7 +76,7 @@
 	{
 		"id": 222,
 		"name": "金银坊",
-		"Grade": 1,
+		"Grade": 2,
 		"state": 0,
 		"price": 200000,
 		"one": [
@@ -219,7 +219,7 @@
 	{
 		"id": 444,
 		"name": "星阁",
-		"Grade": 3,
+		"Grade": 2,
 		"state": 0,
 		"price": 900000,
 		"one": [

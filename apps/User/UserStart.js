@@ -39,7 +39,7 @@ export class UserStart extends plugin {
       priority: 600,
       rule: [
         {
-          reg: '^/踏入仙途$',
+          reg: '^#踏入仙途$',
           fnc: 'Create_player'
         },
         {
@@ -47,7 +47,7 @@ export class UserStart extends plugin {
           fnc: 'reCreate_player'
         },
         {
-          reg: '^/我的练气$',
+          reg: '^#我的练气$',
           fnc: 'Show_player'
         },
         {
