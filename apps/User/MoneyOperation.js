@@ -15,6 +15,7 @@ import {
 	Locked_najie_thing,
 	Read_player,
 } from '../Xiuxian/xiuxian.js';
+import {Add_修为, Add_血气, isNotNull} from "../Xiuxian/xiuxian";
 
 /**
  * 全局变量
@@ -66,6 +67,10 @@ export class MoneyOperation extends plugin {
 				{
 					reg: '^#打开钱包$',
 					fnc: 'openwallet',
+				},
+				{
+					reg: '^#开启诅咒盒子$',
+					fnc: 'openabbox',
 				},
 				{
 					reg: '#交税[1-9]d*',
@@ -722,7 +727,94 @@ export class MoneyOperation extends plugin {
 		e.reply(`【全服公告】 ${player.名号} 获得${lingshi}灵石的补偿`);
 		return;
 	}
+	async openabbox(e) {
+		//不开放私聊功能
+		if (!e.isGroup) {
+			return;
+		}
+		let usr_qq = e.user_id;
+		//有无存档
+		let ifexistplay = await existplayer(usr_qq);
+		if (!ifexistplay) {
+			return;
+		}
+		//获取游戏状态
+		let game_action = await redis.get('xiuxian:player:' + usr_qq + ':game_action');
+		//防止继续其他娱乐行为
+		if (game_action == 0) {
+			e.reply('修仙：游戏进行中...');
+			return;
+		}
+		//查询redis中的人物动作
+		let action = await redis.get('xiuxian:player:' + usr_qq + ':action');
+		action = JSON.parse(action);
+		if (action != null) {
+			//人物有动作查询动作结束时间
+			let action_end_time = action.end_time;
+			let now_time = new Date().getTime();
+			if (now_time <= action_end_time) {
+				let m = parseInt((action_end_time - now_time) / 1000 / 60);
+				let s = parseInt((action_end_time - now_time - m * 60 * 1000) / 1000);
+				e.reply('正在' + action.action + '中,剩余时间:' + m + '分' + s + '秒');
+				return;
+			}
+		}
+		let A_player = await Read_player(usr_qq);
+		if(A_player.level_id<47){
+			e.reply('强大的压迫感让你无法靠近盒子，提升修为再来吧！');
+			return;
+		}
+		let number = await exist_najie_thing(usr_qq, '诅咒钥匙', '道具');
+		if (isNotNull(number) && number >= 1) {
+		} else {
+			e.reply('你试了试用蛮力打开盒子，盒子纹丝未动，似乎只能用钥匙才能打开');
+			return;
+		}
+		/** 设置上下文 */
+		this.setContext('qiyunduidu');
+		/** 回复 */
+		await e.reply('幽暗的盒子倒映出阿巴怪的影子！')
+		await e.reply('是否消耗灵石、血气、修为各1kw与阿巴怪展开气运对赌？回复:【蛐蛐阿巴】或者【下次一定】进行选择', false, { at: true });
+		return
+	}
+	async qiyunduidu(e) {
+		//不开放私聊功能
+		if (!e.isGroup) {
+			return;
+		}
+		let usr_qq = e.user_id;
+		/** 内容 */
+		let new_msg = this.e.message;
+		let choice = new_msg[0].text;
+		let code = choice.split("\*");
+		e.reply(new_msg+'new_msg:'+code);
+		let les = code[0];//条件
+		let gonfa = code[1];//功法
+		if(les == '下次一定'){
+			e.reply('对赌取消');
+			this.finish('qiyunduidu');
+			return;
+		}else if(les == '蛐蛐阿巴'){
+			await Add_najie_thing(usr_qq, '诅咒钥匙', '道具', -1);
+			/*await Add_灵石(usr_qq, -10000000);
+			await Add_修为(usr_qq, -10000000);
+			await Add_血气(usr_qq, -10000000);*/
+			let random = Math.random();
+			if(random>0.5){
+				e.reply('你赢了！');
+			}else if(random<0.4){
+				e.reply('你输了！');
+			}else{
+				e.reply('你一瞬间击垮了阿巴怪！');
+				e.reply('阿巴怪认可了你的「强运」！');
+				//获得圣品福源*1
+				//灵石、血气、修为各1.5kw
 
+			}
+			this.finish('qiyunduidu');
+			return;
+		}
+	}
 	async openwallet(e) {
 		//不开放私聊功能
 		if (!e.isGroup) {

@@ -172,6 +172,9 @@
     - icon: help-icon_10
       title: "#打开钱包"
       desc: "水脚脚的钱包"
+    - icon: help-icon_10
+      title: "#开启诅咒盒子"
+      desc: "天生受到气运诅咒的阿巴怪，永不屈服！天生气运之人，可敢一战？"
     - icon: help-icon_53
       title: "#金银坊"
       desc: "需要携带一定灵石"

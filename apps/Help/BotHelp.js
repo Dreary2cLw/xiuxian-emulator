@@ -126,6 +126,7 @@ export class BotHelp extends plugin {
 		if (!e.isGroup) {
 			return;
 		}
+		let usr_qq = e.user_id;
 		//有无存档
 		let ifexistplay = await existplayer(usr_qq);
 		if (!ifexistplay) {
@@ -152,7 +153,6 @@ export class BotHelp extends plugin {
 				return;
 			}
 		}
-		let usr_qq = e.user_id;
 		let A_player = await Read_player(usr_qq);
 		if(A_player.Physique_id != 54){
 			e.reply('只有炼体境界一介凡体可置换！')
