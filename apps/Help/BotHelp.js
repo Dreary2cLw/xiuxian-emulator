@@ -170,6 +170,7 @@ export class BotHelp extends plugin {
 		}
 		await Add_血气(usr_qq, -xieqi);
 		await Add_修为(usr_qq, Math.floor(xieqi*0.8));
+		e.reply('置换成功！')
 		return;
 	}
 	async cache(data) {
