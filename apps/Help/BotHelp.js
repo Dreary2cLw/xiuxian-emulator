@@ -4,9 +4,11 @@ import Help from '../../model/help.js';
 import Help1 from '../../model/xunbaohelp.js';
 import Help2 from '../../model/shituhelp.js';
 import md5 from 'md5';
-import {existplayer, Read_player} from "../Xiuxian/xiuxian";
 import {
-	Add_血气,Add_修为
+	Add_血气,
+	Add_修为,
+	existplayer,
+	Read_player
 } from '../Xiuxian/xiuxian.js';
 
 let helpData = {

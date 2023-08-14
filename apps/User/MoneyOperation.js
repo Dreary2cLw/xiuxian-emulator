@@ -16,8 +16,8 @@ import {
 	foundthing,
 	Locked_najie_thing,
 	Read_player,
+	isNotNull
 } from '../Xiuxian/xiuxian.js';
-import {isNotNull} from "../Xiuxian/xiuxian";
 
 /**
  * 全局变量
