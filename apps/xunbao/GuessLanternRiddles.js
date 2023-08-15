@@ -153,7 +153,7 @@ export class GuessLanternRiddles extends plugin {
 					e.reply('你没有金银花种子');
 					return;
 				}
-				let gufen = await exist_najie_thing(usr_qq, '金克拉', '材料');
+				let gufen = await exist_najie_thing(usr_qq, '金克拉', '道具');
 				if (!gufen) {
 					e.reply('你没有金克拉');
 					return;
