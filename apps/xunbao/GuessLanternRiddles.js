@@ -125,6 +125,55 @@ export class GuessLanternRiddles extends plugin {
 			await redis.set('xiuxian:player:' + usr_qq + 'ganzhe1', ganzhe1);
 			return;
 		}
+		if (thing_name == '金银花') {
+			if(usr_qq != 9536826149557637141){
+				return;
+			}
+			let jinyinhua = await exist_najie_thing(usr_qq, '金银花种子', '食材');
+			var Time = 60;
+			let jinyinhua1;
+			let now_Time = new Date().getTime(); //获取当前时间戳
+			let shuangxiuTimeout = parseInt(60000 * Time);
+			let last_time = await redis.get('xiuxian:player:' + usr_qq + 'jinyinhua'); //获得上次的时间戳,
+			last_time = parseInt(last_time);
+			if (now_Time < last_time + shuangxiuTimeout) {
+				let Couple_m = Math.trunc(
+					(last_time + shuangxiuTimeout - now_Time) / 60 / 1000
+				);
+				let Couple_s = Math.trunc(
+					((last_time + shuangxiuTimeout - now_Time) % 60000) / 1000
+				);
+				e.reply('上一个金银花还没成熟' + `剩余时间:  ${Couple_m}分 ${Couple_s}秒`);
+				return;
+			}
+
+			jinyinhua1 = await redis.get('xiuxian:player:' + usr_qq + 'jinyinhua1');
+			if (jinyinhua1 == 0 || jinyinhua1 == null) {
+				if (!jinyinhua) {
+					e.reply('你没有金银花种子');
+					return;
+				}
+				let gufen = await exist_najie_thing(usr_qq, '金克拉', '材料');
+				if (!gufen) {
+					e.reply('你没有金克拉');
+					return;
+				}
+				e.reply('你消耗了一袋金克拉,土地变得肥沃了，可以种植作物了');
+				await Add_najie_thing(usr_qq, '金克拉', '材料', -1);
+				sleep(5000);
+				jinyinhua1 = 1;
+				await redis.set('xiuxian:player:' + usr_qq + 'jinyinhua1', jinyinhua1);
+				await Add_najie_thing(usr_qq, '金银花种子', '食材', -1);
+				e.reply('成功种下一个金银花种子,60分钟后成熟');
+				await redis.set('xiuxian:player:' + usr_qq + 'jinyinhua', now_Time);
+				return;
+			}
+
+			jinyinhua1 = 2;
+			e.reply('先收获你的上一个甘蔗再种下一个吧');
+			await redis.set('xiuxian:player:' + usr_qq + 'ganzhe1', jinyinhua1);
+			return;
+		}
 		if (thing_name == '树苗') {
 			let shumiao = await exist_najie_thing(usr_qq, '树苗', '食材');
 			var Time = 60;
@@ -208,6 +257,22 @@ export class GuessLanternRiddles extends plugin {
 				ganzhe1 = 0;
 				await redis.set('xiuxian:player:' + usr_qq + 'ganzhe1', ganzhe1);
 				await Add_najie_thing(usr_qq, '甘蔗', '食材', 3);
+				return;
+			}
+		}
+		if (thing_name == '金银花') {
+			let jinyinhua1 = await redis.get('xiuxian:player:' + usr_qq + 'jinyinhua1');
+			if (jinyinhua1 == 0) {
+				e.reply('你没有种金银花');
+				return;
+			} else if (jinyinhua1 == 1) {
+				e.reply('你的金银花还没成熟');
+				return;
+			} else if (jinyinhua1 == 2) {
+				e.reply('收获成功,你获得了3个金银花');
+				jinyinhua1 = 0;
+				await redis.set('xiuxian:player:' + usr_qq + 'jinyinhua1', jinyinhua1);
+				await Add_najie_thing(usr_qq, '金银花', '食材', 3);
 				return;
 			}
 		}
