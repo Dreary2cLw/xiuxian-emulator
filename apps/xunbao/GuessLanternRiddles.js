@@ -159,7 +159,7 @@ export class GuessLanternRiddles extends plugin {
 					return;
 				}
 				e.reply('你消耗了一袋金克拉,土地变得肥沃了，可以种植作物了');
-				await Add_najie_thing(usr_qq, '金克拉', '材料', -1);
+				await Add_najie_thing(usr_qq, '金克拉', '道具', -1);
 				sleep(5000);
 				jinyinhua1 = 1;
 				await redis.set('xiuxian:player:' + usr_qq + 'jinyinhua1', jinyinhua1);
