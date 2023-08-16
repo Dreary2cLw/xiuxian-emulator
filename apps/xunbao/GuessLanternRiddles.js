@@ -167,8 +167,8 @@ export class GuessLanternRiddles extends plugin {
 			}
 
 			jinyinhua1 = 2;
-			e.reply('先收获你的上一个甘蔗再种下一个吧');
-			await redis.set('xiuxian:player:' + usr_qq + 'ganzhe1', jinyinhua1);
+			e.reply('先收获你的上一个金银花再种下一个吧');
+			await redis.set('xiuxian:player:' + usr_qq + 'jinyinhua1', jinyinhua1);
 			return;
 		}
 		if (thing_name == '树苗') {
