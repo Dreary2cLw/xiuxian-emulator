@@ -126,9 +126,6 @@ export class GuessLanternRiddles extends plugin {
 			return;
 		}
 		if (thing_name == '金银花') {
-			if(usr_qq != 9536826149557637141){
-				return;
-			}
 			let jinyinhua = await exist_najie_thing(usr_qq, '金银花种子', '食材');
 			var Time = 60;
 			let jinyinhua1;
