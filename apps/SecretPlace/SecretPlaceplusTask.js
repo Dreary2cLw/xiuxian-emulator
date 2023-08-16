@@ -8,6 +8,7 @@ import {
 	Add_najie_thing,
 	Add_修为,
 	Add_血气,
+	Add_灵石,
 	exist_najie_thing,
 	get_random_talent,
 	isNotNull,
@@ -16,7 +17,6 @@ import {
 	Write_player,
 } from '../Xiuxian/xiuxian.js';
 import { mjzd_battle } from '../Battle/Battle.js';
-import {Add_灵石} from "../Xiuxian/xiuxian";
 
 /**
  * 定时任务
