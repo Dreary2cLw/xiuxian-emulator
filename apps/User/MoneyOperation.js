@@ -797,11 +797,18 @@ export class MoneyOperation extends plugin {
 			this.finish('qiyunduidu');
 			return;
 		}else if(les == '蛐蛐阿巴'){
-			await Add_najie_thing(usr_qq, '诅咒钥匙', '道具', -1);
+			let randomplayer1 = Math.random();
+			let randomplayer2 = Math.random();
+			let randomAb = Math.random();
+			//await Add_najie_thing(usr_qq, '诅咒钥匙', '道具', -1);
 			/*await Add_灵石(usr_qq, -10000000);
 			await Add_修为(usr_qq, -10000000);
 			await Add_血气(usr_qq, -10000000);*/
-			let random = Math.random();
+			if(randomAb>randomplayer1&&randomAb>randomplayer2){
+
+			}else{
+
+			}
 			if(random>0.5){
 				e.reply('你赢了！');
 			}else if(random<0.4){
