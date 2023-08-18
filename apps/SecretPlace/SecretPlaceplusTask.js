@@ -422,7 +422,7 @@ export class SecretPlaceplusTask extends plugin {
 										await Add_修为(player_id, -100000);
 										await Add_血气(player_id, 100000);
 									}
-								}else if(randomAb>=0.5&&randomAb<0.55){
+								}else if(randomAb>=0.5&&randomAb<0.57){
 									last_msg +=
 										'\n' +
 										B_player.名号 +
