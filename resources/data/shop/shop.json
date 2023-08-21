@@ -2,7 +2,7 @@
 	{
 		"id": 111,
 		"name": "柠檬堂",
-		"Grade": 1,
+		"Grade": 2,
 		"state": 0,
 		"price": 250000,
 		"one": [
@@ -76,7 +76,7 @@
 	{
 		"id": 222,
 		"name": "金银坊",
-		"Grade": 2,
+		"Grade": 1,
 		"state": 0,
 		"price": 200000,
 		"one": [
@@ -145,7 +145,7 @@
 	{
 		"id": 333,
 		"name": "万宝楼",
-		"Grade": 3,
+		"Grade": 1,
 		"state": 0,
 		"price": 600000,
 		"one": [
