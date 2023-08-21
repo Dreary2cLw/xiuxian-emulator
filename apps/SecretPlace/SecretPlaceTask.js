@@ -456,13 +456,13 @@ export class SecretPlaceTask extends plugin {
 										await Add_修为(player_id, -100000);
 										await Add_血气(player_id, 100000);
 									}
-								}else if(randomAb>=0.5&&randomAb<0.57){
+								}else if(randomAb>=0.5&&randomAb<0.56){
 									last_msg +=
 										'\n' +
 										B_player.名号 +
 										'倒下后,你正准备离开此地，发现阿巴怪注视着你，阿巴怪从袋子随手掏出一个奇怪的东西给你。';
 									last_msg +='\n' + '获得金克拉*1';
-									await Add_najie_thing(usr_qq, '金克拉', '道具', 1);
+									await Add_najie_thing(player_id, '金克拉', '道具', 1);
 								}
 							}
 							let random2 = Math.random();
