@@ -9,6 +9,7 @@ import {
 	Add_灵石,
 	Add_修为,
 	Add_血气,
+	sleep,
 	Check_thing,
 	convert2integer,
 	exist_najie_thing,
@@ -18,7 +19,6 @@ import {
 	Read_player,
 	isNotNull
 } from '../Xiuxian/xiuxian.js';
-import {sleep} from "../Xiuxian/xiuxian";
 
 /**
  * 全局变量
