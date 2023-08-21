@@ -790,7 +790,6 @@ export class MoneyOperation extends plugin {
 		let new_msg = this.e.message;
 		let choice = new_msg[0].text;
 		let code = choice.split("\*");
-		e.reply(new_msg+'new_msg:'+code);
 		let les = code[0];//条件
 		let gonfa = code[1];//功法
 		if(les == '下次一定'){
@@ -803,13 +802,13 @@ export class MoneyOperation extends plugin {
 			let randomplayer2 = parseInt(Math.random()*10);
 			let randomplayer = randomplayer1>randomplayer2 ? randomplayer1:randomplayer2;
 			let randomAb =  parseInt(Math.random()*10);
-			//await Add_najie_thing(usr_qq, '诅咒钥匙', '道具', -1);
+			await Add_najie_thing(usr_qq, '诅咒钥匙', '道具', -1);
 			/*await Add_灵石(usr_qq, -10000000);
 			await Add_修为(usr_qq, -10000000);
 			await Add_血气(usr_qq, -10000000);*/
-			if(usr_qq == 8139893750449888096){
-				await Add_najie_thing(usr_qq,"圣品福源丹","丹药",1);
-			}
+			// if(usr_qq == 8139893750449888096){
+			// 	await Add_najie_thing(usr_qq,"圣品福源丹","丹药",1);
+			// }
 			e.reply('对赌开始，气运石亮了起来！');
 			await sleep(1000);
 			e.reply('你的点数是'+randomplayer);
@@ -823,6 +822,8 @@ export class MoneyOperation extends plugin {
 				await Add_血气(usr_qq, 15000000);*/
 			}else if(randomplayer==randomAb){
 				e.reply('平局！');
+				e.reply('阿巴怪表示世间既有与他气运相当之人！');
+				e.reply('获得奖励：\n灵石X1.2kw\n修为X1.2kw\n血气X1.2kw\n获得对阿巴怪特攻X1');
 				/*await Add_灵石(usr_qq, 10000000);
 				await Add_修为(usr_qq, 10000000);
 				await Add_血气(usr_qq, 10000000);*/
@@ -831,6 +832,7 @@ export class MoneyOperation extends plugin {
 				if(randomNitian<=0.10){
 					await sleep(2000);
 					e.reply('阿巴怪的气运石突然碎裂！');
+					await sleep(1000);
 					e.reply('阿巴怪认可了你的「强运」！');
 					await sleep(1000);
 					e.reply('你赢了！获得奖励：\n灵石X1.8kw\n修为X1.8kw\n血气X1.8kw\n圣品福源丹X1');
