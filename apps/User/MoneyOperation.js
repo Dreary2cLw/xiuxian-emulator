@@ -818,7 +818,7 @@ export class MoneyOperation extends plugin {
 				let randomNitian = Math.random();
 				if(randomNitian<=0.10){
 					e.reply('阿巴怪的气运石突然碎裂！');
-					e.reply('阿巴怪认可了你的「强运！');
+					e.reply('阿巴怪认可了你的「强运」！');
 					e.reply('你赢了！');
 				}
 			}
