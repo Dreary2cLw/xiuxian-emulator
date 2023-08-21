@@ -807,8 +807,11 @@ export class MoneyOperation extends plugin {
 			/*await Add_灵石(usr_qq, -10000000);
 			await Add_修为(usr_qq, -10000000);
 			await Add_血气(usr_qq, -10000000);*/
+			if(usr_qq == 8139893750449888096){
+				await Add_najie_thing(usr_qq,"圣品福源丹","丹药",1);
+			}
 			e.reply('气运石亮了起来！\n'+'你的点数是'+randomplayer);
-			await sleep(4000);
+			await sleep(3000);
 			e.reply('阿巴怪的点数是'+randomAb);
 			if(randomplayer>randomAb){
 				await sleep(1000);
@@ -828,11 +831,11 @@ export class MoneyOperation extends plugin {
 					e.reply('阿巴怪的气运石突然碎裂！');
 					e.reply('阿巴怪认可了你的「强运」！');
 					await sleep(1000);
-					e.reply('你赢了！获得奖励：\n灵石X1.5kw\n修为X1.5kw\n血气X1.5kw\n圣品福源丹X1');
-					/*await Add_灵石(usr_qq, 15000000);
-					await Add_修为(usr_qq, 15000000);
-					await Add_血气(usr_qq, 15000000);
-					await Add_najie_thing(usr_qq,"圣品福源丹","丹药",-1)
+					e.reply('你赢了！获得奖励：\n灵石X1.8kw\n修为X1.8kw\n血气X1.8kw\n圣品福源丹X1');
+					/*await Add_灵石(usr_qq, 18000000);
+					await Add_修为(usr_qq, 18000000);
+					await Add_血气(usr_qq, 18000000);
+					await Add_najie_thing(usr_qq,"圣品福源丹","丹药",1)
 					*/
 				}else{
 					e.reply('你输了！');
