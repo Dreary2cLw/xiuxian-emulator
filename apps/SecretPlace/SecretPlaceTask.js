@@ -12,7 +12,7 @@ import {
 	get_random_talent,
 	Read_equipment,
 	isNotNull,
-	Read_player,
+	Read_player,exist_najie_thing,
 } from '../Xiuxian/xiuxian.js';
 import { mjzd_battle } from '../Battle/Battle.js';
 
@@ -410,6 +410,13 @@ export class SecretPlaceTask extends plugin {
 									'\n七彩流光的神奇仙谷[' + kouliang.name + ']深埋在土壤中，是仙兽们的最爱。';
 								await Add_najie_thing(player_id, kouliang.name, '仙米', 1);
 							}
+								if (random > 0.5 && random < 0.502) {
+								last_msg +=
+									'\n' +
+									B_player.名号 +
+									'倒下后,你正准备离开此地，看见路边草丛里有一把钥匙泛着幽暗的光泽，顺手放进了纳戒。';
+								await Add_najie_thing(player_id, '诅咒钥匙', '道具', 1);
+							}
 							if (random > 0.1 && random < 0.1002) {
 								last_msg +=
 									'\n' +
@@ -441,21 +448,33 @@ export class SecretPlaceTask extends plugin {
 									last_msg +='\n' + '获得可以对仙子无礼券*1';
 									await Add_najie_thing(player_id, '可以对仙子无礼券', '道具', 1);
 								}else if(randomAb>=0.4&&randomAb<0.5){
-									if(player.level_id<42){
+										let number = await exist_najie_thing(usr_qq, '对阿巴怪特攻', '道具');
+										if (isNotNull(number) && number >= 1) {
+										await Add_najie_thing(usr_qq, '对阿巴怪特攻', '道具', -1);
+										let number = Math.floor((Math.random()+0.5)*3000000);
 										last_msg +=
 											'\n' +
 											B_player.名号 +
-											'倒下后,你正准备离开此地，发现阿巴怪注视着你，阿巴怪见你实力低微不予理会。';
+											'倒下后,你正准备离开此地，发现阿巴怪突然向你袭来，危急时刻，一道耀眼的光芒笼罩着你，光芒过后仅仅看见一个灵石贷放在地上。';
+										 last_msg +='\n' + '获得灵石X'+number;
+										 await Add_灵石(player_id, number);
 									}else{
-										last_msg +=
+										 if(player.level_id<42){
+										  last_msg +=
+											 '\n' +
+											B_player.名号 +
+											'倒下后,你正准备离开此地，发现阿巴怪注视着你，阿巴怪见你实力低微不予理会。';
+									  }else{
+									 	last_msg +=
 											'\n' +
 											B_player.名号 +
 											'倒下后,你正准备离开此地，发现阿巴怪注视着你，阿巴怪随手给了一掌并抢走了你一袋钱。';
-										last_msg +='\n' + '灵石损失10w,修为损失10w,血气增加10w(恼)';
-										await Add_灵石(player_id, -100000);
-										await Add_修为(player_id, -100000);
-										await Add_血气(player_id, 100000);
+										 last_msg +='\n' + '灵石损失10w,修为损失10w,血气增加10w(恼)';
+										 await Add_灵石(player_id, -100000);
+										 await Add_修为(player_id, -100000);
+										 await Add_血气(player_id, 100000);
 									}
+								}
 								}else if(randomAb>=0.5&&randomAb<0.56){
 									last_msg +=
 										'\n' +
