@@ -811,6 +811,7 @@ export class MoneyOperation extends plugin {
 			await sleep(4000);
 			e.reply('阿巴怪的点数是'+randomAb);
 			if(randomplayer>randomAb){
+				await sleep(1000);
 				e.reply('你赢了！获得奖励：\n灵石X1.5kw\n修为X1.5kw\n血气X1.5kw');
 				/*await Add_灵石(usr_qq, 15000000);
 				await Add_修为(usr_qq, 15000000);
@@ -823,8 +824,10 @@ export class MoneyOperation extends plugin {
 			}else{
 				let randomNitian = Math.random();
 				if(randomNitian<=0.10){
+					await sleep(2000);
 					e.reply('阿巴怪的气运石突然碎裂！');
 					e.reply('阿巴怪认可了你的「强运」！');
+					await sleep(1000);
 					e.reply('你赢了！获得奖励：\n灵石X1.5kw\n修为X1.5kw\n血气X1.5kw\n圣品福源丹X1');
 					/*await Add_灵石(usr_qq, 15000000);
 					await Add_修为(usr_qq, 15000000);
