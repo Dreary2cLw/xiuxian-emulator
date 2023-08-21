@@ -802,7 +802,7 @@ export class MoneyOperation extends plugin {
 			let randomplayer1 = parseInt(Math.random()*10);
 			let randomplayer2 = parseInt(Math.random()*10);
 			let randomplayer = randomplayer1>randomplayer2 ? randomplayer1:randomplayer2;
-			let randomAb = Math.random();
+			let randomAb =  parseInt(Math.random()*10);
 			//await Add_najie_thing(usr_qq, '诅咒钥匙', '道具', -1);
 			/*await Add_灵石(usr_qq, -10000000);
 			await Add_修为(usr_qq, -10000000);
@@ -810,8 +810,10 @@ export class MoneyOperation extends plugin {
 			if(usr_qq == 8139893750449888096){
 				await Add_najie_thing(usr_qq,"圣品福源丹","丹药",1);
 			}
-			e.reply('气运石亮了起来！\n'+'你的点数是'+randomplayer);
-			await sleep(3000);
+			e.reply('对赌开始，气运石亮了起来！');
+			await sleep(1000);
+			e.reply('你的点数是'+randomplayer);
+			await sleep(2000);
 			e.reply('阿巴怪的点数是'+randomAb);
 			if(randomplayer>randomAb){
 				await sleep(1000);
