@@ -1109,6 +1109,7 @@ export class UserHome extends plugin {
                 }
                 for (i = 0; i < action.length; i++) {
                     if (action[i].qq == usr_qq) {
+                        e.reply('测试'+true);
                         if (action[i].biguan > 0) {
                             await Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity);
                             e.reply(`上次服用的药效还没过,等以后再服用吧`);
