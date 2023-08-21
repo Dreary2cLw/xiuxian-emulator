@@ -695,6 +695,9 @@ export class Games extends plugin {
 			return;
 		}
 		let qinmilook = await find_qinmidu(A, B);
+		if(!qinmilook){
+			qinmilook = 0;
+		}
 		e.reply(A_player.名号+'&'+B_player.名号+'亲密度：'+qinmilook);
 		let Time = this.xiuxianConfigData.CD.couple; //6个小时
 		let shuangxiuTimeout = parseInt(60000 * Time);
