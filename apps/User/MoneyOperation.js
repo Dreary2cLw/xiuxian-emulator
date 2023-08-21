@@ -832,7 +832,7 @@ export class MoneyOperation extends plugin {
 				await Add_血气(usr_qq, 10000000);*/
 			}else{
 				let randomNitian = Math.random();
-				if(randomNitian<=0.10){
+				if(randomNitian<0.20){
 					await sleep(2000);
 					e.reply('阿巴怪的气运石突然碎裂！');
 					await sleep(1000);
