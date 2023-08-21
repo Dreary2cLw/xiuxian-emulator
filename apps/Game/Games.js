@@ -746,6 +746,8 @@ export class Games extends plugin {
 			e.reply('修仙：游戏进行中...');
 			return;
 		}
+		let qinmilook = await find_qinmidu(A, B);
+		e.reply(A_player.名号+'&'+B_player.名号+'亲密度：'+qinmilook);
 		//对方行为状态
 		let B_action = await redis.get('xiuxian:player:' + B + ':action');
 		B_action = JSON.parse(B_action);
