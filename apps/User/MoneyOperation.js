@@ -821,8 +821,11 @@ export class MoneyOperation extends plugin {
 				await Add_修为(usr_qq, 15000000);
 				await Add_血气(usr_qq, 15000000);*/
 			}else if(randomplayer==randomAb){
+				await sleep(1000);
 				e.reply('平局！');
+				await sleep(1000);
 				e.reply('阿巴怪表示世间既有与他气运相当之人！');
+				await sleep(1000);
 				e.reply('获得奖励：\n灵石X1.2kw\n修为X1.2kw\n血气X1.2kw\n对阿巴怪特攻X1');
 				/*await Add_灵石(usr_qq, 10000000);
 				await Add_修为(usr_qq, 10000000);
