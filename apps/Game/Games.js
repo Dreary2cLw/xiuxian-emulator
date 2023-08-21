@@ -694,6 +694,8 @@ export class Games extends plugin {
 			e.reply('对面还没学习阴阳经,没有双修的资格');
 			return;
 		}
+		let qinmilook = await find_qinmidu(A, B);
+		e.reply(A_player.名号+'&'+B_player.名号+'亲密度：'+qinmilook);
 		let Time = this.xiuxianConfigData.CD.couple; //6个小时
 		let shuangxiuTimeout = parseInt(60000 * Time);
 		//自己的cd
@@ -746,8 +748,6 @@ export class Games extends plugin {
 			e.reply('修仙：游戏进行中...');
 			return;
 		}
-		let qinmilook = await find_qinmidu(A, B);
-		e.reply(A_player.名号+'&'+B_player.名号+'亲密度：'+qinmilook);
 		//对方行为状态
 		let B_action = await redis.get('xiuxian:player:' + B + ':action');
 		B_action = JSON.parse(B_action);
