@@ -823,7 +823,7 @@ export class MoneyOperation extends plugin {
 			}else if(randomplayer==randomAb){
 				e.reply('平局！');
 				e.reply('阿巴怪表示世间既有与他气运相当之人！');
-				e.reply('获得奖励：\n灵石X1.2kw\n修为X1.2kw\n血气X1.2kw\n获得对阿巴怪特攻X1');
+				e.reply('获得奖励：\n灵石X1.2kw\n修为X1.2kw\n血气X1.2kw\n对阿巴怪特攻X1');
 				/*await Add_灵石(usr_qq, 10000000);
 				await Add_修为(usr_qq, 10000000);
 				await Add_血气(usr_qq, 10000000);*/
