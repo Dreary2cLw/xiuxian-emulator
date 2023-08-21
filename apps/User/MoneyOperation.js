@@ -811,15 +811,28 @@ export class MoneyOperation extends plugin {
 			await sleep(4000);
 			e.reply('阿巴怪的点数是'+randomAb);
 			if(randomplayer>randomAb){
-				e.reply('你赢了！');
+				e.reply('你赢了！获得奖励：\n灵石X1.5kw\n修为X1.5kw\n血气X1.5kw');
+				/*await Add_灵石(usr_qq, 15000000);
+				await Add_修为(usr_qq, 15000000);
+				await Add_血气(usr_qq, 15000000);*/
 			}else if(randomplayer==randomAb){
 				e.reply('平局！');
+				/*await Add_灵石(usr_qq, 10000000);
+				await Add_修为(usr_qq, 10000000);
+				await Add_血气(usr_qq, 10000000);*/
 			}else{
 				let randomNitian = Math.random();
 				if(randomNitian<=0.10){
 					e.reply('阿巴怪的气运石突然碎裂！');
 					e.reply('阿巴怪认可了你的「强运」！');
-					e.reply('你赢了！');
+					e.reply('你赢了！获得奖励：\n灵石X1.5kw\n修为X1.5kw\n血气X1.5kw\n圣品福源丹X1');
+					/*await Add_灵石(usr_qq, 15000000);
+					await Add_修为(usr_qq, 15000000);
+					await Add_血气(usr_qq, 15000000);
+					await Add_najie_thing(usr_qq,"圣品福源丹","丹药",-1)
+					*/
+				}else{
+					e.reply('你输了！');
 				}
 			}
 			this.finish('qiyunduidu');
