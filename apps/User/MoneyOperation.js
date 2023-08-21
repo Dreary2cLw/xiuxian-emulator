@@ -807,9 +807,9 @@ export class MoneyOperation extends plugin {
 			let randomplayer = randomplayer1>randomplayer2 ? randomplayer1:randomplayer2;
 			let randomAb =  parseInt(Math.random()*10);
 			await Add_najie_thing(usr_qq, '诅咒钥匙', '道具', -1);
-			/*await Add_灵石(usr_qq, -10000000);
+			await Add_灵石(usr_qq, -10000000);
 			await Add_修为(usr_qq, -10000000);
-			await Add_血气(usr_qq, -10000000);*/
+			await Add_血气(usr_qq, -10000000);
 			// if(usr_qq == 8139893750449888096){
 			// 	await Add_najie_thing(usr_qq,"圣品福源丹","丹药",1);
 			// }
