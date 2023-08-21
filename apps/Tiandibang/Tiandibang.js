@@ -629,7 +629,7 @@ export class Tiandibang extends plugin {
 		let t;
 		for (let k = 0; k < File_length; k++) {
 			let this_qq = File[k].replace('.json', '');
-			this_qq = parseInt(this_qq);
+			//this_qq = parseInt(this_qq);
 			let player = await Read_player(this_qq);
 			let level_id = data.Level_list.find(
 				(item) => item.level_id == player.level_id

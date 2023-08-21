@@ -224,7 +224,7 @@ export class AdminSuper extends plugin {
 		let i = 0;
 		for (let k = 0; k < File_length; k++) {
 			let this_qq = File[k].replace('.json', '');
-			this_qq = parseInt(this_qq);
+			//this_qq = parseInt(this_qq);
 			action1[i] = {
 				biguan: 0, //闭关状态
 				biguanxl: 0, //增加效率

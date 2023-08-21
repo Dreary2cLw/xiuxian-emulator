@@ -1117,7 +1117,7 @@ export class Occupation extends plugin {
 		let File_length = File.length;
 		for (let k = 0; k < File_length; k++) {
 			let this_qq = File[k].replace('.json', '');
-			this_qq = parseInt(this_qq);
+			//this_qq = parseInt(this_qq);
 			let players = await Read_player(this_qq);
 			if (players.魔道值 > 999 && this_qq != usr_qq) {
 				mubiao[i] = {
