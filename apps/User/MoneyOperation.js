@@ -18,6 +18,7 @@ import {
 	Read_player,
 	isNotNull
 } from '../Xiuxian/xiuxian.js';
+import {sleep} from "../Xiuxian/xiuxian";
 
 /**
  * 全局变量
@@ -797,28 +798,29 @@ export class MoneyOperation extends plugin {
 			this.finish('qiyunduidu');
 			return;
 		}else if(les == '蛐蛐阿巴'){
-			let randomplayer1 = Math.random();
-			let randomplayer2 = Math.random();
+
+			let randomplayer1 = parseInt(Math.random()*10);
+			let randomplayer2 = parseInt(Math.random()*10);
+			let randomplayer = randomplayer1>randomplayer2 ? randomplayer1:randomplayer2;
 			let randomAb = Math.random();
 			//await Add_najie_thing(usr_qq, '诅咒钥匙', '道具', -1);
 			/*await Add_灵石(usr_qq, -10000000);
 			await Add_修为(usr_qq, -10000000);
 			await Add_血气(usr_qq, -10000000);*/
-			if(randomAb>randomplayer1&&randomAb>randomplayer2){
-
-			}else{
-
-			}
-			if(random>0.5){
+			e.reply('气运石亮了起来！\n'+'你的点数是'+randomplayer);
+			await sleep(4000);
+			e.reply('阿巴怪的点数是'+randomAb);
+			if(randomplayer>randomAb){
 				e.reply('你赢了！');
-			}else if(random<0.4){
-				e.reply('你输了！');
+			}else if(randomplayer==randomAb){
+				e.reply('平局！');
 			}else{
-				e.reply('你一瞬间击垮了阿巴怪！');
-				e.reply('阿巴怪认可了你的「强运」！');
-				//获得圣品福源*1
-				//灵石、血气、修为各1.5kw
-
+				let randomNitian = Math.random();
+				if(randomNitian<=0.10){
+					e.reply('阿巴怪的气运石突然碎裂！');
+					e.reply('阿巴怪认可了你的「强运！');
+					e.reply('你赢了！');
+				}
 			}
 			this.finish('qiyunduidu');
 			return;
