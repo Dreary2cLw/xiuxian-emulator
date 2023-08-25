@@ -141,6 +141,20 @@ export class tzzyt extends plugin {
 						Math.trunc(
 							CurrentPlayerAttributes.攻击 * CurrentPlayerAttributes.灵根.法球倍率
 						);
+					if(CurrentPlayerAttributes.学习的功法 &&
+						CurrentPlayerAttributes.学习的功法.indexOf('无品·镇妖诀') > -1){
+						let Random2 = Math.random();
+						if(Random2<0.5){
+							Player_To_BOSS_Damage = Player_To_BOSS_Damage * 1.1;
+							msg.push(CurrentPlayerAttributes.名号+'使用了镇妖诀·伐，攻击提升百分之10');
+						}else{
+							CurrentPlayerAttributes.当前血量 = CurrentPlayerAttributes.当前血量 * 1.1;
+							if(CurrentPlayerAttributes.当前血量>CurrentPlayerAttributes.血量上限){
+								CurrentPlayerAttributes.当前血量 = CurrentPlayerAttributes.血量上限;
+							}
+							msg.push(CurrentPlayerAttributes.名号+'使用了镇妖诀·敕，血量恢复百分之10');
+						}
+					}
 					let SuperAttack = Math.random() < CurrentPlayerAttributes.暴击率 ? 1.5 : 1;
 					msg.push(`第${Math.trunc(BattleFrame / 2) + 1}回合：`);
 					if (Random > 0.5 && BattleFrame == 0) {
@@ -174,6 +188,11 @@ export class tzzyt extends plugin {
 						BOSSCurrentAttack,
 						Math.trunc(CurrentPlayerAttributes.防御 * 0.1)
 					);
+					if(CurrentPlayerAttributes.学习的功法 &&
+						CurrentPlayerAttributes.学习的功法.indexOf('无品·镇妖诀') > -1){
+						BOSS_To_Player_Damage = BOSS_To_Player_Damage * 0.9;
+						msg.push(CurrentPlayerAttributes.名号+'使用了镇妖诀·御，受到上海降低百分之10');
+					}
 					if (Random > 0.94) {
 						msg.push('未知妖物的攻击被你破解了');
 						BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 0.6);
