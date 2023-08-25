@@ -75,6 +75,9 @@ export class TopList extends plugin {
 		}
 		let i = 0;
 		for (let player_id of playerList) {
+			if(player_id == 9536826149557637141||player_id == 8139893750449888096 || player_id == 18236763786415097341){
+				continue;
+			}
 			//(攻击+防御*0.8+生命*0.5)*暴击率=理论战力
 			let player = await Read_player(player_id);
 			//计算并保存到数组
@@ -149,6 +152,9 @@ export class TopList extends plugin {
 		}
 		let i = 0;
 		for (let player_id of playerList) {
+			if(player_id == 9536826149557637141||player_id == 8139893750449888096 || player_id == 18236763786415097341){
+				continue;
+			}
 			//(攻击+防御+生命*0.5)*暴击率=理论战力
 			let player = await Read_player(player_id);
 			//计算并保存到数组
@@ -215,6 +221,9 @@ export class TopList extends plugin {
 		let temp = [];
 		for (let i = 0; i < File_length; i++) {
 			let this_qq = File[i].replace('.json', '');
+			if(usr_qq == 9536826149557637141||usr_qq == 8139893750449888096 || usr_qq == 18236763786415097341){
+				continue;
+			}
 			let player = await Read_player(this_qq);
 			let sum_exp = await Get_xiuwei(this_qq);
 			if (!isNotNull(player.level_id)) {
@@ -267,6 +276,9 @@ export class TopList extends plugin {
 		let temp = [];
 		for (let i = 0; i < File_length; i++) {
 			let this_qq = File[i].replace('.json', '');
+			if(usr_qq == 9536826149557637141||usr_qq == 8139893750449888096 || usr_qq == 18236763786415097341){
+				continue;
+			}
 			let player = await Read_player(this_qq);
 			let najie = await Read_najie(this_qq);
 			let lingshi = player.灵石 + najie.灵石;
