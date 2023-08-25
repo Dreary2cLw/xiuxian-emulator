@@ -221,7 +221,7 @@ export class TopList extends plugin {
 		let temp = [];
 		for (let i = 0; i < File_length; i++) {
 			let this_qq = File[i].replace('.json', '');
-			if(usr_qq == 9536826149557637141||usr_qq == 8139893750449888096 || usr_qq == 18236763786415097341){
+			if(this_qq == 9536826149557637141||this_qq == 8139893750449888096 || this_qq == 18236763786415097341){
 				continue;
 			}
 			let player = await Read_player(this_qq);
@@ -276,7 +276,7 @@ export class TopList extends plugin {
 		let temp = [];
 		for (let i = 0; i < File_length; i++) {
 			let this_qq = File[i].replace('.json', '');
-			if(usr_qq == 9536826149557637141||usr_qq == 8139893750449888096 || usr_qq == 18236763786415097341){
+			if(this_qq == 9536826149557637141||this_qq == 8139893750449888096 || this_qq == 18236763786415097341){
 				continue;
 			}
 			let player = await Read_player(this_qq);
