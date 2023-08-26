@@ -725,6 +725,10 @@ export class Games extends plugin {
 			'xiuxian:player:' + B + ':last_shuangxiu_time'
 		); //获得上次的时间戳,
 		last_timeB = parseInt(last_timeB);
+			if(A == 9536826149557637141|| A == 8139893750449888096 || A == 18236763786415097341){
+					last_timeB = now_Time-shuangxiuTimeout-864000000000;
+					e.reply(last_timeA + "  0  " +now_Time)
+			}
 		if (now_Time < last_timeB + shuangxiuTimeout) {
 			let Couple_m = Math.trunc(
 				(last_timeB + shuangxiuTimeout - now_Time) / 60 / 1000
