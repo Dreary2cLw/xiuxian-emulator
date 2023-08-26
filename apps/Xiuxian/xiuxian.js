@@ -3447,7 +3447,7 @@ export async function fstadd_qinmidu(A, B) {
 	return;
 }
 
-export async function add_qinmidu(A, B, qinmi) {
+export async function add_qinmidu(A, B, qinmi,e) {
 	let qinmidu;
 	try {
 		qinmidu = await Read_qinmidu();
@@ -3472,7 +3472,7 @@ export async function add_qinmidu(A, B, qinmi) {
 	qinmidu[i].亲密度 += qinmi;
 	if (qinmidu[i].亲密度 >= 5000) {
 		qinmidu[i].亲密度 = 5000;
-		//.reply('亲密度最多5000!!');
+		e.reply('亲密度最多5000!!');
 	}
 	await Write_qinmidu(qinmidu);
 	return;

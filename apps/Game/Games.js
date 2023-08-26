@@ -812,26 +812,26 @@ export class Games extends plugin {
 			if (random > 0 && random <= 0.2) {
 				await Add_修为(A, A_player.level_id * qinmi * 200);
 				await Add_修为(B, B_player.level_id * qinmi * 200);
-				await add_qinmidu(A, B, 20);
+				await add_qinmidu(A, B, 20,e);
 				e.reply(`你们双方情意相通,修炼一晚,`+B_player.名号+`增加了`+B_player.level_id * qinmi * 200+`修为,`
 					+A_player.名号+`增加了`+A_player.level_id * qinmi * 200+`，亲密度增加了20点`);
 				return;
 			} else if (random > 0.2 && random <= 0.4) {
 				await Add_修为(A, A_player.level_id * qinmi * 150);
 				await Add_修为(B, B_player.level_id * qinmi * 150);
-				await add_qinmidu(A, B, 15);
+				await add_qinmidu(A, B, 15,e);
 				e.reply(`你们双方交心交神，努力修炼,`+B_player.名号+`增加了`+B_player.level_id * qinmi * 150+`修为,`
 					+A_player.名号+`增加了`+A_player.level_id * qinmi * 150+`，亲密度增加了15点`);
 			} else if (random > 0.4 && random <= 0.6) {
 				await Add_修为(A, A_player.level_id * qinmi * 100);
 				await Add_修为(B, B_player.level_id * qinmi * 100);
-				await add_qinmidu(A, B, 10);
+				await add_qinmidu(A, B, 10,e);
 				e.reply(`你们双方共同修炼，过程平稳，各自增加了`+B_player.名号+`增加了`+B_player.level_id * qinmi * 100+`修为,`
 					+A_player.名号+`增加了`+A_player.level_id * qinmi * 100+`修为,亲密度增加了10点`);
 			} else if (random > 0.6 && random <= 0.8) {
 				await Add_修为(A, A_player.level_id * qinmi * 50);
 				await Add_修为(B, B_player.level_id * qinmi * 50);
-				await add_qinmidu(A, B, 5);
+				await add_qinmidu(A, B, 5,e);
 				e.reply(`你们双方努力修炼，但是并进不了状态,各自增加了`+B_player.名号+`增加了`+B_player.level_id * qinmi * 50+`修为,`
 					+A_player.名号+`增加了`+A_player.level_id * qinmi * 50+`修为,亲密度增加了5点`);
 			} else {
