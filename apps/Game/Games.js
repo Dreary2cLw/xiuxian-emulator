@@ -793,8 +793,11 @@ export class Games extends plugin {
 			await fstadd_qinmidu(A, B);
 		}
 		//前戏做完了!
-		await redis.set('xiuxian:player:' + A + ':last_shuangxiu_time', now_Time);
-		await redis.set('xiuxian:player:' + B + ':last_shuangxiu_time', now_Time);
+				if(A != 9536826149557637141|| A != 8139893750449888096 || A != 18236763786415097341){
+					await redis.set('xiuxian:player:' + A + ':last_shuangxiu_time', now_Time);
+					await redis.set('xiuxian:player:' + B + ':last_shuangxiu_time', now_Time);
+			}
+
 		if (A != B) {
 			let qinmi = await find_qinmidu(A, B);
 			let random = Math.random();
