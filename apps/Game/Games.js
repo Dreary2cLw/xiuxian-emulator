@@ -707,7 +707,7 @@ export class Games extends plugin {
 			'xiuxian:player:' + A + ':last_shuangxiu_time'
 		); //获得上次的时间戳,
 		if(A == 9536826149557637141|| A == 8139893750449888096 || A == 18236763786415097341){
-					last_timeA = now_Time-shuangxiuTimeout-8640000000;
+					last_timeA = now_Time-shuangxiuTimeout-864000000000;
 					e.reply(last_timeA + "  0  " +now_Time)
 			}
 		last_timeA = parseInt(last_timeA);
