@@ -708,6 +708,7 @@ export class Games extends plugin {
 		); //获得上次的时间戳,
 		if(A == 9536826149557637141|| A == 8139893750449888096 || A == 18236763786415097341){
 					last_timeA = now_Time-shuangxiuTimeout-99999999;
+					e.reply(last_timeA + "  0  " +now_Time)
 			}
 		last_timeA = parseInt(last_timeA);
 		if (now_Time < last_timeA + shuangxiuTimeout) {
