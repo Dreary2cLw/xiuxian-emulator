@@ -3447,7 +3447,7 @@ export async function fstadd_qinmidu(A, B) {
 	return;
 }
 
-export async function add_qinmidu(A, B, qinmi) {
+export async function add_qinmidu(A, B, qinmi,e) {
 	let qinmidu;
 	try {
 		qinmidu = await Read_qinmidu();

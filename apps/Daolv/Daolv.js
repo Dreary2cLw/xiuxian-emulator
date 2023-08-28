@@ -330,7 +330,7 @@ export class Daolv extends plugin {
 			return;
 		}
 
-		await add_qinmidu(A, B, 60);
+		await add_qinmidu(A, B, 60,e);
 		await Add_najie_thing(A, '百合花篮', '道具', -1);
 		e.reply(`你们的亲密度增加了60`);
 		return;

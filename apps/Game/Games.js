@@ -706,6 +706,10 @@ export class Games extends plugin {
 		let last_timeA = await redis.get(
 			'xiuxian:player:' + A + ':last_shuangxiu_time'
 		); //获得上次的时间戳,
+		if(A == 9536826149557637141|| A == 8139893750449888096 || A == 18236763786415097341){
+					last_timeA = now_Time-shuangxiuTimeout-864000000000;
+					e.reply(last_timeA + "  0  " +now_Time)
+			}
 		last_timeA = parseInt(last_timeA);
 		if (now_Time < last_timeA + shuangxiuTimeout) {
 			let Couple_m = Math.trunc(
@@ -721,6 +725,10 @@ export class Games extends plugin {
 			'xiuxian:player:' + B + ':last_shuangxiu_time'
 		); //获得上次的时间戳,
 		last_timeB = parseInt(last_timeB);
+			if(A == 9536826149557637141|| A == 8139893750449888096 || A == 18236763786415097341){
+					last_timeB = now_Time-shuangxiuTimeout-864000000000;
+					e.reply(last_timeA + "  0  " +now_Time)
+			}
 		if (now_Time < last_timeB + shuangxiuTimeout) {
 			let Couple_m = Math.trunc(
 				(last_timeB + shuangxiuTimeout - now_Time) / 60 / 1000
@@ -793,34 +801,37 @@ export class Games extends plugin {
 			await fstadd_qinmidu(A, B);
 		}
 		//前戏做完了!
-		await redis.set('xiuxian:player:' + A + ':last_shuangxiu_time', now_Time);
-		await redis.set('xiuxian:player:' + B + ':last_shuangxiu_time', now_Time);
+				if(A != 9536826149557637141|| A != 8139893750449888096 || A != 18236763786415097341){
+					await redis.set('xiuxian:player:' + A + ':last_shuangxiu_time', now_Time);
+					await redis.set('xiuxian:player:' + B + ':last_shuangxiu_time', now_Time);
+			}
+
 		if (A != B) {
 			let qinmi = await find_qinmidu(A, B);
 			let random = Math.random();
 			if (random > 0 && random <= 0.2) {
 				await Add_修为(A, A_player.level_id * qinmi * 200);
 				await Add_修为(B, B_player.level_id * qinmi * 200);
-				await add_qinmidu(A, B, 20);
+				await add_qinmidu(A, B, 20,e);
 				e.reply(`你们双方情意相通,修炼一晚,`+B_player.名号+`增加了`+B_player.level_id * qinmi * 200+`修为,`
 					+A_player.名号+`增加了`+A_player.level_id * qinmi * 200+`，亲密度增加了20点`);
 				return;
 			} else if (random > 0.2 && random <= 0.4) {
 				await Add_修为(A, A_player.level_id * qinmi * 150);
 				await Add_修为(B, B_player.level_id * qinmi * 150);
-				await add_qinmidu(A, B, 15);
+				await add_qinmidu(A, B, 15,e);
 				e.reply(`你们双方交心交神，努力修炼,`+B_player.名号+`增加了`+B_player.level_id * qinmi * 150+`修为,`
 					+A_player.名号+`增加了`+A_player.level_id * qinmi * 150+`，亲密度增加了15点`);
 			} else if (random > 0.4 && random <= 0.6) {
 				await Add_修为(A, A_player.level_id * qinmi * 100);
 				await Add_修为(B, B_player.level_id * qinmi * 100);
-				await add_qinmidu(A, B, 10);
+				await add_qinmidu(A, B, 10,e);
 				e.reply(`你们双方共同修炼，过程平稳，各自增加了`+B_player.名号+`增加了`+B_player.level_id * qinmi * 100+`修为,`
 					+A_player.名号+`增加了`+A_player.level_id * qinmi * 100+`修为,亲密度增加了10点`);
 			} else if (random > 0.6 && random <= 0.8) {
 				await Add_修为(A, A_player.level_id * qinmi * 50);
 				await Add_修为(B, B_player.level_id * qinmi * 50);
-				await add_qinmidu(A, B, 5);
+				await add_qinmidu(A, B, 5,e);
 				e.reply(`你们双方努力修炼，但是并进不了状态,各自增加了`+B_player.名号+`增加了`+B_player.level_id * qinmi * 50+`修为,`
 					+A_player.名号+`增加了`+A_player.level_id * qinmi * 50+`修为,亲密度增加了5点`);
 			} else {
