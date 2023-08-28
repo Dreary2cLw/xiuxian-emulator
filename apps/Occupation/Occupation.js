@@ -1864,7 +1864,7 @@ export async function chose_occupationTest(e) {
 	let action = player.副职;
 	if (action == null) {
 		action = [];
-		arr = {
+		let arr = {
 			职业名: [],
 			职业经验: 0,
 			职业等级: 1,
