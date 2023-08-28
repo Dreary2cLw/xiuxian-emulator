@@ -149,6 +149,9 @@ export class Occupation extends plugin {
 	}
 
 	async chose_occupation(e) {
+		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
+			chose_occupationTest(e);
+		}
 		if (!e.isGroup) {
 			return;
 		}
@@ -1806,7 +1809,83 @@ export async function get_danfang_img(e, all_level) {
 	});
 	return img;
 }
+export async function chose_occupationTest(e) {
+	if (!e.isGroup) {
+		return;
+	}
+	let usr_qq = e.user_id;
+	await Go(e);
+	if (!allaction) {
+		return;
+	}
+	allaction = false;
+	let ifexistplay = await existplayer(usr_qq);
+	if (!ifexistplay) {
+		return;
+	}
 
+	let occupation = e.msg.replace('#转职', '');
+	let player = await Read_player(usr_qq);
+	let player_occupation = player.occupation;
+	let x = data.occupation_list.find((item) => item.name == occupation);
+	if (!isNotNull(x)) {
+		e.reply(`没有[${occupation}]这项职业`);
+		return;
+	}
+	let now_level_id;
+	now_level_id = data.Level_list.find(
+		(item) => item.level_id == player.level_id
+	).level_id;
+	if (now_level_id < 17 && occupation == '采矿师') {
+		e.reply('包工头:就你这小身板还来挖矿？再去修炼几年吧');
+		return;
+	}
+	if (now_level_id < 25 && occupation == '猎户') {
+		e.reply('就你这点修为做猎户？怕不是光头强砍不到树来转的？');
+		return;
+	}
+	let thing_name = occupation + '转职凭证';
+	console.log(thing_name);
+	let thing_class = '道具';
+	let n = -1;
+	let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_class);
+	if (!thing_quantity) {
+		//没有
+		e.reply(`你没有【${thing_name}】`);
+		return;
+	}
+	if (player_occupation == occupation) {
+		e.reply(`你已经是[${player_occupation}]了，可使用[职业转化凭证]重新转职`);
+		return;
+	}
+	await Add_najie_thing(usr_qq, thing_name, thing_class, n);
+	let action = player.副职;
+	if (action == null) {
+		action = [];
+		arr = {
+			职业名: [],
+			职业经验: 0,
+			职业等级: 1,
+		};
+		action.push(arr);
+		player.副职 = action;
+		await Write_player(usr_qq, player);
+	}
+	let arr = {
+		职业名: player.occupation,
+		职业经验: player.occupation_exp,
+		职业等级: player.occupation_level,
+	};
+
+	action = action.push(arr);
+	player.副职 = action;
+	player.occupation = occupation;
+	player.occupation_level = 1;
+	player.occupation_exp = 0;
+	await Write_player(usr_qq, player);
+	e.reply(`恭喜${player.名号}转职为[${occupation}],您的副职为${arr.职业名}`);
+	return;
+}
 export async function get_tuzhi_img(e, all_level) {
 	let usr_qq = e.user_id;
 	let ifexistplay = data.existData('player', usr_qq);
