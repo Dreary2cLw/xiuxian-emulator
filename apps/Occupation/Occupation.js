@@ -149,13 +149,14 @@ export class Occupation extends plugin {
 	}
 
 	async chose_occupation(e) {
-		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
-			chose_occupationTest(e);
-		}
+
 		if (!e.isGroup) {
 			return;
 		}
 		let usr_qq = e.user_id;
+		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
+			chose_occupationTest(e);
+		}
 		await Go(e);
 		if (!allaction) {
 			return;
@@ -1810,6 +1811,7 @@ export async function get_danfang_img(e, all_level) {
 	return img;
 }
 export async function chose_occupationTest(e) {
+	e.reply(`---测试----`);
 	if (!e.isGroup) {
 		return;
 	}
