@@ -2945,8 +2945,8 @@ export class UserHome extends plugin {
                         e.reply(`${last_msg}${fyd_msg}你在轻策庄捡到了胡萝卜${300 * muchan * n + 600 * n * shichan + 900 * n * zuanshichan}个和土豆${300 * muchan * n + 600 * n * shichan + 900 * n * zuanshichan}个和小麦${1000 * muchan * n + 1000 * shichan * n + 2000 * zuanshichan * n}个和树苗${10 * n},获得了修为${xiuwei}血气${xueqi}`)
                         return;
                     } else if (math > 0.7 && math <= 0.8) {
-                        await Add_najie_thing(usr_qq, "钻石", "食材", 3 * n);
-                        e.reply(`${last_msg}${fyd_msg}你在轻策庄捡到了胡萝卜${300 * muchan * n + 600 * n * shichan + 900 * n * zuanshichan}个和土豆${300 * muchan * n + 600 * n * shichan + 900 * n * zuanshichan}个和小麦${1000 * muchan * n + 1000 * shichan * n + 2000 * zuanshichan * n}个和甘蔗${10 * n},获得了修为${xiuwei}血气${xueqi}`)
+                        await Add_najie_thing(usr_qq, "钻石", "材料", 3 * n);
+                        e.reply(`${last_msg}${fyd_msg}你在轻策庄捡到了胡萝卜${300 * muchan * n + 600 * n * shichan + 900 * n * zuanshichan}个和土豆${300 * muchan * n + 600 * n * shichan + 900 * n * zuanshichan}个和小麦${1000 * muchan * n + 1000 * shichan * n + 2000 * zuanshichan * n}个和钻石${3 * n},获得了修为${xiuwei}血气${xueqi}`)
                         return;
                     } else if (math > 0.6 && math <= 0.7) {
                         await Add_najie_thing(usr_qq, "黑曜石", "材料", 5 * n);
