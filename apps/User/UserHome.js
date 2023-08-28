@@ -2851,22 +2851,22 @@ export class UserHome extends plugin {
                     await Add_修为(usr_qq, xiuwei)
                     if (math > 0.90 && math <= 1) {
                         await Add_najie_thing(usr_qq, "铁矿", "材料", 2 * n);
-                        e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${300 * muchan * n + 600 * n * shichan}个和土豆${150 * muchan * n + 300 * n * shichan}个,在猪人箱子里找到铁矿${2 * n}个,获得了修为${xiuwei}血气${xueqi}`)
+                        e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${300 * muchan * n + 600 * n * shichan}个和土豆${300 * muchan * n + 600 * n * shichan}个,在猪人箱子里找到铁矿${2 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
                     } else if (math > 0.8 && math <= 0.9) {
                         await Add_najie_thing(usr_qq, "煤炭", "材料", 5 * n);
-                        e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${300 * muchan * n + 600 * n * shichan}个和土豆${150 * muchan * n + 300 * n * shichan}个,在猪人箱子里找到煤炭${5 * n}个,获得了修为${xiuwei}血气${xueqi}`)
+                        e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${300 * muchan * n + 600 * n * shichan}个和土豆${300 * muchan * n + 600 * n * shichan}个,在猪人箱子里找到煤炭${5 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
                      } else if (math > 0 && math <= 0.1) {
                         await Add_najie_thing(usr_qq, "轻策庄", "道具", 1 * n);
-                        e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${300 * muchan * n + 600 * n * shichan}个和土豆${150 * muchan * n + 300 * n * shichan}个,在猪人箱子里找到轻策庄地图${1 * n}个,获得了修为${xiuwei}血气${xueqi}`)
+                        e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${300 * muchan * n + 600 * n * shichan}个和土豆${300 * muchan * n + 600 * n * shichan}个,在猪人箱子里找到轻策庄地图${1 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
                     } else if (math > 0.7 && math <= 0.8) {
                         await Add_najie_thing(usr_qq, "甘蔗", "食材", 5 * n);
-                        e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${300 * muchan * n + 600 * n * shichan}个和土豆${150 * muchan * n + 300 * n * shichan}个,在猪人家里找到书架${5 * n}个,获得了修为${xiuwei}血气${xueqi}`)
+                        e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${300 * muchan * n + 600 * n * shichan}个和土豆${300 * muchan * n + 600 * n * shichan}个,在猪人家里找到书架${5 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
                     } else {
-                        e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${300 * muchan * n + 600 * n * shichan}个和土豆${150 * muchan * n + 300 * n * shichan}个,获得了修为${xiuwei}血气${xueqi}`)
+                        e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${300 * muchan * n + 600 * n * shichan}个和土豆${300 * muchan * n + 600 * n * shichan}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
                     }
                 } else {
