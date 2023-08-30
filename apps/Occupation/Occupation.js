@@ -360,16 +360,12 @@ export class Occupation extends plugin {
 			action = actionPlus;
 			await Write_player(usr_qq, player);
 		}
-	let msg = '副职:';
 		let flag = false;
 		for(let i=0;i<action.length;i++) {
 			if (action[i].职业名 == occupation) {
 				flag = true;
 			}
-			if(action[i].职业名.length>0){
-				msg+=` [${action[i].职业名}]`
-			}
-		}
+				}
 		if(!flag){
 			e.reply('你没有'+occupation+'副职');
 			return;
@@ -390,6 +386,12 @@ export class Occupation extends plugin {
 				player.副职 = action;
 				await Write_player(usr_qq, player);
 				break;
+			}
+		}
+		let msg = '副职:';
+		for(let i=0;i<action.length;i++) {
+				if(action[i].职业名.length>0){
+				msg+=` [${action[i].职业名}]`
 			}
 		}
 		e.reply(
