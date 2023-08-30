@@ -44,6 +44,10 @@ export class Occupation extends plugin {
 					fnc: 'chose_occupation2',
 				},
 				{
+					reg: '^#我的副职$',
+					fnc: 'chose_occupation3',
+				},
+				{
 					reg: '(^#采药$)|(^#采药(.*)(分|分钟)$)',
 					fnc: 'plant',
 				},
@@ -286,33 +290,34 @@ export class Occupation extends plugin {
 			return;
 		}
 		let player = await Read_player(usr_qq);
+		let actionPlus = [];
 		let action = player.副职;
 		if (action == null) {
-			action = {
+			action = [];
+			let arr = {
 				职业名: [],
 				职业经验: 0,
 				职业等级: 1,
 			};
+			action.push(arr);
 			player.副职 = action;
 			await Write_player(usr_qq, player);
-			e.reply(`您还没有副职哦`);
-			return;
 		}
-		let a, b, c;
-		a = action.职业名;
-		b = action.职业经验;
-		c = action.职业等级;
-		action.职业名 = player.occupation;
-		action.职业经验 = player.occupation_exp;
-		action.职业等级 = player.occupation_level;
-		player.occupation = a;
-		player.occupation_exp = b;
-		player.occupation_level = c;
-		player.副职 = action;
-		await Write_player(usr_qq, player);
-		e.reply(
-			`恭喜${player.名号}转职为[${player.occupation}],您的副职为${action.职业名}`
-		);
+		if(!(action instanceof Array)){
+			e.reply(1);
+			if(action.职业名.length >0){
+				actionPlus.push(action);
+			}
+			action = actionPlus;
+			await Write_player(usr_qq, player);
+		}
+		let msg = player.名号+'副职+';
+		for(let i=0;i<action.length;i++){
+			if(action[i].职业名.length>0){
+				msg+=` [${action[i].职业名}]`
+			}
+		}
+		e.reply(msg);
 		return;
 	}
 
