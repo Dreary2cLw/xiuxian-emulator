@@ -1875,6 +1875,7 @@ export async function chose_occupationTest(e) {
 		await Write_player(usr_qq, player);
 	}
 	if(!(action instanceof Array)){
+		e.reply(1);
 		if(action.职业名.length >0){
 			actionPlus.push(action);
 		}
