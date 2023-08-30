@@ -360,23 +360,23 @@ export class Occupation extends plugin {
 			action = actionPlus;
 			await Write_player(usr_qq, player);
 		}
+	let msg = '副职:';
 		let flag = false;
 		for(let i=0;i<action.length;i++) {
 			if (action[i].职业名 == occupation) {
 				flag = true;
-				break;
+			}
+			if(action[i].职业名.length>0){
+				msg+=` [${action[i].职业名}]`
 			}
 		}
 		if(!flag){
 			e.reply('你没有'+occupation+'副职');
 			return;
 		}
-		let msg= '';
+
 		for(let i=0;i<action.length;i++){
-			if(action[i].职业名.length>0){
-				msg+=` [${action[i].职业名}]`;
-			}
-			if(action[i].职业名 == occupation){
+				if(action[i].职业名 == occupation){
 				let a, b, c;
 				a = action[i].职业名;
 				b = action[i].职业经验;
@@ -393,7 +393,7 @@ export class Occupation extends plugin {
 			}
 		}
 		e.reply(
-			`${player.名号}切换为[${player.occupation}],您的副职为`+msg
+			`${player.名号}切换为[${player.occupation}],您的`+msg
 		);
 		return;
 	}
