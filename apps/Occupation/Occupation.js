@@ -384,13 +384,10 @@ export class Occupation extends plugin {
 				a = action[i].职业名;
 				b = action[i].职业经验;
 				c = action[i].职业等级;
-				let arr = {
-					职业名:  player.occupation,
-					职业经验: player.occupation_exp,
-					职业等级: player.occupation_level,
-				};
-				action.push(arr);
-				player.occupation = a;
+				action[i].职业名 =  player.occupation;
+				action[i].职业经验 =  player.occupation_exp;
+			 action[i].职业等级 =  player.occupation_level;
+		  player.occupation = a;
 				player.occupation_exp = b;
 				player.occupation_level = c;
 				player.副职 = action;
