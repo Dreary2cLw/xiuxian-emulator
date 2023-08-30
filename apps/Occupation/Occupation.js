@@ -271,6 +271,50 @@ export class Occupation extends plugin {
 		);
 		return;
 	}
+	async chose_occupation3(e) {
+		if (!e.isGroup) {
+			return;
+		}
+		let usr_qq = e.user_id;
+		await Go(e);
+		if (!allaction) {
+			return;
+		}
+		allaction = false;
+		let ifexistplay = await existplayer(usr_qq);
+		if (!ifexistplay) {
+			return;
+		}
+		let player = await Read_player(usr_qq);
+		let action = player.副职;
+		if (action == null) {
+			action = {
+				职业名: [],
+				职业经验: 0,
+				职业等级: 1,
+			};
+			player.副职 = action;
+			await Write_player(usr_qq, player);
+			e.reply(`您还没有副职哦`);
+			return;
+		}
+		let a, b, c;
+		a = action.职业名;
+		b = action.职业经验;
+		c = action.职业等级;
+		action.职业名 = player.occupation;
+		action.职业经验 = player.occupation_exp;
+		action.职业等级 = player.occupation_level;
+		player.occupation = a;
+		player.occupation_exp = b;
+		player.occupation_level = c;
+		player.副职 = action;
+		await Write_player(usr_qq, player);
+		e.reply(
+			`恭喜${player.名号}转职为[${player.occupation}],您的副职为${action.职业名}`
+		);
+		return;
+	}
 
 	async plant(e) {
 		let usr_qq = e.user_id; //用户qq
@@ -1892,7 +1936,7 @@ export async function chose_occupationTest(e) {
 	player.occupation_level = 1;
 	player.occupation_exp = 0;
 	await Write_player(usr_qq, player);
-	e.reply(`恭喜${player.名号}转职为[${occupation}],您的副职为${arr.职业名}`);
+	e.reply(`恭喜${player.名号}转职为[${occupation}],您的副职为${action[0].职业名},${action[1].职业名},${action[2].职业名}`);
 	return;
 }
 export async function get_tuzhi_img(e, all_level) {
