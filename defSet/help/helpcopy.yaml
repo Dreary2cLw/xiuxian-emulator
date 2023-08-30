@@ -7,6 +7,12 @@
       title: "#转换副职"
       desc: "切换到副职业"
     - icon: help-icon_13
+      title: "#切换副职"
+      desc: "切换到副职业#切换采药师"
+    - icon: help-icon_13
+      title: "#删除副职"
+      desc: "删除副职#删除采药师"
+    - icon: help-icon_13
       title: "#职业等级"
       desc: "查看所有等级"
     - icon: help-icon_13

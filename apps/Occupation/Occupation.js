@@ -481,7 +481,7 @@ async chose_occupation5(e) {
 		}
 	}
 	if(fuzhi==3){
-		e.reply(`副职数量大于3`);
+		e.reply(`副职数量大于3，请使用#删除XXX删除副职！`);
 		return;
 	}
 	let arr = {
