@@ -1879,14 +1879,15 @@ export async function chose_occupationTest(e) {
 		if(action.职业名.length >0){
 			actionPlus.push(action);
 		}
+		action = actionPlus;
 	}
 	let arr = {
 		职业名: player.occupation,
 		职业经验: player.occupation_exp,
 		职业等级: player.occupation_level,
 	};
-	actionPlus.push(arr);
-	player.副职 = actionPlus;
+	action.push(arr);
+	player.副职 = action;
 	player.occupation = occupation;
 	player.occupation_level = 1;
 	player.occupation_exp = 0;
