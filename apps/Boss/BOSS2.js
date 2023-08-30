@@ -146,12 +146,13 @@ export class BOSS2 extends plugin {
 			}
 			let CurrentQQ;
 			let TotalDamage = 0;
+			let RewardQQ = 0;
 			for (let i = 0; i < (PlayerList.length <= 20 ? PlayerList.length : 20); i++)
 				TotalDamage += PlayerRecordJSON.TotalDamage[PlayerList[i]];
-			let msg = ['****天理周本贡献排行榜****'];
+			let msg = [];
 			for (let i = 0; i < PlayerList.length; i++) {
+				let Reward =0;
 				if (i < 20) {
-					let Reward;
 					if (PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage <= 0.025) {
 						Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.06);
 					} else if (PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage <= 0.05) {
@@ -213,15 +214,20 @@ export class BOSS2 extends plugin {
 							`\n${WorldBossStatus.当前血量 == 0 ? `已得到灵石` : `预计得到灵石`}:${Reward}`
 					);
 				}
-				if (PlayerRecordJSON.QQ[PlayerList[i]] == e.user_id) CurrentQQ = i + 1;
+				if (PlayerRecordJSON.QQ[PlayerList[i]] == e.user_id){
+					CurrentQQ = i + 1;
+					RewardQQ = Reward;
+				}
 			}
 			//await ForwardMsg(e, msg);
+			let img = await get_tianlibang_img(e,msg);
+			e.reply(img);
 			await sleep(1000);
 			if (CurrentQQ != undefined)
 				e.reply(
 					`你在天理周本贡献排行榜中排名第${CurrentQQ}，造成伤害${
 						PlayerRecordJSON.TotalDamage[PlayerList[CurrentQQ - 1]]
-					}，再接再厉！`
+					}，预计得到灵石:`+RewardQQ+`，再接再厉！`
 				);
 		} else e.reply('天理未开启！');
 		return true;
@@ -1047,7 +1053,18 @@ function Harm(atk, def) {
 	x = Math.trunc(x * atk * rand);
 	return x;
 }
-
+export async  function get_tianlibang_img(e, msg) {
+	let usr_qq = e.user_id;
+	let biwu_data = {
+		user_id: usr_qq,
+		Exchange_list: msg,
+	};
+	const data1 = await new Show(e).get_bossBangData(biwu_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
 //获取玩家平均实力和化神以上人数
 async function GetAverageDamage() {
 	let File = fs.readdirSync(data.filePathMap.player);

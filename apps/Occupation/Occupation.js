@@ -1861,6 +1861,7 @@ export async function chose_occupationTest(e) {
 		return;
 	}
 	await Add_najie_thing(usr_qq, thing_name, thing_class, n);
+	let actionPlus = [];
 	let action = player.副职;
 	if (action == null) {
 		action = [];
@@ -1873,14 +1874,18 @@ export async function chose_occupationTest(e) {
 		player.副职 = action;
 		await Write_player(usr_qq, player);
 	}
+	if(!(action instanceof Array)){
+		if(action.职业名.length >0){
+			actionPlus.push(action);
+		}
+	}
 	let arr = {
 		职业名: player.occupation,
 		职业经验: player.occupation_exp,
 		职业等级: player.occupation_level,
 	};
-
-	action = action.push(arr);
-	player.副职 = action;
+	actionPlus.push(arr);
+	player.副职 = actionPlus;
 	player.occupation = occupation;
 	player.occupation_level = 1;
 	player.occupation_exp = 0;

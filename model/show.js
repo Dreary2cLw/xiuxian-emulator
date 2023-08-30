@@ -456,6 +456,14 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
+	async get_bossBangData(myData) {
+		this.model = 'bossbang';
+		return {
+			...this.screenData,
+			saveId: 'bossBang',
+			...myData,
+		};
+	}
 	async get_tiandibangData(myData) {
 		this.model = 'tiandibang';
 		return {
