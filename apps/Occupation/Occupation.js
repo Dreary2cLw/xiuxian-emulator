@@ -1928,13 +1928,13 @@ export async function chose_occupationTest(e) {
 	let fuzhi = 0;
 	for(let i=0;i<action.length;i++){
 		if(i==0){
-			e.reply(player_occupation + '---' +action[i].职业名);
+			e.reply(occupation + '---' +action[i].职业名);
 		}
 		if(action[i].职业名.length>0){
 			fuzhi++;
 		}
-		if(player_occupation = action[i].职业名){
-			e.reply(`你副职已经有[${player_occupation}]了，可使用[职业转化凭证]重新转职`);
+		if(occupation == action[i].职业名){
+			e.reply(`你副职已经有[${occupation}]了，可使用[职业转化凭证]重新转职`);
 			return;
 		}
 	}
