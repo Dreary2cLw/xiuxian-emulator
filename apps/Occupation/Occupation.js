@@ -44,7 +44,7 @@ export class Occupation extends plugin {
 					fnc: 'chose_occupation2',
 				},
 				{
-					reg: '^#我的副职$',
+					reg: '^#我的职业$',
 					fnc: 'chose_occupation3',
 				},
 				{
@@ -311,7 +311,7 @@ export class Occupation extends plugin {
 			action = actionPlus;
 			await Write_player(usr_qq, player);
 		}
-		let msg = player.名号+'副职+';
+		let msg = player.名号+'主职:['+player.occupation+']  副职:';
 		for(let i=0;i<action.length;i++){
 			if(action[i].职业名.length>0){
 				msg+=` [${action[i].职业名}]`
