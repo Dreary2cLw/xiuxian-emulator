@@ -37,7 +37,7 @@ export class Occupation extends plugin {
 			rule: [
 				{
 					reg: '^#转职.*$',
-					fnc: 'chose_occupation',
+					fnc: 'chose_occupation5',
 				},
 				{
 					reg: '^#转换副职$',
@@ -166,10 +166,7 @@ export class Occupation extends plugin {
 			return;
 		}
 		let usr_qq = e.user_id;
-		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
-			chose_occupationTest(e);
-		}
-		await Go(e);
+	 await Go(e);
 		if (!allaction) {
 			return;
 		}
@@ -374,10 +371,10 @@ export class Occupation extends plugin {
 			e.reply('你没有'+occupation+'副职');
 			return;
 		}
-		let msg;
+		let msg= '';
 		for(let i=0;i<action.length;i++){
 			if(action[i].职业名.length>0){
-				msg+=` [${action[i].职业名}]`
+				msg+=` [${action[i].职业名}]`;
 			}
 			if(action[i].职业名 == occupation){
 				let a, b, c;
@@ -395,10 +392,112 @@ export class Occupation extends plugin {
 			}
 		}
 		e.reply(
-			`恭喜${player.名号}转职为[${player.occupation}],您的副职为`+msg
+			`${player.名号}切换为[${player.occupation}],您的副职为`+msg
 		);
 		return;
 	}
+async chose_occupation5(e) {
+	if (!e.isGroup) {
+		return;
+	}
+	let usr_qq = e.user_id;
+	await Go(e);
+	if (!allaction) {
+		return;
+	}
+	allaction = false;
+	let ifexistplay = await existplayer(usr_qq);
+	if (!ifexistplay) {
+		return;
+	}
+
+	let occupation = e.msg.replace('#转职', '');
+	let player = await Read_player(usr_qq);
+	let player_occupation = player.occupation;
+	let x = data.occupation_list.find((item) => item.name == occupation);
+	if (!isNotNull(x)) {
+		e.reply(`没有[${occupation}]这项职业`);
+		return;
+	}
+	let now_level_id;
+	now_level_id = data.Level_list.find(
+		(item) => item.level_id == player.level_id
+	).level_id;
+	if (now_level_id < 17 && occupation == '采矿师') {
+		e.reply('包工头:就你这小身板还来挖矿？再去修炼几年吧');
+		return;
+	}
+	if (now_level_id < 25 && occupation == '猎户') {
+		e.reply('就你这点修为做猎户？怕不是光头强砍不到树来转的？');
+		return;
+	}
+	let thing_name = occupation + '转职凭证';
+	console.log(thing_name);
+	let thing_class = '道具';
+	let n = -1;
+	let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_class);
+	if (!thing_quantity) {
+		//没有
+		e.reply(`你没有【${thing_name}】`);
+		return;
+	}
+	if (player_occupation == occupation) {
+		e.reply(`你已经是[${player_occupation}]了，可使用[职业转化凭证]重新转职`);
+		return;
+	}
+	await Add_najie_thing(usr_qq, thing_name, thing_class, n);
+	let actionPlus = [];
+	let action = player.副职;
+	if (action == null) {
+		action = [];
+		let arr = {
+			职业名: [],
+			职业经验: 0,
+			职业等级: 1,
+		};
+		action.push(arr);
+		player.副职 = action;
+		await Write_player(usr_qq, player);
+	}
+	if(!(action instanceof Array)){
+		e.reply(1);
+		if(action.职业名.length >0){
+			actionPlus.push(action);
+		}
+		action = actionPlus;
+	}
+	let fuzhi = 0;
+	for(let i=0;i<action.length;i++){
+		if(action[i].职业名.length>0){
+			fuzhi++;
+		}else if(action.length>1 && action[i].职业名.length==0){
+			action.splice(i,1);
+		}
+	}
+	for(let i=0;i<action.length;i++){
+		if(occupation == action[i].职业名){
+			e.reply(`你副职已经有[${occupation}]了，可使用[职业转化凭证]重新转职`);
+			return;
+		}
+	}
+	if(fuzhi==3){
+		e.reply(`副职数量大于3`);
+		return;
+	}
+	let arr = {
+		职业名: player.occupation,
+		职业经验: player.occupation_exp,
+		职业等级: player.occupation_level,
+	};
+	action.push(arr);
+	player.副职 = action;
+	player.occupation = occupation;
+	player.occupation_level = 1;
+	player.occupation_exp = 0;
+	await Write_player(usr_qq, player);
+	e.reply(`恭喜${player.名号}转职为[${occupation}],您的副职为[${action[0].职业名}],[${action[1].职业名}],[${action[2].职业名}]`);
+	return;
+}
 	async del_occupation(e) {
 		if (!e.isGroup) {
 			return;
