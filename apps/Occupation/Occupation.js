@@ -1932,6 +1932,8 @@ export async function chose_occupationTest(e) {
 		}
 		if(action[i].职业名.length>0){
 			fuzhi++;
+		}else if(action.length>1 && action[i].职业名.length==0){
+			action.splice(i,1);
 		}
 		if(occupation == action[i].职业名){
 			e.reply(`你副职已经有[${occupation}]了，可使用[职业转化凭证]重新转职`);
