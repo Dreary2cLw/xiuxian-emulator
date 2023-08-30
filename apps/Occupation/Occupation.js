@@ -48,6 +48,14 @@ export class Occupation extends plugin {
 					fnc: 'chose_occupation3',
 				},
 				{
+					reg: '^#切换.*$',
+					fnc: 'chose_occupation4',
+				},
+				{
+					reg: '^#删除.*$',
+					fnc: 'del_occupation',
+				},
+				{
 					reg: '(^#采药$)|(^#采药(.*)(分|分钟)$)',
 					fnc: 'plant',
 				},
@@ -355,6 +363,17 @@ export class Occupation extends plugin {
 			action = actionPlus;
 			await Write_player(usr_qq, player);
 		}
+		let flag = false;
+		for(let i=0;i<action.length;i++) {
+			if (action[i].职业名 == occupation) {
+				flag = true;
+				break;
+			}
+		}
+		if(!flag){
+			e.reply('你没有'+occupation+'副职');
+			return;
+		}
 		let msg;
 		for(let i=0;i<action.length;i++){
 			if(action[i].职业名.length>0){
@@ -408,6 +427,26 @@ export class Occupation extends plugin {
 				return;
 			}
 			let player = await Read_player(usr_qq);
+			let action = player.副职;
+			if (action == null) {
+				action = [];
+				let arr = {
+					职业名: [],
+					职业经验: 0,
+					职业等级: 1,
+				};
+				action.push(arr);
+				player.副职 = action;
+				await Write_player(usr_qq, player);
+			}
+			if(!(action instanceof Array)){
+				e.reply(1);
+				if(action.职业名.length >0){
+					actionPlus.push(action);
+				}
+				action = actionPlus;
+				await Write_player(usr_qq, player);
+			}
 			let flag = false;
 			for(let i=0;i<action.length;i++) {
 				if (action[i].职业名 == occupation) {
