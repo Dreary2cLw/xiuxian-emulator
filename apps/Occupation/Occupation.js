@@ -455,6 +455,8 @@ export class Occupation extends plugin {
 					break;
 				}
 			}
+			player.副职 = action;
+			await Write_player(usr_qq, player);
 			if(flag){
 				await this.reply('删除成功，#我的职业 查看');
 			}else {
