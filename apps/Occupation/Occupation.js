@@ -1925,6 +1925,23 @@ export async function chose_occupationTest(e) {
 		}
 		action = actionPlus;
 	}
+	let fuzhi = 0;
+	for(let i=0;i<action.length;i++){
+		if(i==0){
+			e.reply(player_occupation + '---' +action[i].职业名);
+		}
+		if(action[i].职业名.length>0){
+			fuzhi++;
+		}
+		if(player_occupation = action[i].职业名){
+			e.reply(`你副职已经有[${player_occupation}]了，可使用[职业转化凭证]重新转职`);
+			return;
+		}
+	}
+	if(fuzhi==3){
+		e.reply(`副职数量大于3`);
+		return;
+	}
 	let arr = {
 		职业名: player.occupation,
 		职业经验: player.occupation_exp,
@@ -1936,7 +1953,7 @@ export async function chose_occupationTest(e) {
 	player.occupation_level = 1;
 	player.occupation_exp = 0;
 	await Write_player(usr_qq, player);
-	e.reply(`恭喜${player.名号}转职为[${occupation}],您的副职为${action[0].职业名},${action[1].职业名},${action[2].职业名}`);
+	e.reply(`恭喜${player.名号}转职为[${occupation}],您的副职为[${action[0].职业名}],[${action[1].职业名}],[${action[2].职业名}]`);
 	return;
 }
 export async function get_tuzhi_img(e, all_level) {
