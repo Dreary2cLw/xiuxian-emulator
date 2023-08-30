@@ -304,7 +304,6 @@ export class Occupation extends plugin {
 			await Write_player(usr_qq, player);
 		}
 		if(!(action instanceof Array)){
-			e.reply(1);
 			if(action.职业名.length >0){
 				actionPlus.push(action);
 			}
@@ -320,7 +319,124 @@ export class Occupation extends plugin {
 		e.reply(msg);
 		return;
 	}
-
+	async chose_occupation4(e) {
+		if (!e.isGroup) {
+			return;
+		}
+		let occupation = e.msg.replace('#切换', '');
+		let usr_qq = e.user_id;
+		await Go(e);
+		if (!allaction) {
+			return;
+		}
+		allaction = false;
+		let ifexistplay = await existplayer(usr_qq);
+		if (!ifexistplay) {
+			return;
+		}
+		let player = await Read_player(usr_qq);
+		let action = player.副职;
+		if (action == null) {
+			action = [];
+			let arr = {
+				职业名: [],
+				职业经验: 0,
+				职业等级: 1,
+			};
+			action.push(arr);
+			player.副职 = action;
+			await Write_player(usr_qq, player);
+		}
+		if(!(action instanceof Array)){
+			e.reply(1);
+			if(action.职业名.length >0){
+				actionPlus.push(action);
+			}
+			action = actionPlus;
+			await Write_player(usr_qq, player);
+		}
+		let msg;
+		for(let i=0;i<action.length;i++){
+			if(action[i].职业名.length>0){
+				msg+=` [${action[i].职业名}]`
+			}
+			if(action[i].职业名 == occupation){
+				let a, b, c;
+				a = action[i].职业名;
+				b = action[i].职业经验;
+				c = action[i].职业等级;
+				let arr = {
+					职业名:  player.occupation,
+					职业经验: player.occupation_exp,
+					职业等级: player.occupation_level,
+				};
+				action.push(arr);
+				player.occupation = a;
+				player.occupation_exp = b;
+				player.occupation_level = c;
+				player.副职 = action;
+				await Write_player(usr_qq, player);
+			}
+		}
+		e.reply(
+			`恭喜${player.名号}转职为[${player.occupation}],您的副职为`+msg
+		);
+		return;
+	}
+	async del_occupation(e) {
+		if (!e.isGroup) {
+			return;
+		}
+		let new_msg = this.e.message;
+		let choice = new_msg[0].text;
+		let usr_qq = e.user_id;
+		await Go(e);
+		if (!allaction) {
+			return;
+		}
+		allaction = false;
+		let ifexistplay = await existplayer(usr_qq);
+		if (!ifexistplay) {
+			return;
+		}
+		let choiceDel = choice.substring(0,2);
+		if(choiceDel == '删除') {
+			let occupation = choice.replace('删除', '');
+			let x = data.occupation_list.find((item) => item.name == occupation);
+			if (!isNotNull(x)) {
+				e.reply(`没有[${occupation}]这项职业`);
+				return;
+			}
+			let player = await Read_player(usr_qq);
+			let flag = false;
+			for(let i=0;i<action.length;i++) {
+				if (action[i].职业名 == occupation) {
+					action.splice(i,1);
+					flag = true;
+					break;
+				}
+			}
+			if(flag){
+				await this.reply('删除成功，#我的职业 查看');
+			}else {
+				await this.reply('副职不存在'+occupation+'，若在主职请切换成副职');
+			}
+			this.finish('del_occupation');
+			return;
+		}else if(choice == '取消'){
+			await this.reply('取消删除');
+			this.finish('del_occupation');
+			return;
+		}else{
+			let occupation = e.msg.replace('#删除', '');
+			this.setContext('del_occupation');
+			await this.reply(
+				'你确定删除'+occupation+'?\n' +
+				'回复:再次输入【删除'+occupation+'】或者【取消】进行选择'
+			);
+			return;
+		}
+	}
 	async plant(e) {
 		let usr_qq = e.user_id; //用户qq
 		//有无存档
@@ -1939,9 +2055,6 @@ export async function chose_occupationTest(e) {
 		}
 	}
 	for(let i=0;i<action.length;i++){
-		if(i==0){
-			e.reply(occupation + '---' +action[i].职业名);
-		}
 		if(occupation == action[i].职业名){
 			e.reply(`你副职已经有[${occupation}]了，可使用[职业转化凭证]重新转职`);
 			return;
