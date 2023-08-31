@@ -39,10 +39,10 @@ export class Occupation extends plugin {
 					reg: '^#转职.*$',
 					fnc: 'chose_occupation5',
 				},
-				{
+				/*{
 					reg: '^#转换副职$',
 					fnc: 'chose_occupation2',
-				},
+				},*/
 				{
 					reg: '^#我的职业$',
 					fnc: 'chose_occupation3',
@@ -358,6 +358,7 @@ export class Occupation extends plugin {
 				actionPlus.push(action);
 			}
 			action = actionPlus;
+			player.副职 = action;
 			await Write_player(usr_qq, player);
 		}
 		let flag = false;
