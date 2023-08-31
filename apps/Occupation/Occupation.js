@@ -498,7 +498,13 @@ async chose_occupation5(e) {
 	player.occupation_level = 1;
 	player.occupation_exp = 0;
 	await Write_player(usr_qq, player);
-	e.reply(`恭喜${player.名号}转职为[${occupation}],您的副职为[${action[0].职业名}],[${action[1].职业名}],[${action[2].职业名}]`);
+		let msg = '副职:';
+		for(let i=0;i<action.length;i++) {
+				if(action[i].职业名.length>0){
+				msg+=` [${action[i].职业名}]`
+			}
+		}
+	e.reply(`恭喜${player.名号}转职为[${occupation}],您的`+msg);
 	return;
 }
 	async del_occupation(e) {
