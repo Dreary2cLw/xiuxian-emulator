@@ -301,6 +301,10 @@ export class MoneyOperation extends plugin {
 		//     return;
 		// }
 		let B_player = await data.getData('player', B_qq);
+		if(A_qq == B_qq){
+			e.reply(`自己给自己，好玩吗`);
+			return ;
+		}
 		//获取发送灵石数量
 		let msg = e.msg.replace('赠送', '');
 		if (msg.startsWith('灵石')) {
