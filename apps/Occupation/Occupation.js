@@ -1655,10 +1655,14 @@ async chose_occupation5(e) {
 		e.reply('悬赏成功!');
 		let msg = '';
 		msg += '【全服公告】' + player_B.名号 + '被悬赏了' + money + '灵石';
-		for (let i = 0; i < this.xiuxianConfigData.Group.length; i++) {
-			await this.pushInfo(this.xiuxianConfigData.Group[i], true, msg);
-		}
-		await redis.set('xiuxian:player:' + 1 + ':shangjing', JSON.stringify(action));
+
+		const wupinStr = await redis.get('xiuxian:AuctionofficialTask');
+			const wupin = JSON.parse(wupinStr);
+		const group_ids = wupin.groupList;
+		for (const group_id of group_ids) {
+				this.pushInfo(group_id, true, msg);
+			}
+				await redis.set('xiuxian:player:' + 1 + ':shangjing', JSON.stringify(action));
 		return;
 	}
 
