@@ -1600,10 +1600,12 @@ async chose_occupation5(e) {
 		if (last_msg == '你惩戒了仙路窃贼,获得了部分灵石') {
 			e.reply(last_msg);
 		} else {
-			for (let i = 0; i < this.xiuxianConfigData.Group.length; i++) {
-				await this.pushInfo(this.xiuxianConfigData.Group[i], true, last_msg);
+			const redisGlKey = 'xiuxian:AuctionofficialTask_GroupList';
+			const groupList = await redis.sMembers(redisGlKey);
+			for (const group_id of groupList) {
+				this.pushInfo(group_id, true, last_msg);
 			}
-		}
+	}
 	}
 
 	async xuanshang_sb(e) {
@@ -1822,9 +1824,11 @@ async chose_occupation5(e) {
 			let img = await get_biwu_img(e,msg);
 			e.reply(img);
 		}
-		for (let i = 0; i < this.xiuxianConfigData.Group.length; i++) {
-			await this.pushInfo(this.xiuxianConfigData.Group[i], true, last_msg);
-		}
+			const redisGlKey = 'xiuxian:AuctionofficialTask_GroupList';
+			const groupList = await redis.sMembers(redisGlKey);
+			for (const group_id of groupList) {
+				this.pushInfo(group_id, true, last_msg);
+			}
 		return;
 	}
 
