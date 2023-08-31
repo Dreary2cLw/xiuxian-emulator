@@ -286,10 +286,10 @@ export class Occupation extends plugin {
 		}
 		let usr_qq = e.user_id;
 		//await Go(e);
-		if (!allaction) {
-			return;
-		}
-		allaction = false;
+		// if (!allaction) {
+		// 	return;
+		// }
+		// allaction = false;
 		let ifexistplay = await existplayer(usr_qq);
 		if (!ifexistplay) {
 			return;
