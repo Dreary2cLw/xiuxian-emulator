@@ -341,6 +341,7 @@ export class Occupation extends plugin {
 		}
 		let player = await Read_player(usr_qq);
 		let action = player.副职;
+		let actionPlus = [];
 		if (action == null) {
 			action = [];
 			let arr = {
@@ -353,7 +354,6 @@ export class Occupation extends plugin {
 			await Write_player(usr_qq, player);
 		}
 		if(!(action instanceof Array)){
-			e.reply(1);
 			if(action.职业名.length >0){
 				actionPlus.push(action);
 			}
