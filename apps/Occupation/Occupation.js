@@ -285,7 +285,7 @@ export class Occupation extends plugin {
 			return;
 		}
 		let usr_qq = e.user_id;
-		await Go(e);
+		//await Go(e);
 		if (!allaction) {
 			return;
 		}
