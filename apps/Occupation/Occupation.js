@@ -527,6 +527,7 @@ async chose_occupation5(e) {
 			}
 			let player = await Read_player(usr_qq);
 			let action = player.副职;
+			let actionPlus = [];
 			if (action == null) {
 				action = [];
 				let arr = {
@@ -539,11 +540,11 @@ async chose_occupation5(e) {
 				await Write_player(usr_qq, player);
 			}
 			if(!(action instanceof Array)){
-				e.reply(1);
 				if(action.职业名.length >0){
 					actionPlus.push(action);
 				}
 				action = actionPlus;
+				player.副职 = action;
 				await Write_player(usr_qq, player);
 			}
 			let flag = false;
