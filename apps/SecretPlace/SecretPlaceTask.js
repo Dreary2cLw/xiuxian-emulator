@@ -448,14 +448,14 @@ export class SecretPlaceTask extends plugin {
 									last_msg +='\n' + '获得可以对仙子无礼券*1';
 									await Add_najie_thing(player_id, '可以对仙子无礼券', '道具', 1);
 								}else if(randomAb>=0.4&&randomAb<0.5){
-										let number = await exist_najie_thing(usr_qq, '对阿巴怪特攻', '道具');
+										let number = await exist_najie_thing(player_id, '对阿巴怪特攻', '道具');
 										if (isNotNull(number) && number >= 1) {
-										await Add_najie_thing(usr_qq, '对阿巴怪特攻', '道具', -1);
+										await Add_najie_thing(player_id, '对阿巴怪特攻', '道具', -1);
 										let number = Math.floor((Math.random()+0.5)*3000000);
 										last_msg +=
 											'\n' +
 											B_player.名号 +
-											'倒下后,你正准备离开此地，发现阿巴怪突然向你袭来，危急时刻，一道耀眼的光芒笼罩着你，光芒过后仅仅看见一个灵石贷放在地上。';
+											'倒下后,你正准备离开此地，发现阿巴怪突然向你袭来，危急时刻，一道耀眼的光芒笼罩着你，光芒过后，发现地上掉落一个灵石袋。';
 										 last_msg +='\n' + '获得灵石X'+number;
 										 await Add_灵石(player_id, number);
 									}else{
