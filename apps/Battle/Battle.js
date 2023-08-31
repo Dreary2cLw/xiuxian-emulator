@@ -398,7 +398,7 @@ export class Battle extends plugin {
 		//     e.reply("战斗过程超过30回合，略");
 		// } else {
 		//await ForwardMsg(e, msg);
-		console.log(msg);
+		//console.log(msg);
 		let img = await get_biwu_img(e,msg);
 		e.reply(img);
 		// }

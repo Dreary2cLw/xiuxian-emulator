@@ -18,7 +18,7 @@ import {
 } from '../Xiuxian/xiuxian.js';
 import Show from '../../model/show.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
-import { zd_battle } from '../Battle/Battle.js';
+import { zd_battle,get_biwu_img } from '../Battle/Battle.js';
 /**
  * 全局变量
  */
@@ -1575,7 +1575,9 @@ async chose_occupation5(e) {
 			}
 			if (msg.length > 100) {
 			} else {
-				await ForwardMsg(e, msg);
+				//await ForwardMsg(e, msg);
+				let img = await get_biwu_img(e,msg);
+				e.reply(img);
 			}
 		} else {
 			player.灵石 += action.arm[num].赏金;
@@ -1808,7 +1810,9 @@ async chose_occupation5(e) {
 		}
 		if (msg.length > 100) {
 		} else {
-			await ForwardMsg(e, msg);
+			//await ForwardMsg(e, msg);
+			let img = await get_biwu_img(e,msg);
+			e.reply(img);
 		}
 		for (let i = 0; i < this.xiuxianConfigData.Group.length; i++) {
 			await this.pushInfo(this.xiuxianConfigData.Group[i], true, last_msg);
