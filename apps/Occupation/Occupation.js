@@ -1742,6 +1742,7 @@ async chose_occupation5(e) {
 		}
 		let last_msg = '';
 		let player_B = await Read_player(qq);
+		player_B.id = qq;
 		if (player_B.当前血量 == 0) {
 			e.reply(`对方已经没有血了,请等一段时间再刺杀他吧`);
 			return;
@@ -1766,7 +1767,7 @@ async chose_occupation5(e) {
 		player_B.法球倍率 = player_B.灵根.法球倍率;
 		player_B.当前血量 = player_B.血量上限;
 		let player_A = {
-			id: player.id,
+			id: usr_qq,
 			名号: player.名号,
 			攻击: parseInt(player.攻击 * buff),
 			防御: parseInt(player.防御),
