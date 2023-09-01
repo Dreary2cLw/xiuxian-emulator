@@ -1439,7 +1439,7 @@ async chose_occupation5(e) {
 							player.Physique_id) /
 							42 /
 							42 /
-							4
+							2
 					),
 					QQ: this_qq,
 				};
