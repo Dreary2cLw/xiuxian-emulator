@@ -498,7 +498,13 @@ async chose_occupation5(e) {
 	player.occupation_level = 1;
 	player.occupation_exp = 0;
 	await Write_player(usr_qq, player);
-	e.reply(`恭喜${player.名号}转职为[${occupation}],您的副职为[${action[0].职业名}],[${action[1].职业名}],[${action[2].职业名}]`);
+		let msg = '副职:';
+		for(let i=0;i<action.length;i++) {
+				if(action[i].职业名.length>0){
+				msg+=` [${action[i].职业名}]`
+			}
+		}
+	e.reply(`恭喜${player.名号}转职为[${occupation}],您的`+msg);
 	return;
 }
 	async del_occupation(e) {
@@ -1594,10 +1600,12 @@ async chose_occupation5(e) {
 		if (last_msg == '你惩戒了仙路窃贼,获得了部分灵石') {
 			e.reply(last_msg);
 		} else {
-			for (let i = 0; i < this.xiuxianConfigData.Group.length; i++) {
-				await this.pushInfo(this.xiuxianConfigData.Group[i], true, last_msg);
+			const redisGlKey = 'xiuxian:AuctionofficialTask_GroupList';
+			const groupList = await redis.sMembers(redisGlKey);
+			for (const group_id of groupList) {
+				this.pushInfo(group_id, true, last_msg);
 			}
-		}
+	}
 	}
 
 	async xuanshang_sb(e) {
@@ -1649,10 +1657,12 @@ async chose_occupation5(e) {
 		e.reply('悬赏成功!');
 		let msg = '';
 		msg += '【全服公告】' + player_B.名号 + '被悬赏了' + money + '灵石';
-		for (let i = 0; i < this.xiuxianConfigData.Group.length; i++) {
-			await this.pushInfo(this.xiuxianConfigData.Group[i], true, msg);
-		}
-		await redis.set('xiuxian:player:' + 1 + ':shangjing', JSON.stringify(action));
+   const redisGlKey = 'xiuxian:AuctionofficialTask_GroupList';
+			const groupList = await redis.sMembers(redisGlKey);
+		for (const group_id of groupList) {
+				this.pushInfo(group_id, true, msg);
+			}
+				await redis.set('xiuxian:player:' + 1 + ':shangjing', JSON.stringify(action));
 		return;
 	}
 
@@ -1814,9 +1824,11 @@ async chose_occupation5(e) {
 			let img = await get_biwu_img(e,msg);
 			e.reply(img);
 		}
-		for (let i = 0; i < this.xiuxianConfigData.Group.length; i++) {
-			await this.pushInfo(this.xiuxianConfigData.Group[i], true, last_msg);
-		}
+			const redisGlKey = 'xiuxian:AuctionofficialTask_GroupList';
+			const groupList = await redis.sMembers(redisGlKey);
+			for (const group_id of groupList) {
+				this.pushInfo(group_id, true, last_msg);
+			}
 		return;
 	}
 
