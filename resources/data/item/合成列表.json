@@ -1228,6 +1228,116 @@
     ]
   },
   {
+    "name": "附魔书-制衡天下1",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "麒麟牙",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "番琉璃",
+        "class": "材料",
+        "amount": 100
+      },
+      {
+        "name": "角石",
+        "class": "材料",
+        "amount": 100
+      }
+    ]
+  },
+  {
+    "name": "附魔书-制衡天下2",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-制衡天下1",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-制衡天下3",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-制衡天下2",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-制衡天下4",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-制衡天下3",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "name": "附魔书-荆棘5",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-荆棘4",
+        "class": "道具",
+        "amount": 5
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
+        "amount": 2
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 5
+      }
+    ]
+  },
+  {
     "name": "附魔书-锋利2",
     "class": "道具",
     "amount": 1,
