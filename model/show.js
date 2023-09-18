@@ -440,14 +440,7 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
-		async get_xunbaoData(myData) {
-		this.model = 'huodon';
-		return {
-			...this.screenData,
-			saveId: 'huodon',
-			...myData,
-		};
-	}
+
 	async get_xianData(myData) {
 		this.model = 'xian';
 		return {

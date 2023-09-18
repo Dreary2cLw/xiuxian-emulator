@@ -50,10 +50,7 @@ export class SecretPlace extends plugin {
 					reg: '^#寻宝$',
 					fnc: 'xunbao',
 				},
-				{
-					reg: '^#活动$',
-					fnc: 'huodon',
-				},
+
 				{
 					reg: '^#降临秘境.*$',
 					fnc: 'Gosecretplace',
@@ -141,15 +138,7 @@ export class SecretPlace extends plugin {
 		e.reply(img);
 		return;
 	}
-		async huodon(e) {
-		//不开放私聊功能
-		if (!e.isGroup) {
-			return;
-		}
-		let img = await get_huodon_img(e);
-		e.reply(img);
-		return;
-	}
+
 
 	//仙境
 	async Fairyrealm(e) {
@@ -797,20 +786,7 @@ export async function Read_xunbaoName() {
 	Exchange = JSON.parse(Exchange);
 	return Exchange;
 }
-export async function Read_huodonName() {
-	let dir = path.join(`${__PATH.map}/huodon.json`);
-	console.log(dir);
-	let Exchange = fs.readFileSync(dir, 'utf8', (err, data) => {
-		if (err) {
-			console.log(err);
-			return 'error';
-		}
-		return data;
-	});
-	//将字符串数据转变成数组格式
-	Exchange = JSON.parse(Exchange);
-	return Exchange;
-}
+
 export async function Read_xianName() {
 	let dir = path.join(`${__PATH.map}/xian.json`);
 	console.log(dir);
