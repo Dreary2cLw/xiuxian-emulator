@@ -1306,12 +1306,35 @@
       {
         "name": "深渊石",
         "class": "材料",
+        "amount": 200
+      },
+      {
+        "name": "煤炭",
+        "class": "材料",
+        "amount": 500
+      }
+    ]
+  }
+,
+  {
+    "name": "附魔书-制衡天下5",
+    "class": "道具",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "附魔书-制衡天下4",
+        "class": "道具",
+        "amount": 1
+      },
+      {
+        "name": "深渊石",
+        "class": "材料",
         "amount": 500
       },
       {
         "name": "煤炭",
         "class": "材料",
-        "amount": 1250
+        "amount": 1000
       }
     ]
   },
