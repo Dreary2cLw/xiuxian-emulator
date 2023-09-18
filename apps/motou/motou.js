@@ -33,7 +33,7 @@ export class motou extends plugin {
 					fnc: 'xianji',
 				},
 				{
-					reg: '^#祭拜月神',
+					reg: '^#祭拜月神$',
 					fnc: 'zhongqiu',
 				}
 			],

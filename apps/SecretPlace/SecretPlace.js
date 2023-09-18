@@ -51,6 +51,10 @@ export class SecretPlace extends plugin {
 					fnc: 'xunbao',
 				},
 				{
+					reg: '^#活动$',
+					fnc: 'huodon',
+				},
+				{
 					reg: '^#降临秘境.*$',
 					fnc: 'Gosecretplace',
 				},
@@ -134,6 +138,15 @@ export class SecretPlace extends plugin {
 			return;
 		}
 		let img = await get_xunbao_img(e);
+		e.reply(img);
+		return;
+	}
+		async huodon(e) {
+		//不开放私聊功能
+		if (!e.isGroup) {
+			return;
+		}
+		let img = await get_huodon_img(e);
 		e.reply(img);
 		return;
 	}
@@ -691,6 +704,20 @@ export async  function get_xunbao_img(e, thing_type) {
 	});
 	return img;
 }
+export async  function get_huodon_img(e, thing_type) {
+	let huodon_list;
+	let usr_qq = e.user_id;
+	huodon_list = await Read_huodonName();
+	let supermarket_data = {
+		user_id: usr_qq,
+		Exchange_list: huodon_list,
+	};
+	const data1 = await new Show(e).get_huodonData(supermarket_data);
+	let img = await puppeteer.screenshot('supermarket', {
+		...data1,
+	});
+	return img;
+}
 export async  function get_xian_img(e, thing_type) {
 	let xian_list;
 	let usr_qq = e.user_id;
@@ -758,6 +785,20 @@ export async function Read_jindiName() {
 }
 export async function Read_xunbaoName() {
 	let dir = path.join(`${__PATH.map}/xunbao.json`);
+	console.log(dir);
+	let Exchange = fs.readFileSync(dir, 'utf8', (err, data) => {
+		if (err) {
+			console.log(err);
+			return 'error';
+		}
+		return data;
+	});
+	//将字符串数据转变成数组格式
+	Exchange = JSON.parse(Exchange);
+	return Exchange;
+}
+export async function Read_huodonName() {
+	let dir = path.join(`${__PATH.map}/huodon.json`);
 	console.log(dir);
 	let Exchange = fs.readFileSync(dir, 'utf8', (err, data) => {
 		if (err) {
