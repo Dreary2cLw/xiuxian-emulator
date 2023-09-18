@@ -3395,7 +3395,7 @@ export class UserHome extends plugin {
                 await Add_najie_thing(usr_qq, material.name, material.class, -material.amount * quantity)
             }
             await Add_najie_thing(usr_qq, wupin.name, wupin.class, wupin.amount * quantity);
-            e.reply(`合成成功，获得${wupin.name}${wupin.amount * quantity}个`);
+            e.reply(`合成成功，获得${wupin.name}X${wupin.amount * quantity}个`);
             return;
         }
         if (func == "加工") {
