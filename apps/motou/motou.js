@@ -504,7 +504,7 @@ export class motou extends plugin {
 		let wuping;
 		wuping_length = data.xingge.length;
 		wuping_index = Math.trunc(Math.random() * wuping_length);
-		wuping = data.xingge[wuping_index];
+		wuping = data.huodon[wuping_index];
 		e.reply('获得了' + wuping.name);
 		await Add_najie_thing(usr_qq, wuping.name, wuping.class, 1);
 		return;

@@ -216,7 +216,7 @@ class XiuxianData {
 			fs.readFileSync(`${this.lib_path}/星阁拍卖行列表.json`)
 		);
 		//加载活动奖品列表
-		this.xingge = JSON.parse(
+		this.huodon = JSON.parse(
 			fs.readFileSync(`${this.lib_path}/活动奖品列表.json`)
 		);
 		//天地
