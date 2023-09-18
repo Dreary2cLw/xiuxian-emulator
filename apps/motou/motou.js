@@ -32,6 +32,10 @@ export class motou extends plugin {
 					reg: '^#献祭魔石$',
 					fnc: 'xianji',
 				},
+				{
+					reg: '^#祭拜月神',
+					fnc: 'zhongqiu',
+				}
 			],
 		});
 	}
@@ -443,6 +447,58 @@ export class motou extends plugin {
 			return;
 		}
 		await Add_najie_thing(usr_qq, '魔石', '道具', -8);
+		let wuping_length;
+		let wuping_index;
+		let wuping;
+		wuping_length = data.xingge.length;
+		wuping_index = Math.trunc(Math.random() * wuping_length);
+		wuping = data.xingge[wuping_index];
+		e.reply('获得了' + wuping.name);
+		await Add_najie_thing(usr_qq, wuping.name, wuping.class, 1);
+		return;
+	}
+	async zhongqiu(e) {
+		if (!e.isGroup) {
+			return;
+		}
+		let usr_qq = e.user_id;
+		//查看存档
+		let ifexistplay = await existplayer(usr_qq);
+		if (!ifexistplay) {
+			return;
+		}
+
+		let game_action = await redis.get('xiuxian:player:' + usr_qq + ':game_action');
+		//防止继续其他娱乐行为
+		if (game_action == 0) {
+			e.reply('修仙：游戏进行中...');
+			return;
+		}
+		//查询redis中的人物动作
+		let action = await redis.get('xiuxian:player:' + usr_qq + ':action');
+		action = JSON.parse(action);
+		if (action != null) {
+			//人物有动作查询动作结束时间
+			let action_end_time = action.end_time;
+			let now_time = new Date().getTime();
+			if (now_time <= action_end_time) {
+				let m = parseInt((action_end_time - now_time) / 1000 / 60);
+				let s = parseInt((action_end_time - now_time - m * 60 * 1000) / 1000);
+				e.reply('正在' + action.action + '中,剩余时间:' + m + '分' + s + '秒');
+				return;
+			}
+		}
+		let player = await Read_player(usr_qq);
+		let x = await exist_najie_thing(usr_qq, '月饼', '食材');
+		if (!x) {
+			e.reply('你没有月饼');
+			return;
+		}
+		if (x < 3) {
+			e.reply('月饼不足3个,当前月饼数量' + x + '个');
+			return;
+		}
+		await Add_najie_thing(usr_qq, '月饼', '食材', -3);
 		let wuping_length;
 		let wuping_index;
 		let wuping;

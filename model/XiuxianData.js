@@ -215,6 +215,10 @@ class XiuxianData {
 		this.xingge = JSON.parse(
 			fs.readFileSync(`${this.lib_path}/星阁拍卖行列表.json`)
 		);
+		//加载活动奖品列表
+		this.xingge = JSON.parse(
+			fs.readFileSync(`${this.lib_path}/活动奖品列表.json`)
+		);
 		//天地
 		this.tianditang = JSON.parse(fs.readFileSync(`${this.lib_path}/天地堂.json`));
 		//仙宠

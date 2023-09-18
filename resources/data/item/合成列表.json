@@ -29,6 +29,50 @@
     ]
   },
   {
+    "name": "面粉",
+    "class": "食材",
+    "amount": 3,
+    "materials": [
+      {
+        "name": "小麦",
+        "class": "食材",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "蔗糖",
+    "class": "食材",
+    "amount": 3,
+    "materials": [
+      {
+        "name": "甘蔗",
+        "class": "食材",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "月饼",
+    "class": "食材",
+    "amount": 1,
+    "materials": [
+      {
+        "name": "鸟蛋",
+        "class": "食材",
+        "amount": 1
+      },{
+        "name": "蔗糖",
+        "class": "食材",
+        "amount": 100
+      },{
+        "name": "面粉",
+        "class": "食材",
+        "amount": 500
+      }
+    ]
+  },
+  {
     "name": "生铁剑",
     "class": "装备",
     "amount": 1,
