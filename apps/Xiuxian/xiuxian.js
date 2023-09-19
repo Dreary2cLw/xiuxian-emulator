@@ -2823,13 +2823,14 @@ export async function Gaodenyuansulun(
 		}
 	}
 	if (
-		A_lin == yuansu[0] ||
+		1==1
+		/*A_lin == yuansu[0] ||
 		A_lin == yuansu[1] ||
 		A_lin == yuansu[2] ||
 		A_lin == yuansu[3] ||
 		A_lin == yuansu[4] ||
 		A_lin == yuansu[5] ||
-		A_lin == yuansu[6]
+		A_lin == yuansu[6]*/
 	) {
 		if (equipment.法宝.fumo == '制衡天下1') {
 			if (
