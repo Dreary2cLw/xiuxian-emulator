@@ -2546,12 +2546,12 @@ export async function Gaodenyuansulun(
 		let random = Math.random();
 		if (random > 0.8) {
 			msg.push(
-				`${A_player.名号}使用了最终防御,防御提升120%`
+				`${A_player.名号}使用了最终防御,防御提升150%`
 			);
-			A_player.防御 *= 2.2;
+			A_player.防御 *= 2.5;
 		} else if (random > 0.4 && random < 0.8) {
-			msg.push(A_player.名号 + '使用了誓约之盾,防御提升80%');
-			A_player.防御 *= 1.8;
+			msg.push(A_player.名号 + '使用了誓约之盾,防御提升100%');
+			A_player.防御 *= 2;
 		} else{
 			msg.push(A_player.名号 + '使用了不动如山,防御提升50%');
 			A_player.防御 *= 1.5;
