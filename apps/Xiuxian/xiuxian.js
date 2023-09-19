@@ -2553,8 +2553,8 @@ export async function Gaodenyuansulun(
 			msg.push(A_player.名号 + '使用了誓约之盾,防御提升100%');
 			A_player.防御 *= 2;
 		} else{
-			msg.push(A_player.名号 + '使用了不动如山,防御提升50%');
-			A_player.防御 *= 1.5;
+			msg.push(A_player.名号 + '使用了不动如山,防御提升60%');
+			A_player.防御 *= 1.6;
 		}
 	}
 	if (equipment.武器.fumo == '夏侯兄弟') {
@@ -2848,9 +2848,9 @@ export async function Gaodenyuansulun(
 				B_player.当前血量 += B_player.血量上限 * 0.1;
 			} else {
 				msg.push(
-					`${A_player.名号}使用了制衡天下,血量回复已损生命的50%,${B_player.名号}血量减少了1%`
+					`${A_player.名号}使用了制衡天下,血量回复已损生命的20%,${B_player.名号}血量减少了1%`
 				);
-				A_player.当前血量 = A_player.当前血量 + (A_player.血量上限 - A_player.当前血量)*0.5;
+				A_player.当前血量 = A_player.当前血量 + (A_player.血量上限 - A_player.当前血量)*0.2;
 				B_player.当前血量 -= B_player.血量上限 * 0.01;
 			}
 		}
@@ -2869,9 +2869,9 @@ export async function Gaodenyuansulun(
 				B_player.当前血量 += B_player.血量上限 * 0.2;
 			} else {
 				msg.push(
-					`${A_player.名号}使用了制衡天下,血量回复已损生命的50%,${B_player.名号}血量减少了2%`
+					`${A_player.名号}使用了制衡天下,血量回复已损生命的30%,${B_player.名号}血量减少了2%`
 				);
-				A_player.当前血量 = A_player.当前血量 + (A_player.血量上限 - A_player.当前血量)*0.5;
+				A_player.当前血量 = A_player.当前血量 + (A_player.血量上限 - A_player.当前血量)*0.3;
 				B_player.当前血量 -= B_player.血量上限 * 0.02;
 			}
 		}
@@ -2886,9 +2886,9 @@ export async function Gaodenyuansulun(
 				B_player.当前血量 += B_player.血量上限 * 0.3;
 			} else {
 				msg.push(
-					`${A_player.名号}使用了制衡天下,血量回复已损生命的50%,${B_player.名号}血量减少了3%`
+					`${A_player.名号}使用了制衡天下,血量回复已损生命的40%,${B_player.名号}血量减少了3%`
 				);
-				A_player.当前血量 = A_player.当前血量 + (A_player.血量上限 - A_player.当前血量)*0.5;
+				A_player.当前血量 = A_player.当前血量 + (A_player.血量上限 - A_player.当前血量)*0.4;
 				B_player.当前血量 -= B_player.血量上限 * 0.03;
 			}
 		}
@@ -2916,9 +2916,9 @@ export async function Gaodenyuansulun(
 				B_player.当前血量 += B_player.血量上限 * 0.5;
 			} else {
 				msg.push(
-					`${A_player.名号}使用了制衡天下,血量回复已损生命的50%,${B_player.名号}血量减少了5%`
+					`${A_player.名号}使用了制衡天下,血量回复已损生命的60%,${B_player.名号}血量减少了5%`
 				);
-				A_player.当前血量 = A_player.当前血量 + (A_player.血量上限 - A_player.当前血量)*0.5;
+				A_player.当前血量 = A_player.当前血量 + (A_player.血量上限 - A_player.当前血量)*0.6;
 				B_player.当前血量 -= B_player.血量上限 * 0.05;
 			}
 		}
