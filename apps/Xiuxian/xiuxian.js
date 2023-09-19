@@ -2542,6 +2542,21 @@ export async function Gaodenyuansulun(
 			}
 		}
 	}
+	if (equipment.武器.fumo == '骑士之誓') {
+		let random = Math.random();
+		if (random > 0.8) {
+			msg.push(
+				`${A_player.名号}使用了最终防御,防御提升120%`
+			);
+			att *= 1.5;
+		} else if (random > 0.4 && random < 0.8) {
+			msg.push(A_player.名号 + '使用了誓约之盾,防御提升80%');
+			att *= 1.2;
+		} else{
+			msg.push(A_player.名号 + '使用了不动如山,防御提升50%');
+			A_player.防御 *= 1.2;
+		}
+	}
 	if (equipment.武器.fumo == '夏侯兄弟') {
 		let random = Math.random();
 		if (random > 0.8) {

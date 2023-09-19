@@ -1262,7 +1262,7 @@
       {
         "name": "深渊石",
         "class": "材料",
-        "amount": 20
+        "amount": 5
       },
       {
         "name": "煤炭",
@@ -1284,7 +1284,7 @@
       {
         "name": "深渊石",
         "class": "材料",
-        "amount": 100
+        "amount": 20
       },
       {
         "name": "煤炭",
@@ -1306,12 +1306,12 @@
       {
         "name": "深渊石",
         "class": "材料",
-        "amount": 200
+        "amount": 40
       },
       {
         "name": "煤炭",
         "class": "材料",
-        "amount": 500
+        "amount": 1000
       }
     ]
   }
@@ -1329,12 +1329,12 @@
       {
         "name": "深渊石",
         "class": "材料",
-        "amount": 500
+        "amount": 80
       },
       {
         "name": "煤炭",
         "class": "材料",
-        "amount": 1000
+        "amount": 2000
       }
     ]
   },
