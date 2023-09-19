@@ -2916,9 +2916,9 @@ export async function Gaodenyuansulun(
 				B_player.当前血量 += B_player.血量上限 * 0.5;
 			} else {
 				msg.push(
-					`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量减少了5%`
+					`${A_player.名号}使用了制衡天下,血量回复已损生命的60%,${B_player.名号}血量减少了5%`
 				);
-				A_player.当前血量 = A_player.血量上限;
+				A_player.当前血量 = A_player.当前血量 + (A_player.血量上限 - A_player.当前血量)*0.6;
 				B_player.当前血量 -= B_player.血量上限 * 0.05;
 			}
 		}
