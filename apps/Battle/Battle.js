@@ -18,6 +18,7 @@ import {
 	Read_player,
 	Write_player,
 } from '../Xiuxian/xiuxian.js';
+import {__PATH} from "../Xiuxian/xiuxian";
 /**
  * 战斗类
  */
@@ -444,6 +445,32 @@ export async function zd_battle(AA_player, BB_player) {
 	let msg = [];
 	let jineng1 = data.jineng1;
 	let jineng2 = data.jineng2;
+	let Aqq = A_player.id;
+	let Bqq = B_player.id;
+	let dirA = path.join(`${__PATH.equipment_path}/${Aqq}.json`);
+	let equipmentA = fs.readFileSync(dirA, 'utf8', (err, data) => {
+		if (err) {
+			console.log(err);
+			return 'error';
+		}
+		return data;
+	});
+	let dirB = path.join(`${__PATH.equipment_path}/${Bqq}.json`);
+	let equipmentB = fs.readFileSync(dirB, 'utf8', (err, data) => {
+		if (err) {
+			console.log(err);
+			return 'error';
+		}
+		return data;
+	});
+	let Ahumo = 0;
+	let Bhumo = 0;
+	if(equipmentA.武器.name == '护摩之杖'  && A_player.灵根.name == '仙之心·火'){
+		Ahumo = 1;
+	}
+	if(equipmentB.武器.name == '护摩之杖'  && B_player.灵根.name == '仙之心·火'){
+		Bhumo = 1;
+	}
 	while (A_player.当前血量 > 0 && B_player.当前血量 > 0) {
 		cnt2 = Math.trunc(cnt / 2);
 		let Random = Math.random();
@@ -605,6 +632,16 @@ ${B_player.名号}冻结中`);
 		AA_player = BB_player;
 		BB_player = t;
 		boolean = false;
+	}
+	if(A_player.当前血量 <= 0 && Ahumo>0){
+		A_player.当前血量 = 1;
+		msg.push(`${AA_player.名号}触发护摩之杖隐藏被动技能:[不屈]，血量恢复至1`);
+		Ahumo--;
+	}
+	if(B_player.当前血量 <= 0 && Bhumo>0){
+		A_player.当前血量 = 1;
+		msg.push(`${BB_player.名号}触发护摩之杖隐藏被动技能:[不屈]，血量恢复至1`);
+		Bhumo--;
 	}
 	if (A_player.当前血量 <= 0) {
 		AA_player.当前血量 = 0;
