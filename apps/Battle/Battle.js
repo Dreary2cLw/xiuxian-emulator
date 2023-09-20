@@ -601,19 +601,29 @@ ${B_player.名号}冻结中`);
 			cnt += 2;
 			continue;
 		}
-		console.log(A_player.id+"--"+AA_player.id);
-		if(A_player.当前血量 <= 0 && Ahumo>0){
-			A_player.当前血量 = 1;
-			AA_player.当前血量 = 1;
-			msg.push(`${AA_player.名号}触发护摩之杖隐藏被动技能:[不屈]，血量恢复至1`);
-			Bhumo--;
+		if(A_player.当前血量 <= 0 && (Ahumo>0||Bhumo>0)){
+			if(A_player.id == BB_player.id && Bhumo>0){
+				A_player.当前血量 = 1;
+				msg.push(`${A_player.名号}触发护摩之杖隐藏被动技能:[不屈]，血量恢复至1`);
+				Bhumo--;
+			}
+			if(A_player.id == AA_player.id && Ahumo>0){
+				A_player.当前血量 = 1;
+				msg.push(`${A_player.名号}触发护摩之杖隐藏被动技能:[不屈]，血量恢复至1`);
+				Ahumo--;
+				}
 		}
-		console.log(B_player.id+"--"+BB_player.id);
-		if(B_player.当前血量 <= 0 && Bhumo>0){
-			B_player.当前血量 = 1;
-			BB_player.当前血量 = 1;
-			msg.push(`${BB_player.名号}触发护摩之杖隐藏被动技能:[不屈]，血量恢复至1`);
-			Ahumo--;
+		if(B_player.当前血量 <= 0 && (Ahumo>0||Bhumo>0)){
+			if(B_player.id == BB_player.id && Bhumo>0){
+				B_player.当前血量 = 1;
+				msg.push(`${B_player.名号}触发护摩之杖隐藏被动技能:[不屈]，血量恢复至1`);
+				Bhumo--;
+			}
+			if(B_player.id == AA_player.id && Ahumo>0){
+				B_player.当前血量 = 1;
+				msg.push(`${B_player.名号}触发护摩之杖隐藏被动技能:[不屈]，血量恢复至1`);
+				Ahumo--;
+			}
 		}
 		if (cnt >= 20) {
 			A_player.当前血量 = -1;
