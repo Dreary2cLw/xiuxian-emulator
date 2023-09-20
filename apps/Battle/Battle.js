@@ -346,7 +346,7 @@ export class Battle extends plugin {
 			return;
 		}
 		let A = e.user_id;
-		console.log(e);
+		//console.log(e);
 
 		//先判断
 		let ifexistplay_A = await existplayer(A);
