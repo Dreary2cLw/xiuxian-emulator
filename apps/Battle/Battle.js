@@ -444,16 +444,16 @@ export async function zd_battle(AA_player, BB_player) {
 	let msg = [];
 	let jineng1 = data.jineng1;
 	let jineng2 = data.jineng2;
-	let Aqq = B_player.id;
-	let Bqq = A_player.id;
+	let Aqq = AA_player.id;
+	let Bqq = BB_player.id;
 	let equipmentA = await Read_equipment(Aqq);
 	let equipmentB = await Read_equipment(Bqq);
 	let Ahumo = 0;
 	let Bhumo = 0;
-	if(equipmentA.武器.name == '护摩之杖'  && B_player.灵根.name == '仙之心·火'){
+	if(equipmentA.武器.name == '护摩之杖'  && AA_player.灵根.name == '仙之心·火'){
 		Ahumo = 1;
 	}
-	if(equipmentB.武器.name == '护摩之杖'  && A_player.灵根.name == '仙之心·火'){
+	if(equipmentB.武器.name == '护摩之杖'  && BB_player.灵根.name == '仙之心·火'){
 		Bhumo = 1;
 	}
 	console.log(Ahumo+"---"+Bhumo);
@@ -601,13 +601,13 @@ ${B_player.名号}冻结中`);
 			cnt += 2;
 			continue;
 		}
-		if(A_player.当前血量 <= 0 && Ahumo>0){
+		if(A_player.当前血量 <= 0 && Bhumo>0){
 			A_player.当前血量 = 1;
 			BB_player.当前血量 = 1;
 			msg.push(`${BB_player.名号}触发护摩之杖隐藏被动技能:[不屈]，血量恢复至1`);
 			Bhumo--;
 		}
-		if(B_player.当前血量 <= 0 && Bhumo>0){
+		if(B_player.当前血量 <= 0 && Ahumo>0){
 			B_player.当前血量 = 1;
 			AA_player.当前血量 = 1;
 			msg.push(`${AA_player.名号}触发护摩之杖隐藏被动技能:[不屈]，血量恢复至1`);
