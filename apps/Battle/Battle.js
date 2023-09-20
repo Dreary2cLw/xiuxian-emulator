@@ -2,12 +2,10 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
-import path from 'path';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import Show from '../../model/show.js';
-import fs from 'fs';
 import {
-	__PATH,
+	Read_equipment,
 	Add_HP,
 	Add_najie_thing,
 	Add_血气,
@@ -448,22 +446,8 @@ export async function zd_battle(AA_player, BB_player) {
 	let jineng2 = data.jineng2;
 	let Aqq = A_player.id;
 	let Bqq = B_player.id;
-	let dirA = path.join(`${__PATH.equipment_path}/${Aqq}.json`);
-	let equipmentA = fs.readFileSync(dirA, 'utf8', (err, data) => {
-		if (err) {
-			console.log(err);
-			return 'error';
-		}
-		return data;
-	});
-	let dirB = path.join(`${__PATH.equipment_path}/${Bqq}.json`);
-	let equipmentB = fs.readFileSync(dirB, 'utf8', (err, data) => {
-		if (err) {
-			console.log(err);
-			return 'error';
-		}
-		return data;
-	});
+	let equipmentA = await Read_equipment(Aqq);
+	let equipmentB = await Read_equipment(Bqq);
 	let Ahumo = 0;
 	let Bhumo = 0;
 	if(equipmentA.武器.name == '护摩之杖'  && A_player.灵根.name == '仙之心·火'){
