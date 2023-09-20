@@ -6,6 +6,7 @@ import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import Show from '../../model/show.js';
 import fs from 'fs';
 import {
+	__PATH,
 	Add_HP,
 	Add_najie_thing,
 	Add_血气,
@@ -18,7 +19,6 @@ import {
 	Read_player,
 	Write_player,
 } from '../Xiuxian/xiuxian.js';
-import {__PATH} from "../Xiuxian/xiuxian";
 /**
  * 战斗类
  */
