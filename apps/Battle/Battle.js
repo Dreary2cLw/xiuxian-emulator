@@ -448,7 +448,7 @@ export async function zd_battle(AA_player, BB_player) {
 	let Bqq = BB_player.id;
 	let Ahumo = 0;
 	let Bhumo = 0;
-	if(Aqq!='undefined'&&Bqq!='undefined'){
+	if(Aqq!= undefined&&Bqq!= undefined){
 		let equipmentA = await Read_equipment(Aqq);
 		let equipmentB = await Read_equipment(Bqq);
 		if(equipmentA.武器.name == '护摩之杖'  && AA_player.灵根.name == '仙之心·火'){
