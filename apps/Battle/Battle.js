@@ -450,7 +450,7 @@ export async function zd_battle(AA_player, BB_player) {
 	let equipmentB = await Read_equipment(Bqq);
 	let Ahumo = 0;
 	let Bhumo = 0;
-	console.log(equipmentA);
+	console.log(Aqq+"---"+Bqq);
 	if(equipmentA.武器.name == '护摩之杖'  && AA_player.灵根.name == '仙之心·火'){
 		Ahumo = AA_player.id;
 	}
