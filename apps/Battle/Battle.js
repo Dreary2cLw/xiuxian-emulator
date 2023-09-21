@@ -399,8 +399,16 @@ export class Battle extends plugin {
 		// } else {
 		//await ForwardMsg(e, msg);
 		//console.log(msg);
-		let img = await get_biwu_img(e,msg);
-		e.reply(img);
+		if (msg.length > 30) {
+			while(msg.length){
+				let img = await get_biwu_img(e,msg.slice(0,30));
+				e.reply(img);
+			}
+		}
+		else{
+			let img = await get_biwu_img(e,msg);
+			e.reply(img);
+		}
 		// }
 		//下面的战斗超过100回合会报错
 		let A_win = `${A_player.名号}击败了${B_player.名号}`;
