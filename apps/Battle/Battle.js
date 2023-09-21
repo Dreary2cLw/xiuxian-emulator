@@ -401,7 +401,7 @@ export class Battle extends plugin {
 		//console.log(msg);
 		if (msg.length > 30) {
 			while(msg.length){
-				let img = await get_biwu_img(e,msg.slice(0,30));
+				let img = await get_biwu_img(e,msg.splice(0,30));
 				e.reply(img);
 			}
 		}
