@@ -446,16 +446,17 @@ export async function zd_battle(AA_player, BB_player) {
 	let jineng2 = data.jineng2;
 	let Aqq = AA_player.id;
 	let Bqq = BB_player.id;
-	console.log(Aqq+"---"+Bqq);
-	let equipmentA = await Read_equipment(Aqq);
-	let equipmentB = await Read_equipment(Bqq);
 	let Ahumo = 0;
 	let Bhumo = 0;
-	if(equipmentA.武器.name == '护摩之杖'  && AA_player.灵根.name == '仙之心·火'){
-		Ahumo = AA_player.id;
-	}
-	if(equipmentB.武器.name == '护摩之杖'  && BB_player.灵根.name == '仙之心·火'){
-		Bhumo = BB_player.id;
+	if(Aqq!='undefined'&&Bqq!='undefined'){
+		let equipmentA = await Read_equipment(Aqq);
+		let equipmentB = await Read_equipment(Bqq);
+		if(equipmentA.武器.name == '护摩之杖'  && AA_player.灵根.name == '仙之心·火'){
+			Ahumo = AA_player.id;
+		}
+		if(equipmentB.武器.name == '护摩之杖'  && BB_player.灵根.name == '仙之心·火'){
+			Bhumo = BB_player.id;
+		}
 	}
 	console.log(Ahumo+"---"+Bhumo);
 	while (A_player.当前血量 > 0 && B_player.当前血量 > 0) {
