@@ -399,10 +399,10 @@ export class Battle extends plugin {
 		// } else {
 		//await ForwardMsg(e, msg);
 		//console.log(msg);
-		if (msg.length > 30) {
+		if (msg.length > 50) {
 			let msg1 = msg;
 			while(msg1.length){
-				let img = await get_biwu_img(e,msg1.splice(0,30));
+				let img = await get_biwu_img(e,msg1.splice(0,50));
 				e.reply(img);
 			}
 		}
