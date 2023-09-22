@@ -60,7 +60,7 @@
       {
         "name": "鸟蛋",
         "class": "食材",
-        "amount": 1
+        "amount": 2
       },{
         "name": "蔗糖",
         "class": "食材",
@@ -68,7 +68,7 @@
       },{
         "name": "面粉",
         "class": "食材",
-        "amount": 500
+        "amount": 800
       }
     ]
   },
