@@ -913,6 +913,18 @@ export class UserHome extends plugin {
                     return;
                 }
             }
+            if (thing_name == "阿巴亲手做的月饼") {
+                let shicai = await exist_najie_thing(usr_qq, thing_name, "食材")
+                if (shicai >= quantity) {
+                    await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
+                    await Add_饱食度(usr_qq, 2305 * quantity)
+                    e.reply(`服用成功,增加了${2308 * quantity}点饱食度`)
+                    return;
+                } else {
+                    e.reply("你没有那么多的" + thing_name)
+                    return;
+                }
+            }
             if (thing_name == "熟肉") {
                 let shicai = await exist_najie_thing(usr_qq, thing_name, "食材")
                 if (shicai >= quantity) {
