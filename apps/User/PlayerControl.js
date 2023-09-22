@@ -490,11 +490,20 @@ export class PlayerControl extends plugin {
 						msg.push('\n增加修为:' + xiuwei * time, '  获得治疗,血量增加:' + blood * time);
 					}
 				}
-
-				if (group_id) {
+				try {
 					await this.pushInfo(group_id, true, msg);
-				} else {
-					await this.pushInfo(usr_qq, false, msg);
+				} catch (error) {
+					logger.error('读取文件错误：' + error);
+					return 'error';
+				}
+				try {
+					if (group_id) {
+						await this.pushInfo(group_id, true, msg);
+					} else {
+						await this.pushInfo(usr_qq, false, msg);
+					}
+				} catch (error) {
+					logger.error('推送错误：' + error);
 				}
 				if (action3[i].lianti <= 0) {
 					action3[i].lianti = 0;
