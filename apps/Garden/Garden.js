@@ -45,6 +45,10 @@ export class Garden extends plugin {
 					fnc: 'Silencing',
 				},
 				{
+					reg: '^(冀以锁系神明).*$',
+					fnc: 'SilencingPlus',
+				},
+				{
 					reg: '^(除你禁言|废除).*$',
 					fnc: 'Banislifted',
 				},
@@ -319,6 +323,92 @@ export class Garden extends plugin {
 			return true; //返回true
 		} else {
 			e.reply(`你并没有【剑神一剑】，请通过人界秘境获取`);
+		}
+	}
+	async SilencingPlus(e) {
+		//不开放私聊功能
+		if (!e.isGroup) {
+			return;
+		}
+		let usr_qq = e.user_id; //使用者QQ
+		let qq = null;
+
+		for (let msg of e.message) {
+			//获取对方QQ
+			if (msg.type == 'at') {
+				qq = msg.qq;
+				break;
+			}
+		}
+		if (qq == null) {
+			return true;
+		}
+		//判断双方是否有档
+		let ifexistplay = data.existData('player', usr_qq);
+		let ifexistplay1 = data.existData('player', qq);
+		if (!ifexistplay) {
+			//判断是否有用户档
+			return;
+		}
+		if (!ifexistplay1) {
+			//判断是否有用户1档
+			return;
+		}
+
+		let GayCD = {};
+		const cd = 120; //设置冷却时间，单位为分钟
+		let id = e.group_id + e.user_id;
+		if (GayCD[id]) {
+			e.reply(`残云封天剑有${cd}分钟冷却时间!`);
+			return true;
+		}
+		//获取游戏状态
+		let game_action = await redis.get('xiuxian:player:' + qq + ':game_action');
+		//防止继续其他娱乐行为
+		if (game_action == 0) {
+			e.reply('修仙：游戏进行中...');
+			return;
+		}
+		//对方行为状态
+		let B_action = await redis.get('xiuxian:player:' + qq + ':action');
+		B_action = JSON.parse(B_action);
+		if (B_action != null) {
+			let now_time = new Date().getTime();
+			//人物任务的动作是否结束
+			let B_action_end_time = B_action.end_time;
+			if (now_time <= B_action_end_time) {
+				let m = parseInt((B_action_end_time - now_time) / 1000 / 60);
+				let s = parseInt((B_action_end_time - now_time - m * 60 * 1000) / 1000);
+				e.reply('对方正在' + B_action.action + '中,剩余时间:' + m + '分' + s + '秒');
+				return;
+			}
+		}
+		let player = data.getData('player', usr_qq); //读取用户修仙信息
+		let player1 = data.getData('player', qq); //读取用户修仙信息
+		let qingdianshu = await exist_najie_thing(usr_qq, '天之锁', '道具');
+		if (qingdianshu !== false && qingdianshu !== 0) {
+			let time2 = 60; //时间（分钟）
+			let action_time2 = 60000 * time2; //持续时间，单位毫秒
+			let action2 = await redis.get('xiuxian:player:' + qq + ':action');
+			action2 = await JSON.parse(action2);
+			action2.action = '禁闭';
+			action2.end_time = new Date().getTime() + action_time2;
+			await redis.set('xiuxian:player:' + qq + ':action', JSON.stringify(action2));
+			e.reply(`封！`);
+			await Add_najie_thing(usr_qq, '天之锁', '道具', -1);
+
+			GayCD[id] = true;
+
+			GayCD[id] = setTimeout(() => {
+				if (GayCD[id]) {
+					delete GayCD[id];
+				}
+			}, cd * 60 * 1000);
+			//执行的逻辑功能
+
+			return true; //返回true
+		} else {
+			e.reply(`你并没有【天之锁】`);
 		}
 	}
 
