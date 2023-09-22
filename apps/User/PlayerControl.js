@@ -491,12 +491,6 @@ export class PlayerControl extends plugin {
 					}
 				}
 				try {
-					await this.pushInfo(group_id, true, msg);
-				} catch (error) {
-					logger.error('读取文件错误：' + error);
-					return 'error';
-				}
-				try {
 					if (group_id) {
 						await this.pushInfo(group_id, true, msg);
 					} else {
