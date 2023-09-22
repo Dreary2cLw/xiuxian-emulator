@@ -334,6 +334,12 @@ export class SecretPlace extends plugin {
 			return true;
 		}
 		let Price = weizhi.Price;
+		if((await exist_najie_thing(usr_qq, '黄金门票', '道具'))){
+			Price = 0;
+			weizhi.experience = 0;
+			e.reply(player.名号 + '使用了黄金门票,本次禁地免费');
+			await Add_najie_thing(usr_qq, '黄金门票', '道具', -1);
+		}
 		await Add_灵石(usr_qq, -Price);
 		await Add_修为(usr_qq, -weizhi.experience);
 		const time = this.xiuxianConfigData.CD.forbiddenarea; //时间（分钟）
