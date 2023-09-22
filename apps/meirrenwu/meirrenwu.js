@@ -355,8 +355,13 @@ export class meirrenwu extends plugin {
 			await Add_najie_thing(usr_qq, '秘境之匙', '道具', wupin);
 			renwu[i].经验 += jingyan;
 			await Write_renwu(renwu);
+			//活动
+			let huodonmsg = ``;
+			/*await Add_najie_thing(usr_qq, '仙品福源丹', '丹药', 1);
+			await Add_najie_thing(usr_qq, '生肉', '食材', 66666);
+			huodonmsg += `.仙品福源丹*1个\n.生肉*66666个\n`;*/
 			e.reply(
-				`你领取了每日任务奖励，获得了：\n1.修为*${jiangli}\n2.血气*${jiangli}\n3.灵石*${jiangli}\n4.任务经验*${jingyan}\n5.仙子邀约*${wupin}个\n6.秘境之匙*${wupin}个\n`
+				`你领取了每日任务奖励，获得了：\n1.修为*${jiangli}\n2.血气*${jiangli}\n3.灵石*${jiangli}\n4.任务经验*${jingyan}\n5.仙子邀约*${wupin}个\n6.秘境之匙*${wupin}个\n`+huodonmsg
 			);
 		} else if (
 			renwu[i].wancheng1 != 2 ||

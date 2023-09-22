@@ -410,6 +410,23 @@ export class SecretPlaceTask extends plugin {
 									'\n七彩流光的神奇仙谷[' + kouliang.name + ']深埋在土壤中，是仙兽们的最爱。';
 								await Add_najie_thing(player_id, kouliang.name, '仙米', 1);
 							}
+							//活动
+							/*if (random > 0.45 && random < 0.5) {
+								let hdomAb = Math.random();
+								if(hdomAb>0.6){
+									last_msg +=
+										'\n' +
+										B_player.名号 +
+										'倒下后,你正准备离开此地，看见树上有什么东西泛着白光，靠近发现是鸟蛋，不巧看见有什么东西飞过来，定睛一看竟是凤凰，你赶紧离开此地。';
+								}else {
+									last_msg +=
+										'\n' +
+										B_player.名号 +
+										'倒下后,你正准备离开此地，看见树上有什么东西泛着白光，顺手放进了纳戒。';
+										last_msg +='\n' + '获得泥鸟蛋*3';
+									await Add_najie_thing(player_id, '鸟蛋', '食材', 3);
+								}
+							}*/
 								if (random > 0.5 && random < 0.502) {
 								last_msg +=
 									'\n' +
