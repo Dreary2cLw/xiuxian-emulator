@@ -115,7 +115,10 @@
       desc: "与其搏斗,胜方获得败方部分灵石"   
     - icon: help-icon_18
       title: "@群友 残云封天剑"
-      desc: "将其禁言"  
+      desc: "将其禁言"
+    - icon: help-icon_18
+      title: "@群友 冀以锁系神明"
+      desc: "将其禁言"
     - icon: help-icon_18
       title: "除你禁言"
       desc: "解除禁言禁言"  
@@ -247,5 +250,20 @@
     - icon: help-icon_53
       title: "#当前棋局"
       desc: "查看当前面板"
+
+- group: 活动(限定)
+  list:
+    - icon: help-icon_54
+      title: "#合成蔗糖"
+      desc: "获得蔗糖，材料为甘蔗"
+    - icon: help-icon_54
+      title: "#合成面粉"
+      desc: "获得面粉，材料为小麦"
+    - icon: help-icon_54
+      title: "#合成月饼"
+      desc: "获得月饼，材料为面粉+蔗糖+鸟蛋"
+    - icon: help-icon_54
+      title: "#祭拜月神"
+      desc: "获得月神赏赐，需要三个月饼"
 
 - group: 隐藏指令:#召唤天理
