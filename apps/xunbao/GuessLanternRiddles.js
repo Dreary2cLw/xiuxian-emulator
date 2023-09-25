@@ -39,6 +39,10 @@ export class GuessLanternRiddles extends plugin {
 					fnc: 'sktenPlus',
 				},
 				{
+					reg: '^#百连抽寻宝活动祈愿$',
+					fnc: 'sktenPlusPlus',
+				},
+				{
 					reg: '^#自选存档皮肤.*$',
 					fnc: 'cundan_pifu',
 				},
@@ -416,6 +420,52 @@ export class GuessLanternRiddles extends plugin {
 			//await ForwardMsg(e, msg);
 			e.reply('恭喜获得\n' + all);
 		}
+	async sktenPlusPlus(e) {
+		if (!e.isGroup) {
+			return;
+		}
+		let usr_qq = e.user_id;
+		let player = await Read_player(usr_qq);
+		//判断是否为匿名创建存档
+		if (usr_qq == 80000000) {
+			return;
+		}
+		//有无存档
+		let ifexistplay = await existplayer(usr_qq);
+		if (!ifexistplay) {
+			return;
+		}
+		let x = await exist_najie_thing(usr_qq, '树苗', '食材');
+		if (!x) {
+			e.reply('你没有【树苗】');
+			return;
+		}
+		if (x < 100) {
+			e.reply('你没有足够的【树苗】');
+			return;
+		}
+		e.reply('百道金光从天而降');
+		let msg = [];
+		let all = [];
+		await sleep(5000);
+		for (var i = 0; 100 > i; i++) {
+			let tianluoRandom = Math.floor(Math.random() * data.xianding.length);
+
+			msg.push(
+				'一道金光掉落在地上，走近一看是【' + data.xianding[tianluoRandom].name + '】'
+			);
+			await Add_najie_thing(
+				usr_qq,
+				data.xianding[tianluoRandom].name,
+				data.xianding[tianluoRandom].class,
+				1
+			);
+			all.push('【' + data.xianding[tianluoRandom].name + '】');
+		}
+		await Add_najie_thing(usr_qq, '树苗', '食材', -100);
+		//await ForwardMsg(e, msg);
+		e.reply('恭喜获得\n' + all);
+	}
 	async skten(e) {
 		if (!e.isGroup) {
 			return;
