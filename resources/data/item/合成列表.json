@@ -64,11 +64,11 @@
       },{
         "name": "蔗糖",
         "class": "食材",
-        "amount": 100
+        "amount": 50
       },{
         "name": "面粉",
         "class": "食材",
-        "amount": 1000
+        "amount": 500
       }
     ]
   },

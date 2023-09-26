@@ -377,7 +377,7 @@ export class SecretPlaceplusTask extends plugin {
 								await Add_najie_thing(player_id, kouliang.name, '仙米', 1);
 							}
 							//活动
-							/*if (random > 0.45 && random < 0.492) {
+							/*if (random > 0.45 && random < 0.493) {
 								let hdomAb = Math.random();
 								if(hdomAb>0.6){
 									last_msg +=

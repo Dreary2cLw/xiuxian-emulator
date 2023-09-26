@@ -22,6 +22,7 @@ import { get_equipment_img } from '../ShowImeg/showData.js';
 import { synchronization } from '../AdminSuper/AdminSuper.js';
 import { Pushforum_ASS } from '../Help/Forum.js';
 import { Synchronization_ASS } from '../Association/TreasureCabinet.js';
+import {Read_shop, Write_shop} from "../Xijie/Xijie.js";
 
 /**
  * 全局变量
@@ -322,6 +323,14 @@ export class UserSellAll extends plugin {
 		await synchronization(e);
 		await Pushforum_ASS(e);
 		await Synchronization_ASS(e);
+		let shop = await Read_shop();
+		for (let i = 0; i < shop.length; i++) {
+			if (shop[i].state == 1) {
+				shop[i].state = 0;
+				break;
+			}
+		}
+		await Write_shop(shop);
 		return;
 	}
 
