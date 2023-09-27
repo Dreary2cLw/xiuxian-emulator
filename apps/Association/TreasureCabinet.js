@@ -1025,8 +1025,9 @@ export async function Synchronization_ASS(e) {
 	for (let ass_name of assList) {
 		let ass = await data.getAssociation(ass_name);
 		let player = data.getData('player', ass.宗主);
+		let now_level_id;
 		try {
-			let now_level_id = data.Level_list.find(
+			now_level_id = data.Level_list.find(
 				(item) => item.level_id == player.level_id
 			).level_id;
 		}catch (e) {
