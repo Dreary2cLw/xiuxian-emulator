@@ -326,8 +326,8 @@ export class UserSellAll extends plugin {
 		let shop = await Read_shop();
 		for (let i = 0; i < shop.length; i++) {
 			if (shop[i].state == 1) {
+				console.log(shop[i].name);
 				shop[i].state = 0;
-				break;
 			}
 		}
 		await Write_shop(shop);
