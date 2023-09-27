@@ -389,7 +389,7 @@ export class SecretPlaceplusTask extends plugin {
 										'\n' +
 										B_player.名号 +
 										'倒下后,你正准备离开此地，看见树上有什么东西泛着白光，靠近发现是鸟蛋，顺手放进了纳戒。';
-										last_msg +='\n' + '获得泥鸟蛋*3';
+										last_msg +='\n' + '获得鸟蛋*3';
 									await Add_najie_thing(player_id, '鸟蛋', '食材', 3);
 								}
 							}*/
