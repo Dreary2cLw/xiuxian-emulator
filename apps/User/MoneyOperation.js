@@ -841,7 +841,7 @@ export class MoneyOperation extends plugin {
 				await Add_najie_thing(usr_qq,"对阿巴怪特攻","道具",1)
 			}else{
 				let randomNitian = Math.random();
-				if(randomNitian<0.20){
+				if(randomNitian<0.25){
 					await sleep(2000);
 					e.reply('阿巴怪的气运石突然碎裂！');
 					await sleep(1000);
