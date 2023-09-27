@@ -1604,6 +1604,10 @@ export class UserHome extends plugin {
                     return
                 }
             }
+            if (thing_name == "贺卡") {
+                e.reply("中秋、国庆快乐！\n获得灵石X8888888");
+                await Add_灵石(usr_qq,8888888);
+            }
             if (thing_name == "小竹藏的新春铁盒") {
                 let math = Math.random();
                 if (math > 0.9 && math < 1) {
