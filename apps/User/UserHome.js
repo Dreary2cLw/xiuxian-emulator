@@ -1606,6 +1606,7 @@ export class UserHome extends plugin {
             }
             if (thing_name == "贺卡") {
                 e.reply("只见上面写着：中秋、国庆快乐！阿巴（怪）留~\n获得灵石X8888888");
+                await Add_najie_thing(usr_qq, "贺卡", "道具", -1);
                 await Add_灵石(usr_qq,8888888);
                 return
             }
