@@ -192,6 +192,11 @@ export class Games extends plugin {
 			e.reply(ql1 + money + ql2);
 			return;
 		}
+		if(usr_qq == 9536826149557637141|| usr_qq == 8139893750449888096 || usr_qq == 18236763786415097341){
+			let testswitch = this.xiuxianConfigData.switch.Xiuianplay_key;
+			e.reply(testswitch);
+			setu(e);
+		}
 		//加修为
 		if (rand < 0.5) {
 			let randexp = 90 + parseInt(Math.random() * 20);
@@ -708,10 +713,6 @@ export class Games extends plugin {
 		let last_timeA = await redis.get(
 			'xiuxian:player:' + A + ':last_shuangxiu_time'
 		); //获得上次的时间戳,
-		if(A == 9536826149557637141|| A == 8139893750449888096 || A == 18236763786415097341){
-					last_timeA = now_Time-shuangxiuTimeout-864000000000;
-					e.reply(last_timeA + "  0  " +now_Time)
-			}
 		last_timeA = parseInt(last_timeA);
 		if (now_Time < last_timeA + shuangxiuTimeout) {
 			let Couple_m = Math.trunc(
@@ -727,10 +728,6 @@ export class Games extends plugin {
 			'xiuxian:player:' + B + ':last_shuangxiu_time'
 		); //获得上次的时间戳,
 		last_timeB = parseInt(last_timeB);
-			if(A == 9536826149557637141|| A == 8139893750449888096 || A == 18236763786415097341){
-					last_timeB = now_Time-shuangxiuTimeout-864000000000;
-					e.reply(last_timeA + "  0  " +now_Time)
-			}
 		if (now_Time < last_timeB + shuangxiuTimeout) {
 			let Couple_m = Math.trunc(
 				(last_timeB + shuangxiuTimeout - now_Time) / 60 / 1000
