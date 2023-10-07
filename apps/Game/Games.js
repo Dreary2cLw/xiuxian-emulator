@@ -213,7 +213,7 @@ export class Games extends plugin {
 			await Add_灵石(usr_qq, -money);
 			let gameswitch = this.xiuxianConfigData.switch.Xiuianplay_key;
 			if (gameswitch == true) {
-				//setu(e);
+				setu(e);
 			}
 			return;
 		}
