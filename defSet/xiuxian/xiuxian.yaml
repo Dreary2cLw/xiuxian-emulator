@@ -29,7 +29,7 @@ switch: #开true 关false
   play: true #怡红院开关
   Moneynumber: true #金银坊开关
   couple: true #双修开关
-  Xiuianplay_key: false #怡红院卡图开关
+  Xiuianplay_key: true #怡红院卡图开关
 plant: #采药最长时间：最低*周期
   size: 10 #闭关倍率！收益：倍率*境界数*天赋*时间
   time: 30 #闭关最低时间

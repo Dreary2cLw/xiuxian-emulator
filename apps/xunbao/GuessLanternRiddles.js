@@ -254,10 +254,10 @@ export class GuessLanternRiddles extends plugin {
 				e.reply('你的甘蔗还没成熟');
 				return;
 			} else if (ganzhe1 == 2) {
-				e.reply('收获成功,你获得了3个甘蔗');
+				e.reply('收获成功,你获得了10个甘蔗');
 				ganzhe1 = 0;
 				await redis.set('xiuxian:player:' + usr_qq + 'ganzhe1', ganzhe1);
-				await Add_najie_thing(usr_qq, '甘蔗', '食材', 3);
+				await Add_najie_thing(usr_qq, '甘蔗', '食材', 10);
 				return;
 			}
 		}

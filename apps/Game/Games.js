@@ -664,6 +664,8 @@ export class Games extends plugin {
 		let bb = false;
 		let B_player = await Read_player(B);
 		let A_player = await Read_player(A);
+		B_player.id = B;
+		A_player.id = A;
 		if (A_player.sex == 0 || B_player.sex == 0) {
 			e.reply('性别未知,人妖啊');
 			return;
@@ -799,6 +801,10 @@ export class Games extends plugin {
 			}
 		} else if (pd == false) {
 			await fstadd_qinmidu(A, B);
+		}
+		if(!checkout(e,A_player,B_player)){
+			e.reply('双修error');
+			return;
 		}
 		//前戏做完了!
 				if(A != 9536826149557637141|| A != 8139893750449888096 || A != 18236763786415097341){
@@ -1166,7 +1172,15 @@ export async function Go(e) {
 	allaction = true;
 	return;
 }
-
+//图开关
+export async function checkout(e,A,B) {
+	let B_Check = await Read_player(B.id);
+	let A_Check = await Read_player(A.id);
+	if(A.修为!=A_Check.修为 || B.修为!=B_Check.修为){
+		return false;
+	}
+	return true;
+}
 //图开关
 export async function setu(e) {
 	e.reply(
