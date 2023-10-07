@@ -1186,7 +1186,8 @@ export async function setu(e) {
 	);
 	let url;
 	//setu接口地址
-	url = 'https://api.lolicon.app/setu/v2?proxy=i.pixiv.re&r18=1';
+	url = 'https://api.lolicon.app/setu/v2?proxy=i.pixiv.re&r18=0';
+	//url = 'https://api.lolicon.app/setu/v2?proxy=i.pixiv.re&r18=1';
 	let msg = [];
 	let res;
 	//
