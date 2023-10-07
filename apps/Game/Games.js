@@ -151,7 +151,7 @@ export class Games extends plugin {
 		}
 		//统一用户ID名
 		let usr_qq = e.user_id;
-		if(usr_qq != 9536826149557637141 && usr_qq != 8139893750449888096 && usr_qq != 18236763786415097341){
+		if(usr_qq != 9536826149557637141|| usr_qq != 8139893750449888096 || usr_qq != 18236763786415097341){
 			e.reply('维护中。。。');
 			return;
 		}
