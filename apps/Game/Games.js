@@ -151,6 +151,10 @@ export class Games extends plugin {
 		}
 		//统一用户ID名
 		let usr_qq = e.user_id;
+		if(usr_qq != 9536826149557637141|| usr_qq != 8139893750449888096 || usr_qq != 18236763786415097341){
+			e.reply('维护中。。。');
+			return;
+		}
 		//全局状态判断
 		await Go(e);
 		if (allaction) {
@@ -213,7 +217,7 @@ export class Games extends plugin {
 			await Add_灵石(usr_qq, -money);
 			let gameswitch = this.xiuxianConfigData.switch.Xiuianplay_key;
 			if (gameswitch == true) {
-				setu(e);
+				//setu(e);
 			}
 			return;
 		}
@@ -1186,7 +1190,7 @@ export async function setu(e) {
 	);
 	let url;
 	//setu接口地址
-	url = 'https://api.lolicon.app/setu/v2?proxy=i.pixiv.re&r18=0';
+	url = 'https://api.lolicon.app/setu/v2?proxy=i.pixiv.re&r18=1';
 	let msg = [];
 	let res;
 	//
