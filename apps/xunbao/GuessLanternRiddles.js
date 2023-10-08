@@ -246,6 +246,25 @@ export class GuessLanternRiddles extends plugin {
 			return;
 		}
 		if (thing_name == '甘蔗') {
+			let now_Time = new Date().getTime(); //获取当前时间戳
+			let shuangxiuTimeout = parseInt(60000 * Time);
+			let last_time = await redis.get('xiuxian:player:' + usr_qq + 'ganzhe'); //获得上次的时间戳,
+			last_time = parseInt(last_time);
+			if (now_Time < last_time + shuangxiuTimeout) {
+				let Couple_m = Math.trunc(
+					(last_time + shuangxiuTimeout - now_Time) / 60 / 1000
+				);
+				let Couple_s = Math.trunc(
+					((last_time + shuangxiuTimeout - now_Time) % 60000) / 1000
+				);
+				e.reply('上一个甘蔗还没成熟' + `剩余时间:  ${Couple_m}分 ${Couple_s}秒`);
+				return;
+			}
+			let ganzhe1check = await redis.get('xiuxian:player:' + usr_qq + 'ganzhe1');
+			if(ganzhe1check == 1){
+				ganzhe1check = 2;
+				await redis.set('xiuxian:player:' + usr_qq + 'ganzhe1', ganzhe1check);
+			}
 			let ganzhe1 = await redis.get('xiuxian:player:' + usr_qq + 'ganzhe1');
 			if (ganzhe1 == 0) {
 				e.reply('你没有种甘蔗');
@@ -262,6 +281,25 @@ export class GuessLanternRiddles extends plugin {
 			}
 		}
 		if (thing_name == '金银花') {
+			let now_Time = new Date().getTime(); //获取当前时间戳
+			let shuangxiuTimeout = parseInt(60000 * Time);
+			let last_time = await redis.get('xiuxian:player:' + usr_qq + 'jinyinhua'); //获得上次的时间戳,
+			last_time = parseInt(last_time);
+			if (now_Time < last_time + shuangxiuTimeout) {
+				let Couple_m = Math.trunc(
+					(last_time + shuangxiuTimeout - now_Time) / 60 / 1000
+				);
+				let Couple_s = Math.trunc(
+					((last_time + shuangxiuTimeout - now_Time) % 60000) / 1000
+				);
+				e.reply('上一个金银花还没成熟' + `剩余时间:  ${Couple_m}分 ${Couple_s}秒`);
+				return;
+			}
+			let jinyinhua1Check = await redis.get('xiuxian:player:' + usr_qq + 'jinyinhua1');
+			if(jinyinhua1Check == 1){
+				jinyinhua1Check = 2;
+				await redis.set('xiuxian:player:' + usr_qq + 'jinyinhua1', jinyinhua1Check);
+			}
 			let jinyinhua1 = await redis.get('xiuxian:player:' + usr_qq + 'jinyinhua1');
 			if (jinyinhua1 == 0) {
 				e.reply('你没有种金银花');
@@ -278,6 +316,25 @@ export class GuessLanternRiddles extends plugin {
 			}
 		}
 		if (thing_name == '树苗') {
+			let now_Time = new Date().getTime(); //获取当前时间戳
+			let shuangxiuTimeout = parseInt(60000 * Time);
+			let last_time = await redis.get('xiuxian:player:' + usr_qq + 'shumiao'); //获得上次的时间戳,
+			last_time = parseInt(last_time);
+			if (now_Time < last_time + shuangxiuTimeout) {
+				let Couple_m = Math.trunc(
+					(last_time + shuangxiuTimeout - now_Time) / 60 / 1000
+				);
+				let Couple_s = Math.trunc(
+					((last_time + shuangxiuTimeout - now_Time) % 60000) / 1000
+				);
+				e.reply('上一个树苗还没成熟' + `剩余时间:  ${Couple_m}分 ${Couple_s}秒`);
+				return;
+			}
+			let saplingCheck = await redis.get('xiuxian:player:' + usr_qq + 'sapling');
+			if(saplingCheck == 1){
+				saplingCheck = 2;
+				await redis.set('xiuxian:player:' + usr_qq + 'sapling', saplingCheck);
+			}
 			let sapling = await redis.get('xiuxian:player:' + usr_qq + 'sapling');
 			if (sapling == 0) {
 				e.reply('你没有种树苗');
