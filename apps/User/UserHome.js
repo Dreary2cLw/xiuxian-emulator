@@ -1141,6 +1141,12 @@ export class UserHome extends plugin {
                         );
                     }
                 }
+                await redis.set(
+                    'xiuxian:player:' + 10 + ':biguang',
+                    JSON.stringify(action)
+                );
+                await data.setData('player', usr_qq, player);
+                return;
             }
             if (this_danyao.type == '仙缘') {
                 if (quantity != 1) {
