@@ -306,10 +306,14 @@ export class OccupationTask extends plugin {
 						delete arr.group_id; //结算完去除group_id
 						await redis.set('xiuxian:player:' + player_id + ':action', JSON.stringify(arr));
 						//msg.push("\n增加修为:" + xiuwei * time, "血量增加:" + blood * time);
-						if (is_group) {
-							await this.pushInfo(push_address, is_group, msg);
-						} else {
-							await this.pushInfo(player_id, is_group, msg);
+						try {
+							if (is_group) {
+								await this.pushInfo(push_address, is_group, msg);
+							} else {
+								await this.pushInfo(player_id, is_group, msg);
+							}
+						} catch {
+
 						}
 					}
 				}

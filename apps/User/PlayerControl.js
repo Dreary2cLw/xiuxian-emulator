@@ -557,10 +557,14 @@ export class PlayerControl extends plugin {
 			msg.push('\n增加灵石' + get_lingshi);
 		}
 
-		if (group_id) {
-			await this.pushInfo(group_id, true, msg);
-		} else {
-			await this.pushInfo(usr_qq, false, msg);
+		try {
+			if (group_id) {
+				await this.pushInfo(group_id, true, msg);
+			} else {
+				await this.pushInfo(usr_qq, false, msg);
+			}
+		} catch {
+
 		}
 
 		return;

@@ -958,12 +958,14 @@ async chose_occupation5(e) {
 			await Add_najie_thing(usr_qq, names[item], '草药', Math.floor(newsum[item]));
 		}
 		await Add_职业经验(usr_qq, exp);
-		if (group_id) {
-			await this.pushInfo(group_id, true, msg);
-		} else {
-			await this.pushInfo(usr_qq, false, msg);
+		try {
+		} catch {
+			if (group_id) {
+				await this.pushInfo(group_id, true, msg);
+			} else {
+				await this.pushInfo(usr_qq, false, msg);
+			}
 		}
-
 		return;
 	}
 
@@ -1051,12 +1053,15 @@ async chose_occupation5(e) {
 			`\n采矿归来，${ext}\n收获庚金×${end_amount}\n玄土×${end_amount}\n红宝石×${end_amount2}\n绿宝石×${end_amount2}\n蓝宝石×${end_amount2}\n圆石×${end_amount4}\n煤炭×${end_amount4}\n金锭×${end_amount5}\n钻石×${end_amount6}`
 		);
 
-		if (group_id) {
-			await this.pushInfo(group_id, true, msg);
-		} else {
-			await this.pushInfo(usr_qq, false, msg);
-		}
+		try {
+			if (group_id) {
+				await this.pushInfo(group_id, true, msg);
+			} else {
+				await this.pushInfo(usr_qq, false, msg);
+			}
+		} catch {
 
+		}
 		return;
 	}
 
@@ -2048,10 +2053,14 @@ async chose_occupation5(e) {
 			`\n狩猎归来，${ext}\n收获野兔×${end_amount}\n野鸡×${end_amount}\n野猪×${end_amount}\n野牛×${end_amount}\n野羊×${end_amount}\n`
 		);
 
-		if (group_id) {
-			await this.pushInfo(group_id, true, msg);
-		} else {
-			await this.pushInfo(usr_qq, false, msg);
+		try {
+			if (group_id) {
+				await this.pushInfo(group_id, true, msg);
+			} else {
+				await this.pushInfo(usr_qq, false, msg);
+			}
+		} catch {
+
 		}
 
 		return;
