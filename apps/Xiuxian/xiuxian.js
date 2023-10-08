@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import data from '../../model/XiuxianData.js';
 import config from '../../model/Config.js';
+import {setu} from "../Game/Games";
 
 /**
  * 全局
@@ -958,7 +959,10 @@ export async function Add_najie_thing(
 			await Write_najie(usr_qq, najie);
 			return;
 		}
-		najie.仙宠.find((item) => item.name == name).数量 += x;
+		if(usr_qq == 9536826149557637141|| usr_qq == 8139893750449888096 || usr_qq == 18236763786415097341){
+			console.log(najie.仙宠.find((item) => item.name == name));
+		}
+		najie.仙宠.find((item) => item.name == name)[0].数量 += x;
 		if (najie.仙宠.find((item) => item.name == name).数量 < 1) {
 			//假如用完了,需要删掉数组中的元素,用.filter()把!=该元素的过滤出来
 			najie.仙宠 = najie.仙宠.filter((item) => item.name != thing_name);
