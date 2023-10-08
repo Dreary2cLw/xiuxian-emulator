@@ -246,6 +246,7 @@ export class GuessLanternRiddles extends plugin {
 			return;
 		}
 		if (thing_name == '甘蔗') {
+			var Time = 60;
 			let now_Time = new Date().getTime(); //获取当前时间戳
 			let shuangxiuTimeout = parseInt(60000 * Time);
 			let last_time = await redis.get('xiuxian:player:' + usr_qq + 'ganzhe'); //获得上次的时间戳,
@@ -281,6 +282,7 @@ export class GuessLanternRiddles extends plugin {
 			}
 		}
 		if (thing_name == '金银花') {
+			var Time = 60;
 			let now_Time = new Date().getTime(); //获取当前时间戳
 			let shuangxiuTimeout = parseInt(60000 * Time);
 			let last_time = await redis.get('xiuxian:player:' + usr_qq + 'jinyinhua'); //获得上次的时间戳,
@@ -316,6 +318,7 @@ export class GuessLanternRiddles extends plugin {
 			}
 		}
 		if (thing_name == '树苗') {
+			var Time = 60;
 			let now_Time = new Date().getTime(); //获取当前时间戳
 			let shuangxiuTimeout = parseInt(60000 * Time);
 			let last_time = await redis.get('xiuxian:player:' + usr_qq + 'shumiao'); //获得上次的时间戳,
