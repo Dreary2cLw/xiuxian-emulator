@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import data from '../../model/XiuxianData.js';
 import config from '../../model/Config.js';
-import {setu} from "../Game/Games";
 
 /**
  * 全局
