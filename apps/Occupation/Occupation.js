@@ -959,12 +959,12 @@ async chose_occupation5(e) {
 		}
 		await Add_职业经验(usr_qq, exp);
 		try {
-		} catch {
 			if (group_id) {
 				await this.pushInfo(group_id, true, msg);
 			} else {
 				await this.pushInfo(usr_qq, false, msg);
 			}
+		} catch {
 		}
 		return;
 	}
