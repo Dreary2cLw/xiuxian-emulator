@@ -1234,7 +1234,8 @@ async chose_occupation5(e) {
 			danyao == '五阶玄元丹' ||
 			danyao == '四阶玄元丹' ||
 			danyao == '性转丹' ||
-			danyao == '破境丹'
+			danyao == '破境丹' ||
+			danyao == '起死回生丹'
 		) {
 			await Add_najie_thing(usr_qq, danyao, '丹药', res_n);
 			e.reply(
@@ -2300,8 +2301,15 @@ export async function Go(e) {
 	}
 	let player = await Read_player(usr_qq);
 	if (player.当前血量 < 200) {
-		e.reply('你都伤成这样了,就不要出去浪了');
-		return;
+		if (await exist_najie_thing(usr_qq, '起死回生丹', '丹药')) {
+			player.当前血量 = player.血量上限;
+			await Add_najie_thing(usr_qq, '起死回生丹', '丹药', -1);
+			await Write_player(usr_qq, player);
+			e.reply('检测到没有血量，自动消耗一颗起死回生恢复状态');
+		}else{
+			e.reply('你都伤成这样了,就不要出去浪了');
+			return;
+		}
 	}
 	allaction = true;
 	return;
