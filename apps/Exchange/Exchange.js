@@ -363,7 +363,7 @@ export class Exchange extends plugin {
 				let nowtime = new Date().getTime();
 				let now_time = Exchange[i].now_time;
 				let day = (nowtime - now_time)/1000/(60*60*24);
-				msg.push(qq+"出售"+thing_name+"品级："+pinji+"day:"+day+"/n");
+				msg.push(qq+"出售"+thing_name+"品级："+pinji+"数量："+thing_amount+"day:"+day+"/n");
 			}
 			e.reply(msg);
 		}
