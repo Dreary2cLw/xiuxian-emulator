@@ -8,7 +8,8 @@ import {
 	Add_血气,
 	Add_修为,
 	existplayer,
-	Read_player
+	Read_player,
+	sleep
 } from '../Xiuxian/xiuxian.js';
 import data from '../../model/XiuxianData.js';
 
@@ -196,42 +197,40 @@ export class BotHelp extends plugin {
 			e.reply('修仙：游戏进行中...');
 			return;
 		}
-		//查询redis中的人物动作
-		let action = await redis.get('xiuxian:player:' + usr_qq + ':action');
-		action = JSON.parse(action);
-		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
-			action = null;
-		}
-		if (action != null) {
-			//人物有动作查询动作结束时间
-			let action_end_time = action.end_time;
-			let now_time = new Date().getTime();
-			if (now_time <= action_end_time) {
-				let m = parseInt((action_end_time - now_time) / 1000 / 60);
-				let s = parseInt((action_end_time - now_time - m * 60 * 1000) / 1000);
-				e.reply('正在' + action.action + '中,剩余时间:' + m + '分' + s + '秒');
-				return;
-			}
-		}
+
 		let A_player = await Read_player(usr_qq);
 		let actioncheck = await this.getPlayerAction(usr_qq);
-		let state = await this.getPlayerState(actioncheck);
-		e.reply(actioncheck.cishu +"state:"+state);
-		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
-			state = '空闲';
+		let status = '空闲';
+		if (actioncheck.time != null) {
+			status = actioncheck.action + '(剩余时间:' + actioncheck.time + ')';
 		}
-		if (state == '空闲'&&actioncheck.cishu>0) {
+		e.reply(actioncheck.cishu +"state:"+status);
+		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
+			status = '空闲';
+		}
+		if (status == '空闲'&&actioncheck.cishu>0) {
 			let weizhi = actioncheck.Place_address;
+			let jindi = 0;
 			let weizhimsg = await data.didian_list.find((item) => item.name == weizhi.name);
 			if(weizhimsg == null){
 				weizhimsg = await data.forbiddenarea_list.find((item) => item.name == weizhi.name);
+				jindi = 1;
 			}
 			if(weizhimsg == null){
 				weizhimsg = await data.guildSecrets_list.find((item) => item.name == weizhi.name);
 			}
-			e.reply("状态空闲，次数："+actioncheck.cishu+"位置："+weizhi.name+"门票："+weizhimsg.Price);
+			if(actioncheck.cishu<3){
+				e.reply("当前秘境次数："+actioncheck.cishu+",偏差较低不做处理");
+				return;
+			}else{
+				e.reply("状态校验失败，正在计算补偿，请稍等....");
+				await sleep(2000);
+				e.reply("秘境："+weizhi.name+"，门票："+weizhimsg.Price+"，偏差次数："+actioncheck.cishu+"\n"+
+					"补偿灵石："+actioncheck.cishu*weizhimsg.Price+"，补偿修为："+actioncheck.cishu*weizhimsg.Price*jindi);
+			}
+
 		}else{
-			e.reply("状态非空闲");
+			e.reply("状态校验成功，状态正常！");
 			return;
 		}
 		return;
