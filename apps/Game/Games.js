@@ -437,7 +437,7 @@ export class Games extends plugin {
 		}
 
 		//发送固定点数的touzi
-		e.reply(segment.dice(touzi));
+		//e.reply(segment.dice(touzi));
 		//你说大，touzi是大。赢了
 		if ((es == '大' && touzi > 3) || (es == '小' && touzi < 4)) {
 			//赢了
