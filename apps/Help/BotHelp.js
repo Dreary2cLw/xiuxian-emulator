@@ -239,6 +239,7 @@ export class BotHelp extends plugin {
 				arr.Place_actionplus = 1; //沉迷状态
 				arr.mojie = 1;
 				arr.end_time = new Date().getTime(); //结束的时间也修改为当前时间
+				arr.cishu = 0;
 				delete arr.group_id; //结算完去除group_id
 				await redis.set('xiuxian:player:' + usr_qq + ':action', JSON.stringify(arr));
 
