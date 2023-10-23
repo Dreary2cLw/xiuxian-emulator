@@ -230,7 +230,7 @@ export class BotHelp extends plugin {
 				e.reply("状态校验失败，正在计算补偿，请稍等....");
 				await sleep(2000);
 				//把状态都关了
-				let arr = action;
+				let arr = await this.getPlayerAction(usr_qq);
 				arr.is_jiesuan = 1; //结算状态
 				arr.shutup = 1; //闭关状态
 				arr.working = 1; //降妖状态
