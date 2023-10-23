@@ -198,18 +198,19 @@ export class BotHelp extends plugin {
 			return;
 		}
 
-		let A_player = await Read_player(usr_qq);
-		let actioncheck = await getPlayerAction(usr_qq);
+		let action = await this.getPlayerAction(usr_qq);
+		let actioncheck = await getPlayerActionState(usr_qq);
+
 		let status = '空闲';
 		if (actioncheck.time != null) {
 			status = actioncheck.action + '(剩余时间:' + actioncheck.time + ')';
 		}
-		e.reply(actioncheck.cishu +"state:"+status);
+		e.reply(action.cishu +"state:"+status);
 		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
 			status = '空闲';
 		}
-		if (status == '空闲'&&actioncheck.cishu>0) {
-			let weizhi = actioncheck.Place_address;
+		if (status == '空闲'&&action.cishu>0) {
+			let weizhi = action.Place_address;
 			let jindi = 0;
 			let weizhimsg = await data.didian_list.find((item) => item.name == weizhi.name);//秘境
 			if(weizhimsg == null){
@@ -221,14 +222,14 @@ export class BotHelp extends plugin {
 				}
 			}
 
-			if(actioncheck.cishu<3){
+			if(action.cishu<3){
 				e.reply("当前秘境次数："+actioncheck.cishu+",偏差较低不做处理");
 				return;
 			}else{
 				e.reply("状态校验失败，正在计算补偿，请稍等....");
 				await sleep(2000);
-				e.reply("秘境："+weizhi.name+"，门票："+weizhimsg.Price+"，偏差次数："+actioncheck.cishu+"\n"+
-					"补偿灵石："+actioncheck.cishu*weizhimsg.Price+"，补偿修为："+actioncheck.cishu*weizhimsg.Price*jindi);
+				e.reply("秘境："+weizhi.name+"，门票："+weizhimsg.Price+"，偏差次数："+action.cishu+"\n"+
+					"补偿灵石："+action.cishu*weizhimsg.Price+"，补偿修为："+action.cishu*weizhimsg.Price*jindi);
 			}
 
 		}else{
@@ -244,6 +245,17 @@ export class BotHelp extends plugin {
 		helpData.md5 = tmp;
 		return helpData.img;
 	}
+	/**
+	 * 获取缓存中的人物状态信息
+	 * @param usr_qq
+	 * @returns {Promise<void>}
+	 */
+	async getPlayerAction(usr_qq) {
+		let action = await redis.get('xiuxian:player:' + usr_qq + ':action');
+		action = JSON.parse(action); //转为json格式数据
+		return action;
+	}
+
 	/**
 	 * 获取人物的状态，返回具体的状态或者空闲
 	 * @param action
@@ -277,7 +289,7 @@ export class BotHelp extends plugin {
 		return action.action;
 	}
 }
-async function getPlayerAction(usr_qq) {
+async function getPlayerActionState(usr_qq) {
 	let arr = {};
 	let action = await redis.get('xiuxian:player:' + usr_qq + ':action');
 	action = JSON.parse(action);
