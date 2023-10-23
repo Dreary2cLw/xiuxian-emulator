@@ -356,7 +356,7 @@ export class Exchange extends plugin {
 		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
 			let Exchange = await Read_Exchange();
 			let msg = [];
-			msg.push("数量"+Exchange.length+"/n")
+			msg.push("数量"+Exchange.length+"\n")
 			for(let i;i<5;i++){
 				let thing_name = Exchange[i].name.name;
 				let thing_class = Exchange[i].name.class;
@@ -366,9 +366,8 @@ export class Exchange extends plugin {
 				let nowtime = new Date().getTime();
 				let now_time = Exchange[i].now_time;
 				let day = (nowtime - now_time)/1000/(60*60*24);
-				msg.push(qq+"出售"+thing_name+"品级："+pinji+"数量："+thing_amount+"day:"+day+"/n");
+				e.reply(qq+"出售"+thing_name+"品级："+pinji+"数量："+thing_amount+"day:"+day+"\n");
 			}
-			e.reply(msg);
 		}
 		let img = await get_supermarket_img(e);
 		e.reply(img);
