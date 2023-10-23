@@ -229,6 +229,19 @@ export class BotHelp extends plugin {
 			}else{
 				e.reply("状态校验失败，正在计算补偿，请稍等....");
 				await sleep(2000);
+				//把状态都关了
+				let arr = action;
+				arr.is_jiesuan = 1; //结算状态
+				arr.shutup = 1; //闭关状态
+				arr.working = 1; //降妖状态
+				arr.power_up = 1; //渡劫状态
+				arr.Place_action = 1; //秘境
+				arr.Place_actionplus = 1; //沉迷状态
+				arr.mojie = 1;
+				arr.end_time = new Date().getTime(); //结束的时间也修改为当前时间
+				delete arr.group_id; //结算完去除group_id
+				await redis.set('xiuxian:player:' + usr_qq + ':action', JSON.stringify(arr));
+
 				await Add_灵石(usr_qq,action.cishu*weizhimsg.Price);
 				await Add_修为(usr_qq,action.cishu*weizhimsg.Price*jindi);
 				e.reply("秘境："+weizhi.name+"，门票："+weizhimsg.Price+"，偏差次数："+action.cishu+"\n"+
