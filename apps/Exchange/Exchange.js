@@ -351,6 +351,22 @@ export class Exchange extends plugin {
 		if (!e.isGroup) {
 			return;
 		}
+		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
+			let Exchange = await Read_Exchange();
+			let msg = [];
+			for(let i;i<Exchange.length;i++){
+				let thing_name = Exchange[i].name.name;
+				let thing_class = Exchange[i].name.class;
+				let thing_amount = Exchange[i].aconut;
+				let pinji = Exchange[i].pinji2;
+				let qq = Exchange[i].qq;
+				let nowtime = new Date().getTime();
+				let now_time = Exchange[i].now_time;
+				let day = (nowtime - now_time)/1000/(60*60*24);
+				msg.push(qq+"出售"+thing_name+"品级："+pinji+"day:"+day+"/n");
+			}
+			e.reply(msg);
+		}
 		let img = await get_supermarket_img(e);
 		e.reply(img);
 		return;
