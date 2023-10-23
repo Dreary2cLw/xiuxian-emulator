@@ -199,7 +199,7 @@ export class BotHelp extends plugin {
 		}
 
 		let A_player = await Read_player(usr_qq);
-		let actioncheck = await this.getPlayerAction(usr_qq);
+		let actioncheck = await getPlayerAction(usr_qq);
 		let status = '空闲';
 		if (actioncheck.time != null) {
 			status = actioncheck.action + '(剩余时间:' + actioncheck.time + ')';
@@ -211,14 +211,16 @@ export class BotHelp extends plugin {
 		if (status == '空闲'&&actioncheck.cishu>0) {
 			let weizhi = actioncheck.Place_address;
 			let jindi = 0;
-			let weizhimsg = await data.didian_list.find((item) => item.name == weizhi.name);
+			let weizhimsg = await data.didian_list.find((item) => item.name == weizhi.name);//秘境
 			if(weizhimsg == null){
-				weizhimsg = await data.forbiddenarea_list.find((item) => item.name == weizhi.name);
-				jindi = 1;
+				weizhimsg = await data.forbiddenarea_list.find((item) => item.name == weizhi.name);//禁地
+				if(weizhimsg == null){
+					weizhimsg = await data.guildSecrets_list.find((item) => item.name == weizhi.name);//宗门秘境
+				}else{
+					jindi = 1;
+				}
 			}
-			if(weizhimsg == null){
-				weizhimsg = await data.guildSecrets_list.find((item) => item.name == weizhi.name);
-			}
+
 			if(actioncheck.cishu<3){
 				e.reply("当前秘境次数："+actioncheck.cishu+",偏差较低不做处理");
 				return;
@@ -242,18 +244,6 @@ export class BotHelp extends plugin {
 		helpData.md5 = tmp;
 		return helpData.img;
 	}
-
-	/**
-	 * 获取缓存中的人物状态信息
-	 * @param usr_qq
-	 * @returns {Promise<void>}
-	 */
-	async getPlayerAction(usr_qq) {
-		let action = await redis.get('xiuxian:player:' + usr_qq + ':action');
-		action = JSON.parse(action); //转为json格式数据
-		return action;
-	}
-
 	/**
 	 * 获取人物的状态，返回具体的状态或者空闲
 	 * @param action
@@ -286,4 +276,22 @@ export class BotHelp extends plugin {
 		}
 		return action.action;
 	}
+}
+async function getPlayerAction(usr_qq) {
+	let arr = {};
+	let action = await redis.get('xiuxian:player:' + usr_qq + ':action');
+	action = JSON.parse(action);
+	if (action != null) {
+		let action_end_time = action.end_time;
+		let now_time = new Date().getTime();
+		if (now_time <= action_end_time) {
+			let m = parseInt((action_end_time - now_time) / 1000 / 60);
+			let s = parseInt(((action_end_time - now_time) - m * 60 * 1000) / 1000);
+			arr.action = action.action;//当期那动作
+			arr.time = m + '分' + s + '秒';//剩余时间
+			return arr;
+		}
+	}
+	arr.action = '空闲';
+	return arr;
 }
