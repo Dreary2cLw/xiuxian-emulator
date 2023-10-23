@@ -351,6 +351,8 @@ export class Exchange extends plugin {
 		if (!e.isGroup) {
 			return;
 		}
+		//固定写法
+		let usr_qq = e.user_id;
 		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
 			let Exchange = await Read_Exchange();
 			let msg = [];
