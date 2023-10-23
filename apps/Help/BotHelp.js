@@ -221,7 +221,7 @@ export class BotHelp extends plugin {
 			state = '空闲';
 		}
 		if (state == '空闲'&&actioncheck.cishu>0) {
-			let weizhi = action.Place_address;
+			let weizhi = actioncheck.Place_address;
 			let weizhimsg = await data.didian_list.find((item) => item.name == weizhi.name);
 			if(weizhimsg.Price == null){
 				weizhimsg = await data.forbiddenarea_list.find((item) => item.name == weizhi.name);
