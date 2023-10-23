@@ -199,6 +199,9 @@ export class BotHelp extends plugin {
 		//查询redis中的人物动作
 		let action = await redis.get('xiuxian:player:' + usr_qq + ':action');
 		action = JSON.parse(action);
+		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
+			action = null;
+		}
 		if (action != null) {
 			//人物有动作查询动作结束时间
 			let action_end_time = action.end_time;
