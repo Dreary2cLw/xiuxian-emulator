@@ -10,6 +10,8 @@ import {
 	existplayer,
 	Read_player
 } from '../Xiuxian/xiuxian.js';
+import data from '../../model/XiuxianData.js';
+
 
 let helpData = {
 	md5: '',
@@ -237,5 +239,49 @@ export class BotHelp extends plugin {
 		helpData.img = await puppeteer.screenshot('help', data);
 		helpData.md5 = tmp;
 		return helpData.img;
+	}
+
+	/**
+	 * 获取缓存中的人物状态信息
+	 * @param usr_qq
+	 * @returns {Promise<void>}
+	 */
+	async getPlayerAction(usr_qq) {
+		let action = await redis.get('xiuxian:player:' + usr_qq + ':action');
+		action = JSON.parse(action); //转为json格式数据
+		return action;
+	}
+
+	/**
+	 * 获取人物的状态，返回具体的状态或者空闲
+	 * @param action
+	 * @returns {Promise<void>}
+	 */
+	async getPlayerState(action) {
+		if (action == null) {
+			return '空闲';
+		}
+		let now_time = new Date().getTime();
+		let end_time = action.end_time;
+		//当前时间>=结束时间，并且未结算 属于已经完成任务，却并没有结算的
+		//当前时间<=完成时间，并且未结算 属于正在进行
+		if (
+			!(
+				(now_time >= end_time &&
+					(action.shutup == 0 ||
+						action.working == 0 ||
+						action.plant == 0 ||
+						action.min == 0)) ||
+				(now_time <= end_time &&
+					(action.shutup == 0 ||
+						action.working == 0 ||
+						action.plant == 0 ||
+						action.mine == 0 ||
+						action.shoulie == 0))
+			)
+		) {
+			return '空闲';
+		}
+		return action.action;
 	}
 }
