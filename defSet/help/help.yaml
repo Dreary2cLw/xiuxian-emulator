@@ -236,7 +236,7 @@
       desc: '查看寻宝指令'
     - icon: help-icon_14
       title: '#血气置换'
-      desc: '查看寻宝指令'
+      desc: '多余血气置换'
     - icon: help-icon_14
       title: '#状态校验'
-      desc: '查看寻宝指令'
+      desc: '修补异常状态'

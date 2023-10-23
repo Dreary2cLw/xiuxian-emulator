@@ -7,6 +7,7 @@ import md5 from 'md5';
 import {
 	Add_血气,
 	Add_修为,
+	Add_灵石,
 	existplayer,
 	Read_player,
 	sleep
@@ -205,7 +206,7 @@ export class BotHelp extends plugin {
 		if (actioncheck.time != null) {
 			status = actioncheck.action + '(剩余时间:' + actioncheck.time + ')';
 		}
-		e.reply(action.cishu +"state:"+status);
+		//e.reply(action.cishu +"state:"+status);
 		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
 			status = '空闲';
 		}
@@ -228,6 +229,8 @@ export class BotHelp extends plugin {
 			}else{
 				e.reply("状态校验失败，正在计算补偿，请稍等....");
 				await sleep(2000);
+				await Add_灵石(usr_qq,action.cishu*weizhimsg.Price);
+				await Add_修为(usr_qq,action.cishu*weizhimsg.Price*jindi);
 				e.reply("秘境："+weizhi.name+"，门票："+weizhimsg.Price+"，偏差次数："+action.cishu+"\n"+
 					"补偿灵石："+action.cishu*weizhimsg.Price+"，补偿修为："+action.cishu*weizhimsg.Price*jindi);
 			}
