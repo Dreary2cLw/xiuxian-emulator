@@ -356,7 +356,8 @@ export class Exchange extends plugin {
 		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
 			let Exchange = await Read_Exchange();
 			let msg = [];
-			for(let i;i<Exchange.length;i++){
+			msg.push("数量"+Exchange.length+"/n")
+			for(let i;i<5;i++){
 				let thing_name = Exchange[i].name.name;
 				let thing_class = Exchange[i].name.class;
 				let thing_amount = Exchange[i].aconut;
