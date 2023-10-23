@@ -213,7 +213,7 @@ export class BotHelp extends plugin {
 		let A_player = await Read_player(usr_qq);
 		let actioncheck = await this.getPlayerAction(usr_qq);
 		let state = await this.getPlayerState(actioncheck);
-		e.reply(actioncheck.cishu);
+		e.reply(actioncheck.cishu +"state:"+state);
 		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
 			state = '空闲';
 		}
