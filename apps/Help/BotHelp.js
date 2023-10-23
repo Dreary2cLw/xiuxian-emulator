@@ -223,10 +223,10 @@ export class BotHelp extends plugin {
 		if (state == '空闲'&&actioncheck.cishu>0) {
 			let weizhi = actioncheck.Place_address;
 			let weizhimsg = await data.didian_list.find((item) => item.name == weizhi.name);
-			if(weizhimsg.Price == null){
+			if(weizhimsg == null){
 				weizhimsg = await data.forbiddenarea_list.find((item) => item.name == weizhi.name);
 			}
-			if(weizhimsg.Price == null){
+			if(weizhimsg == null){
 				weizhimsg = await data.guildSecrets_list.find((item) => item.name == weizhi.name);
 			}
 			e.reply("状态空闲，次数："+actioncheck.cishu+"位置："+weizhi.name+"门票："+weizhimsg.Price);
