@@ -369,7 +369,7 @@ export class Exchange extends plugin {
 				let day = (nowtime - now_time)/1000/(60*60*24);
 				if(qq == usr_qq){
 					await Add_najie_thing(qq, thing_name, thing_class, thing_amount, pinji);
-					Exchange[i].aconut = Exchange[x].aconut - thing_amount;
+					Exchange[i].aconut = Exchange[i].aconut - thing_amount;
 					msg.push(qq+"出售"+thing_name+"品级："+pinji+"数量："+thing_amount+"day:"+day+"\n");
 				}
 			}
