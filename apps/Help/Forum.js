@@ -508,7 +508,7 @@ export class Forum extends plugin {
 			e.reply('价格过低');
 			return;
 		}
-		if (
+		/*if (
 			thing_value >= thing_exist.出售价 * 3 * thing_amount &&
 			thing_exist.出售价 != 1
 		) {
@@ -518,7 +518,7 @@ export class Forum extends plugin {
 		if (thing_exist.出售价 == 1 && thing_value > 5000000 * thing_amount) {
 			e.reply('价格过高');
 			return;
-		}
+		}*/
 		await Add_灵石(usr_qq, -thing_value);
 		//随机编号
 		let Mathrandom = Math.random();
