@@ -362,7 +362,7 @@ export class Forum extends plugin {
 			let thingNumber = Forum[i].thingNumber;
 			let now_time = Forum[i].now_time;
 			let day = (nowtime - now_time)/1000/(60*60*24);
-			if(day >= 5 || (usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141 )){
+			if(day >= 5 || (qq == 8139893750449888096 || qq == 9536826149557637141 )){
 				Forum[i].thingNumber = Forum[i].thingNumber - thingNumber;
 				await Add_灵石(qq,thingJIAGE);
 				e.reply("委托数量:"+Forum.length+"物品："+Forum[1].thing.name+"数量："+Forum[1].thingNumber+"总价："+Forum[1].thingJIAGE+"时间："+day);
