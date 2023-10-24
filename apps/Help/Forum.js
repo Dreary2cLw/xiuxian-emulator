@@ -354,6 +354,12 @@ export class Forum extends plugin {
 			Forum = await Read_Forum();
 		}
 		let nowtime = new Date().getTime();
+		//固定写法
+		let usr_qq = e.user_id;
+		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
+			let now_time = Forum[1].now_time;
+			let day = (nowtime - now_time)/1000/(60*60*24);
+			e.reply("委托数量:"+Forum.length+"物品："+Forum[1].thing.name+"数量："+Forum[1].thingNumber+"总价："+Forum[1].thingJIAGE+"时间："+day);		}
 		let searchforumData_data = {
 			Forum,
 			nowtime,

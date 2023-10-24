@@ -358,15 +358,24 @@ export class Exchange extends plugin {
 			let msg = [];
 			let i = 9;
 			msg.push("数量"+Exchange.length+"\n")
-			let thing_name = Exchange[i].name.name;
-			let thing_class = Exchange[i].name.class;
-			let thing_amount = Exchange[i].aconut;
-			let pinji = Exchange[i].pinji2;
-			let qq = Exchange[i].qq;
-			let nowtime = new Date().getTime();
-			let now_time = Exchange[i].now_time;
-			let day = (nowtime - now_time)/1000/(60*60*24);
-			msg.push(qq+"出售"+thing_name+"品级："+pinji+"数量："+thing_amount+"day:"+day+"\n");
+			for(let i=0;i<Exchange.length;i++){
+				let thing_name = Exchange[i].name.name;
+				let thing_class = Exchange[i].name.class;
+				let thing_amount = Exchange[i].aconut;
+				let pinji = Exchange[i].pinji2;
+				let qq = Exchange[i].qq;
+				let nowtime = new Date().getTime();
+				let now_time = Exchange[i].now_time;
+				let day = (nowtime - now_time)/1000/(60*60*24);
+				if(qq == usr_qq){
+					await Add_najie_thing(qq, thing_name, thing_class, thing_amount, pinji);
+					Exchange[i].aconut = Exchange[x].aconut - thing_amount;
+					msg.push(qq+"出售"+thing_name+"品级："+pinji+"数量："+thing_amount+"day:"+day+"\n");
+				}
+			}
+			//删除该位置信息
+			Exchange = Exchange.filter((item) => item.aconut > 0);
+			await Write_Exchange(Exchange);
 			e.reply(msg);
 		}
 		let img = await get_supermarket_img(e);
