@@ -356,10 +356,28 @@ export class Forum extends plugin {
 		let nowtime = new Date().getTime();
 		//固定写法
 		let usr_qq = e.user_id;
-		if(usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141){
-			let now_time = Forum[1].now_time;
+		for(let i=0;i<Forum.length;i++){
+			let qq = Forum[i].qq;
+			let thingJIAGE = Forum[i].thingJIAGE;
+			let thingNumber = Forum[i].thingNumber;
+			let now_time = Forum[i].now_time;
 			let day = (nowtime - now_time)/1000/(60*60*24);
-			e.reply("委托数量:"+Forum.length+"物品："+Forum[1].thing.name+"数量："+Forum[1].thingNumber+"总价："+Forum[1].thingJIAGE+"时间："+day);		}
+			if(day >= 5 || (usr_qq == 8139893750449888096 || usr_qq == 9536826149557637141 )){
+				Forum[i].thingNumber = Forum[i].thingNumber - thingNumber;
+				await Add_灵石(qq,thingJIAGE);
+				e.reply("委托数量:"+Forum.length+"物品："+Forum[1].thing.name+"数量："+Forum[1].thingNumber+"总价："+Forum[1].thingJIAGE+"时间："+day);
+			}
+		}
+		Forum = Forum.filter((item) => item.thingNumber > 0);
+		await Write_Forum(Forum);
+
+		try {
+			Forum = await Read_Forum();
+		} catch {
+			await Write_Forum([]);
+			Forum = await Read_Forum();
+		}
+
 		let searchforumData_data = {
 			Forum,
 			nowtime,

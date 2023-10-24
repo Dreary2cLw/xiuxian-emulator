@@ -366,8 +366,8 @@ export class Exchange extends plugin {
 			let now_time = Exchange[i].now_time;
 			let day = parseInt((nowtime - now_time)/1000/(60*60*24));
 			if(day >= 5){
-				await Add_najie_thing(qq, thing_name, thing_class, thing_amount, pinji);
 				Exchange[i].aconut = Exchange[i].aconut - thing_amount;
+				await Add_najie_thing(qq, thing_name, thing_class, thing_amount, pinji);
 			}
 		}
 		//删除该位置信息
