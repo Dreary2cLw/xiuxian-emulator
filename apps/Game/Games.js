@@ -25,7 +25,6 @@ import {
 } from '../Xiuxian/xiuxian.js';
 import Show from '../../model/show.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
-import {get_biwu_img} from "../Battle/Battle.js";
 
 /**
  * 全局变量
@@ -1014,16 +1013,9 @@ export class Games extends plugin {
 		let Data_battle = await zd_battle(A_player, B_player);
 		let msg = Data_battle.msg;
 		//战斗回合过长会导致转发失败报错，所以超过30回合的就不转发了
-		if (msg.length > 50) {
-			let msg1 = msg;
-			while(msg1.length){
-				let img = await get_biwu_img(e,msg1.splice(0,50));
-				e.reply(img);
-			}
-		}
-		else{
-			let img = await get_biwu_img(e,msg);
-			e.reply(img);
+		if (msg.length > 35) {
+		} else {
+			//await ForwardMsg(e, msg);
 		}
 		//下面的战斗超过100回合会报错
 		await Add_HP(A, Data_battle.A_xue);

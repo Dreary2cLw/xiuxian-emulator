@@ -254,9 +254,9 @@ export async function Write_equipment(usr_qq, equipment) {
 		equipment.护具.name == '下界合金甲' &&
 		equipment.法宝.name == '下界合金头盔'
 	) {
-		player.攻击 = Math.trunc(1.3 * player.攻击);
-		player.血量上限 = Math.trunc(1.3 * player.血量上限);
-		player.防御 = Math.trunc(1.3 * player.防御);
+		player.攻击 = Math.trunc(1.2 * player.攻击);
+		player.血量上限 = Math.trunc(1.2 * player.血量上限);
+		player.防御 = Math.trunc(1.2 * player.防御);
 	}
 	if (
 		equipment.武器.name == '光明剑' &&
@@ -2939,20 +2939,12 @@ export async function Gaodenyuansulun(
 	}
 	if (B.武器.fumo == '击退2') {
 		let random = Math.random();
-		let paramRandom = 0.8;
-		let exmsg = '';
-		let attlunhui = 0.1;
-		if(B_player.灵根.type == '转生'){
-			paramRandom = 0.75;
-			exmsg = '任何邪恶都将绳之以法，轮回者获得击退效果增幅。\n'
-			attlunhui = 0.2;
-		}
-		if (random > paramRandom) {
+		if (random > 0.8) {
 			msg.push(
-				exmsg+`${B_player.名号}使用了击退,${A_player.名号}下次攻击被打断,受到了反噬,血量减少`+attlunhui*100+`%`
+				`${B_player.名号}使用了击退,${A_player.名号}下次攻击被打断,受到了反噬,血量减少10%`
 			);
 			att *= 0;
-			A_player.当前血量 -= A_player.当前血量 * attlunhui;
+			A_player.当前血量 -= A_player.当前血量 * 0.1;
 		}
 	}
 	if (B.护具.fumo == '荆棘1') {

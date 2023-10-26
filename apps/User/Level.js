@@ -305,9 +305,6 @@ export class Level extends plugin {
 		let Time = this.xiuxianConfigData.CD.level_up;
 		let now_Time = new Date().getTime(); //获取当前时间戳
 		let shuangxiuTimeout = parseInt(60000 * Time);
-		if(player.灵根.type == '转生'){
-			shuangxiuTimeout = parseInt(6000);
-		}
 		let last_time = await redis.get(
 			'xiuxian:player:' + usr_qq + ':last_Levelup_time'
 		); //获得上次的时间戳,
