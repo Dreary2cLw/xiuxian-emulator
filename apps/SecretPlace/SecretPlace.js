@@ -326,20 +326,21 @@ export class SecretPlace extends plugin {
 				return;
 			}
 		}
-		if (player.灵石 < weizhi.Price) {
-			e.reply('没有灵石寸步难行,攒到' + weizhi.Price + '灵石才够哦~');
-			return true;
-		}
-		if (player.修为 < weizhi.experience) {
-			e.reply('你需要积累' + weizhi.experience + '修为，才能抵抗禁地魔气！');
-			return true;
-		}
 		let Price = weizhi.Price;
 		if((await exist_najie_thing(usr_qq, '黄金门票', '道具'))){
 			Price = 0;
 			weizhi.experience = 0;
 			e.reply(player.名号 + '使用了黄金门票,本次禁地免费');
 			await Add_najie_thing(usr_qq, '黄金门票', '道具', -1);
+		}else{
+			if (player.灵石 < weizhi.Price) {
+				e.reply('没有灵石寸步难行,攒到' + weizhi.Price + '灵石才够哦~');
+				return true;
+			}
+			if (player.修为 < weizhi.experience) {
+				e.reply('你需要积累' + weizhi.experience + '修为，才能抵抗禁地魔气！');
+				return true;
+			}
 		}
 		await Add_灵石(usr_qq, -Price);
 		await Add_修为(usr_qq, -weizhi.experience);

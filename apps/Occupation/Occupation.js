@@ -1540,10 +1540,46 @@ async chose_occupation5(e) {
 		let last_msg = '';
 		if (qq != 1) {
 			let player_B = await Read_player(qq);
+			let tfMsg = '';
+			let motou = false;
+			let motouParam = 0;
+			if(player_B.灵根.type == '魔头'){
+				motou = true;
+				tfMsg = '魔头';
+				motouParam = 0.1;
+				if(player_B.灵根.name == '九重魔功' && player_B.魔道值>1000){
+					tfMsg = '大魔王';
+					motouParam = 0.3;
+				}else if(player_B.灵根.name == '九重魔功'){
+					tfMsg = '小魔王';
+					motouParam = 0.2;
+				}
+			}
 			player_B.id = qq;
 			player_B.当前血量 = player_B.血量上限;
 			player_B.法球倍率 = player_B.灵根.法球倍率;
 			let buff = 1 + player.occupation_level * 0.055;
+			let playerB;
+			if(motou){
+				buff = buff/2;
+				playerB = {
+					id: qq,
+					名号: player_B.名号,
+					攻击: parseInt(player_B.攻击 *(1+motouParam)),
+					防御: parseInt(player_B.防御*(1+motouParam)),
+					当前血量: parseInt(player_B.血量上限*(1+motouParam)),
+					暴击率: player_B.暴击率,
+					学习的功法: player_B.学习的功法,
+					魔道值: player_B.魔道值,
+					灵根: player_B.灵根,
+					法球倍率: player_B.灵根.法球倍率,
+					仙宠: player_B.仙宠,
+					神石: player_B.神石,
+				};
+				e.reply('讨伐赏金临时变动！对方为'+tfMsg+',赏金提升'+motouParam*100+'%！');
+			}else{
+				playerB = player_B;
+			}
 			let player_A = {
 				id: usr_qq,
 				名号: player.名号,
@@ -1558,7 +1594,7 @@ async chose_occupation5(e) {
 				仙宠: player.仙宠,
 				神石: player.神石,
 			};
-			let Data_battle = await zd_battle(player_A, player_B);
+			let Data_battle = await zd_battle(player_A, playerB);
 			let msg = Data_battle.msg;
 			let A_win = `${player_A.名号}击败了${player_B.名号}`;
 			let B_win = `${player_B.名号}击败了${player_A.名号}`;
@@ -1567,7 +1603,7 @@ async chose_occupation5(e) {
 				player_B.灵石 -= 1000000;
 				player_B.当前血量 = 0;
 				await Write_player(qq, player_B);
-				player.灵石 += action.arm[num].赏金;
+				player.灵石 += action.arm[num].赏金*(1+motouParam);
 				player.魔道值 -= 5;
 				await Write_player(usr_qq, player);
 				await Add_职业经验(usr_qq, 2255);
@@ -1575,15 +1611,25 @@ async chose_occupation5(e) {
 					'【全服公告】' +
 					player_B.名号 +
 					'失去了1000000灵石,罪恶得到了洗刷,魔道值-50,无名侠客获得了部分灵石,自己的正气提升了,同时获得了更多的悬赏加成';
+				if(motou){
+					last_msg += '\n惩奸除恶成功，赏金额外加成'+motouParam*100+'%';
+				}
 			} else if (msg.find((item) => item == B_win)) {
 				let shangjing = Math.trunc(action.arm[num].赏金 * 0.5);
+				let motouMsg
+				if(motou){
+					motouMsg =  '【全服公告】' + player_B.名号 + '反杀了无名侠客,无名侠客辛苦钱惨遭掠夺';
+					player_B.灵石 = shangjing*(1+motouParam);
+					await Write_player(usr_qq, player_B);
+				}else{
+					player.灵石 += shangjing;
+					motouMsg = '【全服公告】' + player_B.名号 + '反杀了无名侠客,无名侠客只获得了部分辛苦钱';
+				}
 				player.当前血量 = 0;
-				player.灵石 += shangjing;
 				player.魔道值 -= 5;
 				await Write_player(usr_qq, player);
 				await Add_职业经验(usr_qq, 1100);
-				last_msg +=
-					'【全服公告】' + player_B.名号 + '反杀了无名侠客,无名侠客只获得了部分辛苦钱';
+				last_msg += motouMsg;
 			}
 			if (msg.length > 100) {
 			} else {
