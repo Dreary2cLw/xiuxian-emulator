@@ -215,12 +215,19 @@ export class BotHelp extends plugin {
 			let jindi = 0;
 			let weizhimsg = await data.didian_list.find((item) => item.name == weizhi.name);//秘境
 			if(weizhimsg == null){
+				weizhimsg = await data.Fairyrealm_list.find((item) => item.name == weizhi.name);
+			}
+			if(weizhimsg == null){
 				weizhimsg = await data.forbiddenarea_list.find((item) => item.name == weizhi.name);//禁地
 				if(weizhimsg == null){
 					weizhimsg = await data.guildSecrets_list.find((item) => item.name == weizhi.name);//宗门秘境
 				}else{
 					jindi = 1;
 				}
+			}
+			if(weizhimsg == null){
+				e.reply("校验错误...联系管理员处理");
+				return;
 			}
 
 			if(action.cishu<3){
