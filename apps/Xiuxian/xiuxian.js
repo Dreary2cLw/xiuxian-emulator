@@ -3031,12 +3031,13 @@ export async function Gaodenyuansulun(
 				);
 			}
 			att *= 2;
-			if (att == 0) {
+			//防击退
+			/*if (att == 0) {
 				att = last_att * 2;
-			}
+			}*/
 			msg.push(
 				A_player.名号 +
-					'使用了赤壁奇谋主动技能炎龙冲阵,下次伤害无视击退效果,伤害提升了100%'
+					'使用了赤壁奇谋主动技能炎龙冲阵,伤害提升了100%'
 			);
 			gandianhuihe += 3;
 			gandianhuihe -= 3;
