@@ -33,6 +33,9 @@
     - icon: help-icon_13
       title: '#炼体境界'
       desc: '查看所有境界'
+    - icon: help-icon_13
+      title: '频道号@群友'
+      desc: '兑换奖励'
 
 - group: 修行之路
   list:

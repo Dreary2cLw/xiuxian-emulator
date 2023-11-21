@@ -66,6 +66,9 @@
     - icon: help-icon_58
       title: "#逐出+QQ"
       desc: "只有宗主、副宗主和长老可以噢"
+    - icon: help-icon_58
+      title: "#内门弟子列表"
+      desc: "内门弟子列表"
 - group: 宗门玩法
   list:
     - icon: help-icon_55

@@ -68,6 +68,10 @@ export class AssociationAdmin extends plugin {
 					reg: '^#逐出[1-9]d*',
 					fnc: 'Deleteusermax',
 				},
+				{
+					reg: '^#内门弟子列表',
+					fnc: 'neimenList',
+				}
 			],
 		});
 		this.xiuxianConfigData = config.getConfig('xiuxian', 'xiuxian');
@@ -491,7 +495,32 @@ export class AssociationAdmin extends plugin {
 
 		return;
 	}
-
+async neimenList(e){
+	if (!e.isGroup) {
+			return;
+		}
+		let usr_qq = e.user_id;
+		let ifexistplay = data.existData('player', usr_qq);
+		if (!ifexistplay) {
+			return;
+		}
+		let player = await data.getData('player', usr_qq);
+		if (!isNotNull(player.宗门)) {
+			return;
+		}
+		let ass = data.getAssociation(player.宗门.宗门名称);
+		if(ass == null){
+		e.reply('宗门不存在');
+		return;
+		}
+		let neimenList = ass.内门弟子;
+		let msg = '内门弟子：\n';
+		for(var i=0;i<neimenList;i++){
+					msg+=neimenList[i]+'\n';
+		}
+	 e.reply(msg);
+		return;
+}
 	async Deleteusermax(e) {
 		if (!e.isGroup) {
 			return;

@@ -65,6 +65,10 @@ export class UserStart extends plugin {
         {
           reg: '^#修仙签到$',
           fnc: 'daily_gift'
+        },
+        {
+          	reg: '^(频道号)$',
+					      fnc: 'pingdaomsg',
         }
       ]
     });
@@ -402,7 +406,23 @@ export class UserStart extends plugin {
     await data.setData('player', usr_qq, player);
     e.reply(`${player.名号}的性别已成功设置为 ${msg}。`);
   }
+  async pingdaomsg(e){
+    //不开放私聊功能
+		if (!e.isGroup) {
+			return;
+		}
+		let A = e.user_id;
+		//console.log(e);
 
+		//先判断
+		let ifexistplay_A = await existplayer(A);
+		if (!ifexistplay_A || e.isPrivate) {
+			return;
+		}
+  let B = atItem[0].qq;
+  e.reply(B);
+  return
+  }
   //改名
   async Change_player_name(e) {
     //不开放私聊功能
