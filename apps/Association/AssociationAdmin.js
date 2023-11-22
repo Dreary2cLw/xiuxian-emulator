@@ -515,10 +515,7 @@ async neimenList(e){
 		}
 		let neimenList = ass.内门弟子;
 		let msg = '内门弟子：\n';
-		for(var i=0;i<neimenList;i++){
-					msg+=neimenList[i]+'\n';
-		}
-	 e.reply(msg);
+	 	e.reply(msg+neimenList);
 		return;
 }
 	async Deleteusermax(e) {

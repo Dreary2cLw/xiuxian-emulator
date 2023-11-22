@@ -68,7 +68,7 @@ export class UserStart extends plugin {
         },
         {
           	reg: '^(频道号)$',
-					      fnc: 'pingdaomsg',
+			fnc: 'pingdaomsg',
         }
       ]
     });
@@ -419,9 +419,10 @@ export class UserStart extends plugin {
 		if (!ifexistplay_A || e.isPrivate) {
 			return;
 		}
-  let B = atItem[0].qq;
-  e.reply(B);
-  return
+      let atItem = e.message.filter((item) => item.type === 'at');
+      let B = atItem[0].qq;
+      e.reply(B);
+      return
   }
   //改名
   async Change_player_name(e) {
