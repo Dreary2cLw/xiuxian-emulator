@@ -540,6 +540,10 @@ export async function zd_battle(AA_player, BB_player) {
 				} else {
 					msg.push(A_player.名号 + jineng1[i].msg1 + B_player.名号 + jineng1[i].msg2);
 				}
+				let beilv = jineng1[i].beilv;
+				if(beilv<0&&伤害<0){
+					beilv = 0-beilv;
+				}
 				伤害 = 伤害 * jineng1[i].beilv + jineng1[i].other;
 			}
 		}
