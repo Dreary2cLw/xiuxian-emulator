@@ -449,7 +449,6 @@ async chose_occupation5(e) {
 		e.reply(`你已经是[${player_occupation}]了，可使用[职业转化凭证]重新转职`);
 		return;
 	}
-	await Add_najie_thing(usr_qq, thing_name, thing_class, n);
 	let actionPlus = [];
 	let action = player.副职;
 	if (action == null) {
@@ -487,6 +486,7 @@ async chose_occupation5(e) {
 		e.reply(`副职数量大于3，请使用#删除XXX删除副职！`);
 		return;
 	}
+	await Add_najie_thing(usr_qq, thing_name, thing_class, n);
 	let arr = {
 		职业名: player.occupation,
 		职业经验: player.occupation_exp,
