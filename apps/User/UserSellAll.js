@@ -18,6 +18,7 @@ import {
 	Write_najie,
 	Read_equipment,
 	isNotNull,
+	Write_player,
 	__PATH,
 } from '../Xiuxian/xiuxian.js';
 import { get_equipment_img } from '../ShowImeg/showData.js';
@@ -25,7 +26,6 @@ import { synchronization } from '../AdminSuper/AdminSuper.js';
 import { Pushforum_ASS } from '../Help/Forum.js';
 import { Synchronization_ASS } from '../Association/TreasureCabinet.js';
 import {Read_shop, Write_shop} from "../Xijie/Xijie.js";
-import {Write_player} from "../Xiuxian/xiuxian";
 
 /**
  * 全局变量
