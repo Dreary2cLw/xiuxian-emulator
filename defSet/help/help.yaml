@@ -243,3 +243,6 @@
     - icon: help-icon_14
       title: '#状态校验'
       desc: '修补异常状态'
+    - icon: help-icon_14
+      title: '#特殊同步$'
+      desc: '修补异常洗劫状态和幸运'
