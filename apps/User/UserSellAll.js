@@ -25,6 +25,7 @@ import { synchronization } from '../AdminSuper/AdminSuper.js';
 import { Pushforum_ASS } from '../Help/Forum.js';
 import { Synchronization_ASS } from '../Association/TreasureCabinet.js';
 import {Read_shop, Write_shop} from "../Xijie/Xijie.js";
+import {Write_player} from "../Xiuxian/xiuxian";
 
 /**
  * 全局变量
@@ -387,6 +388,7 @@ export class UserSellAll extends plugin {
 				player.幸运 = player.addluckyNo;
 			}
 		}
+		await Write_player(usr_qq, player);
 		e.reply('运气同步结束');
 		return;
 	}
