@@ -7,7 +7,10 @@ import {
   Add_HP,
   Add_najie_thing,
   Add_修为,
+  Add_灵石,
+  Add_血气,
   existplayer,
+  exist_najie_thing,
   get_random_fromARR,
   get_random_talent,
   getLastsign,
@@ -69,6 +72,22 @@ export class UserStart extends plugin {
         {
           	reg: '^(频道号)$',
 			fnc: 'pingdaomsg',
+        },
+        {
+          reg: '^#我的养老金$',
+          fnc: 'yanglao_price',
+        },
+        {
+          reg: '^#缴纳养老金[1-9]d*$',
+          fnc: 'pay_yanglao',
+        },
+        {
+          reg: '^#一键加工$',
+          fnc: 'quick_use',
+        },
+        {
+          reg: '^#一键签到$',
+          fnc: 'quick_day',
         }
       ]
     });
@@ -423,6 +442,511 @@ export class UserStart extends plugin {
       let B = atItem[0].qq;
       e.reply(B);
       return
+  }
+  async yanglao_price(e){
+    //不开放私聊功能
+    if (!e.isGroup) {
+      return;
+    }
+    let A = e.user_id;
+    //console.log(e);
+
+    //先判断
+    let ifexistplay_A = await existplayer(A);
+    if (!ifexistplay_A || e.isPrivate) {
+      return;
+    }
+    let player = await Read_player(A);
+    let money = 0;
+    if(isNotNull(player.养老金)){
+      money = player.养老金;
+    }
+    if(money>=50000000){
+      e.reply('您已缴纳养老金超过五千万，获得养老资格');
+    }else {
+      e.reply('您已缴纳养老金：'+money);
+    }
+    return
+  }
+  async pay_yanglao(e){
+    //不开放私聊功能
+    if (!e.isGroup) {
+      return;
+    }
+    let usr_qq = e.user_id;
+
+    //全局状态判断
+    //获取游戏状态
+    //全局状态判断
+    await Go(e);
+    if (allaction) {
+    } else {
+      return;
+    }
+    allaction = false;
+
+    //获取发送灵石数量
+    let lingshi = e.msg.replace('#', '');
+    lingshi = lingshi.replace('缴纳养老金', '');
+    lingshi = Number(lingshi);
+    if (!isNaN(parseFloat(lingshi)) && isFinite(lingshi)) {
+    } else {
+      return;
+    }
+    if (lingshi <= 0) {
+      return;
+    }
+    lingshi = Math.trunc(lingshi);
+    let player = await Read_player(usr_qq);
+    if (player.灵石 <= lingshi) {
+      e.reply('醒醒，你没有那么多');
+      return;
+    }
+
+
+    if(!isNotNull(player.养老金)){
+      player.养老金 = 0;
+    }
+
+    if(player.养老金>=50000000){
+      e.reply('您已缴纳养老金超过五千万，获得养老资格,无须再缴纳');
+      return ;
+    }else{
+      await Add_灵石(usr_qq, -lingshi);
+      player.养老金 = player.养老金 + lingshi;
+    }
+
+    await Write_player(usr_qq, player);
+    e.reply('成功缴纳养老金：'+lingshi);
+    return;
+  }
+  async quick_use(e){
+    //不开放私聊功能
+    if (!e.isGroup) {
+      return;
+    }
+    let usr_qq = e.user_id;
+
+    //全局状态判断
+    //获取游戏状态
+    //全局状态判断
+    await Go(e);
+    if (allaction) {
+    } else {
+      return;
+    }
+    allaction = false;
+
+    let money = 0;
+    if(isNotNull(player.养老金)){
+      money = player.养老金;
+    }
+
+    if (money < 50000000) {
+      e.reply('此指令为养老指令，你似乎没有养老资格？');
+      return;
+    }
+
+    let dao = await exist_najie_thing(usr_qq, '菜刀', '道具');
+    if (isNotNull(dao) && dao >= 5) {
+
+    } else {
+      e.reply('菜刀不足五个');
+      return;
+    }
+
+    let ji = await exist_najie_thing(usr_qq, '野鸡', '食材');
+    let zhu = await exist_najie_thing(usr_qq, '野猪', '食材');
+    let niu = await exist_najie_thing(usr_qq, '野牛', '食材');
+    let yang = await exist_najie_thing(usr_qq, '野羊', '食材');
+    let tu = await exist_najie_thing(usr_qq, '野兔', '食材');
+    let msg = [];
+    if(isNotNull(ji) && ji >= 0){
+      await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
+      await Add_najie_thing(usr_qq, '野鸡', '食材', -ji);
+      let wupin = data.jiagong_list.find(item => item.name == '野鸡');
+      for (let i = 0; i < wupin.outputs.length; i++) {
+        const output = wupin.outputs[i];
+        await Add_najie_thing(usr_qq, output.name, output.class, (output.amount * ji + output.const_amount));
+        msg.push(`加工野鸡X`+ji+`，获得${output.name}${output.amount * ji + output.const_amount}个\n`);
+      }
+      msg.push(`\n`);
+    }
+
+    if(isNotNull(zhu) && zhu >= 0){
+      await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
+      await Add_najie_thing(usr_qq, '野猪', '食材', -zhu);
+      let wupin = data.jiagong_list.find(item => item.name == '野猪');
+      for (let i = 0; i < wupin.outputs.length; i++) {
+        const output = wupin.outputs[i];
+        await Add_najie_thing(usr_qq, output.name, output.class, (output.amount * zhu + output.const_amount));
+        msg.push(`加工野猪X`+zhu+`，获得${output.name}${output.amount * zhu + output.const_amount}个\n`);
+      }
+      msg.push(`\n`);
+    }
+
+    if(isNotNull(niu) && niu >= 0){
+      await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
+      await Add_najie_thing(usr_qq, '野牛', '食材', -niu);
+      let wupin = data.jiagong_list.find(item => item.name == '野牛');
+      for (let i = 0; i < wupin.outputs.length; i++) {
+        const output = wupin.outputs[i];
+        await Add_najie_thing(usr_qq, output.name, output.class, (output.amount * niu + output.const_amount));
+        msg.push(`加工野牛X`+niu+`，获得${output.name}${output.amount * niu + output.const_amount}个\n`);
+      }
+      msg.push(`\n`);
+    }
+
+    if(isNotNull(yang) && yang >= 0){
+      await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
+      await Add_najie_thing(usr_qq, '野羊', '食材', -yang);
+      let wupin = data.jiagong_list.find(item => item.name == '野羊');
+      for (let i = 0; i < wupin.outputs.length; i++) {
+        const output = wupin.outputs[i];
+        await Add_najie_thing(usr_qq, output.name, output.class, (output.amount * yang + output.const_amount));
+        msg.push(`加工野羊X`+yang+`，获得${output.name}${output.amount * yang + output.const_amount}个\n`);
+      }
+      msg.push(`\n`);
+    }
+
+    if(isNotNull(tu) && tu >= 0){
+      await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
+      await Add_najie_thing(usr_qq, '野兔', '食材', -tu);
+      let wupin = data.jiagong_list.find(item => item.name == '野兔');
+      for (let i = 0; i < wupin.outputs.length; i++) {
+        const output = wupin.outputs[i];
+        await Add_najie_thing(usr_qq, output.name, output.class, (output.amount * tu + output.const_amount));
+        msg.push(`加工野兔X`+tu+`，获得${output.name}${output.amount * tu + output.const_amount}个`);
+      }
+      msg.push(`\n`);
+    }
+    e.reply(msg);
+    return;
+  }
+
+  async quick_day(e){
+    //不开放私聊功能
+    if (!e.isGroup) {
+      return;
+    }
+    let usr_qq = e.user_id;
+
+    //全局状态判断
+    //获取游戏状态
+    //全局状态判断
+    await Go(e);
+    if (allaction) {
+    } else {
+      return;
+    }
+    allaction = false;
+
+    let money = 0;
+    if(isNotNull(player.养老金)){
+      money = player.养老金;
+    }
+
+    if (money < 50000000) {
+      e.reply('此指令为养老指令，你似乎没有养老资格？');
+      return;
+    }
+    let msg = [];
+
+    //签到
+    let qiandao_msg = '修仙签到:';
+    let now = new Date();
+    let nowTime = now.getTime(); //获取当前日期的时间戳
+    let Yesterday = await shijianc(nowTime - 24 * 60 * 60 * 1000);//获得昨天日期
+    let Today = await shijianc(nowTime);
+    let lastsign_time = await getLastsign(usr_qq);//获得上次签到日期
+    if (Today.Y == lastsign_time.Y && Today.M == lastsign_time.M && Today.D == lastsign_time.D && usr_qq != 18236763786415097341) {
+      qiandao_msg = qiandao_msg + `今日已经签到过了`;
+    }else{
+      let Sign_Yesterday;        //昨日日是否签到
+      if (Yesterday.Y == lastsign_time.Y && Yesterday.M == lastsign_time.M && Yesterday.D == lastsign_time.D) {
+        Sign_Yesterday = true;
+      } else {
+        Sign_Yesterday = false;
+      }
+      await redis.set('xiuxian:player:' + usr_qq + ':lastsign_time', nowTime);//redis设置签到时间
+      let player = await data.getData('player', usr_qq);
+      if (player.连续签到天数 == 7 || !Sign_Yesterday) {//签到连续7天或者昨天没有签到,连续签到天数清零
+        player.连续签到天数 = 0;
+      }
+      player.连续签到天数 += 1;
+      data.setData('player', usr_qq, player);
+      //给奖励
+      let gift_xiuwei = player.连续签到天数 * 3000;
+      await Add_najie_thing(usr_qq, '秘境之匙', '道具', this.xiuxianConfigData.Sign.ticket);
+      await Add_najie_thing(usr_qq, "仙子邀约", "道具", this.xiuxianConfigData.Sign.yaoyue);
+      await Add_najie_thing(usr_qq, "小竹藏的新春铁盒", "道具", this.xiuxianConfigData.Sign.xiaozhu);
+      //sb
+      //await Add_najie_thing(usr_qq, "鸡神的馈赠", "道具", this.xiuxianConfigData.Sign.jishen);
+      await Add_修为(usr_qq, gift_xiuwei);
+      qiandao_msg = qiandao_msg + [
+        segment.at(usr_qq),
+        `已经连续签到${player.连续签到天数}天了，获得了${gift_xiuwei}修为,秘境之匙x${this.xiuxianConfigData.Sign.ticket},仙子邀约x${this.xiuxianConfigData.Sign.yaoyue},小竹藏的新春铁盒x${this.xiuxianConfigData.Sign.xiaozhu}`
+      ];
+    }
+
+    qiandao_msg = qiandao_msg + '\n';
+
+        //
+    let lingmai_msg = '开采灵脉:';
+    let player = data.getData('player', usr_qq);
+   lastsign_time = await getLastsign_Explor(usr_qq); //获得上次宗门签到日期
+    if (!isNotNull(player.宗门)) {
+      lingmai_msg = lingmai_msg+ `你没有宗门`;
+    }
+    else if (data.getAssociation(player.宗门.宗门名称).宗门驻地 == 0) {
+      lingmai_msg = lingmai_msg+ `你的宗门还没有驻地哦，没有灵脉可以开采`;
+    }else if (
+        Today.Y == lastsign_time.Y &&
+        Today.M == lastsign_time.M &&
+        Today.D == lastsign_time.D
+    ){
+      lingmai_msg = lingmai_msg+ `今日已经开采过灵脉，不可以竭泽而渔哦，明天再来吧`;
+    }else{
+      let ass = data.getAssociation(player.宗门.宗门名称);
+      //都通过了，可以进行开采了
+      await redis.set('xiuxian:player:' + usr_qq + ':getLastsign_Explor', nowTime); //redis设置签到时间
+
+      //给奖励
+      let dongTan = await data.bless_list.find((item) => item.name == ass.宗门驻地);
+
+      let gift_lingshi = 0;
+
+      if (ass.宗门神兽 == '麒麟') {
+        gift_lingshi = (1200 * (dongTan.level + 1) * player.level_id) / 2;
+      } else {
+        gift_lingshi = (1200 * dongTan.level * player.level_id) / 2;
+      }
+      gift_lingshi *= 2;
+      let xf = 1;
+      if (ass.power == 1) {
+        xf = 10;
+      }
+      let num = Math.trunc(gift_lingshi);
+      // console.log("加数"+fuli+"宗门建设等级"+ass.宗门建设等级)
+      console.log('原玩家灵石' + player.灵石 + '原灵石池' + ass.灵石池);
+      if (ass.灵石池 + num > 宗门灵石池上限[ass.宗门等级 - 1] * xf) {
+        ass.灵石池 = 宗门灵石池上限[ass.宗门等级 - 1] * xf;
+      } else {
+        ass.灵石池 += num;
+      }
+      await Add_灵石(usr_qq, num);
+      console.log('加完后灵石' + player.灵石 + '加完后灵石池' + ass.灵石池);
+
+      await data.setAssociation(ass.宗门名称, ass);
+      // console.log("原灵石池加数"+num+"建设加成"+fuli+"应得两个地点灵石"+num+fuli)
+      lingmai_msg = lingmai_msg+
+          `本次开采灵脉获得${gift_lingshi * 2}灵石，上交一半给宗门，最后获得${num}灵石`;
+    }
+    lingmai_msg = lingmai_msg + '\n';
+
+    //宗门俸禄
+    let fenglu_msg = '宗门俸禄:';
+    lastsign_time = await getLastsign_Asso(usr_qq); //获得上次宗门签到日期
+    if (!isNotNull(player.宗门)) {
+      fenglu_msg = fenglu_msg+ `你没有宗门`;
+    }else if(isNotMaintenance(data.getAssociation(player.宗门.宗门名称))){
+      fenglu_msg = fenglu_msg+ `宗门尚未维护，快找宗主维护宗门`;
+
+    }else if (
+        Today.Y == lastsign_time.Y &&
+        Today.M == lastsign_time.M &&
+        Today.D == lastsign_time.D
+    ) {
+      fenglu_msg = fenglu_msg+ `今日已经领取过了`;
+    }else if(player.宗门.职位 == '外门弟子' || player.宗门.职位 == '内门弟子'){
+      fenglu_msg = fenglu_msg + '没有资格领取俸禄';
+    } else if(data.getAssociation(player.宗门.宗门名称).灵石池<500000){
+      fenglu_msg = fenglu_msg + '宗门灵石池不够发放俸禄啦，快去为宗门做贡献吧';
+    }else {
+      let ass = data.getAssociation(player.宗门.宗门名称);
+      //给奖励
+      let temp = player.宗门.职位;
+      let n = 1;
+      if (temp == '长老') {
+        n = 3;
+      }
+      if (temp == '副宗主') {
+        n = 4;
+      }
+      if (temp == '宗主') {
+        n = 5;
+      }
+      let fuli = Number(Math.trunc(ass.宗门建设等级 * 2000));
+      let gift_lingshi = Math.trunc(ass.宗门等级 * 1200 * n + fuli);
+      gift_lingshi = gift_lingshi / 2;
+      ass.灵石池 -= gift_lingshi;
+      player.灵石 += gift_lingshi;
+      await redis.set('xiuxian:player:' + usr_qq + ':lastsign_Asso_time', nowTime); //redis设置签到时间
+      await data.setData('player', usr_qq, player);
+      await data.setAssociation(ass.宗门名称, ass);
+      fenglu_msg = fenglu_msg + `宗门俸禄领取成功,获得了${gift_lingshi}灵石`;
+    }
+    fenglu_msg = lingmai_msg + '\n';
+
+    //神兽赐福
+    let shenshou_msg = '神兽赐福:';
+
+    lastsign_time = await getLastsign_Bonus(usr_qq); //获得上次宗门签到日期
+    //无宗门
+    if (!isNotNull(player.宗门)) {
+      shenshou_msg = shenshou_msg+ `你没有宗门`;
+    } else if (
+        Today.Y == lastsign_time.Y &&
+        Today.M == lastsign_time.M &&
+        Today.D == lastsign_time.D
+    ) {
+      shenshou_msg = shenshou_msg+ `今日已经接受过神兽赐福了，明天再来吧`;
+    }else{
+      await redis.set('xiuxian:player:' + usr_qq + ':getLastsign_Bonus', nowTime); //redis设置签到时间
+      let ass = data.getAssociation(player.宗门.宗门名称);
+      let random = Math.random();
+      let flag = 0.5;
+      //根据好感度获取概率
+      let i = 0;
+      let action = await redis.get('xiuxian:player:' + 10 + ':biguang');
+      action = await JSON.parse(action);
+      for (i = 0; i < action.length; i++) {
+        if (action[i].qq == usr_qq) {
+          if (action[i].beiyong2 > 0) {
+            action[i].beiyong2--;
+          }
+          let up1 = action[i].beiyong3;
+          flag = 0.7 - up1;
+          if (player.favorability > 1000) {
+            flag = 0.1 - up1;
+          } else if (player.favorability > 500) {
+            flag = 0.3 - up1;
+          } else if (player.favorability > 200) {
+            flag = 0.5 - up1;
+          }
+          console.log(flag);
+
+          if (action[i].beiyong2 == 0) {
+            action[i].beiyong3 = 0;
+          }
+          console.log(action[i]);
+        }
+      }
+      await redis.set('xiuxian:player:' + 10 + ':biguang', JSON.stringify(action));
+      if (random > flag) {
+        let randomA = Math.random();
+        let res = 1;
+        if (randomA > 0.85) {
+          res = 1;
+        } else if (randomA > 0.5) {
+          res = 2;
+        } else {
+          res = 3;
+        }
+
+        let location = 0;
+        let item_name = '';
+        let item_class = '';
+        let now_level_id = data.Level_list.find(
+            (item) => item.level_id == player.level_id
+        ).level_id;
+        let body_level_id = data.Level_list.find(
+            (item) => item.level_id == player.Physique_id
+        ).level_id;
+        //获得奖励
+        let randomB = Math.random();
+        if (ass.宗门神兽 == '麒麟') {
+          //给丹药,隐藏神兽,赐福时气血和修为都加,宗门驻地等级提高一级
+          if (flag == 0.1 && res == 1 && randomB > 0.8) {
+            location = Math.floor(Math.random() * (data.qilin.length / res));
+            item_name = data.qilin[location].name;
+            item_class = data.qilin[location].class;
+          } else {
+            location = Math.floor(Math.random() * (data.danyao_list.length / res));
+            item_name = data.danyao_list[location].name;
+            item_class = data.danyao_list[location].class;
+          }
+          await Add_血气(usr_qq, 500 * body_level_id);
+          await Add_修为(usr_qq, 500 * now_level_id);
+          await Add_HP(usr_qq, parseInt(player.血量上限));
+          await Add_najie_thing(usr_qq, item_name, item_class, 1);
+        } else if (ass.宗门神兽 == '青龙') {
+          //给功法，赐福加修为
+          if (flag <= 0.1 && res == 1 && randomB > 0.8) {
+            location = Math.floor(Math.random() * (data.qinlong.length / res));
+            item_name = data.qinlong[location].name;
+            item_class = data.qinlong[location].class;
+          } else {
+            location = Math.floor(Math.random() * (data.gongfa_list.length / res));
+            item_name = data.gongfa_list[location].name;
+            item_class = data.gongfa_list[location].class;
+          }
+          await Add_修为(usr_qq, 300 * now_level_id);
+          await Add_HP(usr_qq, parseInt(player.血量上限));
+          await Add_najie_thing(usr_qq, item_name, item_class, 1);
+        } else if (ass.宗门神兽 == '玄武') {
+          //给护具，赐福加气血
+          if (flag == 0.1 && res == 1 && randomB > 0.8) {
+            location = Math.floor(Math.random() * (data.xuanwu.length / res));
+            item_name = data.xuanwu[location].name;
+            item_class = data.xuanwu[location].class;
+          } else {
+            location = Math.floor(Math.random() * (data.huju_list.length / res));
+            item_name = data.huju_list[location].name;
+            item_class = data.huju_list[location].class;
+          }
+          await Add_血气(usr_qq, 300 * body_level_id);
+          await Add_HP(usr_qq, parseInt(player.血量上限));
+          await Add_najie_thing(usr_qq, item_name, item_class, 1);
+        } else if (ass.宗门神兽 == '朱雀') {
+          //给法宝，赐福加修为
+          if (flag == 0.1 && res == 1 && randomB > 0.8) {
+            location = Math.floor(Math.random() * (data.xuanwu.length / res));
+            item_name = data.xuanwu[location].name;
+            item_class = data.xuanwu[location].class;
+          } else {
+            location = Math.floor(Math.random() * (data.fabao_list.length / res));
+            item_name = data.fabao_list[location].name;
+            item_class = data.fabao_list[location].class;
+          }
+          await Add_修为(usr_qq, 300 * now_level_id);
+          await Add_HP(usr_qq, parseInt(player.血量上限));
+          await Add_najie_thing(usr_qq, item_name, item_class, 1);
+        } else {
+          //白虎给武器 赐福加气血
+          if (flag == 0.1 && res == 1 && randomB > 0.8) {
+            location = Math.floor(Math.random() * (data.xuanwu.length / res));
+            item_name = data.xuanwu[location].name;
+            item_class = data.xuanwu[location].class;
+          } else {
+            location = Math.floor(Math.random() * (data.wuqi_list.length / res));
+            item_name = data.wuqi_list[location].name;
+            item_class = data.wuqi_list[location].class;
+          }
+          await Add_血气(usr_qq, 300 * body_level_id);
+          await Add_HP(usr_qq, parseInt(player.血量上限));
+          await Add_najie_thing(usr_qq, item_name, item_class, 1);
+        }
+        if (flag == 0.1 && res == 1 && randomB > 0.8) {
+          shenshou_msg = shenshou_msg+`看见你来了,${ass.宗门神兽}很高兴，仔细挑选了${item_name}给你`;
+        } else {
+          shenshou_msg = shenshou_msg+`${ass.宗门神兽}今天心情不错，随手丢给了你${item_name}`;
+        }
+      } else {
+        shenshou_msg = shenshou_msg + `${ass.宗门神兽}闭上了眼睛，表示今天不想理你`;
+      }
+    }
+
+
+    shenshou_msg  = shenshou_msg + '\n';
+
+    msg.push(qiandao_msg);
+    msg.push(lingmai_msg);
+    msg.push(fenglu_msg);
+    msg.push(shenshou_msg);
+    e.reply(msg);
+
+    return;
   }
   //改名
   async Change_player_name(e) {
