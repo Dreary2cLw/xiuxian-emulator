@@ -562,63 +562,73 @@ export class UserStart extends plugin {
     let tu = await exist_najie_thing(usr_qq, '野兔', '食材');
     let msg = [];
     if(isNotNull(ji) && ji >= 0){
+      let jimsg = `加工野鸡X`+ji
       await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
       await Add_najie_thing(usr_qq, '野鸡', '食材', -ji);
       let wupin = data.jiagong_list.find(item => item.name == '野鸡');
       for (let i = 0; i < wupin.outputs.length; i++) {
         const output = wupin.outputs[i];
         await Add_najie_thing(usr_qq, output.name, output.class, (output.amount * ji + output.const_amount));
-        msg.push(`加工野鸡X`+ji+`，获得${output.name}${output.amount * ji + output.const_amount}个\n`);
+        jimsg = jimsg+`，获得${output.name}${output.amount * ji + output.const_amount}个`;
       }
-      msg.push(`\n`);
+      jimsg = jimsg+`\n`;
+      msg.push(jimsg);
     }
 
     if(isNotNull(zhu) && zhu >= 0){
+      let zhumsg = `加工野猪X`+zhu
       await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
       await Add_najie_thing(usr_qq, '野猪', '食材', -zhu);
       let wupin = data.jiagong_list.find(item => item.name == '野猪');
       for (let i = 0; i < wupin.outputs.length; i++) {
         const output = wupin.outputs[i];
         await Add_najie_thing(usr_qq, output.name, output.class, (output.amount * zhu + output.const_amount));
-        msg.push(`加工野猪X`+zhu+`，获得${output.name}${output.amount * zhu + output.const_amount}个\n`);
+        zhumsg = zhumsg+ `，获得${output.name}${output.amount * zhu + output.const_amount}个`;
       }
-      msg.push(`\n`);
+      zhumsg = zhumsg+`\n`;
+      msg.push(zhumsg);
     }
 
     if(isNotNull(niu) && niu >= 0){
+      let niumsg = `加工野牛X`+niu
       await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
       await Add_najie_thing(usr_qq, '野牛', '食材', -niu);
       let wupin = data.jiagong_list.find(item => item.name == '野牛');
       for (let i = 0; i < wupin.outputs.length; i++) {
         const output = wupin.outputs[i];
         await Add_najie_thing(usr_qq, output.name, output.class, (output.amount * niu + output.const_amount));
-        msg.push(`加工野牛X`+niu+`，获得${output.name}${output.amount * niu + output.const_amount}个\n`);
+        niumsg = niumsg +`，获得${output.name}${output.amount * niu + output.const_amount}个`;
       }
-      msg.push(`\n`);
+      niumsg = niumsg+`\n`;
+      msg.push(niumsg);
     }
 
     if(isNotNull(yang) && yang >= 0){
+      let yangmsg = `加工野羊X`+yang
       await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
       await Add_najie_thing(usr_qq, '野羊', '食材', -yang);
       let wupin = data.jiagong_list.find(item => item.name == '野羊');
       for (let i = 0; i < wupin.outputs.length; i++) {
         const output = wupin.outputs[i];
         await Add_najie_thing(usr_qq, output.name, output.class, (output.amount * yang + output.const_amount));
-        msg.push(`加工野羊X`+yang+`，获得${output.name}${output.amount * yang + output.const_amount}个\n`);
+        yangmsg = yangmsg+`，获得${output.name}${output.amount * yang + output.const_amount}个`;
       }
-      msg.push(`\n`);
+      yangmsg = yangmsg+`\n`;
+      msg.push(yangmsg);
     }
 
     if(isNotNull(tu) && tu >= 0){
+      let tumsg = `加工野兔X`+tu
       await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
       await Add_najie_thing(usr_qq, '野兔', '食材', -tu);
       let wupin = data.jiagong_list.find(item => item.name == '野兔');
       for (let i = 0; i < wupin.outputs.length; i++) {
         const output = wupin.outputs[i];
         await Add_najie_thing(usr_qq, output.name, output.class, (output.amount * tu + output.const_amount));
-        msg.push(`加工野兔X`+tu+`，获得${output.name}${output.amount * tu + output.const_amount}个`);
+        tumsg = tumsg+`，获得${output.name}${output.amount * tu + output.const_amount}个`;
       }
-      msg.push(`\n`);
+      tumsg = tumsg+`\n`;
+      msg.push(tumsg);
     }
     e.reply(msg);
     return;
