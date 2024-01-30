@@ -481,6 +481,7 @@ export class UserStart extends plugin {
     await Go(e);
     if (allaction) {
     } else {
+      e.reply('状态不为空闲');
       return;
     }
     allaction = false;
@@ -491,6 +492,7 @@ export class UserStart extends plugin {
     lingshi = Number(lingshi);
     if (!isNaN(parseFloat(lingshi)) && isFinite(lingshi)) {
     } else {
+      e.reply('非法');
       return;
     }
     if (lingshi <= 0) {
