@@ -475,6 +475,12 @@ export class UserStart extends plugin {
     }
     let usr_qq = e.user_id;
 
+    //自己没存档
+    let ifexistplay = await existplayer(usr_qq);
+    if (!ifexistplay) {
+      return;
+    }
+
     //全局状态判断
     //获取游戏状态
     //全局状态判断
@@ -490,12 +496,14 @@ export class UserStart extends plugin {
     let lingshi = e.msg.replace('#', '');
     lingshi = lingshi.replace('缴纳养老金', '');
     lingshi = Number(lingshi);
+    console.log(lingshi)
     if (!isNaN(parseFloat(lingshi)) && isFinite(lingshi)) {
     } else {
       e.reply('非法');
       return;
     }
     if (lingshi <= 0) {
+      e.reply('灵石为负');
       return;
     }
     lingshi = Math.trunc(lingshi);
@@ -509,13 +517,13 @@ export class UserStart extends plugin {
     if(!isNotNull(player.养老金)){
       player.养老金 = 0;
     }
-
+    let money = Number(player.养老金);
     if(player.养老金>=50000000){
       e.reply('您已缴纳养老金超过五千万，获得养老资格,无须再缴纳');
       return ;
     }else{
       await Add_灵石(usr_qq, -lingshi);
-      player.养老金 = player.养老金 + lingshi;
+      player.养老金 = money + lingshi;
     }
 
     await Write_player(usr_qq, player);
