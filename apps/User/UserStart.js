@@ -542,6 +542,13 @@ export class UserStart extends plugin {
     }
     let usr_qq = e.user_id;
 
+    //自己没存档
+    let ifexistplay = await existplayer(usr_qq);
+    if (!ifexistplay) {
+      e.reply('无存档');
+      return;
+    }
+
     //全局状态判断
     //获取游戏状态
     //全局状态判断
@@ -551,6 +558,8 @@ export class UserStart extends plugin {
       return;
     }
     allaction = false;
+
+    let player = await Read_player(usr_qq);
 
     let money = 0;
     if(isNotNull(player.养老金)){
