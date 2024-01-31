@@ -664,7 +664,12 @@ export class UserStart extends plugin {
       return;
     }
     let usr_qq = e.user_id;
-
+    //自己没存档
+    let ifexistplay = await existplayer(usr_qq);
+    if (!ifexistplay) {
+      e.reply('无存档');
+      return;
+    }
     //全局状态判断
     //获取游戏状态
     //全局状态判断
@@ -674,6 +679,7 @@ export class UserStart extends plugin {
       return;
     }
     allaction = false;
+    let player = await Read_player(usr_qq);
 
     let money = 0;
     if(isNotNull(player.养老金)){
@@ -727,7 +733,6 @@ export class UserStart extends plugin {
 
         //
     let lingmai_msg = '开采灵脉:';
-    let player = data.getData('player', usr_qq);
    lastsign_time = await getLastsign_Explor(usr_qq); //获得上次宗门签到日期
     if (!isNotNull(player.宗门)) {
       lingmai_msg = lingmai_msg+ `你没有宗门`;
