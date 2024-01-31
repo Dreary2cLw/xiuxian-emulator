@@ -572,7 +572,7 @@ export class UserStart extends plugin {
     }
 
     let dao = await exist_najie_thing(usr_qq, '菜刀', '道具');
-    if (isNotNull(dao) && dao >= 5) {
+    if (dao && dao >= 5) {
 
     } else {
       e.reply('菜刀不足五个');
@@ -585,7 +585,7 @@ export class UserStart extends plugin {
     let yang = await exist_najie_thing(usr_qq, '野羊', '食材');
     let tu = await exist_najie_thing(usr_qq, '野兔', '食材');
     let msg = [];
-    if(isNotNull(ji) && ji >= 0){
+    if(ji && ji >= 0){
       let jimsg = `加工野鸡X`+ji
       await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
       await Add_najie_thing(usr_qq, '野鸡', '食材', -ji);
@@ -599,7 +599,7 @@ export class UserStart extends plugin {
       msg.push(jimsg);
     }
 
-    if(isNotNull(zhu) && zhu >= 0){
+    if(zhu && zhu >= 0){
       let zhumsg = `加工野猪X`+zhu
       await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
       await Add_najie_thing(usr_qq, '野猪', '食材', -zhu);
@@ -613,7 +613,7 @@ export class UserStart extends plugin {
       msg.push(zhumsg);
     }
 
-    if(isNotNull(niu) && niu >= 0){
+    if(niu && niu >= 0){
       let niumsg = `加工野牛X`+niu
       await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
       await Add_najie_thing(usr_qq, '野牛', '食材', -niu);
@@ -627,7 +627,7 @@ export class UserStart extends plugin {
       msg.push(niumsg);
     }
 
-    if(isNotNull(yang) && yang >= 0){
+    if(yang && yang >= 0){
       let yangmsg = `加工野羊X`+yang
       await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
       await Add_najie_thing(usr_qq, '野羊', '食材', -yang);
@@ -641,7 +641,7 @@ export class UserStart extends plugin {
       msg.push(yangmsg);
     }
 
-    if(isNotNull(tu) && tu >= 0){
+    if(tu && tu >= 0){
       let tumsg = `加工野兔X`+tu
       await Add_najie_thing(usr_qq, '菜刀', '道具', -1);
       await Add_najie_thing(usr_qq, '野兔', '食材', -tu);
