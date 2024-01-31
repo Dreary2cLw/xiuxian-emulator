@@ -532,7 +532,7 @@ export class UserStart extends plugin {
     }
 
     await Write_player(usr_qq, player);
-    e.reply('成功缴纳养老金：'+lingshi);
+    e.reply('成功缴纳养老金：'+lingshi+'，已缴纳养老金：'+player.养老金);
     return;
   }
   async quick_use(e){
