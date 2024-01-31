@@ -654,6 +654,7 @@ export class UserStart extends plugin {
       tumsg = tumsg+`\n`;
       msg.push(tumsg);
     }
+    msg.push('一键加工完成')
     e.reply(msg);
     return;
   }
