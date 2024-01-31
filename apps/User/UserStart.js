@@ -478,6 +478,7 @@ export class UserStart extends plugin {
     //自己没存档
     let ifexistplay = await existplayer(usr_qq);
     if (!ifexistplay) {
+      e.reply('无存档');
       return;
     }
 
