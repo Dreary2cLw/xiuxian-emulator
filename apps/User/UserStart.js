@@ -826,7 +826,7 @@ export class UserStart extends plugin {
       await data.setAssociation(ass.宗门名称, ass);
       fenglu_msg = fenglu_msg + `宗门俸禄领取成功,获得了${gift_lingshi}灵石`;
     }
-    fenglu_msg = lingmai_msg + '\n';
+    fenglu_msg = fenglu_msg + '\n';
 
     //神兽赐福
     let shenshou_msg = '神兽赐福:';
