@@ -1159,6 +1159,20 @@ async function getLastsign_Bonus(usr_qq) {
   return false;
 }
 /**
+ * 判断宗门是否需要维护
+ * @param ass 宗门对象
+ * @returns true or false
+ */
+function isNotMaintenance(ass) {
+  let now = new Date();
+  let nowTime = now.getTime(); //获取当前日期的时间戳
+  if (ass.维护时间 > nowTime - 1000 * 60 * 60 * 24 * 7) {
+    return false;
+  }
+  return true;
+}
+
+/**
  * 状态
  */
 export async function Go(e) {
