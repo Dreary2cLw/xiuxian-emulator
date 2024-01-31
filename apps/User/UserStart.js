@@ -1135,6 +1135,25 @@ async function getLastsign_Explor(usr_qq) {
   }
   return false;
 }
+//获取上次签到时间
+async function getLastsign_Asso(usr_qq) {
+  //查询redis中的人物动作
+  let time = await redis.get('xiuxian:player:' + usr_qq + ':lastsign_Asso_time');
+  if (time != null) {
+    let data = await shijianc(parseInt(time));
+    return data;
+  }
+  return false;
+}
+async function getLastsign_Bonus(usr_qq) {
+  //查询redis中的人物动作
+  let time = await redis.get('xiuxian:player:' + usr_qq + ':getLastsign_Bonus');
+  if (time != null) {
+    let data = await shijianc(parseInt(time));
+    return data;
+  }
+  return false;
+}
 /**
  * 状态
  */
