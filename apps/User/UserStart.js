@@ -78,7 +78,7 @@ export class UserStart extends plugin {
           fnc: 'yanglao_price',
         },
         {
-          reg: '^#缴纳养老金[1-9]d*$',
+          reg: '^#缴纳养老金.*$',
           fnc: 'pay_yanglao',
         },
         {
@@ -496,13 +496,17 @@ export class UserStart extends plugin {
     //获取发送灵石数量
     let lingshi = e.msg.replace('#', '');
     lingshi = lingshi.replace('缴纳养老金', '');
-    lingshi = Number(lingshi);
+    let code = lingshi.split('*');
+    lingshi = code[0];
     console.log(lingshi)
     if (!isNaN(parseFloat(lingshi)) && isFinite(lingshi)) {
     } else {
       e.reply('非法');
       return;
     }
+    lingshi = Number(lingshi);
+    lingshi = Math.trunc(lingshi);
+    lingshi = code[0];
     if (lingshi <= 0) {
       e.reply('灵石为负');
       return;
