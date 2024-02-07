@@ -377,7 +377,7 @@ export class SecretPlaceplusTask extends plugin {
 								await Add_najie_thing(player_id, kouliang.name, '仙米', 1);
 							}
 							//活动
-							/*if (random > 0.45 && random < 0.495) {
+							if (random > 0.45 && random < 0.495) {
 								let hdomAb = Math.random();
 								if(hdomAb>0.6){
 									last_msg +=
@@ -392,7 +392,7 @@ export class SecretPlaceplusTask extends plugin {
 										last_msg +='\n' + '获得鸟蛋*3';
 									await Add_najie_thing(player_id, '鸟蛋', '食材', 3);
 								}
-							}*/
+							}
 							if (random > 0.5 && random < 0.502) {
 								last_msg +=
 									'\n' +
