@@ -615,6 +615,7 @@ export class SecretPlaceTask extends plugin {
 	 */
 	async pushInfo(id, is_group, msg) {
 		//console.log(id+'is_group:'+is_group+':msg:'+msg);
+		console.log(id+'is_group:'+is_group);
 		if (is_group) {
 			await Bot.pickGroup(id)
 				.sendMsg(msg)
