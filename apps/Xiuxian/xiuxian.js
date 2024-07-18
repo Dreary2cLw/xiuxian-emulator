@@ -124,17 +124,29 @@ export async function Read_updata_log() {
 
 //读取存档信息，返回成一个JavaScript对象
 export async function Read_player(usr_qq) {
-	let dir = path.join(`${__PATH.player_path}/${usr_qq}.json`);
-	let player = fs.readFileSync(dir, 'utf8', (err, data) => {
-		if (err) {
-			console.log(err);
-			return 'error';
-		}
-		return data;
-	});
-	//将字符串数据转变成数组格式
-	player = JSON.parse(player);
-	return player;
+    try {
+        const dir = path.join(__PATH.player_path, `${usr_qq}.json`);
+        
+        // 检查文件是否存在
+        if (!fs.existsSync(dir)) {
+            console.error(`File not found: ${dir}`);
+            return 'error';
+        }
+        
+        // 读取文件内容
+        const data = fs.readFileSync(dir, 'utf8');
+        
+        // 打印调试信息
+        console.log(`Reading file: ${dir}`);
+        console.log(`File content: ${data}`);
+        
+        // 解析 JSON 数据
+        const player = JSON.parse(data);
+        return player;
+    } catch (err) {
+        console.error(`Error reading player data for QQ ${usr_qq}: ${err}`);
+        return 'error';
+    }
 }
 
 //写入存档信息,第二个参数是一个JavaScript对象
