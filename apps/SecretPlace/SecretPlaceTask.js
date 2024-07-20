@@ -393,22 +393,27 @@ export class SecretPlaceTask extends plugin {
 							}
 							let newrandom = 0.995;
 							let action1 = await redis.get('xiuxian:player:' + 10 + ':biguang');
-							action1 = await JSON.parse(action1);
-							for (let i = 0; i < action1.length; i++) {
-								if (action1[i].qq == player_id) {
-									if (typeof action1[i].beiyong1 != 'number') {
-										action1[i].beiyong1 = 5;
-									}
-									newrandom -= action1[i].beiyong1;
-									if (action1[i].ped > 0) {
-										action1[i].ped--;
-									} else {
-										action1[i].beiyong1 = 0;
-										action1[i].ped = 0;
-									}
-									await redis.set('xiuxian:player:' + 10 + ':biguang', JSON.stringify(action1));
-								}
-							}
+action1 = JSON.parse(action1);
+
+							if (action1 && Array.isArray(action1)) {
+    						for (let i = 0; i < action1.length; i++) {
+        					if (action1[i].qq == player_id) {
+            				if (typeof action1[i].beiyong1 !== 'number') {
+                			action1[i].beiyong1 = 5;
+            			}
+            				newrandom -= action1[i].beiyong1;
+            				if (action1[i].ped > 0) {
+                			action1[i].ped--;
+            			} else {
+                			action1[i].beiyong1 = 0;
+                			action1[i].ped = 0;
+            			}
+            				await redis.set('xiuxian:player:' + 10 + ':biguang', JSON.stringify(action1));
+        			}
+    			}
+						} else {
+    					console.error('action1 is null or not an array');
+						}
 							if (random > newrandom) {
 								let length = data.xianchonkouliang.length;
 								let index = Math.trunc(Math.random() * length);
@@ -633,5 +638,5 @@ export class SecretPlaceTask extends plugin {
 		} else {
 			await common.relpyPrivate(id, msg);
 		}
-	}
+	}//1
 }
