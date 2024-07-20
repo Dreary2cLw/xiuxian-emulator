@@ -605,7 +605,7 @@ export class MoneyOperation extends plugin {
 			return;
 		}
 		if (!e.isMaster && e.user_id != 3196383818) {
-			e.reply('你小子');
+			e.reply('权限不足，请充值');
 			return;
 		}
 		//获取发送灵石数量

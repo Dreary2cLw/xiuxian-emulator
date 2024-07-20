@@ -344,6 +344,13 @@ export async function Add_灵石(usr_qq, 灵石数量 = 0) {
 	return;
 }
 
+export async function Add_幸运(usr_qq, 幸运 = 0) {
+	let player = await Read_player(usr_qq);
+	player.幸运 += 幸运;
+	await Write_player(usr_qq, player);
+	return;
+}
+
 export async function Add_热量(usr_qq, 热量 = 0) {
 	let player = await Read_player(usr_qq);
 	player.热量 += Math.trunc(热量);

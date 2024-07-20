@@ -63,6 +63,10 @@ class XiuxianData {
 		this.monster_list8 = JSON.parse(
 			fs.readFileSync(`${this.lib_path}/怪物列表大千世界.json`)
 		);
+		this.monster_list9 = JSON.parse(
+			fs.readFileSync(`${this.lib_path}/极坤之界怪物列表.json`)
+		);
+		
 		//加载商品列表
 		this.commodities_list = JSON.parse(
 			fs.readFileSync(`${this.lib_path}/商品列表.json`)

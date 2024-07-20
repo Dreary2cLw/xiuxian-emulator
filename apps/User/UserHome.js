@@ -22,6 +22,7 @@ import {
     Add_najie_thing,
     Add_HP,
     Add_修为,
+    Add_幸运,
     Add_魔道值,
     change_神之心,
     Add_player_学习功法,
@@ -1615,6 +1616,38 @@ export class UserHome extends plugin {
                 await Add_灵石(usr_qq,8888888);
                 return
             }
+            if (thing_name == "🐔神的馈赠") {
+                let math = Math.random();
+                if (math > 0.98 && math < 1) {
+                    await Add_幸运(usr_qq, 0.01);
+                    await Add_najie_thing(usr_qq, "🐔神的馈赠", "道具", -1);
+                    e.reply(["你打开了🐔神的馈赠，引起了神明的注视，幸运值+1%（效果可叠加）"]);
+                    return
+                } else if (math > 0.95 && math < 0.98) {
+                    await Add_najie_thing(usr_qq, "🐔神之剑", "道具", 1);
+                    await Add_najie_thing(usr_qq, "🐔神的馈赠", "道具", -1);
+                    e.reply(["你打开了🐔神的馈赠，发现里面有一把剑，散发着远古的气息，当你凑近时便能听到鸡……鸡……鸡你太美，这是来自神明的呼唤。恭喜你获得上古神器—————————————🐔神之剑"])
+                    return
+                } else if (math > 0.9 && math < 0.95) {
+                    await Add_灵石(usr_qq, -5000000);
+                    await Add_najie_thing(usr_qq, "🐔神的馈赠", "道具", -1);
+                    e.reply(["你打开了🐔神的馈赠，触碰到了上古禁忌，伤势惨重，损耗了500w灵石"])
+                    return
+                } else if (math > 0.8 && math < 0.9) {
+                    await Add_灵石(usr_qq, "灵石", "道具", 2000000);
+                    await Add_najie_thing(usr_qq, "🐔神的馈赠", "道具", -1);
+                    e.reply(["你打开了🐔神的馈赠，获得了200w灵石"])
+                    return
+                } else {
+                    await Add_najie_thing(usr_qq, "鸡神吉祥物", "道具", 1);
+                    await Add_najie_thing(usr_qq, "🐔神的馈赠", "道具", -1);
+                    e.reply(["你打开了🐔神的馈赠，得到了鸡神吉祥物"])
+                    return
+                }
+            }
+            
+            
+
             if (thing_name == "小竹藏的新春铁盒") {
                 let math = Math.random();
                 if (math > 0.9 && math < 1) {
@@ -2590,7 +2623,7 @@ export class UserHome extends plugin {
             if (player.islucky > 0) {
                 player.islucky--;
                 if (player.islucky != 0) {
-                    fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
+                    fyd_msg = `  \n福源丹的效力将在${y}次探索后失效\n`;
                 } else {
                     fyd_msg = `  \n本次探索后，福源丹已失效\n`;
                     player.幸运 -= player.addluckyNo;
