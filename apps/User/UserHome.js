@@ -1629,19 +1629,67 @@ export class UserHome extends plugin {
                     e.reply(["你打开了🐔神的馈赠，发现里面有一把剑，散发着远古的气息，当你凑近时便能听到鸡……鸡……鸡你太美，这是来自神明的呼唤。恭喜你获得上古神器—————————————🐔神之剑"])
                     return
                 } else if (math > 0.9 && math < 0.95) {
-                    await Add_灵石(usr_qq, -5000000);
+                    await Add_灵石(usr_qq, -2000000);
                     await Add_najie_thing(usr_qq, "🐔神的馈赠", "道具", -1);
-                    e.reply(["你打开了🐔神的馈赠，触碰到了上古禁忌，伤势惨重，损耗了500w灵石"])
+                    e.reply(["你打开了🐔神的馈赠，触碰到了上古禁忌，伤势惨重，损耗了200w灵石"])
                     return
                 } else if (math > 0.8 && math < 0.9) {
-                    await Add_灵石(usr_qq, "灵石", "道具", 2000000);
+                    await Add_灵石(usr_qq, 2000000);
                     await Add_najie_thing(usr_qq, "🐔神的馈赠", "道具", -1);
                     e.reply(["你打开了🐔神的馈赠，获得了200w灵石"])
+                    return
+                } else if (math > 0.7 && math < 0.8) {
+                    await Add_najie_thing(usr_qq, "坤坤大保健", "道具", 1);
+                    await Add_najie_thing(usr_qq, "🐔神的馈赠", "道具", -1);
+                    e.reply(["你打开了🐔神的馈赠，得到了坤坤大保健*1"])
+                    return
+                } else if (math > 0.5 && math < 0.7) {
+                    await Add_najie_thing(usr_qq, "洗根水", "道具", 1);
+                    await Add_najie_thing(usr_qq, "🐔神的馈赠", "道具", -1);
+                    e.reply(["你打开了🐔神的馈赠，得到了洗根水*1"])
                     return
                 } else {
                     await Add_najie_thing(usr_qq, "鸡神吉祥物", "道具", 1);
                     await Add_najie_thing(usr_qq, "🐔神的馈赠", "道具", -1);
-                    e.reply(["你打开了🐔神的馈赠，得到了鸡神吉祥物"])
+                    e.reply(["你打开了🐔神的馈赠，得到了鸡神吉祥物*1"])
+                    return
+                }
+            }
+            if (thing_name == "太上古盒") {
+                let math = Math.random();
+                if (math > 0.9 && math < 1) {
+                    await Add_najie_thing(usr_qq, "凡品福源丹", "丹药", 1);
+                    await Add_najie_thing(usr_qq, "太上古盒", "道具", -1);
+                    e.reply(["你打开了太上古盒，得到了凡品福源丹*1"]);
+                    return
+                } else if (math > 0.8 && math < 0.9) {
+                    await Add_najie_thing(usr_qq, "五阶淬体丹", "丹药", 1);
+                    await Add_najie_thing(usr_qq, "太上古盒", "道具", -1);
+                    e.reply(["你打开了太上古盒，得到了五阶淬体丹"])
+                    return
+                } else if (math > 0.6 && math < 0.8) {
+                    await Add_najie_thing(usr_qq, "五品凤丹", "丹药", 1);
+                    await Add_najie_thing(usr_qq, "太上古盒", "道具", -1);
+                    e.reply(["你打开了太上古盒，得到了五品凤丹"])
+                    return
+                } else if (math > 0.4 && math < 0.6) {
+                    await Add_najie_thing(usr_qq, "灵真丹", "丹药", 1);
+                    await Add_najie_thing(usr_qq, "太上古盒", "道具", -1);
+                    e.reply(["你打开了太上古盒，得到了灵真丹"])
+                    return
+                } else if (math > 0.2 && math < 0.4) {
+                    let randomValue = Math.floor(Math.random() * 500000);
+                    await Add_血气(usr_qq, randomValue);
+                    await Add_najie_thing(usr_qq, "太上古盒", "道具", -1);
+                    let message = `你打开了太上古盒，得到了血气 ${randomValue}`;
+                    e.reply([message]);
+                    return
+                } else {
+                    let randomValue = Math.floor(Math.random() * 500000);
+                    await Add_修为(usr_qq, randomValue);
+                    await Add_najie_thing(usr_qq, "太上古盒", "道具", -1);
+                    let message = `你打开了太上古盒，得到了修为 ${randomValue}`;
+                    e.reply([message]);
                     return
                 }
             }

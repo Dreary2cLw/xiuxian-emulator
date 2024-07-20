@@ -171,6 +171,13 @@ export class SecretPlaceTask extends plugin {
 							monster_index = Math.trunc(Math.random() * monster_length);
 							monster = data.monster_list6[monster_index];
 						}
+						if (
+							weizhi.name == '远古之地'
+						) {
+							monster_length = data.monster_list9.length;
+							monster_index = Math.trunc(Math.random() * monster_length);
+							monster = data.monster_list9[monster_index];
+						}
 						if (weizhi.name == '低级' && xf == 1) {
 							monster_length = data.monster_list7.length;
 							monster_index = Math.trunc(Math.random() * monster_length);
