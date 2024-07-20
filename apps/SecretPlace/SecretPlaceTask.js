@@ -171,13 +171,6 @@ export class SecretPlaceTask extends plugin {
 							monster_index = Math.trunc(Math.random() * monster_length);
 							monster = data.monster_list6[monster_index];
 						}
-						if (
-							weizhi.name == '远古之地'
-						) {
-							monster_length = data.monster_list9.length;
-							monster_index = Math.trunc(Math.random() * monster_length);
-							monster = data.monster_list9[monster_index];
-						}
 						if (weizhi.name == '低级' && xf == 1) {
 							monster_length = data.monster_list7.length;
 							monster_index = Math.trunc(Math.random() * monster_length);
@@ -187,6 +180,13 @@ export class SecretPlaceTask extends plugin {
 							monster_length = data.monster_list8.length;
 							monster_index = Math.trunc(Math.random() * monster_length);
 							monster = data.monster_list8[monster_index];
+						}
+						if (
+							weizhi.name == '远古之地'
+						) {
+							monster_length = data.monster_list9.length;
+							monster_index = Math.trunc(Math.random() * monster_length);
+							monster = data.monster_list9[monster_index];
 						}
 						if (weizhi.id == 3200) {
 							console.log('小千');
@@ -207,13 +207,6 @@ export class SecretPlaceTask extends plugin {
 							monster_length = data.monster_list4.length;
 							monster_index = Math.trunc(Math.random() * monster_length);
 							monster = data.monster_list4[monster_index];
-							console.log(monster.名号);
-						}
-						if (weizhi.id == 6200) {
-							console.log('极坤');
-							monster_length = data.monster_list9.length;
-							monster_index = Math.trunc(Math.random() * monster_length);
-							monster = data.monster_list9[monster_index];
 							console.log(monster.名号);
 						}
 						let B_player = {

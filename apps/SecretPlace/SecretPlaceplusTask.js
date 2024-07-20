@@ -201,13 +201,6 @@ export class SecretPlaceplusTask extends plugin {
 							monster = data.monster_list4[monster_index];
 							console.log(monster.名号);
 						}
-						if (weizhi.id == 6200) {
-							console.log('极坤');
-							monster_length = data.monster_list9.length;
-							monster_index = Math.trunc(Math.random() * monster_length);
-							monster = data.monster_list9[monster_index];
-							console.log(monster.名号);
-						}
 						let B_player = {
 							名号: monster.名号,
 							攻击: parseInt(monster.攻击),
