@@ -1237,7 +1237,7 @@ return;
   ]
   e.reply(msg);
 
-  if (jxw > 50 && math > 0.1 && math < 0.9) {
+  if (jxw > 50 && math > 0.5 && math < 0.7) {
     await Add_najie_thing(usr_qq, "波奇", "道具", 1);
     e.reply("恐怖的威压降临在你的身上，获得额外道具波奇（不可言说）*1");
 
