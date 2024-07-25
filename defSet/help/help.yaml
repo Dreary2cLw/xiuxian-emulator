@@ -21,6 +21,9 @@
     - icon: help-icon_4
       title: '#修仙签到'
       desc: '修仙每日签到'
+    - icon: help-icon_99
+      title: '#祭拜鸡神'
+      desc: '鸡神与你同在'
     - icon: help-icon_8
       title: '#存灵石123 #取灵石全部'
       desc: '将灵石安全保存到纳戒'

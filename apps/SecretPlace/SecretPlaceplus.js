@@ -149,7 +149,7 @@ export class SecretPlaceplus extends plugin {
 		now_level_id = data.Level_list.find(
 			(item) => item.level_id == player.level_id
 		).level_id;
-		if (didian == '小千世界' || didian == '中千世界' || didian == '大千世界') {
+		if (didian == '小千世界' || didian == '中千世界' || didian == '大千世界' || didian == '远古遗地') {
 			e.reply('打工本不支持沉迷哦');
 			return;
 		}

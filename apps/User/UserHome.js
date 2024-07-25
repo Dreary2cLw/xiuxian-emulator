@@ -1655,6 +1655,20 @@ export class UserHome extends plugin {
                     return
                 }
             }
+
+            if (thing_name == "鸡神吉祥物") {
+                let daoju = await exist_najie_thing(usr_qq, thing_name, "道具");
+                if(daoju<8){
+                let needed = 8 - daoju; // 计算还需多少道具
+                e.reply(thing_name + '数量不足！还需要' + needed + '个' + thing_name + '才能兑换，穷比快去刷秘境');
+                return;
+            }
+                await Add_najie_thing(usr_qq, "鸡神的馈赠", "道具", 1);
+                await Add_najie_thing(usr_qq, "鸡神吉祥物", "道具", -8);
+
+                e.reply("成功获得道具鸡神的馈赠*1");
+            }
+
             if (thing_name == "太上古盒") {
                 let math = Math.random();
                 if (math > 0.9 && math < 1) {

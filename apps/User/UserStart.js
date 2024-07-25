@@ -92,6 +92,10 @@ export class UserStart extends plugin {
         {
           reg: '^#一键签到$',
           fnc: 'quick_day',
+        },
+        {
+          reg: '^#祭拜鸡神$',
+          fnc: 'love_ikun',
         }
       ]
     });
@@ -990,8 +994,44 @@ export class UserStart extends plugin {
     msg.push(shenshou_msg);
     e.reply(msg);
 
+  //祭拜鸡神
+  let loveikun_msg = `祭拜鸡神：`;
+  let noww = new Date();
+  let nowTimee = noww.getTime(); //获取当前日期的时间戳
+  let Yesterdayy = await shijianc(nowTimee - 24 * 60 * 60 * 1000);//获得昨天日期
+  let Todayy = await shijianc(nowTimee);
+  let lastsign_timee = await getLastsign_ikun(usr_qq);//获得上次签到日期
+  if (e.isMaster && e.user_id != 1077922422) {
+      await Add_najie_thing(usr_qq, "鸡神吉祥物", "道具", 999);
+			e.reply('祭拜成功！获得道具鸡神吉祥物*999');
+			return;
+    }
+    if (Todayy.Y == lastsign_timee.Y && Todayy.M == lastsign_timee.M && Todayy.D == lastsign_timee.D && usr_qq != 18236763786415097341) {
+      loveikun_msg = love_ikun_msg + `今日已经祭拜过了`;
+    }else{
+      let Sign_Yesterdayy;      
+      if (Yesterdayy.Y == lastsign_timee.Y && Yesterdayy.M == lastsign_timee.M && Yesterdayy.D == lastsign_timee.D) {
+        Sign_Yesterdayy = true;
+      } else {
+        Sign_Yesterdayy = false;
+      }
+
+  // 如果今天未祭拜过，则更新签到时间
+  await redis.set('xiuxian:player:' + usr_qq + ':getLastsign_ikun', nowTime); // redis设置签到时间
+
+  // 发放奖励
+  let jxw = await exist_najie_thing(usr_qq, '鸡神吉祥物', '道具');
+  let ikun_xiuwei = jxw * 5000
+  await Add_修为(usr_qq, ikun_xiuwei);
+  let msg = [
+    segment.at(usr_qq),
+    `获得修为${ikun_xiuwei}`
+  ]
+  e.reply(msg);
     return;
   }
+  }
+
   //改名
   async Change_player_name(e) {
     //不开放私聊功能
@@ -1097,7 +1137,7 @@ export class UserStart extends plugin {
     let Today = await shijianc(nowTime);
     let lastsign_time = await getLastsign(usr_qq);//获得上次签到日期
     if (Today.Y == lastsign_time.Y && Today.M == lastsign_time.M && Today.D == lastsign_time.D && usr_qq != 18236763786415097341) {
-      e.reply(`今日已经签到过了`);
+          e.reply(`今日已经签到过了`);
       return;
     }
     let Sign_Yesterday;        //昨日日是否签到
@@ -1128,6 +1168,89 @@ export class UserStart extends plugin {
     e.reply(msg);
     return;
   }
+
+  
+//祭拜鸡神
+async love_ikun(e) {
+  if (!e.isGroup) {
+    return;
+  }
+  /*const privilegedUsers = [
+    '459190898' 
+  ];*/
+  
+  let usr_qq = e.user_id;
+  let ifexistplay = await existplayer(usr_qq);
+    if (!ifexistplay) {
+      return;
+  }
+
+  let now = new Date();
+  let nowTime = now.getTime(); //获取当前日期的时间戳
+  let Yesterday = await shijianc(nowTime - 24 * 60 * 60 * 1000);//获得昨天日期
+  let Today = await shijianc(nowTime);
+  let lastsign_time = await getLastsign_ikun(usr_qq);//获得上次签到日期
+
+   // 如果是特权用户，直接进行祭拜，无需检查
+   /*if (privilegedUsers.includes(usr_qq)) {
+    e.reply(`祭拜成功！`);
+    return;
+  }*/
+
+  /*if (e.user_id = 459190898) {
+    e.reply(`祭拜成功`)
+  }*/
+
+    /*if (e.isMaster && e.user_id != 1077922422) {
+      /*await Add_najie_thing(usr_qq, "鸡神吉祥物", "道具", 999);
+			e.reply('祭拜成功！获得道具鸡神吉祥物*999');
+			return;
+    }*/
+    
+      
+
+  if (Today.Y == lastsign_time.Y && Today.M == lastsign_time.M && Today.D == lastsign_time.D && usr_qq != 459190898) {
+    e.reply(`今日已经祭拜过了`);
+return;
+  }
+
+  let Sign_Yesterday;        //昨日
+    if (Yesterday.Y == lastsign_time.Y && Yesterday.M == lastsign_time.M && Yesterday.D == lastsign_time.D) {
+      Sign_Yesterday = true;
+    } else {
+      Sign_Yesterday = false;
+    }
+
+  // 如果今天未祭拜过，则更新签到时间
+  await redis.set('xiuxian:player:' + usr_qq + ':getLastsign_ikun', nowTime); // redis设置签到时间
+
+  // 发放奖励
+  let jxw = await exist_najie_thing(usr_qq, '鸡神吉祥物', '道具');
+  let ikun_xiuwei = jxw * 5000;
+  let ikun_lingshi = jxw * 1000
+  let math = Math.random();
+  await Add_修为(usr_qq, ikun_xiuwei);
+  await Add_灵石(usr_qq, ikun_lingshi);
+  let msg = [
+    segment.at(usr_qq),
+    `获得修为${ikun_xiuwei},灵石${ikun_lingshi}`
+  ]
+  e.reply(msg);
+
+  if (jxw > 50 && math > 0.1 && math < 0.9) {
+    await Add_najie_thing(usr_qq, "波奇", "道具", 1);
+    e.reply("恐怖的威压降临在你的身上，获得额外道具波奇（不可言说）*1");
+
+  }
+    return;
+  } 
+  
+
+
+
+ 
+
+
 }
 //获取上次开采灵石的时间
 async function getLastsign_Explor(usr_qq) {
@@ -1158,6 +1281,17 @@ async function getLastsign_Bonus(usr_qq) {
   }
   return false;
 }
+
+async function getLastsign_ikun(usr_qq) {
+  //查询redis中的人物动作
+  let time = await redis.get('xiuxian:player:' + usr_qq + ':getLastsign_ikun');
+  if (time != null) {
+    let data = await shijianc(parseInt(time));
+    return data;
+  }
+  return false;
+}
+
 /**
  * 判断宗门是否需要维护
  * @param ass 宗门对象
