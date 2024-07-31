@@ -438,7 +438,7 @@ export class UserSellAll extends plugin {
 		for (let i of wupin) {
 			console.log(najie[i]);
 			for (let l of najie[i]) {
-				if (l && l.islockd == 0 && !(l.id >= 400990 && l.id <= 400999)) {
+				if (l && l.islockd == 0 && !(l.id >= 400980 && l.id <= 400999)) {
 					//纳戒中的数量
 					let quantity = l.数量;
 					/*console.log(l);

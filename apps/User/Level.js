@@ -483,7 +483,7 @@ export class Level extends plugin {
 	}
 
 	//渡劫
-	async fate_up(e) {
+		async fate_up(e) {		
 		let usr_qq = e.user_id;
 		//有无账号
 		let ifexistplay = await existplayer(usr_qq);
@@ -568,23 +568,23 @@ export class Level extends plugin {
 		//默认为3
 		let y = 3;
 		if (player.灵根.type == '伪灵根') {
-			y = 3;
+			y = 5;
 		} else if (player.灵根.type == '真灵根') {
-			y = 6;
+			y = 7;
 		} else if (player.灵根.type == '天灵根') {
-			y = 9;
-		} else if (player.灵根.type == '体质') {
 			y = 10;
+		} else if (player.灵根.type == '体质') {
+			y = 14;
 		} else if (player.灵根.type == '转生' || player.灵根.type == '魔头') {
-			y = 21;
+			y = 25;
 		} else if (player.灵根.type == '转圣') {
-			y = 26;
+			y = 30;
 		} else {
-			y = 12;
+			y = 15;
 		}
 		//渡劫系数区间
-		let n = 1380; //最低
-		let p = 280; //变动
+		let n = 1400; //最低
+		let p = 300; //变动
 		let m = n + p;
 		if (x <= n) {
 			//没有达到最低要求
@@ -595,7 +595,7 @@ export class Level extends plugin {
 			return;
 		}
 		//渡劫成功率
-		let l = (x - n) / (p + y * 0.1);
+		let l = (x - n) / (p + y * 0.08);
 		l = l * 100;
 		l = l.toFixed(2);
 		e.reply('天道：就你，也敢逆天改命？');

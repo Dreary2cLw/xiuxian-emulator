@@ -469,8 +469,8 @@ export class UserStart extends plugin {
     if(isNotNull(player.养老金)){
       money = player.养老金;
     }
-    if(money>=50000000){
-      e.reply('您已缴纳养老金超过五千万，获得养老资格');
+    if(money>=1){
+      e.reply('您已缴纳养老金超过1，获得养老资格');
     }else {
       e.reply('您已缴纳养老金：'+money);
     }
@@ -531,8 +531,8 @@ export class UserStart extends plugin {
       player.养老金 = 0;
     }
     let money = Number(player.养老金);
-    if(player.养老金>=50000000){
-      e.reply('您已缴纳养老金超过五千万，获得养老资格,无须再缴纳');
+    if(player.养老金>=1){
+      e.reply('您已缴纳养老金超过1，获得养老资格,无须再缴纳');
       return ;
     }else{
       await Add_灵石(usr_qq, -lingshi);
@@ -574,7 +574,7 @@ export class UserStart extends plugin {
       money = player.养老金;
     }
 
-    if (money < 50000000) {
+    if (money < 1) {
       e.reply('此指令为养老指令，你似乎没有养老资格？');
       return;
     }
@@ -695,7 +695,7 @@ export class UserStart extends plugin {
       money = player.养老金;
     }
 
-    if (money < 50000000) {
+    if (money < 1) {
       e.reply('此指令为养老指令，你似乎没有养老资格？');
       return;
     }
@@ -984,30 +984,22 @@ export class UserStart extends plugin {
         shenshou_msg = shenshou_msg + `${ass.宗门神兽}闭上了眼睛，表示今天不想理你`;
       }
     }
-
-
     shenshou_msg  = shenshou_msg + '\n';
 
-    msg.push(qiandao_msg);
-    msg.push(lingmai_msg);
-    msg.push(fenglu_msg);
-    msg.push(shenshou_msg);
-    e.reply(msg);
-
-  //祭拜鸡神
-  let loveikun_msg = `祭拜鸡神：`;
+      //祭拜鸡神
+  let love_ikun_msg = `祭拜鸡神：`;
   let noww = new Date();
   let nowTimee = noww.getTime(); //获取当前日期的时间戳
   let Yesterdayy = await shijianc(nowTimee - 24 * 60 * 60 * 1000);//获得昨天日期
   let Todayy = await shijianc(nowTimee);
   let lastsign_timee = await getLastsign_ikun(usr_qq);//获得上次签到日期
-  if (e.isMaster && e.user_id != 1077922422) {
+  /*if (e.isMaster && e.user_id != 1077922422) {
       await Add_najie_thing(usr_qq, "鸡神吉祥物", "道具", 999);
 			e.reply('祭拜成功！获得道具鸡神吉祥物*999');
 			return;
-    }
-    if (Todayy.Y == lastsign_timee.Y && Todayy.M == lastsign_timee.M && Todayy.D == lastsign_timee.D && usr_qq != 18236763786415097341) {
-      loveikun_msg = love_ikun_msg + `今日已经祭拜过了`;
+    }*/
+    if (Todayy.Y == lastsign_timee.Y && Todayy.M == lastsign_timee.M && Todayy.D == lastsign_timee.D && usr_qq != 459190898) {
+      love_ikun_msg = love_ikun_msg + `今日已经祭拜过了`;
     }else{
       let Sign_Yesterdayy;      
       if (Yesterdayy.Y == lastsign_timee.Y && Yesterdayy.M == lastsign_timee.M && Yesterdayy.D == lastsign_timee.D) {
@@ -1021,15 +1013,37 @@ export class UserStart extends plugin {
 
   // 发放奖励
   let jxw = await exist_najie_thing(usr_qq, '鸡神吉祥物', '道具');
-  let ikun_xiuwei = jxw * 5000
+  let ikun_xiuwei = jxw * 5000;
+  let ikun_lingshi = jxw * 1000;
+  let math = Math.random(); 
   await Add_修为(usr_qq, ikun_xiuwei);
-  let msg = [
+  await Add_灵石(usr_qq, ikun_lingshi);
+  /*let ikun_msg = [
     segment.at(usr_qq),
-    `获得修为${ikun_xiuwei}`
+    `获得修为${ikun_xiuwei},灵石${ikun_lingshi}`
   ]
-  e.reply(msg);
-    return;
+  e.reply(ikun_msg);*/
+
+  if (jxw > 50 && math > 0.5 && math < 0.7) {
+    await Add_najie_thing(usr_qq, "波奇", "道具", 1);
+    e.reply("恐怖的威压降临在你的身上，获得额外道具波奇（不可言说）*1");
   }
+
+    love_ikun_msg = love_ikun_msg +`祭拜鸡神领取成功,获得了${ikun_lingshi}灵石,${ikun_xiuwei}修为`;
+    }
+    love_ikun_msg = love_ikun_msg + '\n';
+
+
+    //shenshou_msg  = shenshou_msg + '\n';
+
+    msg.push(qiandao_msg);
+    msg.push(lingmai_msg);
+    msg.push(fenglu_msg);
+    msg.push(shenshou_msg);
+    msg.push(love_ikun_msg);
+    e.reply(msg);
+
+
   }
 
   //改名
@@ -1227,7 +1241,7 @@ return;
   // 发放奖励
   let jxw = await exist_najie_thing(usr_qq, '鸡神吉祥物', '道具');
   let ikun_xiuwei = jxw * 5000;
-  let ikun_lingshi = jxw * 1000
+  let ikun_lingshi = jxw * 1000;
   let math = Math.random();
   await Add_修为(usr_qq, ikun_xiuwei);
   await Add_灵石(usr_qq, ikun_lingshi);

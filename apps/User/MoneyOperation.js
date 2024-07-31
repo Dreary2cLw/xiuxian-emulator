@@ -64,6 +64,10 @@ export class MoneyOperation extends plugin {
 					fnc: 'wup_all',
 				},
 				{
+					reg: '^#全体扣除(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链|食材).*\\*[1-9]d*',
+					fnc: 'delete_all',
+				},
+				{
 					reg: '^#扣除.*$',
 					fnc: 'Deduction',
 				},
