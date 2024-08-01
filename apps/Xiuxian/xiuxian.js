@@ -89,6 +89,8 @@ export async function Check_thing(data) {
 	let state = 0;
 	if (data.id >= 5005000 && data.id <= 5005009) {
 		state = 1;
+	}if (data.id >= 400982 && data.id <= 400989) {
+		state = 1;
 	} else if (data.id >= 400991 && data.id <= 400999) {
 		state = 1;
 	}
@@ -137,8 +139,8 @@ export async function Read_player(usr_qq) {
         const data = fs.readFileSync(dir, 'utf8');
         
         // 打印调试信息
-        console.log(`Reading file: ${dir}`);
-        console.log(`File content: ${data}`);
+        // console.log(`Reading file: ${dir}`);
+        // console.log(`File content: ${data}`);
         
         // 解析 JSON 数据
         const player = JSON.parse(data);
@@ -287,7 +289,15 @@ export async function Write_equipment(usr_qq, equipment) {
 		(player.灵根.type == '转生' || player.level_id > 41)
 	) {
 		player.攻击 = Math.trunc(1.05 * player.攻击);
-		player.血量上限 = Math.trunc(1.2 * player.血量上限);
+		player.血量上限= Math.trunc(1.2 * player.血量上限);
+	}
+	if (equipment.武器.name == "鸡神之剑" && 
+		equipment.法宝.name == "鸡神之盔" && 
+		equipment.护具.name == "鸡神之甲"
+	) {
+		player.攻击 = Math.trunc((1.2 * player.攻击)+(0.03 * player.血量上限));
+		//player.攻击 = Math.trunc(1.2 * player.攻击);
+		player.防御上限= Math.trunc(1.5 * player.防御上限);
 	}
 	if (
 		shenqi &&
@@ -1514,6 +1524,10 @@ export async function Gaodenyuansulun(
 		'仙之心·风',
 		'仙之心·木',
 	];
+	/*let shenshi = [
+		'神识·精神',
+		
+	];*/
 	let att = last_att; //最终伤害,last_att为原伤害
 	let fyjiachen = 0; //防御加成
 	//AB灵根
@@ -2192,6 +2206,18 @@ export async function Gaodenyuansulun(
 			msg.push('寒冰之枪，出鞘！\n使用了冰元素技能,伤害提高了');
 		}
 	}
+	//鸡神之剑
+	/*if (equipment.武器.name == '鸡神之剑') {
+		let random = Math.random();
+		if (random > 0.5) {
+			msg.push(
+				A_player.名号 + '获得了鸡神的祝福'
+			);
+			if (A_lin == yuansu[1] && equipment.武器.fumo == '精神') {
+
+			}
+		}
+	}*/
 	//护摩之杖
 	if (equipment.武器.name == '护摩之杖') {
 		let random = Math.random();

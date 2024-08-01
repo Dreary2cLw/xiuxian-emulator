@@ -258,6 +258,7 @@ export class Level extends plugin {
 			now_level_id >= 51 &&
 			player.灵根.name != '天五灵根' &&
 			player.灵根.name != '垃圾五灵根' &&
+			player.灵根.name != '鸡神圣体' &&
 			player.灵根.name != '九转轮回体' &&
 			player.灵根.name != '九重魔功' &&
 			player.灵根.name != '仙之心·火' &&

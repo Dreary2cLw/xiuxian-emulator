@@ -849,13 +849,16 @@ export class UserHome extends plugin {
             let img = await get_equipment_img(e);
             let shenqi = false;
             if(
+                //equipment.武器.name == "鸡神之剑" ||
+                //equipment.武器.name == "鸡神之甲" ||
+                //equipment.武器.name == "鸡神之盔" ||
                 equipment.武器.name == "磐岩结绿" ||
                 equipment.武器.name == "贯虹之槊" ||
                 equipment.武器.name == "护摩之杖" ||
                 equipment.武器.name == "雾切之回光" ||
                 equipment.武器.name == "苍古自由之誓" ||
                 equipment.武器.name == "终末嗟叹之诗" ||
-                equipment.武器.name == "赤角石溃杵"
+                equipment.武器.name == "赤角石溃杵" 
             ){
                 shenqi = true;
             }
@@ -874,6 +877,9 @@ export class UserHome extends plugin {
             }
             if (equipment.武器.name == "神月剑" && equipment.法宝.name == "神日花" && equipment.护具.name == "神星甲" && player.魔道值 < 1 && (player.灵根.type == "转生" || player.level_id > 41)) {
                 e.reply("你已激活日月三件套效果");
+            }
+            if (equipment.武器.name == "鸡神之剑" && equipment.法宝.name == "鸡神之盔" && equipment.护具.name == "鸡神之甲") {
+                e.reply("你已激活鸡神套装效果，快去大杀四方吧");
             }
             if (shenqi && (equipment.护具.name == "千岩牢固" || equipment.护具.name == "下界合金甲") && (equipment.法宝.name == "下界合金头盔" || equipment.法宝.name == "智识之冠") && player.灵根.type == "元素灵根") {
                 e.reply("你已激活荒星三件套效果");
@@ -1282,7 +1288,7 @@ export class UserHome extends plugin {
                 if (player.lunhui != 0) {
                     let lhxg = await redis.get("xiuxian:player:" + usr_qq + ":Player_use");
                     if (lhxg != 4) {
-                        e.reply("使用【洗根水】【补天丹】【补根丹】【神心丹】进行洗髓将清除轮回状态！\n回复:【确认使用】或者【取消】进行选择");
+                        e.reply("使用【洗根水】【补天丹】【补根丹】【神心丹】【鸡神丹】进行洗髓将清除轮回状态！\n回复:【确认使用】或者【取消】进行选择");
                         await Add_najie_thing(usr_qq, "神心丹", "丹药", quantity);
                         this.setContext('yesxigen');
                         return;
@@ -1318,7 +1324,7 @@ export class UserHome extends plugin {
                 if (player.lunhui != 0) {
                     let lhxg = await redis.get("xiuxian:player:" + usr_qq + ":Player_use");
                     if (lhxg != 3) {
-                        e.reply("使用【洗根水】【补天丹】【补根丹】【神心丹】进行洗髓将清除轮回状态！\n回复:【确认补根】或者【取消】进行选择");
+                        e.reply("使用【洗根水】【补天丹】【补根丹】【神心丹】【鸡神丹】进行洗髓将清除轮回状态！\n回复:【确认补根】或者【取消】进行选择");
                         await Add_najie_thing(usr_qq, "补根丹", "丹药", quantity);
                         this.setContext('yesxigen');
                         return;
@@ -1348,7 +1354,7 @@ export class UserHome extends plugin {
                 if (player.lunhui != 0) {
                     let lhxg = await redis.get("xiuxian:player:" + usr_qq + ":Player_use");
                     if (lhxg != 2) {
-                        e.reply("使用【洗根水】【补天丹】【补根丹】【神心丹】进行洗髓将清除轮回状态！\n回复:【确认补天】或者【取消】进行选择");
+                        e.reply("使用【洗根水】【补天丹】【补根丹】【神心丹】【鸡神丹】进行洗髓将清除轮回状态！\n回复:【确认补天】或者【取消】进行选择");
                         await Add_najie_thing(usr_qq, "补天丹", "丹药", quantity);
                         this.setContext('yesxigen');
                         return;
@@ -1372,6 +1378,37 @@ export class UserHome extends plugin {
                 };
                 await data.setData("player", usr_qq, player);
                 e.reply(`服用成功,当前灵根为天五灵根,你具备了称帝资格`);
+                return;
+            }
+            if (this_danyao.type == "鸡神丹药") {
+                if (player.lunhui != 0) {
+                    let lhxg = await redis.get("xiuxian:player:" + usr_qq + ":Player_use");
+                    if (lhxg != 5) {
+                        e.reply("使用【洗根水】【补天丹】【补根丹】【神心丹】【鸡神丹】进行洗髓将清除轮回状态！\n回复:【祭拜鸡神】或者【取消】进行选择");
+                        await Add_najie_thing(usr_qq, "鸡神丹", "丹药", quantity);
+                        this.setContext('yesxigen');
+                        return;
+                    } else if (lhxg == 5) {
+
+                        await redis.set("xiuxian:player:" + usr_qq + ":Player_use", 0);
+                    }
+                    let gongfa = ["一转轮回", "二转轮回", "三转轮回", "四转轮回", "五转轮回", "六转轮回", "七转轮回", "八转轮回", "九转轮回"];
+                    for (let i = 0; i < player.lunhui; i++) {
+                        let x = await exist_najie_thing(usr_qq, gongfa[i], "功法");
+                        if (!x) {
+                            await Reduse_player_学习功法(usr_qq, gongfa[i]);
+                        } else {
+                            await Add_najie_thing(usr_qq, gongfa[i], "功法", -1);
+                        }
+                    }
+                }
+                player = await Read_player(usr_qq);
+                player.lunhui = 0;
+                player.灵根 = {
+                    "id": 70057, "name": "鸡神圣体", "type": "圣体", "eff": 0.20, "法球倍率": 0.20
+                };
+                await data.setData("player", usr_qq, player);
+                e.reply(`服用成功,当前灵根为鸡神圣体,你具备了称帝资格，并且得到了鸡神的庇佑`);
                 return;
             }
             if (this_danyao.type == "突破") {
@@ -1623,12 +1660,12 @@ export class UserHome extends plugin {
                     await Add_najie_thing(usr_qq, "鸡神的馈赠", "道具", -1);
                     e.reply(["你打开了鸡神的馈赠，引起了神明的注视，幸运值+1%（效果可叠加）"]);
                     return
-                } else if (math > 0.95 && math < 0.98) {
+                } else if (math > 0.975 && math < 0.98) {
                     await Add_najie_thing(usr_qq, "鸡神之剑", "道具", 1);
                     await Add_najie_thing(usr_qq, "鸡神的馈赠", "道具", -1);
                     e.reply(["你打开了鸡神的馈赠，发现里面有一把剑，散发着远古的气息，当你凑近时便能听到鸡……鸡……鸡你太美，这是来自神明的呼唤。恭喜你获得上古神器—————————————鸡神之剑"])
                     return
-                } else if (math > 0.9 && math < 0.95) {
+                } else if (math > 0.9 && math < 0.975) {
                     await Add_灵石(usr_qq, -2000000);
                     await Add_najie_thing(usr_qq, "鸡神的馈赠", "道具", -1);
                     e.reply(["你打开了鸡神的馈赠，触碰到了上古禁忌，伤势惨重，损耗了200w灵石"])
@@ -1663,10 +1700,10 @@ export class UserHome extends plugin {
                 e.reply(thing_name + '数量不足！还需要' + needed + '个' + thing_name + '才能兑换，穷比快去刷秘境');
                 return;
             }
-                await Add_najie_thing(usr_qq, "鸡神的馈赠", "道具", 1);
+                await Add_najie_thing(usr_qq, "鸡神的羽毛", "道具", 1);
                 await Add_najie_thing(usr_qq, "鸡神吉祥物", "道具", -8);
 
-                e.reply("成功获得道具鸡神的馈赠*1");
+                e.reply("成功获得道具鸡神的羽毛*1");
             }
 
             if (thing_name == "太上古盒") {
@@ -2261,7 +2298,7 @@ export class UserHome extends plugin {
                 if (player.lunhui != 0) {
                     let lhxg = await redis.get("xiuxian:player:" + usr_qq + ":Player_use");
                     if (lhxg != 1) {
-                        e.reply("使用【洗根水】【补天丹】【补根丹】【神心丹】进行洗髓将清除轮回状态！\n回复:【确认洗根】或者【取消】进行选择");
+                        e.reply("使用【洗根水】【补天丹】【补根丹】【神心丹】【鸡神丹】进行洗髓将清除轮回状态！\n回复:【确认洗根】或者【取消】进行选择");
                         this.setContext('yesxigen');
                         return;
                     } else if (lhxg == 1) {
@@ -2685,7 +2722,7 @@ export class UserHome extends plugin {
             if (player.islucky > 0) {
                 player.islucky--;
                 if (player.islucky != 0) {
-                    fyd_msg = `  \n福源丹的效力将在${y}次探索后失效\n`;
+                    fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
                 } else {
                     fyd_msg = `  \n本次探索后，福源丹已失效\n`;
                     player.幸运 -= player.addluckyNo;
@@ -3653,6 +3690,12 @@ export class UserHome extends plugin {
             //console.log(this.getContext().recall);
             this.finish('yesxigen');
             return;
+        } else if (choice == "祭拜鸡神") {
+            await redis.set("xiuxian:player:" + usr_qq + ":Player_use", 5);
+            e.reply("请再次输入#服用鸡神丹！");
+            //console.log(this.getContext().recall);
+            this.finish('yesxigen');
+            return;
         } else if (choice == "确认使用") {
             await redis.set("xiuxian:player:" + usr_qq + ":Player_use", 4);
             e.reply("请再次输入#服用神心丹！");
@@ -3661,7 +3704,7 @@ export class UserHome extends plugin {
             return;
         } else {
             this.setContext('yesxigen');
-            await this.reply("使用【洗根水】【补天丹】【补根丹】【神心丹】进行洗髓将清除轮回状态！\n请正确回复进行选择");
+            await this.reply("使用【洗根水】【补天丹】【补根丹】【神心丹】【鸡神丹】进行洗髓将清除轮回状态！\n请正确回复进行选择");
             return;
         }
         /** 结束上下文 */
@@ -3808,6 +3851,11 @@ export class UserHome extends plugin {
             e.reply(`轮回功法${thing_name}禁止出售。`)
             return;
         }
+        if (thing_exist.id >= 400982 && thing_exist.id <= 400989) {
+            e.reply(`鸡神的道具————${thing_name}禁止出售。`)
+            return;
+        }
+
         //确定数量和品级
         let pj = {
             "劣": 0,

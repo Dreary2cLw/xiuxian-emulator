@@ -22,52 +22,52 @@ export class BOSS extends plugin {
 			priority: 600,
 			rule: [
 				{
-					reg: '^#开启散兵$',
+					reg: '^#开启波奇$',
 					fnc: 'CreateWorldBoss',
 				},
 				{
-					reg: '^#关闭散兵$',
+					reg: '^#关闭波奇$',
 					fnc: 'DeleteWorldBoss',
 				},
 				{
-					reg: '^#散兵状态$',
+					reg: '^#波奇状态$',
 					fnc: 'LookUpWorldBossStatus',
 				},
 				{
-					reg: '^#散兵贡献榜$',
+					reg: '^#波奇贡献榜$',
 					fnc: 'ShowDamageList',
 				},
 				{
-					reg: '^#讨伐散兵$',
+					reg: '^#讨伐波奇$',
 					fnc: 'WorldBossBattle',
 				},
 			],
 		});
 	}
 
-	//散兵开启指令
+	//波奇开启指令
 	async CreateWorldBoss(e) {
 		if (e.isMaster) {
 			if (!(await BossIsAlive())) {
-				if ((await InitWorldBoss(e)) == 0) e.reply('散兵挑战开启！');
+				if ((await InitWorldBoss(e)) == 0) e.reply('波奇挑战开启！');
 				return true;
 			} else {
-				e.reply('散兵已经存在');
+				e.reply('波奇已经存在');
 				return true;
 			}
 		} else return;
 	}
-	//散兵结束指令
+	//波奇结束指令
 	async DeleteWorldBoss(e) {
 		if (e.isMaster) {
 			if (await BossIsAlive()) {
 				await redis.del('Xiuxian:WorldBossStatus');
 				await redis.del('Xiuxian:PlayerRecord');
-				e.reply('散兵挑战关闭！');
-			} else e.reply('散兵未开启');
+				e.reply('波奇挑战关闭！');
+			} else e.reply('波奇未开启');
 		} else return;
 	}
-	//散兵状态指令
+	//波奇状态指令
 	async LookUpWorldBossStatus(e) {
 		if (await BossIsAlive()) {
 			let WorldBossStatusStr = await redis.get('Xiuxian:WorldBossStatus');
@@ -93,24 +93,24 @@ export class BOSS extends plugin {
 						? Math.trunc(WorldBossStatus.Defence * 0.6)
 						: WorldBossStatus.Defence;
 					let ReplyMsg = [
-						`----散兵状态----\n血量:${WorldBossStatus.Health}\n基础攻击:${WorldBossStatus.Attack}\n基础防御:${WorldBossStatus.Defence}\n当前攻击:${BOSSCurrentAttack}\n当前防御:${BOSSCurrentDefence}\n当前状态:`,
+						`----波奇状态----\n血量:${WorldBossStatus.Health}\n基础攻击:${WorldBossStatus.Attack}\n基础防御:${WorldBossStatus.Defence}\n当前攻击:${BOSSCurrentAttack}\n当前防御:${BOSSCurrentDefence}\n当前状态:`,
 					];
 					if (WorldBossStatus.isWeak)
 						ReplyMsg.push(
-							`虚弱(还剩${WorldBossStatus.isWeak}回合)\n温馨提示:给散兵最后一击的人可以随机获得一个物品`
+							`虚弱(还剩${WorldBossStatus.isWeak}回合)\n温馨提示:给波奇最后一击的人可以随机获得一个物品`
 						);
 					else if (WorldBossStatus.isAngry)
 						ReplyMsg.push(
-							`狂暴(还剩${WorldBossStatus.isAngry}回合)\n温馨提示:给散兵最后一击的人可以随机获得一个物品`
+							`狂暴(还剩${WorldBossStatus.isAngry}回合)\n温馨提示:给波奇最后一击的人可以随机获得一个物品`
 						);
-					else ReplyMsg.push('正常\n温馨提示:给散兵最后一击的人可以随机获得一个物品');
+					else ReplyMsg.push('正常\n温馨提示:给波奇最后一击的人可以随机获得一个物品');
 					e.reply(ReplyMsg);
 				} else e.reply('WorldBossStatusStr Error');
 			} else e.reply('Redis WorldBossStatus Error');
-		} else e.reply('散兵未开启！');
+		} else e.reply('波奇未开启！');
 		return true;
 	}
-	//散兵伤害贡献榜
+	//波奇伤害贡献榜
 	async ShowDamageList(e) {
 		if (await BossIsAlive()) {
 			let PlayerRecord = await redis.get('Xiuxian:PlayerRecord');
@@ -121,13 +121,13 @@ export class BOSS extends plugin {
 				return true;
 			}
 			if (PlayerRecord == 0) {
-				e.reply('还没有人挑战散兵哦~');
+				e.reply('还没有人挑战波奇哦~');
 				return true;
 			}
 			let PlayerRecordJSON = JSON.parse(PlayerRecord);
 			let PlayerList = await SortPlayer(PlayerRecordJSON);
 			if (!PlayerRecordJSON?.Name) {
-				e.reply('请等待下次散兵周本刷新后再使用本功能');
+				e.reply('请等待下次波奇周本刷新后再使用本功能');
 				return true;
 			}
 			let CurrentQQ;
@@ -168,19 +168,19 @@ export class BOSS extends plugin {
 			await sleep(1000);
 			if (CurrentQQ != undefined)
 				e.reply(
-					`你在散兵周本贡献排行榜中排名第${CurrentQQ}，造成伤害${
+					`你在波奇周本贡献排行榜中排名第${CurrentQQ}，造成伤害${
 						PlayerRecordJSON.TotalDamage[PlayerList[CurrentQQ - 1]]
 					}，预计得到灵石:`+RewardQQ+`，再接再厉！`
 				);
-		} else e.reply('散兵未开启！');
+		} else e.reply('波奇未开启！');
 		return true;
 	}
-	//与散兵战斗
+	//与波奇战斗
 	async WorldBossBattle(e) {
 		if (e.isPrivate) return;
 
 		if (!(await BossIsAlive())) {
-			e.reply('散兵未开启！');
+			e.reply('波奇未开启！');
 			return true;
 		}
 		let usr_qq = e.user_id;
@@ -253,7 +253,7 @@ export class BOSS extends plugin {
 				let Minutes = Math.trunc(
 					(43200000 - (new Date().getTime() - WorldBossStatus.KilledTime)) / 60000
 				);
-				e.reply(`散兵周本正在刷新，请等待${Minutes}分钟`);
+				e.reply(`波奇周本正在刷新，请等待${Minutes}分钟`);
 				return true;
 			} else if (WorldBossStatus.KilledTime != -1) {
 				if ((await InitWorldBoss(e)) == 0) await this.WorldBossBattle(e);
@@ -307,7 +307,7 @@ export class BOSS extends plugin {
 			if (WorldBOSSBattleUnLockTimer) clearTimeout(WorldBOSSBattleUnLockTimer);
 			SetWorldBOSSBattleUnLockTimer(e);
 			if (WorldBOSSBattleLock != 0) {
-				e.reply('好像有旅行者正在和散兵激战，现在去怕是有未知的凶险，还是等等吧！');
+				e.reply('好像有旅行者正在和波奇激战，现在去怕是有未知的凶险，还是等等吧！');
 				return true;
 			}
 			let arr = {
@@ -338,27 +338,27 @@ export class BOSS extends plugin {
 						CurrentPlayerAttributes.攻击 < 500000
 					) {
 						msg.push(
-							'你的气息太弱了，甚至于轻手轻脚溜到【散兵】旁边都没被它发现。你打断了他的阵法，导致【散兵】被反噬'
+							'你的气息太弱了，甚至于轻手轻脚溜到【波奇】旁边都没被它发现。你打断了他的阵法，导致【波奇】被反噬'
 						);
 						Player_To_BOSS_Damage = Math.trunc(WorldBossStatus.OriginHealth * 0.05);
 					} else if (Random < 0.25 && CurrentPlayerAttributes.攻击 >= 1500000) {
 						msg.push(
-							'你的实力超过了【散兵】的假想，【散兵】见你袭来，使用【闪影】躲掉了大部分伤害'
+							'你的实力超过了【波奇】的假想，【波奇】见你袭来，使用【闪影】躲掉了大部分伤害'
 						);
 						Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.3);
 					} else if (Random < 0.55 && CurrentPlayerAttributes.攻击 >= 1500000) {
 						msg.push(
-							'你的实力引起了【散兵】的重视，【散兵】开启了【护身剑罡】，导致你的攻击没有太大效果'
+							'你的实力引起了【波奇】的重视，【波奇】开启了【护身剑罡】，导致你的攻击没有太大效果'
 						);
 						Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.6);
 					} else if (Random < 0.2 && CurrentPlayerAttributes.攻击 >= 1200000) {
-						msg.push('你的实力足够强大，【散兵】见你袭来不在随便应对，你的攻击效果不好');
+						msg.push('你的实力足够强大，【波奇】见你袭来不在随便应对，你的攻击效果不好');
 						Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.5);
 					} else if (Random < 0.5 && CurrentPlayerAttributes.攻击 >= 1200000) {
-						msg.push('你的实力强大，【散兵】见你袭来，开启了【护身剑罡】，攻击被影响了');
+						msg.push('你的实力强大，【波奇】见你袭来，开启了【护身剑罡】，攻击被影响了');
 						Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.7);
 					} else if (Random < 1 && CurrentPlayerAttributes.攻击 >= 2000000) {
-						msg.push('你的实力强大，【散兵】见你袭来，开启了【护身剑罡】，攻击被影响了');
+						msg.push('你的实力强大，【波奇】见你袭来，开启了【护身剑罡】，攻击被影响了');
 						Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.5);
 					} else if (Random < 0.09 && CurrentPlayerAttributes.攻击 <= 600000) {
 						msg.push('你的实力弱小，你全意收敛气息，使用出你意外得到的“九天惊雷符”！');
@@ -374,7 +374,7 @@ export class BOSS extends plugin {
 						);
 						Player_To_BOSS_Damage = 666666;
 					} else if (Random < 0.5 && CurrentPlayerAttributes.攻击 <= 500000) {
-						msg.push('【散兵】见你你的实力弱小，根本没把你放心上，你的攻击有了奇效');
+						msg.push('【波奇】见你你的实力弱小，根本没把你放心上，你的攻击有了奇效');
 						Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 1.5 + 100000);
 					} else if (
 						CurrentPlayerAttributes.学习的功法 &&
@@ -433,24 +433,24 @@ export class BOSS extends plugin {
 						Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 3);
 					} else if (Random < 0.11) {
 						msg.push(
-							'你等了许久，终于【散兵】疲劳，露出了破绽，你飞杀而去，但是【散兵】使用了【混元】！！你的伤害被吸收了！'
+							'你等了许久，终于【波奇】疲劳，露出了破绽，你飞杀而去，但是【波奇】使用了【混元】！！你的伤害被吸收了！'
 						);
 						Player_To_BOSS_Damage = -250000;
 					} else if (Random >= 0.95) {
-						msg.push('你看到【散兵】一瞬间的破绽，放出强大剑技！痛击BOSS！');
+						msg.push('你看到【波奇】一瞬间的破绽，放出强大剑技！痛击BOSS！');
 						Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 3);
 					} else if (Random >= 0.89) {
 						msg.push(
-							'你如老猎人般屏息观察，终于看准【散兵】身法中的一处缺陷，瞄准后用力一刺，正中其要害之处。'
+							'你如老猎人般屏息观察，终于看准【波奇】身法中的一处缺陷，瞄准后用力一刺，正中其要害之处。'
 						);
 						Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 2);
 					} else if (Random >= 0.82) {
 						msg.push(
-							'你瞄了许久，看准时机放出一道凌厉剑气，结果【散兵】使用了【幻剑】，你一头雾水'
+							'你瞄了许久，看准时机放出一道凌厉剑气，结果【波奇】使用了【幻剑】，你一头雾水'
 						);
 						Player_To_BOSS_Damage = 0;
 					} else if (Random >= 0 && CurrentPlayerAttributes.攻击 >= 1500000) {
-						msg.push('【散兵】认可你的实力，【散兵】认真对待你，你不再能轻易攻击');
+						msg.push('【波奇】认可你的实力，【波奇】认真对待你，你不再能轻易攻击');
 						Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.7);
 					}
 					Player_To_BOSS_Damage = Math.trunc(
@@ -464,7 +464,7 @@ export class BOSS extends plugin {
 					msg.push(
 						`${CurrentPlayerAttributes.名号}${ifbaoji(
 							SuperAttack
-						)}造成伤害${Player_To_BOSS_Damage}，散兵剩余血量${WorldBossStatus.Health}`
+						)}造成伤害${Player_To_BOSS_Damage}，波奇剩余血量${WorldBossStatus.Health}`
 					);
 				} else {
 					let BOSS_To_Player_Damage = Harm(
@@ -485,7 +485,7 @@ export class BOSS extends plugin {
 						BOSS_To_Player_Damage = 0;
 					} else if (Random < 0.05) {
 						msg.push(
-							'【散兵】使用了超上古功法【唱，跳，rap】你被不知名的球体差点打的形神具灭'
+							'【波奇】使用了超上古功法【唱，跳，rap】你被不知名的球体差点打的形神具灭'
 						);
 						BOSS_To_Player_Damage = 9999999999;
 					} else if (
@@ -509,30 +509,30 @@ export class BOSS extends plugin {
 						);
 						BOSS_To_Player_Damage *= -0.1;
 					} else if (Random < 0.06) {
-						msg.push('【散兵】使用【流云剑法】，刚刚好你学过一门功法可以克制。');
+						msg.push('【波奇】使用【流云剑法】，刚刚好你学过一门功法可以克制。');
 						BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 0.3);
 					} else if (Random < 0.15) {
-						msg.push('【散兵】使用了绝技【开天】');
+						msg.push('【波奇】使用了绝技【开天】');
 						BOSS_To_Player_Damage = 4000000;
 					} else if (Random < 0.25) {
 						msg.push(
-							'【散兵】使用了【葬天剑】，这招你感受到了恐怖的能量，不过还好速度不快，但也稍受波及。'
+							'【波奇】使用了【葬天剑】，这招你感受到了恐怖的能量，不过还好速度不快，但也稍受波及。'
 						);
 						BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 0.3);
 					} else if (Random < 0.3) {
-						msg.push('【散兵】释放领域，你无法再动，结结实实吃了一记。');
+						msg.push('【波奇】释放领域，你无法再动，结结实实吃了一记。');
 						BOSS_To_Player_Damage = 2500000;
 					} else if (Random < 0.4) {
-						msg.push('【散兵】释放技能【灭灵剑】');
+						msg.push('【波奇】释放技能【灭灵剑】');
 						BOSS_To_Player_Damage = 3000000;
 					} else if (Random >= 0.8) {
-						msg.push('【散兵】释放技能【流云乱剑】');
+						msg.push('【波奇】释放技能【流云乱剑】');
 						BOSS_To_Player_Damage = 20000000;
 					} else if (Random >= 0.7) {
-						msg.push('【散兵】释放技能【乱剑冢】');
+						msg.push('【波奇】释放技能【乱剑冢】');
 						BOSS_To_Player_Damage = 1600000;
 					} else if (Random >= 0.4) {
-						msg.push('【散兵】向你斩出一剑');
+						msg.push('【波奇】向你斩出一剑');
 						BOSS_To_Player_Damage = 1000000;
 					}
 					CurrentPlayerAttributes.当前血量 -= BOSS_To_Player_Damage;
@@ -546,7 +546,7 @@ export class BOSS extends plugin {
 						CurrentPlayerAttributes.当前血量 = 0;
 					}
 					msg.push(
-						`散兵攻击了${CurrentPlayerAttributes.名号}，造成伤害${BOSS_To_Player_Damage}，${CurrentPlayerAttributes.名号}剩余血量${CurrentPlayerAttributes.当前血量}`
+						`波奇攻击了${CurrentPlayerAttributes.名号}，造成伤害${BOSS_To_Player_Damage}，${CurrentPlayerAttributes.名号}剩余血量${CurrentPlayerAttributes.当前血量}`
 					);
 				}
 				if (CurrentPlayerAttributes.当前血量 == 0 || WorldBossStatus.Health == 0) break;
@@ -567,7 +567,7 @@ export class BOSS extends plugin {
 			}
 			await sleep(1000);
 			e.reply([
-				`${CurrentPlayerAttributes.名号}攻击了散兵，造成伤害${TotalDamage}，散兵剩余血量${WorldBossStatus.Health}`,
+				`${CurrentPlayerAttributes.名号}攻击了波奇，造成伤害${TotalDamage}，波奇剩余血量${WorldBossStatus.Health}`,
 			]);
 			await sleep(1000);
 			if (
@@ -577,7 +577,7 @@ export class BOSS extends plugin {
 			) {
 				WorldBossStatus.isAngry = 30;
 				e.reply(
-					'这场战斗重创了散兵，但也令其躁动不安而进入狂暴模式！\n散兵攻击获得强化，持续30回合'
+					'这场战斗重创了波奇，但也令其躁动不安而进入狂暴模式！\n波奇攻击获得强化，持续30回合'
 				);
 			}
 			if (
@@ -587,11 +587,11 @@ export class BOSS extends plugin {
 			) {
 				WorldBossStatus.isWeak = 30;
 				e.reply(
-					'BOSS不知是不是缺乏睡眠，看起来它好像虚弱了很多。\n散兵攻击、防御降低，持续30回合'
+					'BOSS不知是不是缺乏睡眠，看起来它好像虚弱了很多。\n波奇攻击、防御降低，持续30回合'
 				);
 			}
 			if (CurrentPlayerAttributes.当前血量 == 0) {
-				e.reply('很可惜您未能击败散兵，反而自身重伤，再接再厉！');
+				e.reply('很可惜您未能击败波奇，反而自身重伤，再接再厉！');
 				if (Math.random() < BattleFrame * 0.025) {
 					let ExpFormBOSS =
 						1000 +
@@ -599,7 +599,7 @@ export class BOSS extends plugin {
 							(item) => item.level_id === CurrentPlayerAttributes.level_id
 						).level_id *
 							210;
-					e.reply(`你在与散兵的打斗中突然对其招式有所领悟，修为提升${ExpFormBOSS}`);
+					e.reply(`你在与波奇的打斗中突然对其招式有所领悟，修为提升${ExpFormBOSS}`);
 					CurrentPlayerAttributes.修为 += ExpFormBOSS;
 				}
 				if (Math.random() < BattleFrame * 0.025) {
@@ -620,7 +620,7 @@ export class BOSS extends plugin {
 			//记录cd
 			await redis.set('xiuxian:player:' + usr_qq + 'BOSSCD', now_Time);
 			if (WorldBossStatus.Health == 0) {
-				e.reply('散兵被击杀！玩家们可以根据贡献获得奖励！');
+				e.reply('波奇被击杀！玩家们可以根据贡献获得奖励！');
 				await sleep(1000);
 
 				let a;
@@ -631,12 +631,12 @@ export class BOSS extends plugin {
 
 				e.reply([
 					segment.at(e.user_id),
-					'\n恭喜你亲手结果了散兵的性命,为民除害，额外获得100000灵石奖励！并在散兵身上翻到了' +
+					'\n恭喜你亲手结果了波奇的性命,为民除害，额外获得100000灵石奖励！并在波奇身上翻到了' +
 						weizhi[a].name +
 						'!',
 				]);
 				CurrentPlayerAttributes.灵石 += 100000;
-				//Bot.logger.mark(`[散兵] 结算:${e.user_id}增加奖励100000`);
+				//Bot.logger.mark(`[波奇] 结算:${e.user_id}增加奖励100000`);
 				await data.setData('player', e.user_id, CurrentPlayerAttributes);
 				let action = await redis.get('xiuxian:player:' + e.user_id + ':action');
 				action = await JSON.parse(action);
@@ -654,7 +654,7 @@ export class BOSS extends plugin {
 				for (let i = 0; i < PlayerList.length; i++)
 					await data.getData('player', PlayerRecordJSON.QQ[PlayerList[i]]);
 				let Show_MAX;
-				let Rewardmsg = ['****散兵周本贡献排行榜****'];
+				let Rewardmsg = ['****波奇周本贡献排行榜****'];
 				if (PlayerList.length > 20) Show_MAX = 20;
 				else Show_MAX = PlayerList.length;
 				let TotalDamage = 0;
@@ -688,13 +688,13 @@ export class BOSS extends plugin {
 						CurrentPlayer.灵石 += Reward;
 						await data.setData('player', PlayerRecordJSON.QQ[PlayerList[i]], CurrentPlayer);
 						//Bot.logger.mark(
-						//	`[散兵周本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励${Reward}`
+						//	`[波奇周本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励${Reward}`
 						//);
 						continue;
 					} else {
 						CurrentPlayer.灵石 += 150000;
 						//Bot.logger.mark(
-						//	`[散兵周本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励150000`
+						//	`[波奇周本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励150000`
 						//);
 						await data.setData('player', PlayerRecordJSON.QQ[PlayerList[i]], CurrentPlayer);
 					}
@@ -713,7 +713,7 @@ export class BOSS extends plugin {
 	}
 }
 
-//初始化散兵
+//初始化波奇
 async function InitWorldBoss(e) {
 	let AverageDamageStruct = await GetAverageDamage();
 	let player_quantity = parseInt(AverageDamageStruct.player_quantity);
@@ -721,7 +721,7 @@ async function InitWorldBoss(e) {
 	let fairyNums = parseInt(AverageDamageStruct.fairy_nums);
 	WorldBOSSBattleLock = 0;
 	if (player_quantity == 0) {
-		e.reply('你们甚至没有化神以上的高手，散兵不是你们能染指的，继续努力再来吧！');
+		e.reply('你们甚至没有化神以上的高手，波奇不是你们能染指的，继续努力再来吧！');
 		return -1;
 	}
 	if (player_quantity < 4) {
@@ -729,8 +729,8 @@ async function InitWorldBoss(e) {
 		player_quantity = 1;
 	}
 	let X = AverageDamage * 0.01;
-	//Bot.logger.mark(`[散兵] 化神玩家总数：${player_quantity}`);
-	//Bot.logger.mark(`[散兵] 生成基数:${X}`);
+	//Bot.logger.mark(`[波奇] 化神玩家总数：${player_quantity}`);
+	//Bot.logger.mark(`[波奇] 生成基数:${X}`);
 	let Health = Math.trunc(X * 500 * player_quantity * 3); //血量要根据人数来
 	let Attack = Math.trunc(X * player_quantity * 2);
 	let Defence = Math.trunc(X * player_quantity * 2);
@@ -753,7 +753,7 @@ async function InitWorldBoss(e) {
 	return 0;
 }
 
-//获取散兵是否已开启
+//获取波奇是否已开启
 async function BossIsAlive() {
 	return (
 		(await redis.get('Xiuxian:WorldBossStatus')) &&
@@ -875,7 +875,7 @@ async function GetAverageDamage() {
 		).level_id;
 		if (level_id >= 17) {
 			temp[TotalPlayer] = parseInt(player.攻击);
-			//Bot.logger.mark(`[散兵] ${this_qq}玩家攻击:${temp[TotalPlayer]}`);
+			//Bot.logger.mark(`[波奇] ${this_qq}玩家攻击:${temp[TotalPlayer]}`);
 			TotalPlayer++; 
 		}
 		if (level_id > 33) {

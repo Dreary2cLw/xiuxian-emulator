@@ -45,7 +45,7 @@ export class BossAll extends plugin {
 					fnc: 'BossMax',
 				},
 				{
-					reg: '^#讨伐散兵$',
+					reg: '^#讨伐波奇$',
 					fnc: 'Ssanbing',
 				},
 				{
@@ -136,7 +136,7 @@ export class BossAll extends plugin {
 			sanbing = JSON.parse(sanbing);
 			if (sanbing != null) {
 				msg.push(
-					'【散兵(活动限定))】' +
+					'【波奇(活动限定))】' +
 						'\n攻击：' +
 						sanbing.attack +
 						'\n防御：' +
@@ -150,7 +150,7 @@ export class BossAll extends plugin {
 				);
 			}
 		} else {
-			msg.push('散兵周本未开启！');
+			msg.push('波奇周本未开启！');
 		}
 		await ForwardMsg(e, msg);
 		return;
@@ -467,7 +467,7 @@ export class BossAll extends plugin {
 		let boss = await redis.get('sanbing');
 		if (boss == 0) {
 		} else {
-			e.reply('散兵未开启！');
+			e.reply('波奇未开启！');
 			return;
 		}
 		let player = await Read_player(usr_qq);
@@ -492,7 +492,7 @@ export class BossAll extends plugin {
 
 			if (sanbing != null) {
 				let B_player = {
-					名号: '散兵',
+					名号: '波奇',
 					攻击: parseInt(sanbing.attack),
 					防御: parseInt(sanbing.defense),
 					当前血量: parseInt(sanbing.blood),

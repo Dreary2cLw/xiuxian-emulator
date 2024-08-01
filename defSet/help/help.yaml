@@ -102,13 +102,13 @@
 - group: 世界副本
   list:
     - icon: help-icon_16
-      title: '#散兵/天理状态'
+      title: '#波奇/天理状态'
       desc: '仙界/人界BOSS'
     - icon: help-icon_31
-      title: '#讨伐散兵/天理'
+      title: '#讨伐波奇/天理'
       desc: '干就完了'
     - icon: help-icon_60
-      title: '#天理/散兵贡献榜'
+      title: '#天理/波奇贡献榜'
       desc: '伤害排行榜'
     - icon: help-icon_35
       title: '#怪物状态'

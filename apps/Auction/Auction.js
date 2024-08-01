@@ -9,6 +9,7 @@ import {
 	Check_thing,
 	convert2integer,
 	existplayer,
+	foundthing,
 	isNotNull,
 	Locked_najie_thing,
 	Read_najie,
@@ -336,7 +337,7 @@ export class Auction extends plugin {
 		let thing_amount = parseInt(code[2]);
 		thing_value = await convert2integer(thing_value);
 		thing_amount = await convert2integer(thing_amount);
-		let thing_data;
+		let thing_data = await foundthing(thing_name);
 		let najie = await Read_najie(usr_qq);
 		let equips = najie.装备.filter((item) => item.name == thing_name);
 		let danyaos = najie.丹药.filter((item) => item.name == thing_name);
@@ -375,7 +376,7 @@ export class Auction extends plugin {
 			return;
 		}
 		if ((await Check_thing(thing_data)) == 1) {
-			e.reply(`${thing_exist.name}特殊！`);
+			e.reply(`${thing_data.name}特殊！`);
 			return;
 		}
 		if ((await Locked_najie_thing(usr_qq, thing_name, thing_data.class)) == 1) {
@@ -443,7 +444,7 @@ export class Auction extends plugin {
 		let new_price = e.msg.replace('#竞价', '');
 		new_price = parseInt(new_price);
 		if (isNaN(new_price)) {
-			new_price = parseInt(last_price * 1.1);
+			new_price = Math.ceil(last_price * 1.1);
 		} else {
 			if (new_price <= last_price * 1.1) {
 				e.reply(`最新价格为${last_price}，每次加价不少于10 %！`);
@@ -458,7 +459,8 @@ export class Auction extends plugin {
 			auction.group_id += '|' + e.group_id;
 		}
 		const msg = `${player.名号}叫价${new_price} `;
-		auction.groupList.forEach((group_id) => pushInfo(group_id, true, msg));
+		// auction.groupList.forEach((group_id) => pushInfo(group_id, true, msg));
+		e.reply(msg)
 
 		auction.last_price = new_price;
 		auction.last_offer_player = usr_qq;

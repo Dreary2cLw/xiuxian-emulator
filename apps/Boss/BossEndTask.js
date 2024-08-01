@@ -35,7 +35,7 @@ export class BossEndTask extends plugin {
 		//银角大王
 		await redis.set('BossMini', 1);
 		await redis.del('BossMini');
-		//散兵
+		//波奇
 		await redis.set('sanbing', 1);
 		await redis.del('sanbing');
 		return;

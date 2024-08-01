@@ -39,10 +39,10 @@ export class AuctionTask extends plugin {
 		let group_ids = auction.group_id.split('|');
 		let msg = '';
 		let last_offer_price = auction.last_offer_price;
-		if (auction.last_offer_price + 5 * 60 * 1000 > nowTime) {
-			let m = parseInt((last_offer_price + 5 * 60 * 1000 - nowTime) / 1000 / 60);
+		if (auction.last_offer_price + 3 * 60 * 1000 > nowTime) {
+			let m = parseInt((last_offer_price + 3 * 60 * 1000 - nowTime) / 1000 / 60);
 			let s = parseInt(
-				(last_offer_price + 5 * 60 * 1000 - nowTime - m * 60 * 1000) / 1000
+				(last_offer_price + 3 * 60 * 1000 - nowTime - m * 60 * 1000) / 1000
 			);
 			msg = `${auction.thing.name}拍卖中，距离拍卖结束还有${m}分${s}秒，目前最高价${auction.last_price}`;
 			for (let group_id of group_ids) {

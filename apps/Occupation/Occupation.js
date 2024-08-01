@@ -1226,6 +1226,7 @@ async chose_occupation5(e) {
 
 		if (
 			danyao == '神心丹' ||
+			danyao == '鸡神丹' ||
 			danyao == '九阶淬体丹' ||
 			danyao == '九阶玄元丹' ||
 			danyao == '八阶玄元丹' ||
@@ -1351,7 +1352,7 @@ async chose_occupation5(e) {
 				tmp_msg2 += `，得到了炼器之神的眷顾，本次炼器经验翻倍`;
 				e++;
 			}
-			res_exp = exp[e];
+			res_exp = Math.floor(exp[e] * 1.05);
 			tmp_msg2 += `，获得炼器经验${res_exp}`;
 		}
 		tmp_msg1 += '消耗';

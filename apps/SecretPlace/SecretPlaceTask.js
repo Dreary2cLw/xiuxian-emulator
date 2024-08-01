@@ -526,9 +526,12 @@ action1 = JSON.parse(action1);
 								if (random2 > 0.95 && random2 <= 1) {
 									caoyao += '"仙蕴花"';
 									await Add_najie_thing(player_id, '仙蕴花', '草药', 1);
-								} else if (random2 > 0.9 && random2 <= 0.95) {
+								} else if (random2 > 0.91 && random2 <= 0.95) {
 									caoyao += '"魔蕴花"';
 									await Add_najie_thing(player_id, '魔蕴花', '草药', 1);
+								} else if (random2 > 0.9 && random2 <= 0.91) {
+									caoyao += '"鸡眼"';
+									await Add_najie_thing(player_id, '鸡眼', '草药', 1);
 								} else if (random2 > 0.88 && random2 < 0.885) {
 									caoyao += '"太玄仙草"';
 									await Add_najie_thing(player_id, '太玄仙草', '草药', 1);

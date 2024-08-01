@@ -1499,6 +1499,13 @@ export async function synchronization(e) {
 				break;
 			}
 		}
+		/*for (let i = 0; i < najie.道具.length; i++) {
+			const element = najie.道具[i];
+			if (element.name == '附魔书-精神') {
+				najie.道具[i].name = '附魔书-精神';
+				break;
+			}
+		}*/
 		for (let i = 0; i < najie.道具.length; i++) {
 			const element = najie.道具[i];
 			if (element.desc == '附魔书-力量1') {

@@ -252,6 +252,37 @@
     ]
   },
   {
+    "name": "鸡神丹",
+    "materials": [
+      {
+        "name": "鸡眼",
+        "amount": 1
+      },
+      {
+        "name": "万年天魂菊",
+        "amount": 1
+      },
+      {
+        "name": "万年清灵草",
+        "amount": 1
+      },
+      {
+        "name": "创世花",
+        "amount": 1
+      },
+      {
+        "name": "仙草",
+        "amount": 1
+      }
+    ],
+    "rate": 1,
+    "level_limit": 12,
+    "exp": [
+      2000,
+      2000
+    ]
+  },
+  {
     "name": "神赐丹",
     "materials": [
       {

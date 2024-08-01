@@ -181,8 +181,8 @@ class XiuxianData {
 		this.timedanyao_list = JSON.parse(
 			fs.readFileSync(`${this.Timelimit}/限定丹药.json`)
 		);
-		//加载散兵列表
-		this.sanbin = JSON.parse(fs.readFileSync(`${this.lib_path}/散兵列表.json`));
+		//加载波奇列表
+		this.sanbin = JSON.parse(fs.readFileSync(`${this.lib_path}/波奇列表.json`));
 		//加载职业列表
 		this.occupation_list = JSON.parse(
 			fs.readFileSync(`${this.Occupation}/职业列表.json`)
