@@ -276,7 +276,7 @@
       }
     ],
     "rate": 1,
-    "level_limit": 12,
+    "level_limit": 1,
     "exp": [
       2000,
       2000

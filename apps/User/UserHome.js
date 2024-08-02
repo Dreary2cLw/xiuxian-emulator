@@ -878,7 +878,7 @@ export class UserHome extends plugin {
             if (equipment.武器.name == "神月剑" && equipment.法宝.name == "神日花" && equipment.护具.name == "神星甲" && player.魔道值 < 1 && (player.灵根.type == "转生" || player.level_id > 41)) {
                 e.reply("你已激活日月三件套效果");
             }
-            if (equipment.武器.name == "鸡神之剑" && equipment.法宝.name == "鸡神之盔" && equipment.护具.name == "鸡神之甲") {
+            if (equipment.武器.name == "鸡神之剑" && equipment.法宝.name == "鸡神之盔" && equipment.护具.name == "鸡神之甲" && player.灵根.type == "鸡根") {
                 e.reply("你已激活鸡神套装效果，快去大杀四方吧");
             }
             if (shenqi && (equipment.护具.name == "千岩牢固" || equipment.护具.name == "下界合金甲") && (equipment.法宝.name == "下界合金头盔" || equipment.法宝.name == "智识之冠") && player.灵根.type == "元素灵根") {
@@ -1380,7 +1380,7 @@ export class UserHome extends plugin {
                 e.reply(`服用成功,当前灵根为天五灵根,你具备了称帝资格`);
                 return;
             }
-            if (this_danyao.type == "鸡神丹药") {
+            if (this_danyao.type == "鸡根") {
                 if (player.lunhui != 0) {
                     let lhxg = await redis.get("xiuxian:player:" + usr_qq + ":Player_use");
                     if (lhxg != 5) {

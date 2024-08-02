@@ -293,7 +293,8 @@ export async function Write_equipment(usr_qq, equipment) {
 	}
 	if (equipment.武器.name == "鸡神之剑" && 
 		equipment.法宝.name == "鸡神之盔" && 
-		equipment.护具.name == "鸡神之甲"
+		equipment.护具.name == "鸡神之甲" && 
+		player.灵根.type == "鸡根"
 	) {
 		player.攻击 = Math.trunc((1.2 * player.攻击)+(0.03 * player.血量上限));
 		//player.攻击 = Math.trunc(1.2 * player.攻击);
