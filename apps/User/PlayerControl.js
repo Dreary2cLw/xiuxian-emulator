@@ -106,6 +106,7 @@ export class PlayerControl extends plugin {
 				return;
 			}
 		}
+		console.log("测试1");
 
 		let action_time = time * 60 * 1000; //持续时间，单位毫秒
 		let arr = {
@@ -125,7 +126,7 @@ export class PlayerControl extends plugin {
 		if (e.isGroup) {
 			arr.group_id = e.group_id;
 		}
-
+		console.log("测试"+JSON.stringify(arr));
 		await redis.set('xiuxian:player:' + usr_qq + ':action', JSON.stringify(arr)); //redis设置动作
 		e.reply(`现在开始闭关${time}分钟,两耳不闻窗外事了`);
 
@@ -232,10 +233,10 @@ export class PlayerControl extends plugin {
 		if (state == '空闲') {
 			return;
 		}
+
 		if (action.action != '闭关') {
 			return;
 		}
-
 		//结算
 		let end_time = action.end_time;
 		let start_time = action.end_time - action.time;
@@ -378,6 +379,7 @@ export class PlayerControl extends plugin {
 	 */
 	async biguan_jiesuan(user_id, time, is_random, group_id) {
 		let usr_qq = user_id;
+		
 		await player_efficiency(usr_qq);
 		let player = data.getData('player', usr_qq);
 		let now_level_id;
@@ -401,8 +403,10 @@ export class PlayerControl extends plugin {
 		let transformation = '修为';
 		let xueqi = 0;
 		let action3 = await redis.get('xiuxian:player:' + 10 + ':biguang'); //数据放在redis里
+		
 		action3 = await JSON.parse(action3);
 		for (let i = 0; i < action3.length; i++) {
+			console.log('推送：' + JSON.stringify(action3));
 			if (action3[i].qq == usr_qq) {
 				if (action3[i].biguan > 0) {
 					action3[i].biguan--;
@@ -505,6 +509,7 @@ export class PlayerControl extends plugin {
 				}
 			} //炼丹师修正结束
 		}
+	
 		await redis.set('xiuxian:player:' + 10 + ':biguang', JSON.stringify(action3));
 		return;
 	}
