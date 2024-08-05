@@ -687,7 +687,15 @@ async chose_occupation5(e) {
 		return;
 	}
 
-	async plant_back(e) {
+	async plant_back(e) { 
+		let cooldown = await redis.get('xiuxian:cooldown:' + e.user_id);
+    	if (cooldown && parseInt(cooldown) > new Date().getTime()) {
+        e.reply('别卡了,再卡bug给你打入地牢');
+        return;
+    	}
+		let cooldownTime = 30 * 1000; // 30秒
+		await redis.set('xiuxian:cooldown:' + e.user_id, new Date().getTime() + cooldownTime);
+
 		//不开放私聊功能
 		if (!e.isGroup) {
 			return;
@@ -913,6 +921,7 @@ async chose_occupation5(e) {
 		delete arr.group_id; //结算完去除group_id
 		await redis.set('xiuxian:player:' + e.user_id + ':action', JSON.stringify(arr));
 	}
+	
 
 	async plant_jiesuan(user_id, time, is_random, group_id) {
 		let usr_qq = user_id;
@@ -1972,6 +1981,17 @@ async chose_occupation5(e) {
 	}
 
 	async shoulie_back(e) {
+
+		let cooldown = await redis.get('xiuxian:cooldown:' + e.user_id);
+    if (cooldown && parseInt(cooldown) > new Date().getTime()) {
+        e.reply('别卡了,再卡bug给你打入地牢');
+        return;
+    }
+
+    // 设置结束狩猎命令的冷却时间
+    let cooldownTime = 30 * 1000; // 30秒
+    await redis.set('xiuxian:cooldown:' + e.user_id, new Date().getTime() + cooldownTime);
+
 		//不开放私聊功能
 		if (!e.isGroup) {
 			return;

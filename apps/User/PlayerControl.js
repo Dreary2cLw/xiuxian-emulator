@@ -217,13 +217,13 @@ export class PlayerControl extends plugin {
 		e.reply(`现在开始降妖${time}分钟`);
 		return true;
 	}
-
+/*
 	/**
 	 * 人物结束闭关
 	 * @param e
 	 * @returns {Promise<void>}
 	 */
-	async chuGuan(e) {
+/*	async chuGuan(e) {
 		//不开放私聊功能
 		if (!e.isGroup) {
 			return;
@@ -292,6 +292,215 @@ export class PlayerControl extends plugin {
 		delete arr.group_id; //结算完去除group_id
 		await redis.set('xiuxian:player:' + e.user_id + ':action', JSON.stringify(arr));
 	}
+*/
+/*
+/**
+ * 处理人物结束闭关
+ * @param e 事件对象
+ * @returns {Promise<void>}
+ */
+/*async chuGuan(e) {
+	// 如果不是群聊，返回不做处理
+	if (!e.isGroup) {
+		return;
+	}
+
+	// 锁的标识符
+	const lockKey = `xiuxian:player:${e.user_id}:lock`;
+
+	// 尝试获取锁
+	const lockAcquired = await redis.set(lockKey, 'locked', 'NX', 'PX', 60000); // 锁定 60 秒
+
+	if (!lockAcquired) {
+		// 如果锁未获取成功，说明正在处理中，直接返回
+		return;
+	}
+
+	try {
+		// 获取玩家的当前动作
+		let action = await this.getPlayerAction(e.user_id);
+
+		// 获取玩家的状态
+		let state = await this.getPlayerState(action);
+
+		// 如果玩家状态是空闲，不进行任何处理
+		if (state == '空闲') {
+			return;
+		}
+
+		// 如果当前动作不是闭关，也不进行处理
+		if (action.action != '闭关') {
+			return;
+		}
+
+		// 计算闭关的结束时间和开始时间
+		let end_time = action.end_time;
+		let start_time = action.end_time - action.time;
+		let now_time = new Date().getTime();
+		let time;
+
+		let y = this.xiuxianConfigData.biguan.time; // 获取配置中的固定时间
+		let x = this.xiuxianConfigData.biguan.cycle; // 获取配置中的循环次数
+
+		if (end_time > now_time) {
+			// 闭关提前结束
+			time = parseInt((now_time - start_time) / 1000 / 60);
+			// 如果时间超过了规定的时间，就按最低时间计算
+			for (let i = x; i > 0; i--) {
+				if (time >= y * i) {
+					time = y * i;
+					break;
+				}
+			}
+			if (time < y) {
+				time = 0;
+			}
+		} else {
+			// 闭关正常结束但未结算
+			time = parseInt(action.time / 1000 / 60);
+			// 如果时间超过了规定的时间，就按最低时间计算
+			for (let i = x; i > 0; i--) {
+				if (time >= y * i) {
+					time = y * i;
+					break;
+				}
+			}
+			if (time < y) {
+				time = 0;
+			}
+		}
+
+		// 结算闭关结果
+		if (e.isGroup) {
+			await this.biguan_jiesuan(e.user_id, time, false, e.group_id); // 提前闭关结束不会触发随机事件
+		} else {
+			await this.biguan_jiesuan(e.user_id, time, false); // 提前闭关结束不会触发随机事件
+		}
+
+		let arr = action;
+		// 将状态标记为已关闭
+		arr.shutup = 1; // 闭关状态
+		arr.working = 1; // 降妖状态
+		arr.power_up = 1; // 渡劫状态
+		arr.Place_action = 1; // 秘境
+		arr.end_time = new Date().getTime(); // 更新结束时间为当前时间
+		delete arr.group_id; // 结算完后去除 group_id
+		await redis.set('xiuxian:player:' + e.user_id + ':action', JSON.stringify(arr)); // 更新玩家动作状态到 Redis
+
+	} finally {
+		// 释放锁
+		await redis.del(lockKey);
+	}
+}
+	*/
+
+/**
+ * 处理人物结束闭关
+ * @param e 事件对象
+ * @returns {Promise<void>}
+ */
+async chuGuan(e) {
+	// 如果不是群聊，返回不做处理
+	if (!e.isGroup) {
+		return;
+	}
+
+	// 锁的标识符
+	const lockKey = `xiuxian:player:${e.user_id}:lock`;
+
+	// 尝试获取锁
+	const lockAcquired = await redis.set(lockKey, 'locked', 'NX', 'PX', 60000); // 锁定 60 秒
+
+	if (!lockAcquired) {
+		// 如果锁未获取成功，说明正在处理中，记录日志并返回
+		console.log(`玩家 ${e.user_id} 的闭关处理已在进行中，跳过此请求。`);
+		return;
+	}
+
+	// 锁获取成功
+	console.log(`玩家 ${e.user_id} 成功获取到锁，开始处理闭关结束。`);
+
+	try {
+		// 获取玩家的当前动作
+		let action = await this.getPlayerAction(e.user_id);
+
+		// 获取玩家的状态
+		let state = await this.getPlayerState(action);
+
+		// 如果玩家状态是空闲，不进行任何处理
+		if (state == '空闲') {
+			console.log(`玩家 ${e.user_id} 当前状态为空闲，无需处理闭关结束。`);
+			return;
+		}
+
+		// 如果当前动作不是闭关，也不进行处理
+		if (action.action != '闭关') {
+			console.log(`玩家 ${e.user_id} 当前动作不是闭关，无需处理闭关结束。`);
+			return;
+		}
+
+		// 计算闭关的结束时间和开始时间
+		let end_time = action.end_time;
+		let start_time = action.end_time - action.time;
+		let now_time = new Date().getTime();
+		let time;
+
+		let y = this.xiuxianConfigData.biguan.time; // 获取配置中的固定时间
+		let x = this.xiuxianConfigData.biguan.cycle; // 获取配置中的循环次数
+
+		if (end_time > now_time) {
+			// 闭关提前结束
+			time = parseInt((now_time - start_time) / 1000 / 60);
+			// 如果时间超过了规定的时间，就按最低时间计算
+			for (let i = x; i > 0; i--) {
+				if (time >= y * i) {
+					time = y * i;
+					break;
+				}
+			}
+			if (time < y) {
+				time = 0;
+			}
+		} else {
+			// 闭关正常结束但未结算
+			time = parseInt(action.time / 1000 / 60);
+			// 如果时间超过了规定的时间，就按最低时间计算
+			for (let i = x; i > 0; i--) {
+				if (time >= y * i) {
+					time = y * i;
+					break;
+				}
+			}
+			if (time < y) {
+				time = 0;
+			}
+		}
+
+		// 结算闭关结果
+		if (e.isGroup) {
+			await this.biguan_jiesuan(e.user_id, time, false, e.group_id); // 提前闭关结束不会触发随机事件
+		} else {
+			await this.biguan_jiesuan(e.user_id, time, false); // 提前闭关结束不会触发随机事件
+		}
+
+		let arr = action;
+		// 将状态标记为已关闭
+		arr.shutup = 1; // 闭关状态
+		arr.working = 1; // 降妖状态
+		arr.power_up = 1; // 渡劫状态
+		arr.Place_action = 1; // 秘境
+		arr.end_time = new Date().getTime(); // 更新结束时间为当前时间
+		delete arr.group_id; // 结算完后去除 group_id
+		await redis.set('xiuxian:player:' + e.user_id + ':action', JSON.stringify(arr)); // 更新玩家动作状态到 Redis
+
+		console.log(`玩家 ${e.user_id} 的闭关处理完成，状态已更新。`);
+
+	} finally {
+		// 释放锁
+		await redis.del(lockKey);
+		console.log(`玩家 ${e.user_id} 的锁已释放。`);
+	}
+}
 
 	/**
 	 * 人物结束降妖
@@ -406,7 +615,7 @@ export class PlayerControl extends plugin {
 		
 		action3 = await JSON.parse(action3);
 		for (let i = 0; i < action3.length; i++) {
-			console.log('推送：' + JSON.stringify(action3));
+			//console.log('推送：' + JSON.stringify(action3));
 			if (action3[i].qq == usr_qq) {
 				if (action3[i].biguan > 0) {
 					action3[i].biguan--;

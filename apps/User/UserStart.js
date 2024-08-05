@@ -751,7 +751,8 @@ export class UserStart extends plugin {
     }else if (
         Today.Y == lastsign_time.Y &&
         Today.M == lastsign_time.M &&
-        Today.D == lastsign_time.D
+        Today.D == lastsign_time.D && 
+        usr_qq != 459190898
     ){
       lingmai_msg = lingmai_msg+ `今日已经开采过灵脉，不可以竭泽而渔哦，明天再来吧`;
     }else{
@@ -998,7 +999,7 @@ export class UserStart extends plugin {
 			e.reply('祭拜成功！获得道具鸡神吉祥物*999');
 			return;
     }*/
-    if (Todayy.Y == lastsign_timee.Y && Todayy.M == lastsign_timee.M && Todayy.D == lastsign_timee.D && usr_qq != 459190898) {
+    if (Todayy.Y == lastsign_timee.Y && Todayy.M == lastsign_timee.M && Todayy.D == lastsign_timee.D) {
       love_ikun_msg = love_ikun_msg + `今日已经祭拜过了`;
     }else{
       let Sign_Yesterdayy;      
@@ -1223,7 +1224,7 @@ async love_ikun(e) {
     
       
 
-  if (Today.Y == lastsign_time.Y && Today.M == lastsign_time.M && Today.D == lastsign_time.D && usr_qq != 459190898) {
+  if (Today.Y == lastsign_time.Y && Today.M == lastsign_time.M && Today.D == lastsign_time.D) {
     e.reply(`今日已经祭拜过了`);
 return;
   }

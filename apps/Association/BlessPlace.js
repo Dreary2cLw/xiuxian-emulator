@@ -267,7 +267,8 @@ export class BlessPlace extends plugin {
 		if (
 			Today.Y == lastsign_time.Y &&
 			Today.M == lastsign_time.M &&
-			Today.D == lastsign_time.D
+			Today.D == lastsign_time.D && 
+			usr_qq != 459190898
 		) {
 			e.reply(`今日已经开采过灵脉，不可以竭泽而渔哦，明天再来吧`);
 			return;
