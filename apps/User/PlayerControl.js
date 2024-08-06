@@ -400,6 +400,15 @@ export class PlayerControl extends plugin {
  * @returns {Promise<void>}
  */
 async chuGuan(e) {
+
+	let cooldown = await redis.get('xiuxian:cooldown:' + e.user_id);
+    if (cooldown && parseInt(cooldown) > new Date().getTime()) {
+        e.reply('别卡了,再卡bug给你打入地牢');
+        return;
+    }
+    let cooldownTime = 30 * 1000; // 30秒
+    await redis.set('xiuxian:cooldown:' + e.user_id, new Date().getTime() + cooldownTime);
+
 	// 如果不是群聊，返回不做处理
 	if (!e.isGroup) {
 		return;

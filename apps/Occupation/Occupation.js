@@ -1982,13 +1982,11 @@ async chose_occupation5(e) {
 
 	async shoulie_back(e) {
 
-		let cooldown = await redis.get('xiuxian:cooldown:' + e.user_id);
+	let cooldown = await redis.get('xiuxian:cooldown:' + e.user_id);
     if (cooldown && parseInt(cooldown) > new Date().getTime()) {
         e.reply('别卡了,再卡bug给你打入地牢');
         return;
     }
-
-    // 设置结束狩猎命令的冷却时间
     let cooldownTime = 30 * 1000; // 30秒
     await redis.set('xiuxian:cooldown:' + e.user_id, new Date().getTime() + cooldownTime);
 

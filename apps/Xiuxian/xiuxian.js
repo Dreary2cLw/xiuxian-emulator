@@ -2208,17 +2208,17 @@ export async function Gaodenyuansulun(
 		}
 	}
 	//鸡神之剑
-	/*if (equipment.武器.name == '鸡神之剑') {
+	if (equipment.武器.name == '鸡神之剑') {
 		let random = Math.random();
-		if (random > 0.5) {
+		if (random < 1) {
 			msg.push(
-				A_player.名号 + '获得了鸡神的祝福'
+				A_player.名号 + '获得了鸡神的祝福,攻击力和血量上限提升1900%'
 			);
-			if (A_lin == yuansu[1] && equipment.武器.fumo == '精神') {
+			att *= 200;	
+			A_player.血量上限 * 200
 
-			}
 		}
-	}*/
+	}
 	//护摩之杖
 	if (equipment.武器.name == '护摩之杖') {
 		let random = Math.random();

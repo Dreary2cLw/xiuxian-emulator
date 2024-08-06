@@ -7,6 +7,7 @@ import {
 	Add_修为,
 	Add_灵石,
 	Add_血气,
+	Add_幸运,
 	Check_thing,
 	exist_najie_thing,
 	existplayer,
@@ -352,7 +353,7 @@ export class UserSellAll extends plugin {
 		}
 		await Write_shop(shop);
 		e.reply('洗劫状态同步结束');
-		let player = await data.getData('player', usr_qq);
+		/*let player = await data.getData('player', usr_qq);
 		e.reply('运气同步开始');
 		//更新面板
 		let equipment = await Read_equipment(usr_qq);
@@ -391,7 +392,48 @@ export class UserSellAll extends plugin {
 		await Write_player(usr_qq, player);
 		e.reply('运气同步结束');
 		return;
+	}*/
+
+	let player = await data.getData('player', usr_qq);
+	e.reply('运气同步开始');
+	//更新面板
+	let equipment = await Read_equipment(usr_qq);
+	if (!isNotNull(player.幸运)) {
+		player.幸运 = 0;
 	}
+	if (!isNotNull(player.addluckyNo)) {
+		player.addluckyNo = 0;
+	}
+	if (!isNotNull(equipment.项链)) {
+		equipment.项链 = data.necklace_list.find((item) => item.name == '幸运儿');
+		player.幸运 += data.necklace_list.find((item) => item.name == '幸运儿').加成;
+	}
+	if (equipment.项链.属性 == '幸运') {
+		if (
+			player.仙宠.type == '幸运' &&
+			player.幸运 != player.仙宠.加成 + equipment.项链.加成 + player.addluckyNo
+		) {
+			player.幸运 = player.仙宠.加成 + player.addluckyNo + equipment.项链.加成;
+		} else if (
+			player.仙宠.type != '幸运' &&
+			player.幸运 != equipment.项链.加成 + player.addluckyNo
+		) {
+			player.幸运 = player.addluckyNo + equipment.项链.加成;
+		}
+	} else {
+		if (
+			player.仙宠.type == '幸运' &&
+			player.幸运 != player.仙宠.加成 + player.addluckyNo
+		) {
+			player.幸运 = player.仙宠.加成 + player.addluckyNo;
+		} else if (player.仙宠.type != '幸运' && player.幸运 != player.addluckyNo) {
+			player.幸运 = player.addluckyNo;
+		}
+	}
+	await Write_player(usr_qq, player);
+	e.reply('运气同步结束');
+	return;
+}
 
 	//一键出售
 	async Sell_all_comodities(e) {

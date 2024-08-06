@@ -1744,6 +1744,16 @@ export class UserHome extends plugin {
                     return
                 }
             }
+
+            if (thing_name == "幸运盒子") {
+                let math = Math.random();
+                if (math < 1) {
+                    await Add_幸运(usr_qq, 0.01);
+                    await Add_najie_thing(usr_qq, "幸运盒子", "道具", -1);
+                    e.reply(["你打开了幸运盒子，获得了幸运值+1%"]);
+                    return
+                }
+            }
             
             
 
