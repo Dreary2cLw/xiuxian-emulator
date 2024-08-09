@@ -181,6 +181,12 @@ export async function Write_equipment(usr_qq, equipment) {
 	//每次写入都要更新新的攻防生
 	//
 	let player = await Read_player(usr_qq);
+	player.幸运 = player.addluckyNo
+	if (equipment.项链.属性 == '幸运') player.幸运 += equipment.项链.加成
+	if (player.仙宠.type == '幸运')player.幸运 +=  player.仙宠.加成
+	if (player.额外幸运) player.幸运 +=  player.额外幸运
+	player.幸运 = Number((player.幸运).toFixed(5))
+  
 	if (!isNotNull(player.level_id)) {
 		await e.reply('请先#一键同步');
 		return;
@@ -358,6 +364,8 @@ export async function Add_灵石(usr_qq, 灵石数量 = 0) {
 export async function Add_幸运(usr_qq, 幸运 = 0) {
 	let player = await Read_player(usr_qq);
 	player.幸运 += 幸运;
+	if (!player.额外幸运) player.额外幸运 = 0
+	player.额外幸运 += 幸运;
 	await Write_player(usr_qq, player);
 	return;
 }

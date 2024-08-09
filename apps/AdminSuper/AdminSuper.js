@@ -1564,28 +1564,35 @@ export async function synchronization(e) {
 			equipment.项链 = data.necklace_list.find((item) => item.name == '幸运儿');
 			player.幸运 += data.necklace_list.find((item) => item.name == '幸运儿').加成;
 		}
-		if (equipment.项链.属性 == '幸运') {
-			if (
-				player.仙宠.type == '幸运' &&
-				player.幸运 != player.仙宠.加成 + equipment.项链.加成 + player.addluckyNo
-			) {
-				player.幸运 = player.仙宠.加成 + player.addluckyNo + equipment.项链.加成;
-			} else if (
-				player.仙宠.type != '幸运' &&
-				player.幸运 != equipment.项链.加成 + player.addluckyNo
-			) {
-				player.幸运 = player.addluckyNo + equipment.项链.加成;
-			}
-		} else {
-			if (
-				player.仙宠.type == '幸运' &&
-				player.幸运 != player.仙宠.加成 + player.addluckyNo
-			) {
-				player.幸运 = player.仙宠.加成 + player.addluckyNo;
-			} else if (player.仙宠.type != '幸运' && player.幸运 != player.addluckyNo) {
-				player.幸运 = player.addluckyNo;
-			}
-		}
+
+		player.幸运 = player.addluckyNo
+		if (equipment.项链.属性 == '幸运') player.幸运 += equipment.项链.加成
+		if (player.仙宠.type == '幸运')player.幸运 +=  player.仙宠.加成
+		if (player.额外幸运) player.幸运 +=  player.额外幸运
+		player.幸运 = Number((player.幸运).toFixed(5))
+
+		// if (equipment.项链.属性 == '幸运') {
+		// 	if (
+		// 		player.仙宠.type == '幸运' &&
+		// 		player.幸运 != player.仙宠.加成 + equipment.项链.加成 + player.addluckyNo
+		// 	) {
+		// 		player.幸运 = player.仙宠.加成 + player.addluckyNo + equipment.项链.加成;
+		// 	} else if (
+		// 		player.仙宠.type != '幸运' &&
+		// 		player.幸运 != equipment.项链.加成 + player.addluckyNo
+		// 	) {
+		// 		player.幸运 = player.addluckyNo + equipment.项链.加成;
+		// 	}
+		// } else {
+		// 	if (
+		// 		player.仙宠.type == '幸运' &&
+		// 		player.幸运 != player.仙宠.加成 + player.addluckyNo
+		// 	) {
+		// 		player.幸运 = player.仙宠.加成 + player.addluckyNo;
+		// 	} else if (player.仙宠.type != '幸运' && player.幸运 != player.addluckyNo) {
+		// 		player.幸运 = player.addluckyNo;
+		// 	}
+		// }
 		if (!isNotNull(equipment.武器.fumo)) {
 			equipment.武器.fumo = '无';
 		}

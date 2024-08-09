@@ -355,86 +355,78 @@ export class UserSellAll extends plugin {
 		e.reply('洗劫状态同步结束');
 		/*let player = await data.getData('player', usr_qq);
 		e.reply('运气同步开始');
-		//更新面板
-		let equipment = await Read_equipment(usr_qq);
-		if (!isNotNull(player.幸运)) {
-			player.幸运 = 0;
-		}
-		if (!isNotNull(player.addluckyNo)) {
-			player.addluckyNo = 0;
-		}
-		if (!isNotNull(equipment.项链)) {
-			equipment.项链 = data.necklace_list.find((item) => item.name == '幸运儿');
-			player.幸运 += data.necklace_list.find((item) => item.name == '幸运儿').加成;
-		}
-		if (equipment.项链.属性 == '幸运') {
-			if (
-				player.仙宠.type == '幸运' &&
-				player.幸运 != player.仙宠.加成 + equipment.项链.加成 + player.addluckyNo
-			) {
-				player.幸运 = player.仙宠.加成 + player.addluckyNo + equipment.项链.加成;
-			} else if (
-				player.仙宠.type != '幸运' &&
-				player.幸运 != equipment.项链.加成 + player.addluckyNo
-			) {
-				player.幸运 = player.addluckyNo + equipment.项链.加成;
+		async function UpdatePlayerLuck(usr_qq) {
+			try {
+				// 读取玩家数据
+				let player = await Read_player(usr_qq);
+		
+				// 初始化运气和额外幸运值
+				if (player.幸运 === undefined || player.幸运 === null) {
+					player.幸运 = 0;
+				}
+				if (player.addluckyNo === undefined || player.addluckyNo === null) {
+					player.addluckyNo = 0;
+				}
+		
+				// 读取装备数据
+				let equipment = await Read_equipment(usr_qq);
+		
+				// 检查并应用项链加成
+				if (equipment.项链 === undefined || equipment.项链 === null) {
+					equipment.项链 = data.necklace_list.find((item) => item.name === '幸运儿');
+					if (equipment.项链 && equipment.项链.属性 === '幸运') {
+						player.幸运 += equipment.项链.加成;
+					}
+				}
+		
+				// 根据装备和宠物类型重新计算运气值
+				if (equipment.项链 && equipment.项链.属性 === '幸运') {
+					if (player.仙宠 && player.仙宠.type === '幸运') {
+						player.幸运 = player.仙宠.加成 + player.addluckyNo + equipment.项链.加成;
+					} else {
+						player.幸运 = player.addluckyNo + equipment.项链.加成;
+					}
+				} else {
+					if (player.仙宠 && player.仙宠.type === '幸运') {
+						player.幸运 = player.仙宠.加成 + player.addluckyNo;
+					} else {
+						player.幸运 = player.addluckyNo;
+					}
+				}
+		
+				// 更新玩家数据
+				await Write_player(usr_qq, player);
+				e.reply('运气同步结束');
+			} catch (error) {
+				console.error('更新玩家运气值时出错:', error);
+				e.reply('运气同步失败，请稍后再试');
 			}
-		} else {
-			if (
-				player.仙宠.type == '幸运' &&
-				player.幸运 != player.仙宠.加成 + player.addluckyNo
-			) {
-				player.幸运 = player.仙宠.加成 + player.addluckyNo;
-			} else if (player.仙宠.type != '幸运' && player.幸运 != player.addluckyNo) {
-				player.幸运 = player.addluckyNo;
-			}
 		}
+		
+	}*/
+	/*let player = await data.getData('player', usr_qq);
+		e.reply('运气同步开始');
 		await Write_player(usr_qq, player);
 		e.reply('运气同步结束');
 		return;
 	}*/
-
 	let player = await data.getData('player', usr_qq);
-	e.reply('运气同步开始');
-	//更新面板
+		e.reply('运气同步开始');
 	let equipment = await Read_equipment(usr_qq);
-	if (!isNotNull(player.幸运)) {
-		player.幸运 = 0;
-	}
-	if (!isNotNull(player.addluckyNo)) {
-		player.addluckyNo = 0;
-	}
-	if (!isNotNull(equipment.项链)) {
-		equipment.项链 = data.necklace_list.find((item) => item.name == '幸运儿');
-		player.幸运 += data.necklace_list.find((item) => item.name == '幸运儿').加成;
-	}
-	if (equipment.项链.属性 == '幸运') {
-		if (
-			player.仙宠.type == '幸运' &&
-			player.幸运 != player.仙宠.加成 + equipment.项链.加成 + player.addluckyNo
-		) {
-			player.幸运 = player.仙宠.加成 + player.addluckyNo + equipment.项链.加成;
-		} else if (
-			player.仙宠.type != '幸运' &&
-			player.幸运 != equipment.项链.加成 + player.addluckyNo
-		) {
-			player.幸运 = player.addluckyNo + equipment.项链.加成;
+		if (!isNotNull(equipment.项链)) {
+			equipment.项链 = data.necklace_list.find((item) => item.name == '幸运儿');
+			player.幸运 += data.necklace_list.find((item) => item.name == '幸运儿').加成;
 		}
-	} else {
-		if (
-			player.仙宠.type == '幸运' &&
-			player.幸运 != player.仙宠.加成 + player.addluckyNo
-		) {
-			player.幸运 = player.仙宠.加成 + player.addluckyNo;
-		} else if (player.仙宠.type != '幸运' && player.幸运 != player.addluckyNo) {
-			player.幸运 = player.addluckyNo;
-		}
-	}
-	await Write_player(usr_qq, player);
-	e.reply('运气同步结束');
-	return;
-}
 
+		player.幸运 = player.addluckyNo
+		if (equipment.项链.属性 == '幸运') player.幸运 += equipment.项链.加成
+		if (player.仙宠.type == '幸运')player.幸运 +=  player.仙宠.加成
+		if (player.额外幸运) player.幸运 +=  player.额外幸运
+		player.幸运 = Number((player.幸运).toFixed(5))
+		await Write_player(usr_qq, player);
+				e.reply('运气同步结束');
+			}
+		
 	//一键出售
 	async Sell_all_comodities(e) {
 		//不开放私聊功能

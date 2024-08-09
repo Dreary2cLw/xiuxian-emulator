@@ -1087,7 +1087,7 @@ async chose_occupation5(e) {
 		//不开放私聊功能
 		if (!e.isGroup) {
 			return;
-		}
+		}		
 		let action = await redis.get('xiuxian:player:' + 10 + ':biguang');
 		action = await JSON.parse(action);
 		let usr_qq = e.user_id;

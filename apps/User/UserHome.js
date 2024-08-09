@@ -82,11 +82,40 @@ export class UserHome extends plugin {
                 reg: '^#供奉奇怪的石头$',
                 fnc: 'Add_lhd'
             }, {
+                reg: '^#献祭(波奇|阿巴)$',
+                fnc: 'xianji'
+            }, {
                 reg: '^#活动兑换.*$',
                 fnc: 'huodong'
             }]
         })
         this.xiuxianConfigData = config.getConfig("xiuxian", "xiuxian");
+    }
+
+    async xianji(e) {
+        if (!e.isGroup) {
+            return;
+        }
+        let usr_qq = e.user_id;
+        let thing = e.msg.replace("#", '');
+        thing = thing.replace("献祭", '');
+        if (thing == "波奇" && usr_qq != 459190898) {
+                e.reply("恭喜增加10%的幸运值")
+        setTimeout(async () => {
+            await e.reply([
+                segment.at(e.user_id),
+                `\n其实是骗你玩的,根本没有给你加`,
+            ]);
+        }, 30000);
+            }
+        if (thing == "波奇" && usr_qq == 459190898) {
+            await Add_幸运(usr_qq, 0.1)
+            e.reply("恭喜增加10%的幸运值")
+        }
+        if (thing == "阿巴") {
+                e.reply("咕咕咕2")
+            }
+            return
     }
 
     async huodong(e) {
@@ -1695,13 +1724,20 @@ export class UserHome extends plugin {
 
             if (thing_name == "鸡神吉祥物") {
                 let daoju = await exist_najie_thing(usr_qq, thing_name, "道具");
-                if(daoju<8){
-                let needed = 8 - daoju; // 计算还需多少道具
+                let qilinYa = await exist_najie_thing(usr_qq, "麒麟牙", "材料");
+
+                if(daoju<7){
+                let needed = 7 - daoju; // 计算还需多少道具
                 e.reply(thing_name + '数量不足！还需要' + needed + '个' + thing_name + '才能兑换，穷比快去刷秘境');
                 return;
             }
+            if (qilinYa < 1) {
+                e.reply("麒麟牙数量不足，无法消耗成功！");
+                return;
+            }
                 await Add_najie_thing(usr_qq, "鸡神的羽毛", "道具", 1);
-                await Add_najie_thing(usr_qq, "鸡神吉祥物", "道具", -8);
+                await Add_najie_thing(usr_qq, "麒麟牙", "材料", -1);
+                await Add_najie_thing(usr_qq, "鸡神吉祥物", "道具", -7);
 
                 e.reply("成功获得道具鸡神的羽毛*1");
             }
