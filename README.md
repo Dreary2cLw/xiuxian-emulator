@@ -10,7 +10,7 @@
 > Yunzai-Bot/目录下执行
 
 ```
-git clone  https://gitee.com/YUAN__YU/longlife.git ./plugins/xiuxian-emulator-plugin/
+git clone  https://gitee.com/so_numb/xiuxian-emulator-plugin.git ./plugins/xiuxian-emulator-plugin/
 ```         
 
 ## 转移存档
