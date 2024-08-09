@@ -59,7 +59,7 @@ export class PlayerControlTask extends plugin {
 					}
 				}
 				//最后发送的消息
-				let msg = [segment.at(player_id)];
+				let msg = [];
 				//动作结束时间
 				let end_time = action.end_time;
 				//现在的时间

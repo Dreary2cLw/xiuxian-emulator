@@ -3,6 +3,9 @@ import fs from 'fs';
 import path from 'path';
 import data from '../../model/XiuxianData.js';
 import config from '../../model/Config.js';
+import puppeteer from '/root/Yunzai/lib/puppeteer/puppeteer.js';
+import Show from '../../model/show.js';
+
 
 /**
  * 全局
@@ -39,6 +42,7 @@ export const __PATH = {
 	renwu: path.join(__dirname, '/resources/data/renwu'),
     map: path.join(__dirname, '/resources/data/map'),
 	equipment_pifu_path: path.join(__dirname, '/resources/img/equipment_pifu'),
+	temp_path: path.join(__dirname, '/resources/data/temp'),
 };
 let xiuxianSetFile =
 	'./plugins/xiuxian-emulator-plugin/config/xiuxian/xiuxian.yaml';
@@ -3833,6 +3837,115 @@ export async function find_tudi(A) {
 		return shitu[i].师徒;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * 通用消息图片
+ * @return image
+ */
+export async function get_log_img(e){
+	let log2=e
+	let log={
+	  log:log2
+	}
+  
+	const data1 = await new Show(e).get_log(log);
+	return await puppeteer.screenshot('log', {
+	  ...data1,
+	});
+  }
+  
+  
+  /**
+   * 沉迷消息图片
+   * @return image
+   */
+  export async function get_log2_img(e){
+	let log2=e
+	let log={
+	  log:log2
+	}
+  
+	const data1 = await new Show(e).get_log2(log);
+	return await puppeteer.screenshot('log2', {
+	  ...data1,
+	});
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  export async function Read_temp() {
+	let dir = path.join(`${__PATH.temp_path}/temp.json`);
+	let temp = fs.readFileSync(dir, 'utf8', (err, data) => {
+	  if (err) {
+		console.log(err);
+		return 'error';
+	  }
+	  return data;
+	});
+	//将字符串数据转变成数组格式
+	temp = JSON.parse(temp);
+	return temp;
+  }
+  
+  export async function Write_temp(temp) {
+	let dir = path.join(__PATH.temp_path, `temp.json`);
+	let new_ARR = JSON.stringify(temp, '', '\t');
+	fs.writeFileSync(dir, new_ARR, 'utf8', err => {
+	  console.log('写入成功', err);
+	});
+	return;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export async function anti_cheating(e) {
 	let memberMap = await e.group.getMemberMap();

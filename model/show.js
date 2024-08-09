@@ -665,4 +665,37 @@ async get_mapData(myData) {
 			...myData,
 		};
 	}
+
+
+
+  	//通用消息
+    async get_log(myData) {
+        this.model = 'log';
+        return {
+            ...this.screenData,
+            saveId: 'log',
+            ...myData,
+        };
+    }	
+
+  	//沉迷消息
+    async get_log2(myData) {
+        this.model = 'log2';
+        return {
+            ...this.screenData,
+            saveId: 'log2',
+            ...myData,
+        };
+    }
+
+
+    //temp
+    async get_battleData(myData) {
+        this.model = 'battle';
+        return {
+        	...this.screenData,
+        	saveId: 'battle',
+        	...myData,
+        };
+    }
 }

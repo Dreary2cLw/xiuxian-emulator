@@ -7,7 +7,6 @@ import {
 	Add_修为,
 	Add_灵石,
 	Add_血气,
-	Add_幸运,
 	Check_thing,
 	exist_najie_thing,
 	existplayer,
@@ -21,6 +20,7 @@ import {
 	isNotNull,
 	Write_player,
 	__PATH,
+	get_log_img,
 } from '../Xiuxian/xiuxian.js';
 import { get_equipment_img } from '../ShowImeg/showData.js';
 import { synchronization } from '../AdminSuper/AdminSuper.js';
@@ -43,6 +43,15 @@ import {Read_shop, Write_shop} from "../Xijie/Xijie.js";
  * 锁定/解锁
  */
 let allaction = false;
+
+
+export const verc = ({ e }) => {
+	//  const { whitecrowd, blackid } = config.getConfig('parameter', 'namelist');
+	//  if (whitecrowd.indexOf(e.group_id) == -1) return false;
+	//  if (blackid.indexOf(e.user_id.toString().replace('qg_','')) != -1) return false;
+	  return true;
+	};
+
 
 export class UserSellAll extends plugin {
 	constructor() {
@@ -353,144 +362,218 @@ export class UserSellAll extends plugin {
 		}
 		await Write_shop(shop);
 		e.reply('洗劫状态同步结束');
-		/*let player = await data.getData('player', usr_qq);
+		let player = await data.getData('player', usr_qq);
 		e.reply('运气同步开始');
-		async function UpdatePlayerLuck(usr_qq) {
-			try {
-				// 读取玩家数据
-				let player = await Read_player(usr_qq);
-		
-				// 初始化运气和额外幸运值
-				if (player.幸运 === undefined || player.幸运 === null) {
-					player.幸运 = 0;
-				}
-				if (player.addluckyNo === undefined || player.addluckyNo === null) {
-					player.addluckyNo = 0;
-				}
-		
-				// 读取装备数据
-				let equipment = await Read_equipment(usr_qq);
-		
-				// 检查并应用项链加成
-				if (equipment.项链 === undefined || equipment.项链 === null) {
-					equipment.项链 = data.necklace_list.find((item) => item.name === '幸运儿');
-					if (equipment.项链 && equipment.项链.属性 === '幸运') {
-						player.幸运 += equipment.项链.加成;
-					}
-				}
-		
-				// 根据装备和宠物类型重新计算运气值
-				if (equipment.项链 && equipment.项链.属性 === '幸运') {
-					if (player.仙宠 && player.仙宠.type === '幸运') {
-						player.幸运 = player.仙宠.加成 + player.addluckyNo + equipment.项链.加成;
-					} else {
-						player.幸运 = player.addluckyNo + equipment.项链.加成;
-					}
-				} else {
-					if (player.仙宠 && player.仙宠.type === '幸运') {
-						player.幸运 = player.仙宠.加成 + player.addluckyNo;
-					} else {
-						player.幸运 = player.addluckyNo;
-					}
-				}
-		
-				// 更新玩家数据
-				await Write_player(usr_qq, player);
-				e.reply('运气同步结束');
-			} catch (error) {
-				console.error('更新玩家运气值时出错:', error);
-				e.reply('运气同步失败，请稍后再试');
-			}
+		//更新面板
+		let equipment = await Read_equipment(usr_qq);
+		if (!isNotNull(player.幸运)) {
+			player.幸运 = 0;
 		}
-		
-	}*/
-	/*let player = await data.getData('player', usr_qq);
-		e.reply('运气同步开始');
-		await Write_player(usr_qq, player);
-		e.reply('运气同步结束');
-		return;
-	}*/
-	let player = await data.getData('player', usr_qq);
-		e.reply('运气同步开始');
-	let equipment = await Read_equipment(usr_qq);
+		if (!isNotNull(player.addluckyNo)) {
+			player.addluckyNo = 0;
+		}
 		if (!isNotNull(equipment.项链)) {
 			equipment.项链 = data.necklace_list.find((item) => item.name == '幸运儿');
 			player.幸运 += data.necklace_list.find((item) => item.name == '幸运儿').加成;
 		}
-
-		player.幸运 = player.addluckyNo
-		if (equipment.项链.属性 == '幸运') player.幸运 += equipment.项链.加成
-		if (player.仙宠.type == '幸运')player.幸运 +=  player.仙宠.加成
-		if (player.额外幸运) player.幸运 +=  player.额外幸运
-		player.幸运 = Number((player.幸运).toFixed(5))
+		if (equipment.项链.属性 == '幸运') {
+			if (
+				player.仙宠.type == '幸运' &&
+				player.幸运 != player.仙宠.加成 + equipment.项链.加成 + player.addluckyNo
+			) {
+				player.幸运 = player.仙宠.加成 + player.addluckyNo + equipment.项链.加成;
+			} else if (
+				player.仙宠.type != '幸运' &&
+				player.幸运 != equipment.项链.加成 + player.addluckyNo
+			) {
+				player.幸运 = player.addluckyNo + equipment.项链.加成;
+			}
+		} else {
+			if (
+				player.仙宠.type == '幸运' &&
+				player.幸运 != player.仙宠.加成 + player.addluckyNo
+			) {
+				player.幸运 = player.仙宠.加成 + player.addluckyNo;
+			} else if (player.仙宠.type != '幸运' && player.幸运 != player.addluckyNo) {
+				player.幸运 = player.addluckyNo;
+			}
+		}
 		await Write_player(usr_qq, player);
-				e.reply('运气同步结束');
-			}
-		
-	//一键出售
-	async Sell_all_comodities(e) {
-		//不开放私聊功能
-		if (!e.isGroup) {
-			return;
-		}
-		let usr_qq = e.user_id;
-		//有无存档
-		let ifexistplay = await existplayer(usr_qq);
-		if (!ifexistplay) {
-			return;
-		}
-		let najie = await data.getData('najie', usr_qq);
-		let commodities_price = 0;
-		let wupin = [
-			'装备',
-			'丹药',
-			'道具',
-			'功法',
-			'草药',
-			'材料',
-			'盒子',
-			'仙宠口粮',
-			'仙宠',
-			'食材',
-		];
-		let wupin1 = [];
-		if (e.msg != '#一键出售') {
-			let thing = e.msg.replace('#一键出售', '');
-			for (let i of wupin) {
-				if (thing.includes(i)) {
-					wupin1.push(i);
-					thing = thing.replace(i, '');
-				}
-			}
-			if (thing.length == 0) {
-				wupin = wupin1;
-			} else {
-				return;
-			}
-		}
-		console.log(wupin);
-		for (let i of wupin) {
-			console.log(najie[i]);
-			for (let l of najie[i]) {
-				if (l && l.islockd == 0 && !(l.id >= 400980 && l.id <= 400999)) {
-					//纳戒中的数量
-					let quantity = l.数量;
-					/*console.log(l);
-          console.log(l.class);
-          console.log(quantity);*/
-					if (l.class == '装备') {
-						await Add_najie_thing(usr_qq, l.name, l.class, -quantity, l.pinji);
-					} else {
-						await Add_najie_thing(usr_qq, l.name, l.class, -quantity);
-					}
-					commodities_price = commodities_price + l.出售价 * quantity;
-				}
-			}
-		}
-		await Add_灵石(usr_qq, commodities_price);
-		e.reply(`出售成功!  获得${commodities_price}灵石 `);
+		e.reply('运气同步结束');
 		return;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //一键出售
+  async Sell_all_comodities(e) {
+	//不开放私聊功能
+	if (!e.isGroup) {
+		return;
+	}
+	let usr_qq = e.user_id;
+    //有无存档
+    let ifexistplay = await existplayer(usr_qq);
+    if (!ifexistplay) return false;
+    let commodities_price = 0;
+    let najie = await data.getData('najie', usr_qq);
+    let wupin = [
+      	'装备',
+      	'丹药',
+      	'道具',
+      	'功法',
+      	'草药',
+		'材料',
+		'盒子',
+		'仙宠口粮',
+		'仙宠',
+		'食材',
+    ];
+    let wupin1 = [];
+    if (e.msg != '#一键出售') {
+      let thing = e.msg.replace('#一键出售', '');
+      for (var i of wupin) {
+        if (thing == i) {
+          wupin1.push(i);
+          thing = thing.replace(i, '');
+        }
+      }
+      if (thing.length == 0) {
+        wupin = wupin1;
+      } else {
+        return false;
+      }
+
+      for (let i of wupin) {
+        for (let l of najie[i]) {
+          if (l && l.islockd == 0) {
+
+            //纳戒中的数量
+            let quantity = l.数量;
+            if(l.name!="秘境之匙"){
+              await Add_najie_thing(usr_qq, l.name, l.class, -quantity, l.pinji);
+              commodities_price = commodities_price + l.出售价 * quantity;
+            }else{
+              await Add_najie_thing(usr_qq, l.name, l.class, -quantity, l.pinji);
+              commodities_price = commodities_price + 2000000 * quantity;
+            }
+
+          }
+        }
+      }
+      await Add_灵石(usr_qq, commodities_price);
+      e.reply(await get_log_img(`出售成功!  获得${commodities_price}灵石 `))
+      return false;
+    }
+    let goodsNum = 0;
+    let goods = [];
+    goods.push('正在出售:');
+    for (let i of wupin) {
+      for (let l of najie[i]) {
+        if (l && l.islockd == 0) {
+          //纳戒中的数量
+          let quantity = l.数量;
+          goods.push('\n' + l.name + '*' + quantity);
+          goodsNum++;
+        }
+      }
+    }
+    if (goodsNum == 0) {
+      e.reply('没有东西可以出售', false, { at: true });
+      return false;
+    }
+    goods.push('\n回复[1]出售,回复[0]取消出售');
+    /** 设置上下文 */
+    this.setContext('noticeSellAllGoods');
+    for (let i = 0; i < goods.length; i += 8) {
+      e.reply(goods.slice(i, i + 8), false, { at: true });
+      await sleep(500);
+    }
+    /** 回复 */
+    return false;
+  }
+  async noticeSellAllGoods(e) {
+    if (!verc({ e })) return false;
+    let reg = new RegExp(/^1$/);
+    let new_msg = this.e.msg;
+    let difficulty = reg.exec(new_msg);
+    if (!difficulty) {
+      e.reply('已取消出售', false, { at: true });
+      /** 结束上下文 */
+      this.finish('noticeSellAllGoods');
+      return false;
+    }
+    /** 结束上下文 */
+    this.finish('noticeSellAllGoods');
+    /**出售*/
+
+	if (!e.isGroup) {
+		return;
+	}
+	let usr_qq = e.user_id;
+
+    //有无存档
+    let najie = await data.getData('najie', usr_qq);
+    let commodities_price = 0;
+    let wupin = [
+      	'装备',
+      	'丹药',
+      	'道具',
+      	'功法',
+		'草药',
+		'材料',
+		'盒子',
+		'仙宠口粮',
+		'仙宠',
+		'食材',
+    ];
+    for (let i of wupin) {
+      for (let l of najie[i]) {
+        if (l && l.islockd == 0) {
+          console.log(await foundthing(l.name).出售价)
+          //纳戒中的数量
+          let quantity = l.数量;
+          if(l.name!="秘境之匙"){
+            await Add_najie_thing(usr_qq, l.name, l.class, -quantity, l.pinji);
+            commodities_price = commodities_price + l.出售价 * quantity;
+          }else{
+            await Add_najie_thing(usr_qq, l.name, l.class, -quantity, l.pinji);
+            commodities_price = commodities_price + 2000000 * quantity;
+          }
+        }
+      }
+    }
+    await Add_灵石(usr_qq, commodities_price);
+    e.reply(await get_log_img(`出售成功!  获得${commodities_price}灵石 `))
+    return false;
+  }
 
 	//#(装备|服用|使用)物品*数量
 	async all_xiuweidan(e) {

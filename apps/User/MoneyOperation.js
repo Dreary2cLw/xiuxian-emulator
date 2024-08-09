@@ -409,11 +409,11 @@ export class MoneyOperation extends plugin {
 				thing_exist.class,
 				pj
 			);
-			if ((await Locked_najie_thing(A_qq, thing_name, thing_exist.class, pj)) == 1) {
+			//if ((await Locked_najie_thing(A_qq, thing_name, thing_exist.class, pj)) == 1) {
 				//锁定
-				e.reply(`你的纳戒中的${thing_exist.class}[${thing_name}]是锁定的`);
-				return;
-			}
+				//e.reply(`你的纳戒中的${thing_exist.class}[${thing_name}]是锁定的`);
+				//return;
+			//}
 			if (number >= amount) {
 				if (thing_exist.class == '装备') {
 					await Add_najie_thing(A_qq, thing_name, thing_exist.class, -amount, pj);

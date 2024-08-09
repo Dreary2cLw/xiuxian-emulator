@@ -3,6 +3,7 @@ import common from '../../../../lib/common/common.js';
 import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
 import fs from 'node:fs';
+
 import {
 	Add_HP,
 	Add_najie_thing,
@@ -15,6 +16,9 @@ import {
 	Read_equipment,
 	Read_player,
 	Write_player,
+	Read_temp,
+	Write_temp,
+	get_log_img,
 } from '../Xiuxian/xiuxian.js';
 import { mjzd_battle } from '../Battle/Battle.js';
 
@@ -66,7 +70,7 @@ export class SecretPlaceplusTask extends plugin {
 					}
 				}
 				//最后发送的消息
-				let msg = [segment.at(player_id)];
+				let msg = [];
 				//动作结束时间
 				let end_time = action.end_time;
 				//现在的时间
@@ -586,6 +590,7 @@ export class SecretPlaceplusTask extends plugin {
 							await Add_修为(player_id, xiuwei);
 							await Add_HP(player_id, Data_battle.A_xue);
 							//发送消息
+							msg=await get_log_img(msg)
 							if (is_group) {
 								await this.pushInfo(push_address, is_group, msg);
 							} else {
@@ -599,10 +604,24 @@ export class SecretPlaceplusTask extends plugin {
 							await Add_修为(player_id, xiuwei);
 							await Add_HP(player_id, Data_battle.A_xue);
 							//发送消息
-							if (is_group) {
-								await this.pushInfo(push_address, is_group, msg);
-							} else {
-								await this.pushInfo(player_id, is_group, msg);
+							try {
+								let temp = await Read_temp();
+								let p = {
+								  msg: player.名号 + last_msg + fyd_msg,
+								  qq_group: push_address,
+								};
+								temp.push(p);
+								await Write_temp(temp);
+							  } catch {
+								await Write_temp([]);
+								let temp = await Read_temp();
+								let p = {
+								  msg: player.名号 + last_msg + fyd_msg,
+								  qq: player_id,
+								  qq_group: push_address,
+								};
+								temp.push(p);
+								await Write_temp(temp);
 							}
 						}
 					}

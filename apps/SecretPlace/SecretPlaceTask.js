@@ -13,6 +13,7 @@ import {
 	Read_equipment,
 	isNotNull,
 	Read_player,exist_najie_thing,
+	get_log_img,
 } from '../Xiuxian/xiuxian.js';
 import { mjzd_battle } from '../Battle/Battle.js';
 
@@ -66,7 +67,7 @@ export class SecretPlaceTask extends plugin {
 					}
 				}
 				//最后发送的消息
-				let msg = [segment.at(player_id)];
+				let msg = [];
 				//动作结束时间
 				let end_time = action.end_time;
 				//现在的时间
@@ -616,12 +617,11 @@ action1 = JSON.parse(action1);
 						await Add_修为(player_id, xiuwei);
 						await Add_HP(player_id, Data_battle.A_xue);
 						//发送消息
+						msg=await get_log_img(msg)
 						if (is_group) {
-							console.log(push_address);
-							await this.pushInfo(push_address, is_group, msg);
+						  await this.pushInfo(push_address, is_group, msg);
 						} else {
-							console.log(player_id);
-							await this.pushInfo(player_id, is_group, msg);
+						  await this.pushInfo(player_id, is_group, msg);
 						}
 					}
 				}
