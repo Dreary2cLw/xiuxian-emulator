@@ -489,7 +489,7 @@ export class UserSellAll extends plugin {
         }
       }
       await Add_灵石(usr_qq, commodities_price);
-      e.reply(await get_log_img(`出售成功!  获得${commodities_price}灵石 `))
+      e.reply(`出售成功!  获得${commodities_price}灵石 `);
       return false;
     }
     let goodsNum = 0;
