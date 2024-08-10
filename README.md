@@ -28,14 +28,16 @@ Yunzai-Bot\plugins\xiuxian-emulator-plugin\resources\data
 
 ## 修改内容
 
->修改秘境等使之不再at
->给一键出售增加二次确认
+> 修改秘境等使之不再at 
+
+> 给一键出售增加二次确认
 
 
 ## 鸣谢
 
-[绝云间修仙V1.3.0](https://gitee.com/hutao222/DDZS-XIUXIAN-V1.3.0)
-[小竹/xiuxian-emulator-plugin](https://gitee.com/zhu28/xiuxian-emulator-plugin)
+> [DD斩首/绝云间修仙V1.3.0](https://gitee.com/hutao222/DDZS-XIUXIAN-V1.3.0)
+
+> [小竹/xiuxian-emulator-plugin](https://gitee.com/zhu28/xiuxian-emulator-plugin)
 
 > DD斩首(3196383818):仓库主人,合并,修复,优化和写新功能     
 > 再氪两单嘛(3479823546):数值策划      
