@@ -159,7 +159,7 @@ export class shenjietask extends plugin {
 						}
 						last_msg +=
 							m + ',获得修为' + xiuwei + ',气血' + qixue + ',剩余次数' + (action.cishu - 1);
-						msg.push('\n' + player.名号 + last_msg + fyd_msg);
+						msg.push(player.名号 + last_msg + fyd_msg);
 						let arr = action;
 						if (arr.cishu == 1) {
 							//把状态都关了
