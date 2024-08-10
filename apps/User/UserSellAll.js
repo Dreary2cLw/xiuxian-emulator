@@ -20,7 +20,7 @@ import {
 	isNotNull,
 	Write_player,
 	__PATH,
-	get_log_img,
+	sleep,
 } from '../Xiuxian/xiuxian.js';
 import { get_equipment_img } from '../ShowImeg/showData.js';
 import { synchronization } from '../AdminSuper/AdminSuper.js';
@@ -402,15 +402,6 @@ export class UserSellAll extends plugin {
 		e.reply('运气同步结束');
 		return;
 	}
-
-
-
-
-
-
-
-
-
 
 
 
