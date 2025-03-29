@@ -181,6 +181,7 @@ class GeneratedConfig:
 
     # Group `Hospital`
     Hospital_UseRecommendFleet = True
+    Hospital_mapName = '0-T1'
 
     # Group `MaritimeEscort`
     MaritimeEscort_Enable = True

@@ -651,7 +651,8 @@
       "ServerUpdate": "00:00"
     },
     "Hospital": {
-      "UseRecommendFleet": true
+      "UseRecommendFleet": true,
+      "mapName": "0-T1"
     },
     "StopCondition": {
       "OilLimit": 1000,

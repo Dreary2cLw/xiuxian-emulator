@@ -1307,6 +1307,10 @@
     "UseRecommendFleet": {
       "name": "Hospital.UseRecommendFleet.name",
       "help": "Hospital.UseRecommendFleet.help"
+    },
+    "mapName": {
+      "name": "Hospital.mapName.name",
+      "help": "Hospital.mapName.help"
     }
   },
   "MaritimeEscort": {

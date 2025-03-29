@@ -3631,6 +3631,10 @@
       "UseRecommendFleet": {
         "type": "checkbox",
         "value": true
+      },
+      "mapName": {
+        "type": "input",
+        "value": "0-T1"
       }
     },
     "StopCondition": {
