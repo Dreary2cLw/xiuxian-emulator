@@ -1,4 +1,4 @@
-from module.config.utils import deep_get
+from module.config.deep import deep_get
 from module.logger import logger
 from module.gg_handler.assets import *
 from module.base.base import ModuleBase as Base

@@ -1,7 +1,7 @@
 from module.gg_handler.gg_data import GGData
 from module.gg_handler.gg_u2 import GGU2
 # from module.gg_handler.gg_screenshot import GGScreenshot
-from module.config.utils import deep_get, deep_set
+from module.config.deep import deep_get, deep_set
 from module.logger import logger
 from module.base.timer import timeout
 
