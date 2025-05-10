@@ -22,7 +22,6 @@ Alas:
       - OldRetire
     Restart:
       - Scheduler
-      - RestartEmulator
       - AutoRestart
 
 # ==================== Farm ====================

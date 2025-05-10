@@ -465,11 +465,8 @@ EventStory:
       value: true
       option: [ true, ]
       option_bold: [ true, ]
-      
-# ==================== GGHandler ====================
-GGHandler:
-  Timeout:
-    value: 120
+
+# ==================== GameManager ====================
 
 # ==================== Dashboard ====================
 Dashboard:
