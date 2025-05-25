@@ -2053,20 +2053,6 @@
       "Storage": {}
     }
   },
-  "SomethingSpecial": {
-    "InfiniteDelay": {
-      "Commission": false,
-      "Research": false,
-      "Reward": false
-    },
-    "TurnOffForcedOnSettings": {
-      "OpsiMeowfficerFarmingFromOpsiHazard1Leveling": false,
-      "OpsiHazard1LevelingYellowCoinLimit": false
-    },
-    "Storage": {
-      "Storage": {}
-    }
-  },
   "Dashboard": {
     "Oil": {
       "Value": 0,

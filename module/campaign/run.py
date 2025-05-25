@@ -324,11 +324,6 @@ class CampaignRun(CampaignEvent, ShopStatus):
             in: page_campaign
         """
         if self.campaign.commission_notice_show_at_campaign():
-            InfiniteDelayCommission = deep_get(self.config.data, "SomethingSpecial.InfiniteDelay.Commission")
-            if InfiniteDelayCommission:
-                logger.warning("Commission notice found, but skip to call task 'Commission' and delay it")
-                self.config.task_delay(target=datetime.now() + timedelta(hours=6, seconds=-1), task="Commission")
-            else:
                 logger.info('Commission notice found')
                 self.config.task_call('Commission', force_call=True)
                 self.config.task_stop('Commission notice found')

@@ -608,32 +608,6 @@ class GeneratedConfig:
     PowerLimit_Raid = 16500
     PowerLimit_Ash = 16500
 
-    # Group `ChangeShip`
-    ChangeShip_Enable = False
-    ChangeShip_PushLua = False
-    ChangeShip_Timeout = 90
-    ChangeShip_Vanguard = 'downes_and_cassin_to_ca'  # downes_and_cassin_to_ca, downes_and_cassin_to_cl, custom, do_nothing
-    ChangeShip_CapitalShip = 'cvl_to_bc'  # cvl_to_bc, cvl_to_bb, cvl_to_cv, custom, do_nothing
-    ChangeShip_ShipData = '106021;2;1;6;4\n107041;2;1;6;4\n206011;2;1;6;4\n107011;2;1;6;4\n\n105011;2;1;5;19\n105021;2;1;5;19\n\n101041;2;1;1;3\n101031;2;1;1;3'
-
-    # Group `ChangeAttribute`
-    ChangeAttribute_Enable = False
-    ChangeAttribute_PushLua = False
-    ChangeAttribute_Timeout = 600
-    ChangeAttribute_ShipData = None
-    PowerLimit_Exercise = 23500
-    PowerLimit_Raid = 23500
-    PowerLimit_Ash = 23500
-
-    # Group `InfiniteDelay`
-    InfiniteDelay_Commission = False
-    InfiniteDelay_Research = False
-    InfiniteDelay_Reward = False
-
-    # Group `TurnOffForcedOnSettings`
-    TurnOffForcedOnSettings_OpsiMeowfficerFarmingFromOpsiHazard1Leveling = False
-    TurnOffForcedOnSettings_OpsiHazard1LevelingYellowCoinLimit = False
-
     # Group `Oil`
     Oil_Value = 0
     Oil_Limit = 0
