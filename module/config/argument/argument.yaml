@@ -279,9 +279,6 @@ GemsFarming:
     value: any
     option: [ any, favourite, aulick_or_foote , cassin_or_downes, z20_or_z21 ]
   ALLowLowVanguardLevel: true
-  FleetNumberInHardMode:
-    value: 0
-    option: [ 0, 1, 2 ]
   StopIFAutoNotEnsured: true
   CommissionLimit: true
 
