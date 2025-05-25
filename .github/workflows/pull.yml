@@ -30,7 +30,7 @@ jobs:
           git checkout dev
           
           # 尝试合并
-          git merge --no-edit upstream/dev  # 使用默认合并消息
+          git merge --no-edit upstream/master
           
           # 推送更改
           git push origin dev
