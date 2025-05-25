@@ -2,6 +2,7 @@ from module.base.button import ButtonGrid
 from module.base.timer import Timer
 from module.base.utils import color_similar, get_color, resize
 from module.combat.assets import GET_ITEMS_1
+from module.config.deep import deep_get
 from module.exception import RequestHumanTakeover, ScriptError
 from module.handler.assets import AUTO_SEARCH_MAP_OPTION_OFF, AUTO_SEARCH_MAP_OPTION_ON
 from module.logger import logger

@@ -2,6 +2,7 @@ from module.base.button import Button
 from module.base.decorator import run_once
 from module.base.timer import Timer
 from module.combat.assets import GET_ITEMS_1, GET_ITEMS_2, GET_SHIP
+from module.config.deep import deep_get
 from module.event_hospital.assets import HOSIPITAL_CLUE_CHECK, HOSPITAL_BATTLE_EXIT
 from module.exception import (GameNotRunningError, GamePageUnknownError,
                               GameTooManyClickError)

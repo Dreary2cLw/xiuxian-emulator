@@ -6,6 +6,7 @@ class GGData(ModuleBase):
     gg_on = False
     gg_enable = False
     gg_auto = False
+    gg_type = False
     ggdata = {}
 
     def __init__(self, config=None):
@@ -29,6 +30,7 @@ class GGData(ModuleBase):
             tmp.write(f'{self.config.config_name}\n')
             tmp.write('gg_on=False\n')
             self.ggdata['gg_on'] = False
+            self.ggdata['gg_type'] = False
             self.ggdata['gg_enable'] = deep_get(d=self.config.data,
                                                 keys='GameManager.GGHandler.Enabled',
                                                 default=False)
@@ -37,10 +39,13 @@ class GGData(ModuleBase):
                                               default=False)
             tmp.write('gg_enable=' + str(self.ggdata['gg_enable']) + '\n')
             tmp.write('gg_auto=' + str(self.ggdata['gg_auto']) + '\n')
+            tmp.write('gg_type=' + str(self.ggdata['gg_type']) + '\n')
             tmp.close()
         else:
-            for i in range(3):
+            for i in range(4):
                 line = tmp.readline()
+                if i == 3 and line == '':
+                    line = 'gg_type=False\n'
                 line1, line2 = line.split('=')
                 self.ggdata[line1] = True if line2[:-1] == 'True' else False
             tmp.close()

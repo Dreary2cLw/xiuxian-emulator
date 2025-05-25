@@ -15,6 +15,7 @@ class GGHandler:
     """
 
     def __init__(self, config=None, device=None):
+        self.task = ''
         self.config = config
         self.device = device
         self.factor = deep_get(self.config.data,
@@ -23,6 +24,9 @@ class GGHandler:
         self.method = deep_get(self.config.data,
                                'GameManager.GGHandler.GGMethod',
                                default='screenshot')
+        ggu2 = GGU2(config=self.config, device=self.device)
+        self.GGData = GGData(config=self.config)
+        self.gg = ggu2
 
     def restart(self, crashed=False):
         from module.handler.login import LoginHandler
@@ -60,10 +64,10 @@ class GGHandler:
             #     GGU2(config=self.config, device=self.device) \
             #         .set_on(factor=self.factor)
             self.handle_u2_restart()
-            success = timeout(GGU2(config=self.config, device=self.device).set_on, timeout_sec=deep_get(self.config.data, "GameManager.GGHandler.Timeout"), factor=self.factor)
-            if success:
-                from module.exception import GameStuckError
-                raise GameStuckError
+            success = self.multiplier()
+            #if not success:
+            #    from module.exception import GameStuckError
+            #    raise GameStuckError
             # Not support screenshot anymore
         else:
             self.gg_reset()
@@ -82,7 +86,7 @@ class GGHandler:
         # elif self.method == 'u2':
         #     return \
         #         GGU2(config=self.config, device=self.device).skip_error()
-        return GGU2(config=self.config, device=self.device).skip_error()  # Not support screenshot anymore
+        return self.gg.skip_error()  # Not support screenshot anymore
 
     def check_config(self) -> dict:
         """
@@ -95,12 +99,12 @@ class GGHandler:
         """
         gg_enable = deep_get(d=self.config.data, keys='GameManager.GGHandler.Enabled', default=False)
         gg_auto = deep_get(d=self.config.data, keys='GameManager.GGHandler.AutoRestartGG', default=False)
-        GGData(self.config).set_data(target='gg_enable', value=gg_enable)
-        GGData(self.config).set_data(target='gg_auto', value=gg_auto)
-        gg_data = GGData(self.config).get_data()
+        self.GGData.set_data(target='gg_enable', value=gg_enable)
+        self.GGData.set_data(target='gg_auto', value=gg_auto)
+        gg_data = self.GGData.get_data()
         logger.info(f'GG status:')
         logger.info(
-            f'Enabled={gg_data["gg_enable"]} AutoRestart={gg_data["gg_auto"]} Current stage={gg_data["gg_on"]}')
+            f'Enabled={gg_data["gg_enable"]} AutoRestart={gg_data["gg_auto"]} Current stage={gg_data["gg_on"]} ')
         return gg_data
 
     def handle_u2_restart(self):
@@ -123,13 +127,14 @@ class GGHandler:
         """
         Handle the restart errors of GG.
         """
-        gg_data = GGData(config=self.config).get_data()
+        gg_data = self.GGData.get_data()
         gg_enable = gg_data['gg_enable']
         if gg_enable:
-            GGData(config=self.config).set_data(target='gg_on', value=False)
+            self.GGData.set_data(target='gg_on', value=False)
+            self.GGData.set_data(target='gg_type', value=False)
             logger.info(f'GG status:')
             logger.info(
-                f'Enabled={gg_data["gg_enable"]} AutoRestart={gg_data["gg_auto"]} Current stage={gg_data["gg_on"]}')
+                f'Enabled={gg_data["gg_enable"]} AutoRestart={gg_data["gg_auto"]} Current stage={gg_data["gg_on"]} ')
             if not self.skip_error():
                 logger.hr('Assume game died without GG panel')
 
@@ -137,7 +142,7 @@ class GGHandler:
         """
         Force restart the game to reset GG status to False
         """
-        gg_data = GGData(self.config).get_data()
+        gg_data = self.GGData.get_data()
         if gg_data['gg_enable'] and gg_data['gg_on']:
             logger.hr('Disabling GG')
             self.restart()
@@ -149,17 +154,18 @@ class GGHandler:
         Args:
             mode: The multiplier status when finish the check.
         """
-        gg_data = GGData(self.config).get_data()
+        gg_data = self.GGData.get_data()
         if gg_data['gg_enable']:
             gg_auto = mode if deep_get(d=self.config.data,
                                        keys='GameManager.GGHandler.AutoRestartGG',
                                        default=False) else False
             logger.info(f'Check GG status:')
             logger.info(
-                f'Enabled={gg_data["gg_enable"]} AutoRestart={gg_data["gg_auto"]} Current stage={gg_data["gg_on"]}')
+                f'Enabled={gg_data["gg_enable"]} AutoRestart={gg_data["gg_auto"]} Current stage={gg_data["gg_on"]} ')
             if gg_auto:
                 if not gg_data['gg_on']:
                     self.set(True)
+                self.gg.exit()
             elif gg_data['gg_on']:
                 self.gg_reset()
 
@@ -175,14 +181,14 @@ class GGHandler:
         self.device.screenshot()
         OCR_CHECK = Digit(OCR_PRE_BATTLE_CHECK, letter=(255, 255, 255), threshold=128)
         ocr = OCR_CHECK.ocr(self.device.image)
-        from module.config.utils import deep_get
+        from module.config.deep import deep_get
         limit = deep_get(self.config.data, keys=f'GameManager.PowerLimit.{task}', default=17000)
         logger.attr('Power Limit', limit)
         if ocr >= limit:
             logger.critical('There''s high chance that GG is on, restart to disable it')
             from module.gg_handler.gg_data import GGData
-            GGData(self.config).set_data(target='gg_on', value=False)
-            GGData(self.config).set_data(target='gg_enable', value=True)
+            self.GGData.set_data(target='gg_on', value=False)
+            self.GGData.set_data(target='gg_enable', value=True)
             deep_set(d=self.config.data, keys='GameManager.GGHandler.Enabled', value=True)
             deep_set(d=self.config.data, keys='GameManager.GGHandler.AutoRestartGG', value=True)
             self.config.task_call('Restart')
@@ -195,7 +201,7 @@ class GGHandler:
         Returns:
             bool: If it needs restart first
         """
-        gg_data = GGData(self.config).get_data()
+        gg_data = self.GGData.get_data()
         if (deep_get(d=self.config.data,
                      keys='GameManager.GGHandler.RestartEverytime',
                      default=True)
@@ -212,6 +218,7 @@ class GGHandler:
         Args:
             task : str = the next task to run
         """
+        self.task = task
         _disabled_task = deep_get(self.config.data, 'GameManager.GGHandler.DisabledTask')
         """
             'disable_all_dangerous_task'
@@ -268,6 +275,7 @@ class GGHandler:
             'c72_mystery_farming',
             'c122_medium_leveling',
             'c124_large_leveling',
+            'hospital'
         ]
 
         # Handle ignorance
@@ -292,3 +300,29 @@ class GGHandler:
             self.check_status(False)
         elif task in _enabled:
             self.check_status(True)
+
+
+
+    def multiplier(self):
+        logger.hr('GG Multiplier', level=2)
+        success = timeout(self.gg.set_on,
+                          timeout_sec=deep_get(self.config.data, "GameManager.GGHandler.Timeout"),
+                          factor=self.factor)
+
+        self.GGData.set_data(target='gg_on', value=True)
+
+        # success = self.gg.set_on(factor=self.factor)
+        return True
+
+if __name__ == '__main__':
+    from module.config.config import AzurLaneConfig
+    from module.device.device import Device
+
+    config = AzurLaneConfig('主号')
+    device = Device(config)
+    ggh = GGHandler(config, device)
+    try:
+        ggh.check_then_set_gg_status(task='gems_farming')
+    except Exception as e:
+        pass
+    print(GGData(config).get_data())

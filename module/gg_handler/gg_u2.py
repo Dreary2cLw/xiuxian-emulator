@@ -15,6 +15,7 @@ class GGU2(Base):
         self.d = u2.connect(self.device.serial)
         self.gg_package_name = deep_get(self.config.data, keys='GameManager.GGHandler.GGPackageName')
         self.d.wait_timeout = 10.0
+        logger.info(f'Xpath timeout set to {self.d.wait_timeout} seconds')
 
     def exit(self):
         self.d.app_stop(f'{self.gg_package_name}')
@@ -29,12 +30,16 @@ class GGU2(Base):
         self.exit()
         return _skipped
 
-    def set_on(self, factor=200):
+    def set_on(self, func='multiplier', factor=200):
+        """
+            func : 'multiplier' or 'change_type' or 'change_attribute' or 'speedup'
+            factor : factor used in multiplier
+        """
         _name_dict = {
-            'en' : 'Azur Lane',
-            'cn' : '碧蓝航线',
-            'jp' : 'アズールレーン',
-            'tw' : '碧藍航線'
+            'en': 'Azur Lane',
+            'cn': '碧蓝航线',
+            'jp': 'アズールレーン',
+            'tw': '碧藍航線'
         }
         _server = self.config.SERVER
         _name = _name_dict[_server]
@@ -42,8 +47,11 @@ class GGU2(Base):
         ggdata = GGData(self.config).get_data()
         for _i in range(1):
             try:
-                if ggdata['gg_on']:
+                if ggdata['gg_on'] and func == 'multiplier':
                     logger.attr('GG', 'Enabled')
+                    pass
+                elif ggdata['gg_type'] and func == 'change_type':
+                    logger.attr('Type', 'Changed')
                     pass
                 else:
                     chosen = False
@@ -102,8 +110,8 @@ class GGU2(Base):
                             ).click()
                             logger.info('Click run Scripts')
                             self.device.sleep(0.3)
-                            if self._run():
-                                return 1
+                            self.__getattribute__(func)()
+                            return 1
                         if self.d.xpath('//*[@text="取消"]').exists:
                             self.d.xpath('//*[@text="取消"]').click()
                             logger.info("Cancel exists but not running script, click cancel")
@@ -120,10 +128,11 @@ class GGU2(Base):
                             logger.info('Click Restart')
                             self.device.sleep(0.3)
                             continue
-            finally:
+            except Exception as e:
                 pass
 
-    def _run(self):
+
+    def multiplier(self):
         _run = False
         _set = False
         _confirmed = False
@@ -148,6 +157,13 @@ class GGU2(Base):
             logger.info('Lua Pushed')
         while 1:
             self.device.sleep(1)
+            if self.d(resourceId=f"{self.gg_package_name}:id/search_toolbar").exists:
+                self.d.xpath(
+                    f'//*[@resource-id="{self.gg_package_name}'
+                    f':id/search_toolbar"]/android.widget.ImageView[last()]'
+                ).click()
+                logger.info('Click run Scripts')
+                self.device.sleep(0.3)
             if self.d(resourceId=f"{self.gg_package_name}:id/file").exists:
                 self.d(resourceId=f"{self.gg_package_name}:id/file").send_keys("/sdcard/Notes/Multiplier.lua")
                 logger.info('Lua path set')
@@ -169,22 +185,41 @@ class GGU2(Base):
                 logger.info("Click confirm")
                 self.device.sleep(0.5)
                 _confirmed = True
-            self.d.wait_timeout = 90.0
+            if _confirmed:
+                self.d.wait_timeout = deep_get(self.config.data, "GameManager.GGHandler.Timeout")
+                logger.info(f'Xpath timeout set to {self.d.wait_timeout} seconds')
 
             if _set and _confirmed:
                 try:
-                    self.d.xpath('//*[@text="确定"]').click()
                     GGData(self.config).set_data(target='gg_on', value=True)
-                finally:
+                    self.d.xpath('//*[@text="确定"]').click()
+                except Exception as e:
                     pass
-                GGData(self.config).set_data(target='gg_on', value='True')
+                GGData(self.config).set_data(target='gg_on', value=True)
                 logger.attr('GG', 'Enabled')
                 logger.info("Close the script")
             self.d.wait_timeout = 3
+            logger.info(f'Xpath timeout set to {self.d.wait_timeout} seconds')
             if _set and _confirmed:
                 break
             else:
                 return 0
-        logger.hr('GG Enabled', level=2)
-        self.d.app_stop(self.gg_package_name)
+        logger.hr('GG Enabled: Multiplied', level=2)
+        # self.d.app_stop(self.gg_package_name)
         return 1
+
+
+if __name__ == '__main__':
+    from module.config.config import AzurLaneConfig
+    from module.device.device import Device
+
+    config = AzurLaneConfig('主号')
+    device = Device(config)
+    ggu2 = GGU2(config, device)
+    try:
+        ggu2.set_on(func='change_type')
+    except Exception as e:
+        pass
+    print(GGData(config).get_data())
+
+
