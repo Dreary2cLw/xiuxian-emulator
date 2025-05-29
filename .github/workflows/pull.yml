@@ -27,10 +27,10 @@ jobs:
           
           # 拉取最新代码
           git fetch upstream
-          git checkout --track origin/dev || git checkout dev
+          git checkout --track origin/cloud || git checkout cloud
           
           # 尝试合并
           git merge --no-edit upstream/master
           
           # 推送更改
-          git push origin dev
+          git push origin cloud
