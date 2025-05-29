@@ -34,3 +34,11 @@ jobs:
           
           # 推送更改
           git push origin cloud
+
+          git checkout --track origin/cloud_t || git checkout cloud_t
+          
+          # 尝试合并
+          git merge --no-edit upstream/master
+          
+          # 推送更改
+          git push origin cloud_t
