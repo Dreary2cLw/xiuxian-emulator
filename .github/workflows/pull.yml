@@ -12,7 +12,7 @@ jobs:
       - name: Checkout your repo
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # 获取全部历史，避免合并问题
+          fetch-depth: 0  # 获取全部历史
 
       - name: Set up Git
         run: |
@@ -27,7 +27,7 @@ jobs:
           
           # 拉取最新代码
           git fetch upstream
-          git checkout dev
+          git checkout --track origin/dev || git checkout dev
           
           # 尝试合并
           git merge --no-edit upstream/master

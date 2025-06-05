@@ -163,3 +163,11 @@ Deploy:
     # --no-sandbox. https://github.com/electron/electron/issues/30966
     # Some Windows systems cannot call the GPU normally for virtualization, and you need to manually turn off sandbox mode
     NoSandbox: false
+    # SSL support
+    # Only effective when both parameters below are set
+    # --ssl-key. Path to SSL key file
+    # [Default] null (no SSL)
+    WebuiSSLKey: null
+    # --ssl-cert. Path to SSL cert file
+    # [Default] null (no SSL)
+    WebuiSSLCert: null
