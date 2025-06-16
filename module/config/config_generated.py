@@ -36,7 +36,6 @@ class GeneratedConfig:
     Error_SaveError = True
     Error_OnePushConfig = 'provider: null'
     Error_ScreenshotLength = 1
-    Error_PauseMinutes = 40
 
     # Group `Optimization`
     Optimization_ScreenshotInterval = 0.3
@@ -77,52 +76,6 @@ class GeneratedConfig:
     OldRetire_SR = False
     OldRetire_SSR = False
     OldRetire_RetireAmount = 'retire_all'  # retire_all, retire_10
-
-    # Group `HookGeneral`
-    HookGeneral_Enable = False
-    HookGeneral_RestartEverytime = True
-    HookGeneral_Architecture = 'auto'  # auto, x86, x86_64, arm64-v8a, armeabi-v7a
-    HookGeneral_InjectMethod = 'local_patch'  # local_patch, global_patch, outer_inject
-    HookGeneral_RequestTimeLimit = 10
-    HookGeneral_UpdateServer = None
-    HookGeneral_GameLibDir = None
-
-    # Group `ShipProperty`
-    ShipProperty_Method = 'disable'  # disable, gg_factor, final_properties
-    ShipProperty_Factor = 1.0
-    ShipProperty_Armor = -1
-    ShipProperty_Speed = -1
-    ShipProperty_AntiAircraft = -1
-    ShipProperty_OxyRecoveryBench = -1
-    ShipProperty_Torpedo = -1
-    ShipProperty_Hit = -1
-    ShipProperty_SonarRange = -1
-    ShipProperty_AttackDuration = -1
-    ShipProperty_RaidDistance = -1
-    ShipProperty_OxyRecoverySurface = -1
-    ShipProperty_OxyRecovery = -1
-    ShipProperty_Dodge = -1
-    ShipProperty_Luck = -1
-    ShipProperty_Reload = -1
-    ShipProperty_OxyCost = -1
-    ShipProperty_Durability = -1
-    ShipProperty_Air = -1
-    ShipProperty_OxyMax = -1
-    ShipProperty_Cannon = -1
-    ShipProperty_AntiSub = -1
-
-    # Group `FakePlayer`
-    FakePlayer_Enable = False
-    FakePlayer_Name = None
-    FakePlayer_Level = None
-    FakePlayer_Id = None
-
-    # Group `Misc`
-    Misc_ChapterMove = False
-    Misc_OpsiMove = False
-    Misc_RemoveHardMapLimit = 'disable'  # disable, remove_ship_properties_limit, remove_ship_type_limit, remove_both
-    Misc_NoBBAnimation = False
-    Misc_NoEmotionWarning = False
 
     # Group `Campaign`
     Campaign_Name = '12-4'
