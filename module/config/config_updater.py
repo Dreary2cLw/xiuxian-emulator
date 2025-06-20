@@ -668,6 +668,10 @@ class ConfigUpdater:
                 deep_set(new,
                          keys=f'{task}.Campaign.Event',
                          value=deep_get(self.args, f'{task}.Campaign.Event.{server}'))
+            for task in ['Event3']:
+                deep_set(new,
+                         keys=f'{task}.Campaign.Event',
+                         value=deep_get(self.args, f'Event.Campaign.Event.{server}'))
             for task in ['GemsFarming']:
                 if deep_get(new, keys=f'{task}.Campaign.Event', default='campaign_main') != 'campaign_main':
                     deep_set(new,
