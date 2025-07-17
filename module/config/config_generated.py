@@ -266,6 +266,7 @@ class GeneratedConfig:
     # Group `Awaken`
     Awaken_Favourite = False
     Awaken_LevelCap = 'level120'  # level120, level125
+    Awaken_Favourite = False
 
     # Group `GeneralShop`
     GeneralShop_UseGems = False
