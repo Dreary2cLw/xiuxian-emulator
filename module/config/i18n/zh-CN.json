@@ -522,22 +522,6 @@
       "name": "战斗中放慢截图速度至 X 秒一张",
       "help": ""
     },
-    "ClickMaxRecord": {
-      "name": "最大点击记录量",
-      "help": "默认为15"
-    },
-    "SingleButtonMaxCount": {
-      "name": "单Button最大计数",
-      "help": "该数值单项不得超过最大点击记录量，默认为12"
-    },
-    "MultiButtonMaxCount1": {
-      "name": "多Button最大计数(Button1)",
-      "help": "该数值与下一项设置之和不得大于最大点击记录量，默认为6"
-    },
-    "MultiButtonMaxCount2": {
-      "name": "多Button最大计数(Button2)",
-      "help": "该数值与上一项设置之和不得大于最大点击记录量，默认为6"
-    },
     "TaskHoardingDuration": {
       "name": "囤积任务 X 分钟",
       "help": "能在收菜期间降低操作游戏的频率\n任务触发后，等待 X 分钟，再一次性执行囤积的任务"
@@ -588,12 +572,6 @@
     "CombatRecord": {
       "name": "战斗掉落截图",
       "help": "启用后会放缓结算时的点击速度\n在自律寻敌下不生效",
-      "do_not": "无操作",
-      "save": "保存"
-    },
-    "MetaRecord": {
-      "name": "Meta结算截图",
-      "help": "启用后会放缓结算时的点击速度",
       "do_not": "无操作",
       "save": "保存"
     },
@@ -1677,10 +1655,6 @@
       "name": "认知觉醒",
       "help": "认知觉醒船坞内所有的船直到心智单元耗尽"
     },
-    "Favourite": {
-      "name": "选择常用",
-      "help": ""
-    },
     "LevelCap": {
       "name": "觉醒至等级上限",
       "help": "",
@@ -1914,37 +1888,6 @@
     "Filter": {
       "name": "商店过滤器",
       "help": ""
-    }
-  },
-  "EventShop": {
-    "_info": {
-      "name": "活动商店",
-      "help": "活动船只将会在活动结束后购买"
-    },
-    "Enable": {
-      "name": "启用活动商店",
-      "help": ""
-    },
-    "UnlockShipSSR": {
-      "name": "解锁活动金船",
-      "help": "如果不启用，将会抛掉过滤器中的ShipSSR和Meta"
-    },
-    "BuyShipUR": {
-      "name": "购买X只活动彩船",
-      "help": "",
-      "0": "0",
-      "1": "1",
-      "2": "2"
-    },
-    "PresetFilter": {
-      "name": "活动商店过滤器",
-      "help": "",
-      "all": "全部",
-      "custom": "自定义"
-    },
-    "CustomFilter": {
-      "name": "自定义过滤器",
-      "help": "使用自定义过滤器需将 \"活动商店过滤器\" 设置为 \"自定义\"，并阅读 https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/reward_shop_filter_string"
     }
   },
   "ShipyardDr": {
@@ -2403,10 +2346,6 @@
     "RepairThreshold": {
       "name": "任意舰船血量低于 X 后，回港修理",
       "help": "0.0 ~ 1.0"
-    },
-    "DontRepair": {
-      "name": "禁用回港维修",
-      "help": ""
     },
     "DoRandomMapEvent": {
       "name": "完成地图随机事件",
@@ -3019,28 +2958,6 @@
     "NotifyWhenAutoRestart": {
       "name": "重启时通知",
       "help": "因出错而自动重启时通知，不建议开启，因为可能会很烦"
-    }
-  },
-  "InstanceRestart": {
-    "_info": {
-      "name": "重启Alas实例",
-      "help": ""
-    },
-    "Enabled": {
-      "name": "启用",
-      "help": ""
-    },
-    "AttemptsToRestart": {
-      "name": "最大尝试自动重启次数",
-      "help": ""
-    },
-    "NotifyWhenAutoRestart": {
-      "name": "重启时通知",
-      "help": "因出错而自动重启时通知，不建议开启，因为可能会很烦"
-    },
-    "HasRestarted": {
-      "name": "InstanceRestart.HasRestarted.name",
-      "help": "InstanceRestart.HasRestarted.help"
     }
   },
   "Storage": {

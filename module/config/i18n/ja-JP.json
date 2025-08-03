@@ -522,22 +522,6 @@
       "name": "Optimization.CombatScreenshotInterval.name",
       "help": "Optimization.CombatScreenshotInterval.help"
     },
-    "ClickMaxRecord": {
-      "name": "Optimization.ClickMaxRecord.name",
-      "help": "Optimization.ClickMaxRecord.help"
-    },
-    "SingleButtonMaxCount": {
-      "name": "Optimization.SingleButtonMaxCount.name",
-      "help": "Optimization.SingleButtonMaxCount.help"
-    },
-    "MultiButtonMaxCount1": {
-      "name": "Optimization.MultiButtonMaxCount1.name",
-      "help": "Optimization.MultiButtonMaxCount1.help"
-    },
-    "MultiButtonMaxCount2": {
-      "name": "Optimization.MultiButtonMaxCount2.name",
-      "help": "Optimization.MultiButtonMaxCount2.help"
-    },
     "TaskHoardingDuration": {
       "name": "Optimization.TaskHoardingDuration.name",
       "help": "Optimization.TaskHoardingDuration.help"
@@ -588,12 +572,6 @@
     "CombatRecord": {
       "name": "DropRecord.CombatRecord.name",
       "help": "DropRecord.CombatRecord.help",
-      "do_not": "do_not",
-      "save": "save"
-    },
-    "MetaRecord": {
-      "name": "DropRecord.MetaRecord.name",
-      "help": "DropRecord.MetaRecord.help",
       "do_not": "do_not",
       "save": "save"
     },
@@ -1677,10 +1655,6 @@
       "name": "Awaken._info.name",
       "help": "Awaken._info.help"
     },
-    "Favourite": {
-      "name": "Awaken.Favourite.name",
-      "help": "Awaken.Favourite.help"
-    },
     "LevelCap": {
       "name": "Awaken.LevelCap.name",
       "help": "Awaken.LevelCap.help",
@@ -1914,37 +1888,6 @@
     "Filter": {
       "name": "CoreShop.Filter.name",
       "help": "CoreShop.Filter.help"
-    }
-  },
-  "EventShop": {
-    "_info": {
-      "name": "EventShop._info.name",
-      "help": "EventShop._info.help"
-    },
-    "Enable": {
-      "name": "EventShop.Enable.name",
-      "help": "EventShop.Enable.help"
-    },
-    "UnlockShipSSR": {
-      "name": "EventShop.UnlockShipSSR.name",
-      "help": "EventShop.UnlockShipSSR.help"
-    },
-    "BuyShipUR": {
-      "name": "EventShop.BuyShipUR.name",
-      "help": "EventShop.BuyShipUR.help",
-      "0": "0",
-      "1": "1",
-      "2": "2"
-    },
-    "PresetFilter": {
-      "name": "EventShop.PresetFilter.name",
-      "help": "EventShop.PresetFilter.help",
-      "all": "all",
-      "custom": "custom"
-    },
-    "CustomFilter": {
-      "name": "EventShop.CustomFilter.name",
-      "help": "EventShop.CustomFilter.help"
     }
   },
   "ShipyardDr": {
@@ -2403,10 +2346,6 @@
     "RepairThreshold": {
       "name": "OpsiGeneral.RepairThreshold.name",
       "help": "OpsiGeneral.RepairThreshold.help"
-    },
-    "DontRepair": {
-      "name": "OpsiGeneral.DontRepair.name",
-      "help": "OpsiGeneral.DontRepair.help"
     },
     "DoRandomMapEvent": {
       "name": "OpsiGeneral.DoRandomMapEvent.name",
@@ -3019,28 +2958,6 @@
     "NotifyWhenAutoRestart": {
       "name": "AutoRestart.NotifyWhenAutoRestart.name",
       "help": "AutoRestart.NotifyWhenAutoRestart.help"
-    }
-  },
-  "InstanceRestart": {
-    "_info": {
-      "name": "InstanceRestart._info.name",
-      "help": "InstanceRestart._info.help"
-    },
-    "Enabled": {
-      "name": "InstanceRestart.Enabled.name",
-      "help": "InstanceRestart.Enabled.help"
-    },
-    "AttemptsToRestart": {
-      "name": "InstanceRestart.AttemptsToRestart.name",
-      "help": "InstanceRestart.AttemptsToRestart.help"
-    },
-    "NotifyWhenAutoRestart": {
-      "name": "InstanceRestart.NotifyWhenAutoRestart.name",
-      "help": "InstanceRestart.NotifyWhenAutoRestart.help"
-    },
-    "HasRestarted": {
-      "name": "InstanceRestart.HasRestarted.name",
-      "help": "InstanceRestart.HasRestarted.help"
     }
   },
   "Storage": {

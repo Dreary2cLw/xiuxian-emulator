@@ -522,22 +522,6 @@
       "name": "戰鬥中放慢截圖速度至 X 秒一張",
       "help": "執行兩次截圖之間的最小間隔，限制在 0.3 ~ 1.0，能降低戰鬥時的 CPU 佔用"
     },
-    "ClickMaxRecord": {
-      "name": "Optimization.ClickMaxRecord.name",
-      "help": "Optimization.ClickMaxRecord.help"
-    },
-    "SingleButtonMaxCount": {
-      "name": "Optimization.SingleButtonMaxCount.name",
-      "help": "Optimization.SingleButtonMaxCount.help"
-    },
-    "MultiButtonMaxCount1": {
-      "name": "Optimization.MultiButtonMaxCount1.name",
-      "help": "Optimization.MultiButtonMaxCount1.help"
-    },
-    "MultiButtonMaxCount2": {
-      "name": "Optimization.MultiButtonMaxCount2.name",
-      "help": "Optimization.MultiButtonMaxCount2.help"
-    },
     "TaskHoardingDuration": {
       "name": "囤積任務 X 分鐘",
       "help": "能在收穫期間降低操作遊戲的頻率\n任務觸發後，等待 X 分鐘後，一次性執行佇列中的任務"
@@ -590,12 +574,6 @@
       "help": "啟用後會放緩結算時的點擊速度\n在自律尋敵下不生效",
       "do_not": "無操作",
       "save": "保存"
-    },
-    "MetaRecord": {
-      "name": "DropRecord.MetaRecord.name",
-      "help": "DropRecord.MetaRecord.help",
-      "do_not": "do_not",
-      "save": "save"
     },
     "OpsiRecord": {
       "name": "大世界掉落截圖",
@@ -1677,10 +1655,6 @@
       "name": "認知覺醒",
       "help": "認知覺醒船塢內所有的船隻直到心智單元耗盡"
     },
-    "Favourite": {
-      "name": "Awaken.Favourite.name",
-      "help": "Awaken.Favourite.help"
-    },
     "LevelCap": {
       "name": "覺醒至等級上限",
       "help": "",
@@ -1914,37 +1888,6 @@
     "Filter": {
       "name": "商店過濾器",
       "help": ""
-    }
-  },
-  "EventShop": {
-    "_info": {
-      "name": "活動商店",
-      "help": "活動船只將會在活動結束後購買"
-    },
-    "Enable": {
-      "name": "啟用活動商店",
-      "help": ""
-    },
-    "UnlockShipSSR": {
-      "name": "解鎖活動金船",
-      "help": "如果不啟用，將會拋掉過濾器中的ShipSSR和Meta"
-    },
-    "BuyShipUR": {
-      "name": "購買X只活動彩船",
-      "help": "",
-      "0": "0",
-      "1": "1",
-      "2": "2"
-    },
-    "PresetFilter": {
-      "name": "活動商店過濾器",
-      "help": "",
-      "all": "全部",
-      "custom": "自定義"
-    },
-    "CustomFilter": {
-      "name": "自定義過濾器",
-      "help": "使用自定義過濾器需將 \"活動商店過濾器\" 設定為 \"自定義\"，並閱讀 https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/reward_shop_filter_string"
     }
   },
   "ShipyardDr": {
@@ -2403,10 +2346,6 @@
     "RepairThreshold": {
       "name": "任意艦船血量低於 X 後，回港修理",
       "help": "0.0 ~ 1.0"
-    },
-    "DontRepair": {
-      "name": "OpsiGeneral.DontRepair.name",
-      "help": "OpsiGeneral.DontRepair.help"
     },
     "DoRandomMapEvent": {
       "name": "完成地圖隨機事件",
@@ -3019,28 +2958,6 @@
     "NotifyWhenAutoRestart": {
       "name": "AutoRestart.NotifyWhenAutoRestart.name",
       "help": "AutoRestart.NotifyWhenAutoRestart.help"
-    }
-  },
-  "InstanceRestart": {
-    "_info": {
-      "name": "InstanceRestart._info.name",
-      "help": "InstanceRestart._info.help"
-    },
-    "Enabled": {
-      "name": "InstanceRestart.Enabled.name",
-      "help": "InstanceRestart.Enabled.help"
-    },
-    "AttemptsToRestart": {
-      "name": "InstanceRestart.AttemptsToRestart.name",
-      "help": "InstanceRestart.AttemptsToRestart.help"
-    },
-    "NotifyWhenAutoRestart": {
-      "name": "InstanceRestart.NotifyWhenAutoRestart.name",
-      "help": "InstanceRestart.NotifyWhenAutoRestart.help"
-    },
-    "HasRestarted": {
-      "name": "InstanceRestart.HasRestarted.name",
-      "help": "InstanceRestart.HasRestarted.help"
     }
   },
   "Storage": {

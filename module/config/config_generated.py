@@ -40,10 +40,6 @@ class GeneratedConfig:
     # Group `Optimization`
     Optimization_ScreenshotInterval = 0.3
     Optimization_CombatScreenshotInterval = 1.0
-    Optimization_ClickMaxRecord = 15
-    Optimization_SingleButtonMaxCount = 12
-    Optimization_MultiButtonMaxCount1 = 6
-    Optimization_MultiButtonMaxCount2 = 6
     Optimization_TaskHoardingDuration = 0
     Optimization_WhenTaskQueueEmpty = 'goto_main'  # stay_there, goto_main, close_game
 
@@ -54,7 +50,6 @@ class GeneratedConfig:
     DropRecord_ResearchRecord = 'do_not'  # do_not, save, upload, save_and_upload
     DropRecord_CommissionRecord = 'do_not'  # do_not, save, upload, save_and_upload
     DropRecord_CombatRecord = 'do_not'  # do_not, save
-    DropRecord_MetaRecord = 'do_not'  # do_not, save
     DropRecord_OpsiRecord = 'do_not'  # do_not, save, upload, save_and_upload
     DropRecord_MeowfficerBuy = 'do_not'  # do_not, save
     DropRecord_MeowfficerTalent = 'do_not'  # do_not, save, upload, save_and_upload
@@ -161,7 +156,6 @@ class GeneratedConfig:
     GemsFarming_StopIFAutoNotEnsured = True
     GemsFarming_CommissionLimit = True
 
-
     # Group `EventGeneral`
     EventGeneral_PtLimit = 0
     EventGeneral_TimeLimit = datetime.datetime(2020, 1, 1, 0, 0)
@@ -264,7 +258,6 @@ class GeneratedConfig:
     Reward_CollectWeeklyMission = True
 
     # Group `Awaken`
-    Awaken_Favourite = False
     Awaken_LevelCap = 'level120'  # level120, level125
     Awaken_Favourite = False
 
@@ -272,7 +265,7 @@ class GeneratedConfig:
     GeneralShop_UseGems = False
     GeneralShop_Refresh = False
     GeneralShop_BuySkinBox = False
-    GeneralShop_ConsumeCoins = 550000
+    GeneralShop_ConsumeCoins = False
     GeneralShop_Filter = 'BookRedT3 > BookYellowT3 > BookBlueT3 > BookRedT2\n> Cube\n> FoodT6 > FoodT5'
 
     # Group `GuildShop`
@@ -306,13 +299,6 @@ class GeneratedConfig:
 
     # Group `CoreShop`
     CoreShop_Filter = 'Array'
-
-    # Group `EventShop`
-    EventShop_Enable = False
-    EventShop_UnlockShipSSR = False
-    EventShop_BuyShipUR = 0  # 0, 1, 2
-    EventShop_PresetFilter = 'all'  # all, custom
-    EventShop_CustomFilter = 'EquipUR > EquipSSR > GachaTicket\n> DR > PR > Array > Chip > CatT3\n> Meta > SkinBox\n> Oil > Coin > FoodT1\n> AugmentCore > AugmentEnhanceT2 > AugmentChangeT2 > AugmentChangeT1\n> Cube > Medal > ExpBookT1\n> CatT2 > CatT1 > PlateGeneralT3 > PlateT3 > BoxT4\n> ShipSSR'
 
     # Group `ShipyardDr`
     ShipyardDr_ResearchSeries = 2  # 2, 3, 4
@@ -399,7 +385,6 @@ class GeneratedConfig:
     OpsiGeneral_BuyActionPointLimit = 0  # 0, 1, 2, 3, 4, 5
     OpsiGeneral_OilLimit = 1000
     OpsiGeneral_RepairThreshold = 0.4
-    OpsiGeneral_DontRepair = False
     OpsiGeneral_DoRandomMapEvent = True
     OpsiGeneral_AkashiShopFilter = 'ActionPoint > PurpleCoins'
 
@@ -485,7 +470,7 @@ class GeneratedConfig:
     GGHandler_RestartEverytime = True
     GGHandler_RepushLua = True
     GGHandler_GGMultiplyingFactor = 200
-    GGHandler_Timeout = 1200
+    GGHandler_Timeout = 120
     GGHandler_DisabledTask = 'disable_all_dangerous_task'  # disable_all_dangerous_task, disable_guild_and_dangerous, disable_exercise, enable_all
 
     # Group `PowerLimit`
@@ -560,12 +545,6 @@ class GeneratedConfig:
     AutoRestart_Enabled = False
     AutoRestart_AttemptsToRestart = 114514
     AutoRestart_NotifyWhenAutoRestart = False
-
-    # Group `InstanceRestart`
-    InstanceRestart_Enabled = False
-    InstanceRestart_AttemptsToRestart = 114514
-    InstanceRestart_NotifyWhenAutoRestart = False
-    InstanceRestart_HasRestarted = 0
 
     # Group `Storage`
     Storage_Storage = {}
