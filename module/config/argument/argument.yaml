@@ -799,9 +799,9 @@ GGHandler:
       enable_all,
     ]
 PowerLimit:
-  Exercise: 16500
-  Raid: 16500
-  Ash: 16500
+  Exercise: 18500
+  Raid: 18500
+  Ash: 18500
 
 
 
