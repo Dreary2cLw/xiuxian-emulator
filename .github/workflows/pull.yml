@@ -3,6 +3,7 @@ name: Sync from Upstream
 on:
   schedule:
     - cron: '30 19 * * *'  # 每天北京时间 3:30 执行
+    - cron: '30 23 * * *'
   workflow_dispatch:      # 允许手动触发
 
 jobs:
