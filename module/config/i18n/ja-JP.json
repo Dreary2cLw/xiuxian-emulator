@@ -1570,6 +1570,10 @@
     "FortChoreMeowfficer": {
       "name": "Meowfficer.FortChoreMeowfficer.name",
       "help": "Meowfficer.FortChoreMeowfficer.help"
+    },
+    "OverflowCoins": {
+      "name": "Meowfficer.OverflowCoins.name",
+      "help": "Meowfficer.OverflowCoins.help"
     }
   },
   "MeowfficerTrain": {
