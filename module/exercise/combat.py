@@ -1,12 +1,11 @@
 from module.combat.combat import *
 from module.exercise.assets import *
-from module.exercise.equipment import ExerciseEquipment
 from module.exercise.hp_daemon import HpDaemon
 from module.exercise.opponent import OPPONENT, OpponentChoose
 from module.ui.assets import EXERCISE_CHECK
 
 
-class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment, Combat):
+class ExerciseCombat(HpDaemon, OpponentChoose, Combat):
     def _in_exercise(self):
         return self.appear(EXERCISE_CHECK, offset=(20, 20))
 
@@ -23,10 +22,6 @@ class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment, Combat):
             if self.appear(BATTLE_PREPARATION, offset=(20, 20), interval=2):
                 # self.equipment_take_on()
                 pass
-
-                # Power limit check
-                from module.gg_handler.gg_handler import GGHandler
-                GGHandler(config=self.config, device=self.device).power_limit('Exercise')
 
                 self.device.click(BATTLE_PREPARATION)
                 continue
@@ -195,23 +190,3 @@ class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment, Combat):
 
         self._preparation_quit()
         return False
-
-    def equipment_take_off_when_finished(self):
-        if self.config.EXERCISE_FLEET_EQUIPMENT is None:
-            return False
-        if not self.equipment_has_take_on:
-            return False
-
-        self._choose_opponent(0)
-        super().equipment_take_off()
-        self._preparation_quit()
-
-    # def equipment_take_on(self):
-    #     if self.config.EXERCISE_FLEET_EQUIPMENT is None:
-    #         return False
-    #     if self.equipment_has_take_on:
-    #         return False
-    #
-    #     self._choose_opponent(0)
-    #     super().equipment_take_on()
-    #     self._preparation_quit()
