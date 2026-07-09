@@ -512,7 +512,12 @@ class GemsFarming(CampaignRun, Dock):
 
         logger.hr('FINDING VANGUARD')
         templates = self.get_dd_templates()
-        scanner = ShipScanner(level=(self.max_level, self.max_level), emotion=(min_emotion, 150), fleet=[0, self.fleet_to_attack_index], status='free')
+        min_level = self.max_level
+        from module.gg_handler.gg_data import GGData
+        _ggdata = GGData(self.config).get_data()
+        if (_ggdata['gg_enable'] and _ggdata['gg_auto']) and self.config.GemsFarming_ALLowLowVanguardLevel:
+            min_level = 2
+        scanner = ShipScanner(level=(min_level, self.max_level), emotion=(min_emotion, 150), fleet=[0, self.fleet_to_attack_index], status='free')
         scanner.disable('rarity')
 
         candidates = self.find_candidates(templates, scanner, output=True)

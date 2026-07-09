@@ -23,6 +23,10 @@ class ExerciseCombat(HpDaemon, OpponentChoose, Combat):
                 # self.equipment_take_on()
                 pass
 
+                # GG-specific power limit handling kept on dev branch.
+                from module.gg_handler.gg_handler import GGHandler
+                GGHandler(config=self.config, device=self.device).power_limit('Exercise')
+
                 self.device.click(BATTLE_PREPARATION)
                 continue
 
