@@ -9803,6 +9803,10 @@
       "IdleAccumulatingItems": {
         "type": "textarea",
         "value": "{}"
+      },
+      "SkipBufferSurplus": {
+        "type": "checkbox",
+        "value": true
       }
     },
     "Storage": {
